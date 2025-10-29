@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: MoreDamage1
   m_EditorClassIdentifier: 
   type: 0
+  description: gets +5 of damage
   modify: 0
   valueToAdd: 5

@@ -14,6 +14,18 @@ public class UpgradeSO : ScriptableObject
     }
 
     [SerializeField] public UpgradeType type;
+
+
+    public enum Alignment
+    {
+        Positive,
+        Negative,
+
+    }
+
+    [SerializeField] public Alignment alignment;
+
+    [SerializeField] public string description;
     
     
     //[Header("Modificaion de stat")]

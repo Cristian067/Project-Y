@@ -385,7 +385,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -598,6 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1850782494}
   - component: {fileID: 1850782493}
+  - component: {fileID: 1850782495}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -626,6 +627,7 @@ MonoBehaviour:
   damage: 1
   speed: 10
   upgrades: []
+  enemyUpgrades: []
 --- !u!4 &1850782494
 Transform:
   m_ObjectHideFlags: 0
@@ -641,6 +643,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1850782495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850782492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919ded3ffea6e2c498ac5e1d0415e8a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allTheUpgrades:
+  - {fileID: 11400000, guid: 70a07da2dedfff840b24473b05130f5c, type: 2}
+  - {fileID: 11400000, guid: 63ee1f7101c87a148b2db8d798669b72, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

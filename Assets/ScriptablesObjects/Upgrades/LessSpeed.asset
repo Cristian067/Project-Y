@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: LessSpeed
   m_EditorClassIdentifier: 
   type: 0
+  alignment: 1
+  description: gets -5 of speed
   modify: 1
   valueToAdd: -5
