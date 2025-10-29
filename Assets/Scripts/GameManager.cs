@@ -5,6 +5,9 @@ using UnityEngine;
 
 
 
+
+
+
 public class UpgradeTypes
 {
     public enum Types
@@ -15,6 +18,8 @@ public class UpgradeTypes
 
 public class GameManager : MonoBehaviour
 {
+
+    public static GameManager instance { get; private set; }
 
     [SerializeField] private int lives = 3;
     [SerializeField] private float specialCharge;
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] private List<UpgradeSO> upgrades;
+    [SerializeField] private List<UpgradeSO> enemyUpgrades;
 
 
 
@@ -39,7 +45,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
     // Update is called once per frame
