@@ -29,13 +29,13 @@ public class UpgradesManager : MonoBehaviour
     }
     
 
-    public UpgradeSO GetRandomUpgrade()
+    public UpgradeSO GetRandomUpgrade(int goodOrBad)
     {
         //TODO: Hacer un random para elegir si la mejora es positiva o negativa para que no sea beneficioso solo para un lado
 
-        int randomSide = Random.Range(0, 2);
+        //int randomSide = Random.Range(0, 2);
 
-        if (randomSide == 0)
+        if (goodOrBad == 0)
         {
             List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
             foreach (UpgradeSO upgrade in allTheUpgrades)
@@ -64,5 +64,17 @@ public class UpgradesManager : MonoBehaviour
         //return allTheUpgrades[Random.Range(0, allTheUpgrades.Length)];
     }
 
+
+}
+
+
+public class Effects 
+{
+
+
+    public void Shield()
+    {
+
+    }
 
 }

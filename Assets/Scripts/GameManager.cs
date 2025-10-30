@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance { get; private set; }
 
     [SerializeField] private int lives = 3;
+    [SerializeField] private int maxLives = 6;
     [SerializeField] private float specialCharge;
 
     [SerializeField] private int pointsForUpgrade;
@@ -89,6 +90,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("GameOver");
         }
+    }
+
+    public void Heal(int lifes)
+    {
+        lives += lifes;
     }
 
 

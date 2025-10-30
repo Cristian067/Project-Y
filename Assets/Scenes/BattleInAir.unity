@@ -352,6 +352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5346612f78e21e4d9d96ecc909bcbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulllet: {fileID: 5860028167800293606, guid: 9db4d9fb208bbc246ae786973bf1cfd4, type: 3}
+  basicCooldown: 0.1
   speed: 10
   limitX: 7
 --- !u!4 &896225699
@@ -619,6 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
+  maxLives: 6
   specialCharge: 0
   pointsForUpgrade: 0
   points: 0
