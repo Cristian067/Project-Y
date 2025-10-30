@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 803bb176333f2fa448652c2443a9a3df, type: 3}
-  m_Name: Shield
+  m_Name: Bloom of the eternal field
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   alignment: 0
-  description: gets a shield that protects you from a hit. (It recharges after 3s)
+  description: The ability to stop the flow of time. Everyone who used this said
+    that feels like being in a field with inmortals flowers.
   modify: 0
   valueToAdd: 0

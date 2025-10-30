@@ -10,6 +10,8 @@ public class UpgradeSO : ScriptableObject
     public enum UpgradeType
     {
         StatModification,
+        Effect,
+        Special
 
     }
 

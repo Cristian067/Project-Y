@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+
+    [SerializeField] private GameObject bulllet;
+    [SerializeField] private float basicCooldown = 0.3f;
+    float coolCount = 0f;
+
+
     [SerializeField] private float speed = 10f;
 
     [SerializeField] private float limitX;
@@ -33,6 +40,29 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(new Vector3(1, 0, 0) * horizontalInput * speed * Time.deltaTime);
         transform.Translate(new Vector3(0, 0, 1) * verticalInput * speed * Time.deltaTime);
+
+
+        
+
+        if(Input.GetKey(KeyCode.Z))
+        {
+
+            coolCount += Time.deltaTime;
+            Debug.Log(coolCount);
+            if (coolCount > basicCooldown)
+            {
+                GameObject bulletOut = Instantiate(bulllet, transform.position, Quaternion.identity);
+
+                Destroy(bulletOut, 5f);
+                coolCount = 0f;
+            }
+        }
+
+        //if(Input.GetKeyUp(KeyCode.A))
+        //{
+        //    co
+        //}
+
 
         //limitar limites
 
