@@ -51,10 +51,17 @@ public class CardUpgrade : MonoBehaviour
         allyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomSide);
         enemyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomSide);
 
-        allyText.text = "You "+allyUpgrade.description;
-        enemyText.text = "The boss "+enemyUpgrade.description;
+        allyText.text = "You " + allyUpgrade.description;
+        enemyText.text = "The boss " + enemyUpgrade.description;
 
 
+    }
+    
+    public void Choosed()
+    {
+        GameManager.instance.AdquireUpgrade(0,allyUpgrade);
+        GameManager.instance.AdquireUpgrade(1, enemyUpgrade);
+        UpgradesManager.instance.UnDisplayeUpgrades();
     }
 
 

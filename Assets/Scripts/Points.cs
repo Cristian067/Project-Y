@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletsBehavior : MonoBehaviour
+public class Points : MonoBehaviour
 {
-
-    [SerializeField] private float speed = 2f;
-
-
+    [SerializeField] private float speed;
+    [SerializeField] private int points;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,15 +22,11 @@ public class BulletsBehavior : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<EnemyBehavior>().Hurt(GameManager.instance.GetPlayerDamage());
-            Destroy(gameObject);
+            GameManager.instance.AddPoints(points);
 
            
         }
     }
-
-
-
 }

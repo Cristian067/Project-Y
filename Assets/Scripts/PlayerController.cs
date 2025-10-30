@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         {
 
             coolCount += Time.deltaTime;
-            Debug.Log(coolCount);
+            //Debug.Log(coolCount);
             if (coolCount > basicCooldown)
             {
                 GameObject bulletOut = Instantiate(bulllet, transform.position, Quaternion.identity);

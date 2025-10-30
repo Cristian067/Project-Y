@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     [ContextMenu("Reload Stats")]
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         foreach (UpgradeSO upgrade in upgrades)
         {
-            if(upgrade.type == UpgradeSO.UpgradeType.StatModification)
+            if (upgrade.type == UpgradeSO.UpgradeType.StatModification)
             {
                 if (upgrade.modify == UpgradeSO.StatToModify.Damage)
                 {
@@ -102,5 +102,39 @@ public class GameManager : MonoBehaviour
     {
         return speed;
     }
+
+    public void AddPoints(int pointsToAdd)
+    {
+        points += pointsToAdd;
+
+        if (points >= pointsForUpgrade)
+        {
+            UpgradesManager.instance.DisplayUpgrades();
+            points -= pointsForUpgrade;
+        }
+    }
+
+    public void AdquireUpgrade(int side, UpgradeSO upgrade)
+    {
+        if (side == 0)
+        {
+            upgrades.Add(upgrade);
+
+        }
+
+        else
+        {
+            enemyUpgrades.Add(upgrade);
+
+        }
+
+        ReloadStats();
+    }
+
+    public int GetPlayerDamage()
+    {
+        return damage;
+    }
+
 
 }
