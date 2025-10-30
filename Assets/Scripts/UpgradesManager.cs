@@ -7,6 +7,9 @@ public class UpgradesManager : MonoBehaviour
 
     public static UpgradesManager instance { get; private set; }
 
+    [SerializeField] private GameObject upgradesContainer;
+    [SerializeField]private GameObject UpgradePrefab;
+
     [SerializeField] private UpgradeSO[] allTheUpgrades;
 
 
@@ -18,6 +21,7 @@ public class UpgradesManager : MonoBehaviour
             instance = this;
         }
 
+
         
         
     }
@@ -27,7 +31,7 @@ public class UpgradesManager : MonoBehaviour
     {
 
     }
-    
+
 
     public UpgradeSO GetRandomUpgrade(int goodOrBad)
     {
@@ -63,6 +67,31 @@ public class UpgradesManager : MonoBehaviour
 
         //return allTheUpgrades[Random.Range(0, allTheUpgrades.Length)];
     }
+
+    [ContextMenu("Display upgrades screen")]
+    public void DisplayUpgrades()
+    {
+        Instantiate(UpgradePrefab, upgradesContainer.transform);
+        Instantiate(UpgradePrefab, upgradesContainer.transform);
+        Instantiate(UpgradePrefab, upgradesContainer.transform);
+
+        //Instantiate(UpgradePrefab, canvas.transform);
+    }
+    
+    public void UnDisplayeUpgrades()
+    {
+        Debug.Log(upgradesContainer.transform.childCount);
+        //Debug.Log(gameObject.transform.GetChild(1).gameObject);
+
+        foreach (Transform child in upgradesContainer.transform) 
+        {
+            Destroy(child.gameObject);
+        }
+    //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
+    //     {
+    //         Destroy(transform.GetChild(i).gameObject);
+    //     }
+     }
 
 
 }
