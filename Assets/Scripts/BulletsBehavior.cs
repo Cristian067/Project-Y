@@ -7,6 +7,8 @@ public class BulletsBehavior : MonoBehaviour
 
     [SerializeField] private float speed = 2f;
 
+    [SerializeField] private bool enemy = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,12 +26,28 @@ public class BulletsBehavior : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
-        {
-            other.gameObject.GetComponent<EnemyBehavior>().Hurt(GameManager.instance.GetPlayerDamage());
-            Destroy(gameObject);
 
-           
+        if (enemy)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                GameManager.instance.LoseLife();
+                //other.gameObject.GetComponent<EnemyBehavior>().Hurt(GameManager.instance.GetPlayerDamage());
+                Destroy(gameObject);
+
+
+            }
+
+        }
+        else
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                other.gameObject.GetComponent<EnemyBehavior>().Hurt(GameManager.instance.GetPlayerDamage());
+                Destroy(gameObject);
+
+
+            }
         }
     }
 

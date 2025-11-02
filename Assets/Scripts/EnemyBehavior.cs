@@ -10,7 +10,19 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private int life;
     [SerializeField] private float speed;
 
+    [SerializeField] private bool canShoot;
+    
+
     [SerializeField] private GameObject pointGo;
+
+    public enum States
+    {
+        Stop,
+        Moving,
+
+    }
+
+    private States actualState;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +34,12 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         transform.Translate(new Vector3(0, 0, 1) * speed * Time.deltaTime);
+    }
+
+
+    public void Go()
+    {
+
     }
 
 

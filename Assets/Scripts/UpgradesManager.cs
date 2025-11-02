@@ -36,7 +36,7 @@ public class UpgradesManager : MonoBehaviour
     public UpgradeSO GetRandomUpgrade(int goodOrBad)
     {
         //TODO: Hacer un random para elegir si la mejora es positiva o negativa para que no sea beneficioso solo para un lado
-
+        GameManager.instance.Pause();
         //int randomSide = Random.Range(0, 2);
 
         if (goodOrBad == 0)
@@ -87,6 +87,7 @@ public class UpgradesManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        GameManager.instance.Unpause();
     //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
     //     {
     //         Destroy(transform.GetChild(i).gameObject);
