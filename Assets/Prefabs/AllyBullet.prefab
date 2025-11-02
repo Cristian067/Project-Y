@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 18
+  enemy: 0
 --- !u!135 &8760509503121760190
 SphereCollider:
   m_ObjectHideFlags: 0

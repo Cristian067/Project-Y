@@ -24,7 +24,9 @@ public class Points : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            Debug.Log("Yoink");
             GameManager.instance.AddPoints(points);
+            Destroy(gameObject);
 
            
         }

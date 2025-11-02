@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
         damage = damageBase;
         speed = speedBase;
 
+        
+
 
         foreach (UpgradeSO upgrade in upgrades)
         {
@@ -76,10 +78,25 @@ public class GameManager : MonoBehaviour
                 }
                 else if (upgrade.modify == UpgradeSO.StatToModify.Speed)
                 {
-                    speed += upgrade.valueToAdd.ConvertTo<int>();
+                    speed += upgrade.valueToAdd;
                 }
             }
         }
+
+        if (speed <= 0)
+        {
+            speed = 0.1f;
+        }
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
     }
 
 
