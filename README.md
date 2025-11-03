@@ -12,7 +12,6 @@ También en la seleccion de mejora habia pensado en que también hubiera algo co
 
 
 
-<details>
+
   <summary>Credits</summary>
     
-</details>
