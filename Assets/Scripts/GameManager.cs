@@ -90,7 +90,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
+        if (damage <= 0)
+        {
+            damage = 1;
+        }
         if (speed <= 0)
         {
             speed = 0.1f;
