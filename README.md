@@ -14,6 +14,9 @@ También en la seleccion de mejora habia pensado en que también hubiera algo co
 
 <details>
   <summary>Upgrades</summary>
+  - Type
+  - Digit
+  - 
     - Mas daño: Aumenta el daño del personaje.
     - Mas Velocidad: Aumenta la velocidad del personaje.
     - Menos daño: Disminuye el daño del personaje.
