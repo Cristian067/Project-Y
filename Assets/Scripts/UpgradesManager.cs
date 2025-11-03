@@ -1,14 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+
+[System.Serializable]
+public class UpgradeEffects
+{
+    public UpgradeSO sideToSideEffect;
+}
+
 
 public class UpgradesManager : MonoBehaviour
 {
 
     public static UpgradesManager instance { get; private set; }
 
+
+    public UpgradeEffects effects;
+
     [SerializeField] private GameObject upgradesContainer;
-    [SerializeField]private GameObject UpgradePrefab;
+    [SerializeField] private GameObject UpgradePrefab;
 
     [SerializeField] private UpgradeSO[] allTheUpgrades;
 
@@ -22,8 +34,8 @@ public class UpgradesManager : MonoBehaviour
         }
 
 
-        
-        
+
+
     }
 
     // Update is called once per frame
@@ -72,27 +84,32 @@ public class UpgradesManager : MonoBehaviour
     public void DisplayUpgrades()
     {
         Instantiate(UpgradePrefab, upgradesContainer.transform);
-        Instantiate(UpgradePrefab, upgradesContainer.transform);
+        Button select = Instantiate(UpgradePrefab, upgradesContainer.transform).GetComponent<Button>();
+        select.Select();
+
         Instantiate(UpgradePrefab, upgradesContainer.transform);
 
         //Instantiate(UpgradePrefab, canvas.transform);
     }
-    
+
     public void UnDisplayeUpgrades()
     {
         Debug.Log(upgradesContainer.transform.childCount);
         //Debug.Log(gameObject.transform.GetChild(1).gameObject);
 
-        foreach (Transform child in upgradesContainer.transform) 
+        foreach (Transform child in upgradesContainer.transform)
         {
             Destroy(child.gameObject);
         }
         GameManager.instance.Unpause();
-    //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
-    //     {
-    //         Destroy(transform.GetChild(i).gameObject);
-    //     }
-     }
+        //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
+        //     {
+        //         Destroy(transform.GetChild(i).gameObject);
+        //     }
+    }
+
+
+
 
 
 }

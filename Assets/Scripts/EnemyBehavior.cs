@@ -34,6 +34,12 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         transform.Translate(new Vector3(0, 0, 1) * speed * Time.deltaTime);
+
+
+        if(transform.position.z <= -5.5f)
+        {
+            Destroy(gameObject);
+        }
     }
 
 

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 803bb176333f2fa448652c2443a9a3df, type: 3}
-  m_Name: MoreDamage1
+  m_Name: LessDamage
   m_EditorClassIdentifier: 
   type: 0
-  alignment: 0
-  description: gets +2 of damage
+  alignment: 1
+  description: gets -2 of damage
   modify: 0
-  valueToAdd: 2
+  valueToAdd: -2
