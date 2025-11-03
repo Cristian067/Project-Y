@@ -1,6 +1,6 @@
 # Project-Y
 
-# Descripcion
+## Descripcion
 
     El juego sera un bullet hell con mecánicas de roguelike, donde con cada mejora que el jugador eliga sera una mejora para el jugador y para el enemigo teniendo que elegir no solo algo que te beneficie, sino que no beneficie demasiado al enemigo.
 
