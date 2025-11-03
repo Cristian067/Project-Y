@@ -78,6 +78,12 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.sideToSideEffect))
         {
+            if (transform.position.z < -2)
+            {
+
+                transform.position = new Vector3(transform.position.x, transform.position.y, -2);
+
+            }
             if (transform.position.x > limitX)
             {
                 transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
