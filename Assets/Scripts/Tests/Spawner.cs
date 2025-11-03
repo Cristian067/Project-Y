@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
         float randomX = Random.Range(-7, 7);
         int randomEnemy = Random.Range(0, enemiesPrefab.Length);
 
-        Instantiate(enemiesPrefab[randomEnemy], new Vector3(randomX, 0, 16), Quaternion.Euler(0,180,0));
+        Instantiate(enemiesPrefab[randomEnemy], new Vector3(randomX, 0, 13.5f), Quaternion.Euler(0,180,0));
 
     }
 
