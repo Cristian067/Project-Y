@@ -14,19 +14,20 @@ También en la seleccion de mejora habia pensado en que también hubiera algo co
 
 <details>
   <summary>Upgrades</summary>
-    - Mas daño: Aumenta el daño del personaje.
 
-    - Mas Velocidad: Aumenta la velocidad del personaje.
+- Mas daño: Aumenta el daño del personaje.
 
-    - Menos daño: Disminuye el daño del personaje.
+- Mas Velocidad: Aumenta la velocidad del personaje.
 
-    - menos velocidad: Disminuye la velocidad del personaje.
+- Menos daño: Disminuye el daño del personaje.
 
-    - Barrera: El personaje adquiere una barrera que al cabo de cierto tiempo despues de perderla se restaura.
+- menos velocidad: Disminuye la velocidad del personaje.
 
-    - Disparo doble: El dispare del personaje se vuelve doble.
-    
-    - Sin limites: Al moverse al limite izquierdo o derecho el personaje aparecera en el contrario.
+- Barrera: El personaje adquiere una barrera que al cabo de cierto tiempo despues de perderla se restaura.
+
+- Disparo doble: El dispare del personaje se vuelve doble.
+
+- Sin limites: Al moverse al limite izquierdo o derecho el personaje aparecera en el contrario.
     
 </details>
 
