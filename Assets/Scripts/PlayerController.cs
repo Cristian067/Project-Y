@@ -30,19 +30,19 @@ public class PlayerController : MonoBehaviour
     private float verticalInput;
 
 
-    private GameManager gameManager;
+    //private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerMaterial.color = new Vector4(PlayerMaterial.color.r, PlayerMaterial.color.g, PlayerMaterial.color.b, 1);
-        gameManager = FindObjectOfType<GameManager>();
+        //gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        speed = gameManager.GetSpeed();
+        speed = GameManager.instance.GetSpeed();
 
         verticalInput = Input.GetAxisRaw("Vertical");
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
 
-            gameManager.LoseLife();
+            GameManager.instance.LoseLife();
 
         }
     }

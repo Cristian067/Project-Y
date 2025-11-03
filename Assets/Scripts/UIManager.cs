@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager instance { get; private set;}
     [SerializeField] private TextMeshProUGUI livesText;
+    [SerializeField] private TextMeshProUGUI totalPointsText;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class UIManager : MonoBehaviour
     public void RefreshStatsUi()
     {
         livesText.text = $"{GameManager.instance.GetPlayerLives()}/6";
+        totalPointsText.text = $"{GameManager.instance.GetTotalPoints()}";
     }
     
 

@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float specialCharge;
 
     [SerializeField] private int pointsForUpgrade;
+    [SerializeField] private int totalPoints;
     [SerializeField] private int points;
 
     [Header("Base Stats")]
@@ -136,6 +137,8 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int pointsToAdd)
     {
         points += pointsToAdd;
+        totalPoints += pointsToAdd;
+        UIManager.instance.RefreshStatsUi();
 
         if (points >= pointsForUpgrade)
         {
@@ -169,6 +172,11 @@ public class GameManager : MonoBehaviour
     public int GetPlayerLives()
     {
         return lives;
+    }
+
+    public int GetTotalPoints()
+    {
+        return totalPoints;
     }
 
 
