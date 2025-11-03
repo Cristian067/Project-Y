@@ -51,8 +51,19 @@ public class CardUpgrade : MonoBehaviour
         allyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomSide);
         enemyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomSide);
 
-        allyText.text = "You " + allyUpgrade.description;
-        enemyText.text = "The boss " + enemyUpgrade.description;
+        if (allyUpgrade.type == UpgradeSO.UpgradeType.Effect)
+        {
+            //enemyUpgrade = null;
+            allyText.text = allyUpgrade.description;
+            enemyText.text = "The boss " + enemyUpgrade.description;
+
+        }
+        else
+        {
+            allyText.text = "You " + allyUpgrade.description;
+            enemyText.text = "The boss " + enemyUpgrade.description;
+        }
+        
 
 
     }

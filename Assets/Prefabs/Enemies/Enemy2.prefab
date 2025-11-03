@@ -68,8 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73af5dc37c4aa584e8d5baebdfae0df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 18
-  speed: 1.5
+  life: 13
+  speed: 0.5
   canShoot: 1
   pointGo: {fileID: 5860028167800293606, guid: 6d2668ed39a049e4ea2ad72f963bfdae, type: 3}
 --- !u!114 &3050899109626035231

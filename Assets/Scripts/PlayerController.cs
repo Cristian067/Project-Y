@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,7 +19,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float limitX;
 
-    //[SerializeField] private Collider hitbox;
+
+    [SerializeField] private float hitCooldown;
+
+    [SerializeField] private Collider hitbox;
+    [SerializeField] private Material PlayerMaterial;
 
 
     private float horizontalInput;
@@ -27,6 +35,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerMaterial.color = new Vector4(PlayerMaterial.color.r, PlayerMaterial.color.g, PlayerMaterial.color.b, 1);
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -42,9 +51,9 @@ public class PlayerController : MonoBehaviour
         transform.Translate(new Vector3(0, 0, 1) * verticalInput * speed * Time.deltaTime);
 
 
-        
 
-        if(Input.GetKey(KeyCode.Z))
+
+        if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.J))
         {
 
             coolCount += Time.deltaTime;
@@ -66,23 +75,51 @@ public class PlayerController : MonoBehaviour
 
         //limitar limites
 
-        if (transform.position.y < -1)
+
+        if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.sideToSideEffect))
         {
+            if (transform.position.x > limitX)
+            {
+                transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
+            }
 
-            transform.position = new Vector3(transform.position.x, -1, transform.position.z);
+            if (transform.position.x < -limitX)
+            {
+                transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
+            }
+        }
+        else
+        {
+            
+        
+            if (transform.position.z < -2)
+            {
 
+                transform.position = new Vector3(transform.position.x, transform.position.y, -2);
+
+            }
+
+            if (transform.position.x > limitX)
+            {
+                transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
+            }
+
+            if (transform.position.x < -limitX)
+            {
+                transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
+            }
+        
         }
 
-        if (transform.position.x > limitX)
-        {
-            transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
-        }
+    }
 
-        if (transform.position.x < -limitX)
-        {
-            transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
-        }
-
+    public IEnumerator HitInCooldown()
+    {
+        hitbox.enabled = false;
+        PlayerMaterial.color = new Vector4(PlayerMaterial.color.r, PlayerMaterial.color.g, PlayerMaterial.color.b, 0.30f);
+        yield return new WaitForSeconds(hitCooldown);
+        hitbox.enabled = true;
+        PlayerMaterial.color = new Vector4(PlayerMaterial.color.r, PlayerMaterial.color.g, PlayerMaterial.color.b, 1);
     }
 
 

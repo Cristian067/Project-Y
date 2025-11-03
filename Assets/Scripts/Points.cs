@@ -22,9 +22,9 @@ public class Points : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Collect")
         {
-            Debug.Log("Yoink");
+            //Debug.Log("Yoink");
             GameManager.instance.AddPoints(points);
             Destroy(gameObject);
 

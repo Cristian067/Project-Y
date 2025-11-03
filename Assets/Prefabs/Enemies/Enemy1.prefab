@@ -279,5 +279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 8
-  speed: 3
+  speed: 2
+  canShoot: 0
   pointGo: {fileID: 5860028167800293606, guid: 6d2668ed39a049e4ea2ad72f963bfdae, type: 3}

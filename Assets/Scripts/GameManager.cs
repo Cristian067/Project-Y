@@ -8,6 +8,7 @@ using UnityEngine;
 
 
 
+
 public class UpgradeTypes
 {
     public enum Types
@@ -20,6 +21,10 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance { get; private set; }
+
+
+
+    [SerializeField] private PlayerController playerScript;
 
     [SerializeField] private int lives = 3;
     [SerializeField] private int maxLives = 6;
@@ -50,6 +55,9 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+
+        UIManager.instance.RefreshStatsUi();
     }
 
     // Update is called once per frame
@@ -65,7 +73,7 @@ public class GameManager : MonoBehaviour
         damage = damageBase;
         speed = speedBase;
 
-        
+
 
 
         foreach (UpgradeSO upgrade in upgrades)
@@ -103,6 +111,8 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         lives--;
+        UIManager.instance.RefreshStatsUi();
+        StartCoroutine(playerScript.HitInCooldown());
         if (lives == 0)
         {
             Debug.Log("GameOver");
@@ -153,5 +163,15 @@ public class GameManager : MonoBehaviour
         return damage;
     }
 
+    public int GetPlayerLives()
+    {
+        return lives;
+    }
+
+
+    public UpgradeSO[] GetUpgrades()
+    {
+        return upgrades.ToArray();
+    }
 
 }
