@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class UIManager : MonoBehaviour
     public static UIManager instance { get; private set;}
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI totalPointsText;
+
+    [SerializeField] private Slider upgradeProgressSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,9 @@ public class UIManager : MonoBehaviour
     {
         livesText.text = $"{GameManager.instance.GetPlayerLives()}/6";
         totalPointsText.text = $"{GameManager.instance.GetTotalPoints()}";
+
+        upgradeProgressSlider.value = GameManager.instance.GetPoints();
+        upgradeProgressSlider.maxValue = GameManager.instance.GetPointsToUpgrade();
     }
     
 

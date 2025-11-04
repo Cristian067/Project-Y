@@ -15,14 +15,12 @@ public class EnemyBehavior : MonoBehaviour
 
     [SerializeField] private GameObject pointGo;
 
-    public enum States
-    {
-        Stop,
-        Moving,
+    [SerializeField] private bool isMoving = true;
+    // [SerializeField] private Vector3 posToMove;
+    // [SerializeField] private Vector3 directionToMove;
+    // [SerializeField] private (Vector3,bool) testmove;
 
-    }
-
-    private States actualState;
+    [SerializeField] private EnemyMoveSO movement;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +31,11 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(0, 0, 1) * speed * Time.deltaTime);
+        if (isMoving)
+        {
+            transform.Translate(new Vector3(0, 0, 1) * speed * Time.deltaTime);
+        }
+        
 
 
         if(transform.position.z <= -5.5f)
@@ -45,6 +47,12 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Go()
     {
+
+    }
+    public void Stop()
+    {
+
+        isMoving = false;
 
     }
 
