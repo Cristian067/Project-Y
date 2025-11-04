@@ -179,6 +179,16 @@ public class GameManager : MonoBehaviour
         return totalPoints;
     }
 
+    public int GetPoints()
+    {
+        return points;
+    }
+
+    public int GetPointsToUpgrade()
+    {
+        return pointsForUpgrade;
+    }
+
 
     public UpgradeSO[] GetUpgrades()
     {
