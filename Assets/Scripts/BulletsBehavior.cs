@@ -20,6 +20,11 @@ public class BulletsBehavior : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        if(transform.position.z > 16 || transform.position.z < -10 || transform.position.x >10 || transform.position.x < -10)
+        {
+            Destroy(gameObject);
+        }
     }
 
 

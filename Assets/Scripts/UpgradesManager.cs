@@ -45,38 +45,101 @@ public class UpgradesManager : MonoBehaviour
     }
 
 
-    public UpgradeSO GetRandomUpgrade(int goodOrBad)
+    public UpgradeSO GetRandomUpgrade(int type, int goodOrBad)
     {
+
+        //type = 0 = modificacion de estadisticas
+        //type = 1 = efectos
+        //type = 2 = especial
+
         //TODO: Hacer un random para elegir si la mejora es positiva o negativa para que no sea beneficioso solo para un lado
         GameManager.instance.Pause();
         //int randomSide = Random.Range(0, 2);
-
-        if (goodOrBad == 0)
+        if (type == 0)
         {
-            List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
-            foreach (UpgradeSO upgrade in allTheUpgrades)
+            if (goodOrBad == 0)
             {
-                if (upgrade.alignment == UpgradeSO.Alignment.Positive)
+                List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
+                foreach (UpgradeSO upgrade in allTheUpgrades)
                 {
-                    goodUpgrade.Add(upgrade);
+                    if (upgrade.alignment == UpgradeSO.Alignment.Positive && upgrade.type == UpgradeSO.UpgradeType.StatModification)
+                    {
+                        goodUpgrade.Add(upgrade);
+                    }
                 }
+                return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
             }
-            return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
+            else
+            {
+                List<UpgradeSO> badUpgrade = new List<UpgradeSO>();
+
+                foreach (UpgradeSO upgrade in allTheUpgrades)
+                {
+                    if (upgrade.alignment == UpgradeSO.Alignment.Negative && upgrade.type == UpgradeSO.UpgradeType.StatModification)
+                    {
+                        badUpgrade.Add(upgrade);
+                    }
+                }
+                return badUpgrade[Random.Range(0, badUpgrade.Count)];
+            }
+        }
+
+        else if (type == 1)
+        {
+            if (goodOrBad == 0)
+            {
+                List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
+                foreach (UpgradeSO upgrade in allTheUpgrades)
+                {
+                    if (upgrade.alignment == UpgradeSO.Alignment.Positive && upgrade.type == UpgradeSO.UpgradeType.Effect)
+                    {
+                        goodUpgrade.Add(upgrade);
+                    }
+                }
+                return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
+            }
+            else
+            {
+                List<UpgradeSO> badUpgrade = new List<UpgradeSO>();
+
+                foreach (UpgradeSO upgrade in allTheUpgrades)
+                {
+                    if (upgrade.alignment == UpgradeSO.Alignment.Negative && upgrade.type == UpgradeSO.UpgradeType.Effect)
+                    {
+                        badUpgrade.Add(upgrade);
+                    }
+                }
+                return badUpgrade[Random.Range(0, badUpgrade.Count)];
+            }
         }
         else
         {
-            List<UpgradeSO> badUpgrade = new List<UpgradeSO>();
-
-            foreach (UpgradeSO upgrade in allTheUpgrades)
-            {
-                if (upgrade.alignment == UpgradeSO.Alignment.Negative)
+            //if (goodOrBad == 0)
+            //{
+                List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
+                foreach (UpgradeSO upgrade in allTheUpgrades)
                 {
-                    badUpgrade.Add(upgrade);
+                    if (upgrade.alignment == UpgradeSO.Alignment.Positive && upgrade.type == UpgradeSO.UpgradeType.Special)
+                    {
+                        goodUpgrade.Add(upgrade);
+                    }
                 }
-            }
-            return badUpgrade[Random.Range(0, badUpgrade.Count)];
-        }
+                return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
+            //}
+            // else
+            // {
+            //     List<UpgradeSO> badUpgrade = new List<UpgradeSO>();
 
+            //     foreach (UpgradeSO upgrade in allTheUpgrades)
+            //     {
+            //         if (upgrade.alignment == UpgradeSO.Alignment.Negative && upgrade.type == UpgradeSO.UpgradeType.Effect)
+            //         {
+            //             badUpgrade.Add(upgrade);
+            //         }
+            //     }
+            //     return badUpgrade[Random.Range(0, badUpgrade.Count)];
+            // }
+        }
         //return allTheUpgrades[Random.Range(0, allTheUpgrades.Length)];
     }
 
@@ -86,7 +149,6 @@ public class UpgradesManager : MonoBehaviour
         Instantiate(UpgradePrefab, upgradesContainer.transform);
         Button select = Instantiate(UpgradePrefab, upgradesContainer.transform).GetComponent<Button>();
         select.Select();
-
         Instantiate(UpgradePrefab, upgradesContainer.transform);
 
         //Instantiate(UpgradePrefab, canvas.transform);
@@ -102,6 +164,7 @@ public class UpgradesManager : MonoBehaviour
             Destroy(child.gameObject);
         }
         GameManager.instance.Unpause();
+        UIManager.instance.RefreshStatsUi();
         //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
         //     {
         //         Destroy(transform.GetChild(i).gameObject);

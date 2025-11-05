@@ -17,7 +17,7 @@ public class EnemyShoot : MonoBehaviour
     void Start()
     {
 
-        InvokeRepeating("Shoot", shootCooldown, shootCooldown);
+        
         
     }
 
@@ -31,9 +31,19 @@ public class EnemyShoot : MonoBehaviour
         //{
         //    countCooldown = 0;
         //    Shoot();
-            
+
         //}
-        
+
+    }
+
+    public void StartShooting()
+    {
+        InvokeRepeating("Shoot", shootCooldown, shootCooldown);
+    }
+    
+    public void StopShooting()
+    {
+        CancelInvoke("Shoot");
     }
 
 

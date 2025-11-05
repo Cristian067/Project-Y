@@ -8,8 +8,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-
     [SerializeField] private GameObject bulllet;
     [SerializeField] private float basicCooldown = 0.3f;
     float coolCount = 0f;
@@ -53,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
 
 
+
         if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.J))
         {
 
@@ -67,6 +66,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.K)) && GameManager.instance.GetSpecial() != null)
+        {
+
+            StartCoroutine(GameManager.instance.GetSpecial().special.Use(gameObject));
+            
+        }
+
         //if(Input.GetKeyUp(KeyCode.A))
         //{
         //    co
@@ -74,15 +80,15 @@ public class PlayerController : MonoBehaviour
 
 
         //limitar limites
-
-
         if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.sideToSideEffect))
         {
             if (transform.position.z < -2)
             {
-
                 transform.position = new Vector3(transform.position.x, transform.position.y, -2);
-
+            }
+            if (transform.position.z > 11.5f)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, 11.5f);
             }
             if (transform.position.x > limitX)
             {
@@ -96,13 +102,15 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            
-        
+
+
             if (transform.position.z < -2)
             {
-
                 transform.position = new Vector3(transform.position.x, transform.position.y, -2);
-
+            }
+            if (transform.position.z > 11.5f)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, 11.5f);
             }
 
             if (transform.position.x > limitX)
@@ -114,8 +122,10 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
             }
-        
+
         }
+
+
 
     }
 
