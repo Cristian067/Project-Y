@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<UpgradeSO> upgrades;
     [SerializeField] private List<UpgradeSO> enemyUpgrades;
 
+    [SerializeField] private UpgradeSO special;
+
 
 
 
@@ -134,6 +136,16 @@ public class GameManager : MonoBehaviour
         return speed;
     }
 
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public UpgradeSO GetSpecial()
+    {
+        return special;
+    }
+
     public void AddPoints(int pointsToAdd)
     {
         points += pointsToAdd;
@@ -149,16 +161,24 @@ public class GameManager : MonoBehaviour
 
     public void AdquireUpgrade(int side, UpgradeSO upgrade)
     {
-        if (side == 0)
+
+        if (upgrade.type == UpgradeSO.UpgradeType.Special)
         {
-            upgrades.Add(upgrade);
-
+            special = upgrade;
         }
-
         else
         {
-            enemyUpgrades.Add(upgrade);
+            if (side == 0)
+            {
+                upgrades.Add(upgrade);
 
+            }
+
+            else
+            {
+                enemyUpgrades.Add(upgrade);
+
+            }
         }
 
         ReloadStats();

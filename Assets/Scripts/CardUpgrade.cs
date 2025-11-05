@@ -47,9 +47,16 @@ public class CardUpgrade : MonoBehaviour
     private void Initialize()
     {
 
+        int randomType = Random.Range(0, 3);
+        //type = 0 = modificacion de estadisticas
+        //type = 1 = efectos
+        //type = 2 = especial
+
         int randomSide = Random.Range(0, 2);
-        allyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomSide);
-        enemyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomSide);
+
+
+        allyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomType,randomSide);
+        enemyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomType,randomSide);
 
         if (allyUpgrade.type == UpgradeSO.UpgradeType.Effect)
         {
@@ -57,6 +64,11 @@ public class CardUpgrade : MonoBehaviour
             allyText.text = allyUpgrade.description;
             enemyText.text = "The boss " + enemyUpgrade.description;
 
+        }
+        else if (allyUpgrade.type == UpgradeSO.UpgradeType.Special)
+        {
+            allyText.text = allyUpgrade.description;
+            enemyUpgrade = null;
         }
         else
         {

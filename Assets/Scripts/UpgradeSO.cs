@@ -45,7 +45,18 @@ public class UpgradeSO : ScriptableObject
     [SerializeField] public float valueToAdd;
 
 
+    [SerializeField] public SpecialSO special;
 
+
+
+    // public void Use(GameObject owner)
+    // {
+
+    //     //PlayerController player = owner.GetComponent<PlayerController>();
+
+    
+        
+    // }
 
 
 }
