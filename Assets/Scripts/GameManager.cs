@@ -49,15 +49,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UpgradeSO special;
 
 
-
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
 
 
         UIManager.instance.RefreshStatsUi();

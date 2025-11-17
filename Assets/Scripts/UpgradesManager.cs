@@ -25,13 +25,17 @@ public class UpgradesManager : MonoBehaviour
     [SerializeField] private UpgradeSO[] allTheUpgrades;
 
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
 
 
 

@@ -82,9 +82,9 @@ public class PlayerController : MonoBehaviour
         //limitar limites
         if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.sideToSideEffect))
         {
-            if (transform.position.z < -2)
+            if (transform.position.z < -2.75f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -2);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -2.75f);
             }
             if (transform.position.z > 11.5f)
             {
@@ -104,9 +104,9 @@ public class PlayerController : MonoBehaviour
         {
 
 
-            if (transform.position.z < -2)
+            if (transform.position.z < -2.75f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -2);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -2.75f);
             }
             if (transform.position.z > 11.5f)
             {
