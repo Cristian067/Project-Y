@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [Serializable]
@@ -63,7 +64,7 @@ public class MainManager : MonoBehaviour
     {
 
         actLevelSelected += upOrDown;
-        if (actLevelSelected > levels.Length-1)
+        if (actLevelSelected > levels.Length - 1)
         {
             actLevelSelected = 0;
         }
@@ -72,12 +73,18 @@ public class MainManager : MonoBehaviour
             actLevelSelected = levels.Length - 1;
         }
 
-            levelImage.sprite = levels[actLevelSelected].levelImg;
+        levelImage.sprite = levels[actLevelSelected].levelImg;
         levelNameText.text = levels[actLevelSelected].levelName;
         levelDescriptionText.text = levels[actLevelSelected].levelDescription;
         levelNumberText.text = $"Level {actLevelSelected}";
 
 
+    }
+    
+
+    public void Play()
+    {
+        SceneManager.LoadScene(levels[actLevelSelected].levelSceneId);
     }
 
 
