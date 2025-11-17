@@ -31,6 +31,10 @@ También en la seleccion de mejora habia pensado en que también hubiera algo co
     
 </details>
 
+# Enlaces Externos
+
+https://app.clickup.com/90151899376/v/l/li/901517209763
+
 <details>
   <summary>Credits</summary>
     
