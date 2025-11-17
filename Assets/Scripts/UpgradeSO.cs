@@ -7,6 +7,16 @@ using UnityEngine;
 public class UpgradeSO : ScriptableObject
 {
 
+        public enum Who
+    {
+        Player,
+        Enemy,
+
+    }
+
+    [SerializeField] public Who whoToAdd;
+
+
     public enum UpgradeType
     {
         StatModification,
