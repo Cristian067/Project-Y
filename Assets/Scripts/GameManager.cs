@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int damageBase = 1;
     [SerializeField] private float speedBase = 8;
 
-    [Header("Stats")]
+    [Header("Stats")] 
     [SerializeField] private int damage = 1;
     [SerializeField] private float speed = 8;
 
