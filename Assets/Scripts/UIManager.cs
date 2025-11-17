@@ -13,13 +13,19 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Slider upgradeProgressSlider;
 
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
 
         //RefreshStatsUi();
     }

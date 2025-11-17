@@ -87,7 +87,7 @@ public class EnemyBehavior : MonoBehaviour
     {
 
 
-        if (transform.position.z > activationZ)
+        if (transform.position.z > activationZ && !activated)
         {
             GetComponent<Collider>().enabled = false;
         }

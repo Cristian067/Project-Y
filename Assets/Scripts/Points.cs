@@ -18,6 +18,10 @@ public class Points : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
+    public void ChangePointsValue(int newValue)
+    {
+        points = newValue;
+    }
 
 
     void OnTriggerEnter(Collider other)

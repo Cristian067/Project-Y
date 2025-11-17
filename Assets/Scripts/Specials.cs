@@ -5,7 +5,6 @@ using UnityEngine;
 public class EternalBloom : SpecialSO
 {
 
-    
     public override IEnumerator Use(GameObject owner)
     { 
         float speedOg = GameManager.instance.GetSpeed();
@@ -15,8 +14,5 @@ public class EternalBloom : SpecialSO
         Time.timeScale = 1;
         GameManager.instance.SetSpeed(speedOg);
     }
-
-
-
 
 }

@@ -18,7 +18,7 @@ public class PosSelectorEditor : Editor
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 EnemiesMovement script = (EnemiesMovement)target;
-                script.positions.Add(hit.point);
+                script.positions.Add(new Vector3(hit.point.x,0,hit.point.z));
                 selecting = false;
 
                 // Marca el objeto como modificado para guardar el cambio

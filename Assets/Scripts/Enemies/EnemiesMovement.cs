@@ -34,16 +34,19 @@ public class EnemiesMovement : MonoBehaviour
     {
         if (positions.Count > 0)
         {
-
+            Gizmos.color = Color.green;
             for (int i = 0; i < positions.Count; i++)
             {
+                //Gizmos.color = Color.white;
                 Gizmos.DrawIcon(positions[i], "Light Gizmo.tiff");
-                if(i+1 < positions.Count)
+                if (i + 1 < positions.Count)
                 {
                     Gizmos.DrawLine(positions[i], positions[i + 1]);
                 }
-                
+
             }
+            
+            
 
         }
     }
