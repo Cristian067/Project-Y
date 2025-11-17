@@ -161,10 +161,18 @@ public class GameManager : MonoBehaviour
 
     public void AdquireUpgrade(int side, UpgradeSO upgrade)
     {
+        if (upgrade == null)
+        {
+            return;
+        }
 
         if (upgrade.type == UpgradeSO.UpgradeType.Special)
         {
-            special = upgrade;
+            if (upgrade != null)
+            {
+                special = upgrade;
+            }
+            
         }
         else
         {
