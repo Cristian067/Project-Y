@@ -152,6 +152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainManager
   levels:
+  - levelName: TestScene
+    levelDescription: 'Test scene to do tests '
+    levelImg: {fileID: 0}
+    levelSceneId: 1
   - levelName: Tutorial
     levelDescription: You need to know how to
     levelImg: {fileID: 0}
