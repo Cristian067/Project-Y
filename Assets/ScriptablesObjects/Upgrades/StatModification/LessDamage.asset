@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803bb176333f2fa448652c2443a9a3df, type: 3}
   m_Name: LessDamage
   m_EditorClassIdentifier: 
+  whoToAdd: 0
   type: 0
   alignment: 1
-  description: gets -2 of damage
+  description: gets -1 of damage
   modify: 0
-  valueToAdd: -2
+  valueToAdd: -1
+  special: {fileID: 0}

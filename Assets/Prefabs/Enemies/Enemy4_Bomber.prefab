@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3050899109626035231}
   - component: {fileID: 820399130320708129}
   m_Layer: 0
-  m_Name: Enemy2
+  m_Name: Enemy4_Bomber
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   haveToDestroyAfterPath: 1
   canShoot: 1
   pointGo: {fileID: 5860028167800293606, guid: 6d2668ed39a049e4ea2ad72f963bfdae, type: 3}
-  setPointValue: 30
+  setPointValue: 40
   isMoving: 1
   positionCount: 0
 --- !u!114 &3050899109626035231
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b20681ab9f24c429d488fce02da42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletGo: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
+  bulletGo: {fileID: 5860028167800293606, guid: bc8d1c3386449764387392cdcfbff771, type: 3}
   shootCooldown: 0.9
   targetShoot: 1
   countCooldown: 0

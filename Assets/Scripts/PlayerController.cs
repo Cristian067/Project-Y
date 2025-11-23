@@ -90,12 +90,12 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, 11.5f);
             }
-            if (transform.position.x > limitX)
+            if (transform.position.x > limitX+1)
             {
                 transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
             }
 
-            if (transform.position.x < -limitX)
+            if (transform.position.x < -limitX-1)
             {
                 transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
             }

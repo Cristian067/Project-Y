@@ -12,11 +12,13 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float activationZ;
     [SerializeField] private bool activated;
     [SerializeField] private bool haveToDestroyAfterPath;
+    [SerializeField] private float timeToFlee;
 
     [SerializeField] private bool canShoot;
     
 
     [SerializeField] private GameObject pointGo;
+    [SerializeField] private int setPointValue;
 
     [SerializeField] private bool isMoving = true;
     // [SerializeField] private Vector3 posToMove;
@@ -50,10 +52,19 @@ public class EnemyBehavior : MonoBehaviour
 
                 if (positionCount >= movementBehavior.positions.Count)
                 {
+                    float countTime = Time.deltaTime;
+
+                    
                     if (haveToDestroyAfterPath)
                     {
                         Destroy(gameObject);
                     }
+                    else if (timeToFlee > countTime)
+                    {
+                        GetComponent<EnemyShoot>().StopShooting();
+                        transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * speed * 4);
+                    }
+                    
                     
                 }
 
@@ -129,7 +140,8 @@ public class EnemyBehavior : MonoBehaviour
 
         if (life <= 0)
         {
-            Instantiate(pointGo,transform.position,Quaternion.Euler(0, 180, 0));
+            GameObject point = Instantiate(pointGo,transform.position,Quaternion.Euler(0, 180, 0));
+            point.GetComponent<Points>().ChangePointsValue(setPointValue);
             Destroy(gameObject);
         }
     }

@@ -14,6 +14,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider upgradeProgressSlider;
 
 
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject losePanel;
+
+    [SerializeField] private Button buttonWinPanel;
+    [SerializeField] private Button buttonLosePanel;
+
+
     void Awake()
     {
         if (instance == null)
@@ -25,7 +32,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        winPanel.SetActive(false);
+        losePanel.SetActive(false); 
+
 
         //RefreshStatsUi();
     }
@@ -34,6 +43,18 @@ public class UIManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void DisplayWinPanel()
+    {
+        winPanel.SetActive(true);
+        buttonWinPanel.Select();
+    }
+
+    public void DisplayLosePanel()
+    {
+        losePanel.SetActive(true);
+        buttonLosePanel.Select();
     }
 
     public void RefreshStatsUi()

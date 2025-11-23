@@ -76,6 +76,7 @@ MonoBehaviour:
   haveToDestroyAfterPath: 0
   canShoot: 1
   pointGo: {fileID: 5860028167800293606, guid: 6d2668ed39a049e4ea2ad72f963bfdae, type: 3}
+  setPointValue: 50
   isMoving: 1
   positionCount: 0
 --- !u!114 &3050899109626035231

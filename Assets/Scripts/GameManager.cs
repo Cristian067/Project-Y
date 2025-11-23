@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1;
 
 
         UIManager.instance.RefreshStatsUi();
@@ -124,7 +125,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine(playerScript.HitInCooldown());
         if (lives == 0)
         {
+
             Debug.Log("GameOver");
+            Lose();
         }
     }
 
@@ -225,5 +228,33 @@ public class GameManager : MonoBehaviour
     {
         return upgrades.ToArray();
     }
+
+
+
+
+
+    public void Win()
+    {
+        UIManager.instance.DisplayWinPanel();
+        Pause();
+    }
+    public void Lose()
+    {
+        UIManager.instance.DisplayLosePanel();
+        Pause();
+    }
+
+
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().path);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 
 }

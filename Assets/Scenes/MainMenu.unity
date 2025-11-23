@@ -163,7 +163,7 @@ MonoBehaviour:
   - levelName: Outside The Village
     levelDescription: 
     levelImg: {fileID: 21300000, guid: 496f353085fb71f45b5730ff189ee500, type: 3}
-    levelSceneId: 0
+    levelSceneId: 2
   actLevelSelected: 0
   levelImage: {fileID: 1978796413}
   levelNameText: {fileID: 1446431036}
