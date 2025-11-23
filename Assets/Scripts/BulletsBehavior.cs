@@ -9,11 +9,32 @@ public class BulletsBehavior : MonoBehaviour
 
     [SerializeField] private bool enemy = true;
 
+    public enum BulletsType
+    {
+        Normal,
+        Bomb,
+        Unbreakable,
+
+    }
+
+    [SerializeField] private BulletsType type;
+
+    [Header("BombBehavior")]
+    [SerializeField] public GameObject bulletForExplode;
+    [SerializeField] private float timeForExplode;
+    [SerializeField] private int bulletsInExplosion;
+    [SerializeField] private float dispersionSpeed;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        switch (type)
+        {
+            case BulletsType.Bomb:
+                Invoke("Bomb",timeForExplode);
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -27,14 +48,50 @@ public class BulletsBehavior : MonoBehaviour
         }
     }
 
+    private void Bomb()
+    {
+        for(int i = 0; i < bulletsInExplosion; i++)
+        {
+            float radual = 360/ bulletsInExplosion;
+            Instantiate(bulletForExplode,transform.position,Quaternion.Euler(0,(i+1)*radual,0));
+        }
+        Destroy(gameObject);
+    }
 
+    public void SetBomb(float time)
+    {
+        timeForExplode = time;
+
+    }
+    public void SetBomb(float time, int bullets)
+    {
+        timeForExplode = time;
+        bulletsInExplosion = bullets;
+        
+    }
+    public void SetBomb(float time,int bullets,float speed)
+    {
+        timeForExplode = time;
+        bulletsInExplosion = bullets;
+        dispersionSpeed = speed;
+    }
+
+    public void ChangeEnemy(bool isEnemy)
+    {
+        enemy = isEnemy;
+    }
+
+    public void ChangeSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
 
     void OnTriggerEnter(Collider other)
     {
 
         if (enemy)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Hitbox")
             {
                 GameManager.instance.LoseLife();
                 //other.gameObject.GetComponent<EnemyBehavior>().Hurt(GameManager.instance.GetPlayerDamage());

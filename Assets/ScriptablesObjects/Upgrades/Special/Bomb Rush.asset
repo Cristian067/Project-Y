@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 803bb176333f2fa448652c2443a9a3df, type: 3}
-  m_Name: MoreDamage1
-  m_EditorClassIdentifier: 
+  m_Name: Bomb Rush
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   whoToAdd: 0
-  type: 0
+  type: 2
   alignment: 0
-  description: gets +1 of damage
+  description: Summons 3 powerful bombs that explodes after a few seconds
   modify: 0
-  valueToAdd: 1
-  special: {fileID: 0}
+  valueToAdd: 0
+  special: {fileID: 11400000, guid: 7dd023aad3449254985e134db546674d, type: 2}

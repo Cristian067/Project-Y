@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 192d7f9c53ded574d96342751209c46c, type: 2}
+  - {fileID: 2100000, guid: b6e564c2e3bd14f4b84b2b34b5a39c63, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 8760509503121760190}
   - component: {fileID: 7338260560854963680}
   m_Layer: 0
-  m_Name: EnemyBullet
+  m_Name: EnemyBullet_bomb
   m_TagString: AllyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1014137168176012547}
@@ -158,8 +158,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44279170b5cdeea4a916ef846c678fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
+  speed: 4
   enemy: 1
+  type: 1
+  bulletForExplode: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
+  timeForExplode: 1.5
+  bulletsInExplosion: 6
+  dispersionSpeed: 3
 --- !u!135 &8760509503121760190
 SphereCollider:
   m_ObjectHideFlags: 0
