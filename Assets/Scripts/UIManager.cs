@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance { get; private set;}
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI totalPointsText;
+    [SerializeField] private TextMeshProUGUI upgradesListText;
 
     [SerializeField] private Slider upgradeProgressSlider;
 
@@ -64,6 +65,12 @@ public class UIManager : MonoBehaviour
 
         upgradeProgressSlider.value = GameManager.instance.GetPoints();
         upgradeProgressSlider.maxValue = GameManager.instance.GetPointsToUpgrade();
+
+        upgradesListText.text = "";
+        foreach(var upgrade in GameManager.instance.GetUpgrades())
+        {
+            upgradesListText.text += "- "+upgrade.name + "\n";
+        }
     }
     
 
