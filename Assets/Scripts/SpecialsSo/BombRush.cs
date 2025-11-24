@@ -16,18 +16,21 @@ public class BombRush : SpecialSO
         bomb1.GetComponent<BulletsBehavior>().ChangeEnemy(false);
         bomb1.GetComponent<BulletsBehavior>().SetBomb(5,18,4);
         bomb1.GetComponent<BulletsBehavior>().bulletForExplode = allyBullet;
+        bomb1.GetComponent<Collider>().enabled = false;
         bomb1.transform.localScale = new Vector3(2,2,2);
 
         GameObject bomb2 = Instantiate(bomb, new Vector3(4, 0, -9.5f), Quaternion.identity);
         bomb2.GetComponent<BulletsBehavior>().ChangeEnemy(false);
         bomb2.GetComponent<BulletsBehavior>().SetBomb(5, 18, 4);
         bomb2.GetComponent<BulletsBehavior>().bulletForExplode = allyBullet;
+        bomb2.GetComponent<Collider>().enabled = false;
         bomb2.transform.localScale = new Vector3(2, 2, 2);
 
         GameObject bomb3 = Instantiate(bomb, new Vector3(-4, 0, -9.5f), Quaternion.identity);
         bomb3.GetComponent<BulletsBehavior>().ChangeEnemy(false);
         bomb3.GetComponent<BulletsBehavior>().SetBomb(5, 18, 4);
         bomb3.GetComponent<BulletsBehavior>().bulletForExplode = allyBullet;
+        bomb3.GetComponent<Collider>().enabled = false;
         bomb3.transform.localScale = new Vector3(2, 2, 2);
         yield return new WaitForSeconds(3);
         bomb1.GetComponent<BulletsBehavior>().ChangeSpeed(0);

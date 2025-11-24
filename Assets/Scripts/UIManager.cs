@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI totalPointsText;
     [SerializeField] private TextMeshProUGUI upgradesListText;
+    [SerializeField] private TextMeshProUGUI currentSpecialText;
 
     [SerializeField] private Slider upgradeProgressSlider;
 
@@ -35,6 +36,8 @@ public class UIManager : MonoBehaviour
     {
         winPanel.SetActive(false);
         losePanel.SetActive(false); 
+
+        currentSpecialText.text = "";
 
 
         //RefreshStatsUi();
@@ -71,6 +74,12 @@ public class UIManager : MonoBehaviour
         {
             upgradesListText.text += "- "+upgrade.name + "\n";
         }
+
+        if (GameManager.instance.GetSpecial() != null)
+        {
+            currentSpecialText.text = $"{GameManager.instance.GetSpecial().name}";
+        }
+        
     }
     
 
