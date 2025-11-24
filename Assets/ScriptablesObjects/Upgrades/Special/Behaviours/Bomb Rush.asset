@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3e4a4eaf24636e740851e29f0dcfa324, type: 3}
   m_Name: Bomb Rush
   m_EditorClassIdentifier: Assembly-CSharp::BombRush
   bomb: {fileID: 5860028167800293606, guid: bc8d1c3386449764387392cdcfbff771, type: 3}
