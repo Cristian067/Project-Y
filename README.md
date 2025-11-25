@@ -35,7 +35,7 @@ También en la seleccion de mejora habia pensado en que también hubiera algo co
 
 ClickUp: https://app.clickup.com/90151899376/v/l/li/901517209763
 
-GDD: https://docs.google.com/document/d/1cfzSuu1ZXQKaxzlb-q2rSXUQ0JWFYzfaRv1jln3_jOQ/edit?tab=t.0#heading=h.uv01q4evenzs
+GDD: https://docs.google.com/document/d/1cfzSuu1ZXQKaxzlb-q2rSXUQ0JWFYzfaRv1jln3_jOQ/edit?usp=sharing
 
 <details>
   <summary>Credits</summary>
