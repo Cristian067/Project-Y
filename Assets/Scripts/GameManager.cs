@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int totalPoints;
     [SerializeField] private int points;
 
+    [SerializeField] private GameObject barrier;
+    [SerializeField] private bool barrierInRecharge;
+    [SerializeField] private GameObject barrierRechargeParticles;
+    [SerializeField] private float barrierCooldown;
+
     [Header("Base Stats")]
     [SerializeField] private float damageBase = 1;
     [SerializeField] private float speedBase = 8;
@@ -105,6 +110,13 @@ public class GameManager : MonoBehaviour
         {
             speed = 0.1f;
         }
+
+        if (upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.active && !barrierInRecharge)
+        {
+            barrier.SetActive(true);
+            
+        }
+
     }
 
     public void Pause()
@@ -229,8 +241,27 @@ public class GameManager : MonoBehaviour
         return upgrades.ToArray();
     }
 
+    
 
+    public void DestroyBarrier()
+    {
 
+        barrier.SetActive(false);
+        StartCoroutine(RechargeBarrier());
+        
+    }
+
+    private IEnumerator RechargeBarrier()
+    {
+        barrierInRecharge =true;
+        barrierRechargeParticles.SetActive(true);
+        yield return new WaitForSeconds(barrierCooldown);
+        barrierRechargeParticles.SetActive(false);
+        barrier.SetActive(true);
+        barrierInRecharge = false;
+
+        
+    }
 
 
     public void Win()

@@ -9,6 +9,7 @@ TagManager:
   - EnemyBullet
   - Collect
   - Hitbox
+  - Barrier
   layers:
   - Default
   - TransparentFX

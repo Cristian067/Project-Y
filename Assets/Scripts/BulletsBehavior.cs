@@ -93,6 +93,11 @@ public class BulletsBehavior : MonoBehaviour
 
         if (enemy)
         {
+            if(other.gameObject.tag == "Barrier")
+            {
+                GameManager.instance.DestroyBarrier();
+                Destroy(gameObject);
+            }
             if (other.gameObject.tag == "Hitbox")
             {
                 GameManager.instance.LoseLife();
