@@ -9,6 +9,7 @@ public class UpgradeEffects
 {
     public UpgradeSO sideToSideEffect;
     public UpgradeSO magicMirror;
+    public UpgradeSO barrier;
 }
 
 
