@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UpgradeEffects
 {
     public UpgradeSO sideToSideEffect;
+    public UpgradeSO magicMirror;
 }
 
 

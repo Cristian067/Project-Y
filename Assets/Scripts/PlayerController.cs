@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -54,16 +55,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.J))
         {
-
-            coolCount += Time.deltaTime;
-            //Debug.Log(coolCount);
-            if (coolCount > basicCooldown)
+            if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
             {
-                GameObject bulletOut = Instantiate(bulllet, transform.position, Quaternion.identity);
-
-                Destroy(bulletOut, 5f);
-                coolCount = 0f;
+                
+                DoubleShoot();
             }
+            else
+            {
+                Shoot();
+            }
+            
         }
 
         if((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.K)) && GameManager.instance.GetSpecial() != null)
@@ -127,6 +128,39 @@ public class PlayerController : MonoBehaviour
 
 
 
+    }
+
+    private void DoubleShoot()
+    {
+        coolCount += Time.deltaTime;
+            //Debug.Log(coolCount);
+            if (coolCount > basicCooldown)
+            {
+                GameObject bulletOut = Instantiate(bulllet, transform.position + new Vector3(0.4f,0,0), Quaternion.identity);
+                GameObject bulletOut2 = Instantiate(bulllet, transform.position + new Vector3(-0.4f,0,0), Quaternion.identity);
+
+                bulletOut.GetComponent<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * 0.75f;
+                bulletOut2.GetComponent<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * 0.75f;
+
+                Destroy(bulletOut, 5f);
+                Destroy(bulletOut2, 5f);
+                coolCount = 0f;
+            }
+    }
+
+    private void Shoot()
+    {
+        coolCount += Time.deltaTime;
+            //Debug.Log(coolCount);
+            if (basicCooldown < coolCount)
+            {
+                GameObject bulletOut = Instantiate(bulllet, transform.position, Quaternion.identity);
+
+                bulletOut.GetComponentInChildren<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage();
+
+                Destroy(bulletOut, 5f);
+                coolCount = 0f;
+            }
     }
 
     public IEnumerator HitInCooldown()
