@@ -7,7 +7,7 @@ public class EnemyBehavior : MonoBehaviour
 
 
 
-    [SerializeField] private int life;
+    [SerializeField] private float life;
     [SerializeField] private float speed;
     [SerializeField] private float activationZ;
     [SerializeField] private bool activated;
@@ -134,7 +134,7 @@ public class EnemyBehavior : MonoBehaviour
     }
 
 
-    public void Hurt(int damage)
+    public void Hurt(float damage)
     {
         life -= damage;
 

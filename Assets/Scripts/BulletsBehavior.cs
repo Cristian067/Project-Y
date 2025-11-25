@@ -19,6 +19,8 @@ public class BulletsBehavior : MonoBehaviour
 
     [SerializeField] private BulletsType type;
 
+    public float damage;
+
     [Header("BombBehavior")]
     [SerializeField] public GameObject bulletForExplode;
     [SerializeField] private float timeForExplode;
@@ -105,7 +107,7 @@ public class BulletsBehavior : MonoBehaviour
         {
             if (other.gameObject.tag == "Enemy")
             {
-                other.gameObject.GetComponent<EnemyBehavior>().Hurt(GameManager.instance.GetPlayerDamage());
+                other.gameObject.GetComponent<EnemyBehavior>().Hurt(damage);
                 Destroy(gameObject);
 
 

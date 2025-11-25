@@ -36,11 +36,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int points;
 
     [Header("Base Stats")]
-    [SerializeField] private int damageBase = 1;
+    [SerializeField] private float damageBase = 1;
     [SerializeField] private float speedBase = 8;
 
     [Header("Stats")] 
-    [SerializeField] private int damage = 1;
+    [SerializeField] private float damage = 1;
     [SerializeField] private float speed = 8;
 
 
@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
         ReloadStats();
     }
 
-    public int GetPlayerDamage()
+    public float GetPlayerDamage()
     {
         return damage;
     }
