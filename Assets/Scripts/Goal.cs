@@ -25,10 +25,14 @@ public class Goal : MonoBehaviour
         {
             case GoalType.Reach:
                 transform.Translate(new Vector3(0,0,-1)*Time.deltaTime * 1); 
+                if (transform.position.z <= 12)
+                {
+                    transform.Translate(new Vector3(0,0,-1)*Time.deltaTime * 30);
+                }
                 break;
         }
 
-
+        
 
     }
 

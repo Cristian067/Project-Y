@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float hitCooldown;
 
     [SerializeField] private Collider hitbox;
-    [SerializeField] private Material PlayerMaterial;
+    [SerializeField] private GameObject PlayerMaterialGO;
+
 
 
     private float horizontalInput;
@@ -34,7 +35,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerMaterial.color = new Vector4(PlayerMaterial.color.r, PlayerMaterial.color.g, PlayerMaterial.color.b, 1);
+        PlayerMaterialGO.GetComponent<MeshRenderer>().material.color = new Vector4(PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.r, PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.g, PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.b, 1);
+        //PlayerMaterial.color ;
         //gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -166,10 +168,10 @@ public class PlayerController : MonoBehaviour
     public IEnumerator HitInCooldown()
     {
         hitbox.enabled = false;
-        PlayerMaterial.color = new Vector4(PlayerMaterial.color.r, PlayerMaterial.color.g, PlayerMaterial.color.b, 0.30f);
+        PlayerMaterialGO.GetComponent<MeshRenderer>().material.color = new Vector4(PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.r, PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.g, PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.b, 0.30f);
         yield return new WaitForSeconds(hitCooldown);
         hitbox.enabled = true;
-        PlayerMaterial.color = new Vector4(PlayerMaterial.color.r, PlayerMaterial.color.g, PlayerMaterial.color.b, 1);
+        PlayerMaterialGO.GetComponent<MeshRenderer>().material.color = new Vector4(PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.r, PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.g, PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.b, 1);
     }
 
 
