@@ -1360,7 +1360,7 @@ MonoBehaviour:
   limitX: 7
   hitCooldown: 2
   hitbox: {fileID: 448066954}
-  PlayerMaterial: {fileID: 2100000, guid: da4b8626b9fa0f540ab3cf1c8aa9907e, type: 2}
+  PlayerMaterialGO: {fileID: 2078254414}
 --- !u!4 &124331323
 Transform:
   m_ObjectHideFlags: 0
@@ -3506,7 +3506,7 @@ MonoBehaviour:
   barrier: {fileID: 2144201992}
   barrierInRecharge: 0
   barrierRechargeParticles: {fileID: 1060797246}
-  barrierCooldown: 3
+  barrierCooldown: 10
   damageBase: 1
   speedBase: 8
   damage: 1
@@ -17710,7 +17710,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238721176}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -17728,7 +17728,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ac5720c9195574e4d946ae2f8adedbd2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17768,7 +17768,7 @@ Transform:
   m_GameObject: {fileID: 1238721176}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 153.26}
+  m_LocalPosition: {x: 0, y: 0, z: 164.5}
   m_LocalScale: {x: 34.812, y: 1.6558, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
