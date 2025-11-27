@@ -179,8 +179,16 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-
-            GameManager.instance.LoseLife();
+            if (GameManager.instance.isBarrierActive())
+            {
+                Destroy(other.GetComponentInParent<Transform>().GetComponentInParent<Transform>().gameObject);
+                GameManager.instance.DestroyBarrier();
+            }
+            else
+            {
+                GameManager.instance.LoseLife();
+            }
+            
 
         }
     }
