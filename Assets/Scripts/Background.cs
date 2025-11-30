@@ -3,8 +3,8 @@ using UnityEngine;
 public class Background : MonoBehaviour
 {
 
-    [SerializeField]private GameObject backgroundGO;
-    [SerializeField] private Material backgroundMaterial;
+    [SerializeField]private Terrain terrainGO;
+    
 
     [SerializeField]private float backgroundSpeed;
     private float backgroundCount = 1;
@@ -12,7 +12,7 @@ public class Background : MonoBehaviour
     void Start()
     {
 
-        backgroundMaterial = backgroundGO.GetComponent<MeshRenderer>().material;
+
         
         
     }
@@ -20,11 +20,14 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         backgroundCount += 0.1f * backgroundSpeed*Time.deltaTime;
         if(backgroundCount > 2)
         {
-            backgroundCount = 1;
+            backgroundCount = 0;
         }
-        backgroundMaterial.SetVector("_Offset",new Vector2(1,backgroundCount) );
+
+        terrainGO.terrainData.terrainLayers[0].tileOffset = new Vector2(1,backgroundCount);
     }
 }
