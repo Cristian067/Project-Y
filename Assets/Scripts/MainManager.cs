@@ -38,6 +38,8 @@ public class MainManager : MonoBehaviour
     void Start()
     {
         GoToMenu(0);
+
+        //Screen.SetResolution(800, 600,false);
     }
 
     // Update is called once per frame
