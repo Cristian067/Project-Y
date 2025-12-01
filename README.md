@@ -37,6 +37,8 @@ ClickUp: https://app.clickup.com/90151899376/v/l/li/901517209763
 
 GDD: https://docs.google.com/document/d/1cfzSuu1ZXQKaxzlb-q2rSXUQ0JWFYzfaRv1jln3_jOQ/edit?usp=sharing
 
+Itch.io: https://kitsune076.itch.io/shared-treasure
+
 <details>
   <summary>Credits</summary>
     
