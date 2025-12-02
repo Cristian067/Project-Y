@@ -5,6 +5,8 @@ public class Data
 {
 
     public int[] levelsHighScore = new int[99];
+    public bool[] levelsCompleted = new bool[99];
+    
 
 
     public List<UpgradeSO> discoveredUpgrades;

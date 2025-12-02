@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,8 @@ public class Levels
     public string levelDescription;
     public Sprite levelImg;
     public int levelSceneId;
+
+    public bool isLocked;
 
 }
 
@@ -32,7 +35,9 @@ public class MainManager : MonoBehaviour
 
     [SerializeField] private GameObject[] menusPanel;
 
+    [SerializeField] private GameObject lockedLevelPanel;
 
+    private string pathUserData = "save/UserData.json";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -65,6 +70,23 @@ public class MainManager : MonoBehaviour
     public void RefreshLevel(int upOrDown)
     {
 
+        Data data = new Data();
+
+        if (!File.Exists(pathUserData))
+        {
+            data.levelsCompleted[0] = true;
+            string json = JsonUtility.ToJson(data,true);
+            File.WriteAllText(pathUserData,json); 
+            
+        }
+        else
+        {
+            string json = File.ReadAllText(pathUserData);
+            data = JsonUtility.FromJson<Data>(json);
+        }
+        
+
+
         actLevelSelected += upOrDown;
         if (actLevelSelected > levels.Length - 1)
         {
@@ -80,9 +102,21 @@ public class MainManager : MonoBehaviour
         levelDescriptionText.text = levels[actLevelSelected].levelDescription;
         levelNumberText.text = $"Level {actLevelSelected}";
 
+        if (levels[actLevelSelected].isLocked)
+        {
+            if (!data.levelsCompleted[actLevelSelected-1])
+            {
+                lockedLevelPanel.SetActive(true);
+            }
+        }
+        
+        else lockedLevelPanel.SetActive(false);
+
 
     }
+
     
+        
 
     public void Play()
     {

@@ -23,6 +23,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button buttonLosePanel;
 
 
+    [Header("Dialogue Things")]
+
+    [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private TextMeshProUGUI dialogueText;
+
+
     void Awake()
     {
         if (instance == null)
@@ -80,6 +86,20 @@ public class UIManager : MonoBehaviour
             currentSpecialText.text = $"{GameManager.instance.GetSpecial().name}";
         }
         
+    }
+
+
+    public void DisplayDialogue(string dialogue)
+    {
+        dialoguePanel.SetActive(true);
+        dialogueText.text = dialogue;
+
+        
+    }
+
+    public void UndisplayDialogue()
+    {
+        dialoguePanel.SetActive(false);
     }
     
 
