@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -115,8 +116,21 @@ public class UpgradesManager : MonoBehaviour
                         badUpgrade.Add(upgrade);
                     }
                 }
-                return badUpgrade[Random.Range(0, badUpgrade.Count)];
-            }
+                try
+                {
+                    return badUpgrade[Random.Range(0, badUpgrade.Count)];
+
+                }
+
+                catch
+                {
+                    return null;
+                    Debug.Log("error con mejora");
+                }
+                
+                
+                
+                }
         }
         else
         {

@@ -56,7 +56,15 @@ public class CardUpgrade : MonoBehaviour
 
 
         allyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomType,randomSide);
-        enemyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomType,randomSide);
+        try
+        {
+            enemyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomType, randomSide);
+        }
+        catch
+        {
+            enemyUpgrade = null;
+        }
+        
 
         if (allyUpgrade.type == UpgradeSO.UpgradeType.Effect)
         {
