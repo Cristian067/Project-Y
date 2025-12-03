@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance { get; private set; }
 
+    [SerializeField]private int levelNumber;
 
 
     [SerializeField] private PlayerController playerScript;
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private UpgradeSO special;
 
+
+private string pathUserData = "save/UserData.json";
 
     void Awake()
     {
@@ -266,6 +270,12 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+
+        Data data= new Data();
+        data.levelsCompleted[levelNumber] = true;
+        string json = JsonUtility.ToJson(data,true);
+        File.WriteAllText(pathUserData, json);
+
         UIManager.instance.DisplayWinPanel();
         Pause();
     }

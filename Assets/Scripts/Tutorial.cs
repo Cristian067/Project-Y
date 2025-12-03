@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Tutorial : MonoBehaviour
@@ -20,6 +22,12 @@ public class Tutorial : MonoBehaviour
     public TutorialPhases actualPhase;
     public GameObject phases;
 
+    public GameObject enemyToTrain;
+
+    private bool onPhase;
+
+    [SerializeField]private GameObject goal;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,13 +37,77 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        switch (actualPhase)
+        if (!DialoguesManager.instance.onDialogue && !onPhase)
         {
-            case TutorialPhases.Phase1:
-            break;
+            switch (actualPhase)
+            {
+                case TutorialPhases.Phase1:
+                StartCoroutine(Phase1());
+                break;
+                case TutorialPhases.Phase1Pac:
+                StartCoroutine(Phase1Pac());
+                break;
+            }
         }
+        
 
         
     }
+
+
+    private IEnumerator Phase1()
+    {
+        onPhase = true;
+        GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(0,0,15.5f),Quaternion.Euler(0,180,0));
+        yield return new WaitForSeconds(4f);
+        DialoguesManager.instance.StartDialogue(1);
+        yield return new WaitForSeconds(10);
+
+        
+        if(enemyForTrain.gameObject == null)
+        {
+            DialoguesManager.instance.StartDialogue(2);
+        }
+        else
+        {
+            DialoguesManager.instance.StartDialogue(3);
+            onPhase = false;
+            actualPhase = TutorialPhases.Phase1Pac;
+        }
+
+
+
+
+    }
+
+
+    private IEnumerator Phase1Pac()
+    {
+        onPhase = true;
+        GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(0,0,15.5f),Quaternion.Euler(0,180,0));
+        yield return new WaitForSeconds(4f);
+ 
+        yield return new WaitForSeconds(10);
+
+        
+        if(enemyForTrain.gameObject == null)
+        {
+            DialoguesManager.instance.StartDialogue(2);
+        }
+        else
+        {
+            DialoguesManager.instance.StartDialogue(4);
+            yield return new WaitForSeconds(5);
+            goal.transform.position = new Vector3(0,0,12);
+            onPhase = false;
+            //actualPhase = TutorialPhases.Phase1Pac;
+        }
+    }
+
+
+
+
+
+
+
 }
