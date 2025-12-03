@@ -57,7 +57,7 @@ public class DialoguesManager : MonoBehaviour
     public static DialoguesManager instance {get ; private set;}
 
     public Dialogues[] dialogues;
-    public bool onDialogue;
+    public static bool onDialogue;
 
     private int currentDialogue;
 
