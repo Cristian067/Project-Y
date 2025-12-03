@@ -30,7 +30,7 @@ public class Goal : MonoBehaviour
                 if (transform.position.z <= 12)
                 {
                     transform.Translate(new Vector3(0,0,-1)*Time.deltaTime * 30);
-                    
+
                 }
                 break;
         }
