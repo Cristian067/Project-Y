@@ -79317,6 +79317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9362fa703cd698e48961e0a3cb93ca76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNumber: 0
   playerScript: {fileID: 124331322}
   lives: 3
   maxLives: 6
@@ -80094,7 +80095,7 @@ RectTransform:
   - {fileID: 776364253}
   - {fileID: 1652143373}
   - {fileID: 195761448}
-  m_Father: {fileID: 2074772032}
+  m_Father: {fileID: 1605606769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -87539,7 +87540,7 @@ RectTransform:
   - {fileID: 889780007}
   - {fileID: 597991378}
   - {fileID: 851782977}
-  m_Father: {fileID: 2074772032}
+  m_Father: {fileID: 1605606769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -87948,7 +87949,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 150256760}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -87971,6 +87972,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 672605412}
+  - {fileID: 1492679921}
   - {fileID: 2074772032}
   - {fileID: 1142825014}
   - {fileID: 1951766627}
@@ -88015,10 +88018,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 672605412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -120, y: -252}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 31, y: 277}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1652143374
 MonoBehaviour:
@@ -88106,7 +88109,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -247.14398, w: 0}
+  m_margin: {x: 0, y: 0, z: -247.14398, w: -234.46313}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -88815,15 +88818,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 672605412}
-  - {fileID: 1492679921}
+  m_Children: []
   m_Father: {fileID: 1605606769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2078254414
 GameObject:
