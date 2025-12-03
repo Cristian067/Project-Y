@@ -240,8 +240,8 @@ MonoBehaviour:
   levels:
   - levelName: Tutorial (WIP)
     levelDescription: You need to know the basics and how fight against your enemies
-    levelImg: {fileID: 0}
-    levelSceneId: 0
+    levelImg: {fileID: 21300000, guid: 9ec03d44f5e61a54fb588a0bb901fd22, type: 3}
+    levelSceneId: 3
     isLocked: 0
   - levelName: Outside The Village
     levelDescription: 

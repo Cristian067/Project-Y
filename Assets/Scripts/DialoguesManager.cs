@@ -72,7 +72,10 @@ public class DialoguesManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if(dialogues[0].dialogueName == "Start")
+        {
+            StartDialogue(0);
+        }
     }
 
     // Update is called once per frame

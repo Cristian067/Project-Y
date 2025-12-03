@@ -11,6 +11,8 @@ public class Goal : MonoBehaviour
 
     [SerializeField]private GoalType type;
 
+    //[SerializeField]private int levelNumber;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
