@@ -81850,6 +81850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9362fa703cd698e48961e0a3cb93ca76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNumber: 0
   playerScript: {fileID: 124331322}
   lives: 3
   maxLives: 6
@@ -81877,7 +81878,7 @@ Transform:
   m_GameObject: {fileID: 297829279}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.878907, y: 6.790309, z: -8.4341345}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81895,7 +81896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 107be14f27188e547b1a76f9cc4dd7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Background
-  terrainGO: {fileID: 616896584}
+  backgroundGO: {fileID: 24537843}
+  backgroundMaterial: {fileID: 0}
   backgroundSpeed: 25
 --- !u!1001 &317409098
 PrefabInstance:
@@ -100822,6 +100824,8 @@ MonoBehaviour:
   losePanel: {fileID: 254799349}
   buttonWinPanel: {fileID: 1591063973}
   buttonLosePanel: {fileID: 145556049}
+  dialoguePanel: {fileID: 0}
+  dialogueText: {fileID: 0}
 --- !u!114 &1605606766
 MonoBehaviour:
   m_ObjectHideFlags: 0

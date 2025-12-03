@@ -37,7 +37,7 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!DialoguesManager.instance.onDialogue && !onPhase)
+        if (!DialoguesManager.onDialogue && !onPhase)
         {
             switch (actualPhase)
             {
