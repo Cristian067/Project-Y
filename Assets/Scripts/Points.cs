@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Points : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    public float speed;
     [SerializeField] private int points;
     // Start is called before the first frame update
     void Start()

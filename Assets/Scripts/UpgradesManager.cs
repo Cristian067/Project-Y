@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,8 @@ public class UpgradesManager : MonoBehaviour
 
     [SerializeField] private GameObject upgradesContainer;
     [SerializeField] private GameObject UpgradePrefab;
+
+    private bool isCustom;
 
     [SerializeField] private UpgradeSO[] allTheUpgrades;
 
@@ -54,13 +57,13 @@ public class UpgradesManager : MonoBehaviour
 
     public UpgradeSO GetRandomUpgrade(int type, int goodOrBad)
     {
-
         //type = 0 = modificacion de estadisticas
         //type = 1 = efectos
         //type = 2 = especial
 
         //TODO: Hacer un random para elegir si la mejora es positiva o negativa para que no sea beneficioso solo para un lado
-        GameManager.instance.Pause();
+        if (!isCustom)
+        {
         //int randomSide = Random.Range(0, 2);
         if (type == 0)
         {
@@ -161,11 +164,19 @@ public class UpgradesManager : MonoBehaviour
             // }
         }
         //return allTheUpgrades[Random.Range(0, allTheUpgrades.Length)];
+
+        }
+        else
+        {
+            return null;
+        }
     }
 
     [ContextMenu("Display upgrades screen")]
     public void DisplayUpgrades()
     {
+        isCustom = false;
+        GameManager.instance.Pause();
         Instantiate(UpgradePrefab, upgradesContainer.transform);
         Button select = Instantiate(UpgradePrefab, upgradesContainer.transform).GetComponent<Button>();
         select.Select();
@@ -173,6 +184,61 @@ public class UpgradesManager : MonoBehaviour
 
         //Instantiate(UpgradePrefab, canvas.transform);
     }
+
+    public void GiveUpgrade()
+    {
+        
+    }
+    // public void DisplayUpgradesCustom(string upgrade1, string upgrade2, string upgrade3)
+    // {
+    //     isCustom = true;
+    //     GameManager.instance.Pause();
+    //     GameObject upgrade1Card = Instantiate(UpgradePrefab, upgradesContainer.transform);
+    //     foreach (UpgradeSO upgrade in allTheUpgrades)
+    //     {
+    //         Debug.Log(upgrade1 +" " + upgrade.name);
+    //         if (upgrade1 == upgrade.name)
+    //         {
+    //             upgrade1Card.GetComponent<UpgradeSO>().special = upgrade.special;
+    //         }
+    //     }
+    //     if(upgrade1Card.GetComponent<UpgradeSO>().special == null)
+    //     {
+    //         Destroy(upgrade1Card);
+    //     }
+
+    //     GameObject upgrade2Card = Instantiate(UpgradePrefab, upgradesContainer.transform);
+    //     upgrade2Card.GetComponent<UpgradeSO>().type = UpgradeSO.UpgradeType.Special;
+    //     foreach (UpgradeSO upgrade in allTheUpgrades)
+    //     {
+    //         if (upgrade2 == upgrade.name)
+    //         {
+    //             upgrade2Card.GetComponent<UpgradeSO>().special = upgrade.special;
+    //         }
+    //     }
+    //     if(upgrade2Card.GetComponent<UpgradeSO>().special == null)
+    //     {
+    //         Destroy(upgrade2Card);
+    //     }
+        
+    //     upgrade2Card.GetComponent<Button>().Select();
+
+    //     GameObject upgrade3Card = Instantiate(UpgradePrefab, upgradesContainer.transform);
+
+    //     foreach (UpgradeSO upgrade in allTheUpgrades)
+    //     {
+    //         if (upgrade3 == upgrade.name)
+    //         {
+    //             upgrade3Card.GetComponent<UpgradeSO>().special = upgrade.special;
+    //         }
+    //     }
+    //     if(upgrade3Card.GetComponent<UpgradeSO>().special == null)
+    //     {
+    //         Destroy(upgrade3Card);
+    //     }
+
+    //     //Instantiate(UpgradePrefab, canvas.transform);
+    // }
 
     public void UnDisplayeUpgrades()
     {
@@ -183,7 +249,7 @@ public class UpgradesManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        GameManager.instance.Unpause();
+        GameManager.instance.Unpause(true);
         UIManager.instance.RefreshStatsUi();
         //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
         //     {
