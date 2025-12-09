@@ -79363,7 +79363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 107be14f27188e547b1a76f9cc4dd7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Background
-  terrainGO: {fileID: 616896584}
+  backgroundGO: {fileID: 24537843}
+  backgroundMaterial: {fileID: 0}
   backgroundSpeed: 25
 --- !u!114 &297829284
 MonoBehaviour:
@@ -79381,25 +79382,42 @@ MonoBehaviour:
   - dialogueName: Start
     dialogues:
     - side: 0
-      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
-      text: Welcome,here i will teach you the basics of what you must know.
+      who: {fileID: 11400000, guid: 317f8896689581843b2006c2e655057b, type: 2}
+      text: W-where am i...?
     - side: 0
       who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
-      text: First of all, you will have to practice using your magic as attack.\n
-        Press Z/J to shoot
+      text: Welcome, here i will teach you the basics of what you must know.
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: First of all, you will have to practice using your magic as attack.\n(Press
+        Z/J to shoot)
     currentText: 0
   - dialogueName: TutorialPhase1
     dialogues:
     - side: 0
       who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
-      text: I present you to John.\n He wants to help you to train, try practice
-        with him.
+      text: I present you to John.\nHe wants to help you to train, try practice with
+        him.
+    currentText: 0
+  - dialogueName: TutorialPhase1To2
+    dialogues:
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: Good job
     currentText: 0
   - dialogueName: TutorialPhase2
     dialogues:
     - side: 0
       who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
-      text: Good job
+      text: Now that you know how to use your magic to shoot, the next important
+        thing is the ability to summon upgrades
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: For being able to do it you will have to get enought negative energy.
+        And you get negative energy killing enemies, like John.
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: But let me help you with that
     currentText: 0
   - dialogueName: TutorialPhasePacifist
     dialogues:
@@ -79413,6 +79431,18 @@ MonoBehaviour:
     - side: 0
       who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
       text: Lets try it again, alright?
+    - side: 0
+      who: {fileID: 11400000, guid: 317f8896689581843b2006c2e655057b, type: 2}
+      text: But he seems nice, and he didnt attack...
+    currentText: 0
+  - dialogueName: TutorialPhasePacifistExit
+    dialogues:
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: See?\nIt wasnt that hard
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: Now you know how to shoot and even practiced it.
     currentText: 0
   - dialogueName: TutorialPhasePacifistAgain
     dialogues:
@@ -79429,7 +79459,42 @@ MonoBehaviour:
         kill or you think you know everything but i am out. Have fun going for your
         own
     currentText: 0
-  onDialogue: 0
+  - dialogueName: TutorialPhase2_upgrade
+    dialogues:
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: Everytime you get to summon an upgrade you have three options to choose
+        and you only will be able to choose one.
+    - side: 0
+      who: {fileID: 11400000, guid: 317f8896689581843b2006c2e655057b, type: 2}
+      text: Uhm, there was 2 things in the same slot
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: Oh yeah.
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: Thats because your link with the negative energy, you used it to get
+        your upgrade, so who uses the negative energy will have an upgrade too
+    currentText: 0
+  - dialogueName: TutorialPhase3
+    dialogues:
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: Well, did you get a special skill?
+    - side: 0
+      who: {fileID: 11400000, guid: 317f8896689581843b2006c2e655057b, type: 2}
+      text: A special skill?
+    currentText: 0
+  - dialogueName: TutorialPhase3_NoSpecial
+    dialogues:
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: I see you dont got one from the upgrades.
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: But you need to one for what i have to teach you, so i will let you choose
+        one.
+    currentText: 0
 --- !u!114 &297829285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79445,6 +79510,7 @@ MonoBehaviour:
   actualPhase: 0
   phases: {fileID: 0}
   enemyToTrain: {fileID: 80798737650191077, guid: 88cab452f2bdbcb43abf5eb9ab3cf455, type: 3}
+  point: {fileID: 5860028167800293606, guid: 6d2668ed39a049e4ea2ad72f963bfdae, type: 3}
   goal: {fileID: 1238721176}
 --- !u!1 &389259746
 GameObject:

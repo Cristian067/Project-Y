@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private UpgradeSO special;
 
+    private float timeScaleSaved;
+
 
 private string pathUserData = "save/UserData.json";
 
@@ -125,12 +127,21 @@ private string pathUserData = "save/UserData.json";
 
     public void Pause()
     {
+        timeScaleSaved = Time.timeScale;
         Time.timeScale = 0;
     }
 
-    public void Unpause()
+    public void Unpause(bool useSaved = false)
     {
-        Time.timeScale = 1;
+        if (useSaved)
+        {
+            Time.timeScale = timeScaleSaved;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+        
     }
 
 

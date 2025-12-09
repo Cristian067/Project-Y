@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 
@@ -98,6 +99,29 @@ public class DialoguesManager : MonoBehaviour
         onDialogue = true;
         currentDialogue = dialogueId;
         dialogues[dialogueId].Init();
+    }
+
+    public void StartDialogue(string dialogueName)
+    {
+        GameManager.instance.Pause();
+        onDialogue = true;
+
+        int i = 0;
+
+        foreach(var dialogue in dialogues)
+        {
+            
+            if (dialogue.dialogueName == dialogueName)
+            {
+                currentDialogue = i;
+                dialogue.Init();
+            }
+            i++;
+        }
+
+
+        // currentDialogue = dialogueId;
+        // dialogues[dialogueId].Init();
     }
 
     public void FinishDialogue()
