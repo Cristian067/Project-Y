@@ -79495,6 +79495,13 @@ MonoBehaviour:
       text: But you need to one for what i have to teach you, so i will let you choose
         one.
     currentText: 0
+  - dialogueName: TutorialPhase3_SpecialTest
+    dialogues:
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: Now i will send you some enemies, use the special you have to kill them
+        easy
+    currentText: 0
 --- !u!114 &297829285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79507,10 +79514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be188012cf0b4214e87ba7fa54f33201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tutorial
-  actualPhase: 0
+  actualPhase: 3
   phases: {fileID: 0}
   enemyToTrain: {fileID: 80798737650191077, guid: 88cab452f2bdbcb43abf5eb9ab3cf455, type: 3}
   point: {fileID: 5860028167800293606, guid: 6d2668ed39a049e4ea2ad72f963bfdae, type: 3}
+  upgradeToGive: {fileID: 11400000, guid: 78f823d9bc82e6e418655ed04041dc98, type: 2}
   goal: {fileID: 1238721176}
 --- !u!1 &389259746
 GameObject:
