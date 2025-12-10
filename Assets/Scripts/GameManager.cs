@@ -161,6 +161,13 @@ private string pathUserData = "save/UserData.json";
     public void Heal(int lifes)
     {
         lives += lifes;
+        UIManager.instance.RefreshStatsUi();
+    }
+
+    public void SetHealth(int health)
+    {
+        lives = health;
+        UIManager.instance.RefreshStatsUi();
     }
 
 
@@ -223,6 +230,7 @@ private string pathUserData = "save/UserData.json";
         }
 
         ReloadStats();
+        UIManager.instance.RefreshStatsUi();
     }
 
     public float GetPlayerDamage()

@@ -42,6 +42,7 @@ public class Tutorial : MonoBehaviour
     {
         if (!DialoguesManager.onDialogue && !onPhase)
         {
+            GameManager.instance.SetHealth(3);
             switch (actualPhase)
             {
                 case TutorialPhases.Phase1:
@@ -174,7 +175,7 @@ public class Tutorial : MonoBehaviour
             movement.positions[0] = new Vector3(i,0,-15);
 
         }
-        yield return new WaitForSeconds(13);
+        yield return new WaitForSeconds(15);
         DialoguesManager.instance.StartDialogue("TutorialPhase2_upgrade");
 
 
