@@ -176,6 +176,7 @@ public class Tutorial : MonoBehaviour
 
         }
         yield return new WaitForSeconds(15);
+        
         DialoguesManager.instance.StartDialogue("TutorialPhase2_upgrade");
 
 

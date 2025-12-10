@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.J))
+        if (Input.GetButtonDown("Fire"))
         {
             if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
             {
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.K)) && GameManager.instance.GetSpecial() != null)
+        if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null)
         {
 
             StartCoroutine(GameManager.instance.GetSpecial().special.Use(gameObject));
