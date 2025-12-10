@@ -44,7 +44,7 @@ public class Dialogues
 
     public void DisplayTheDialogue()
     {
-        UIManager.instance.DisplayDialogue(dialogues[currentText].text);
+        UIManager.instance.DisplayDialogue(dialogues[currentText].text,dialogues[currentText].who.name);
     }
 
 
