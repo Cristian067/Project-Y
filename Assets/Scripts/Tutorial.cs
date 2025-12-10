@@ -169,7 +169,10 @@ public class Tutorial : MonoBehaviour
         for(int i = -7;i < 7; i++)
         {
             GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(i,0,15.5f),Quaternion.Euler(0,180,0));
-            
+            enemyForTrain.GetComponent<EnemyBehavior>().life = 8;
+            EnemiesMovement movement = enemyForTrain.GetComponent<EnemiesMovement>();
+            movement.positions[0] = new Vector3(i,0,-15);
+
         }
         yield return new WaitForSeconds(13);
         DialoguesManager.instance.StartDialogue("TutorialPhase2_upgrade");

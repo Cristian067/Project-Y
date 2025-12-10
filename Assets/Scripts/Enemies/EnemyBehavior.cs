@@ -7,7 +7,7 @@ public class EnemyBehavior : MonoBehaviour
 
 
 
-    [SerializeField] private float life;
+    [SerializeField] public float life;
     [SerializeField] private float speed;
     [SerializeField] private float activationZ;
     [SerializeField] private bool activated;
