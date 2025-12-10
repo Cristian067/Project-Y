@@ -79495,12 +79495,21 @@ MonoBehaviour:
       text: But you need to one for what i have to teach you, so i will let you choose
         one.
     currentText: 0
+  - dialogueName: TutorialPhase3_HaveSpecial
+    dialogues:
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: I see you got a special already, thats good
+    currentText: 0
   - dialogueName: TutorialPhase3_SpecialTest
     dialogues:
     - side: 0
       who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
       text: Now i will send you some enemies, use the special you have to kill them
         easy
+    - side: 0
+      who: {fileID: 11400000, guid: 237d5e1884b4c82458b6220be13bfe22, type: 2}
+      text: To use the special ability press X/K
     currentText: 0
 --- !u!114 &297829285
 MonoBehaviour:
@@ -87970,6 +87979,7 @@ MonoBehaviour:
   buttonWinPanel: {fileID: 1591063973}
   buttonLosePanel: {fileID: 145556049}
   dialoguePanel: {fileID: 450475356}
+  dialogueName: {fileID: 1301665387}
   dialogueText: {fileID: 1853016116}
 --- !u!114 &1605606766
 MonoBehaviour:

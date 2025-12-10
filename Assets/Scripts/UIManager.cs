@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     [Header("Dialogue Things")]
 
     [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private TextMeshProUGUI dialogueName;
     [SerializeField] private TextMeshProUGUI dialogueText;
 
 
@@ -89,10 +90,11 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void DisplayDialogue(string dialogue)
+    public void DisplayDialogue(string dialogue, string who)
     {
         dialoguePanel.SetActive(true);
         dialogueText.text = dialogue;
+        dialogueName.text = who;
 
         
     }
