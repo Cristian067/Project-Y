@@ -163,7 +163,14 @@ public class Tutorial : MonoBehaviour
         }
         //DialoguesManager.instance.StartDialogue("TutorialPhase2_point");
 
+        DialoguesManager.instance.StartDialogue("TutorialPhase3_SpecialTest");
         //pointForTrain.transform.localScale = new Vector3(10,10,10);
+
+        for(int i = -7;i < 7; i++)
+        {
+            GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(i,0,15.5f),Quaternion.Euler(0,180,0));
+            
+        }
         yield return new WaitForSeconds(13);
         DialoguesManager.instance.StartDialogue("TutorialPhase2_upgrade");
 
