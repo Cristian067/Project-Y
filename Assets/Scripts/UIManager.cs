@@ -18,9 +18,12 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject pausePanel;
 
     [SerializeField] private Button buttonWinPanel;
     [SerializeField] private Button buttonLosePanel;
+
+    [SerializeField] private Button buttonPausePanel;
 
 
     [Header("Dialogue Things")]
@@ -104,5 +107,17 @@ public class UIManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
     
+
+    public void DisplayPauseMenu()
+    {
+        pausePanel.SetActive(true);
+        buttonPausePanel.Select();
+    }
+
+    public void UndisplayPauseMenu()
+    {
+        pausePanel.SetActive(false);
+        
+    }
 
 }
