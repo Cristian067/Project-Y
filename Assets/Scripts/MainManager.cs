@@ -66,6 +66,12 @@ public class MainManager : MonoBehaviour
 
     }
 
+    public void SelectButton(Button button)
+    {
+        button.Select();
+        
+    }
+
 
     public void RefreshLevel(int upOrDown)
     {
@@ -74,6 +80,7 @@ public class MainManager : MonoBehaviour
 
         if (!File.Exists(pathUserData))
         {
+            Directory.CreateDirectory("save");
             data.levelsCompleted[0] = true;
             string json = JsonUtility.ToJson(data,true);
             File.WriteAllText(pathUserData,json); 
