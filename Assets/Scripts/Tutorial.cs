@@ -117,13 +117,13 @@ public class Tutorial : MonoBehaviour
         onPhase = true;
         GameObject pointForTrain = Instantiate(point,new Vector3(0,0,28f),Quaternion.Euler(0,180,0));
         pointForTrain.GetComponent<Points>().speed = 2;
-        pointForTrain.GetComponent<Points>().ChangePointsValue(100);
+        pointForTrain.GetComponent<Points>().ChangePointsValue(150);
         
         yield return new WaitForSeconds(1f);
         DialoguesManager.instance.StartDialogue("TutorialPhase2");
         //DialoguesManager.instance.StartDialogue("TutorialPhase2_point");
 
-        pointForTrain.transform.localScale = new Vector3(10,10,10);
+        pointForTrain.transform.localScale = new Vector3(15,1,15);
         yield return new WaitForSeconds(13);
         DialoguesManager.instance.StartDialogue("TutorialPhase2_upgrade");
         onPhase = false;
@@ -162,14 +162,21 @@ public class Tutorial : MonoBehaviour
             GameManager.instance.AdquireUpgrade(0,upgradeToGive);
 
         }
+        else
+        {
+            //yield return new WaitForSeconds(0.01f);
+            
+            DialoguesManager.instance.StartDialogue("TutorialPhase3_HaveSpecial");
+            Debug.Log("Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        }
         //DialoguesManager.instance.StartDialogue("TutorialPhase2_point");
 
         DialoguesManager.instance.StartDialogue("TutorialPhase3_SpecialTest");
         //pointForTrain.transform.localScale = new Vector3(10,10,10);
 
-        for(int i = -7;i < 7; i++)
+        for(int i = -7;i < 8; i++)
         {
-            GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(i,0,15.5f),Quaternion.Euler(0,180,0));
+            GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(i,0,15f),Quaternion.Euler(0,180,0));
             enemyForTrain.GetComponent<EnemyBehavior>().life = 8;
             EnemiesMovement movement = enemyForTrain.GetComponent<EnemiesMovement>();
             movement.positions[0] = new Vector3(i,0,-15);
@@ -177,9 +184,9 @@ public class Tutorial : MonoBehaviour
         }
         yield return new WaitForSeconds(15);
         
-        DialoguesManager.instance.StartDialogue("TutorialPhase2_upgrade");
-
-
+        DialoguesManager.instance.StartDialogue("TutorialPhaseFinal");
+        yield return new WaitForSeconds(0.2f);
+        End();
         
         // if(enemyForTrain.gameObject == null)
         // {
@@ -196,6 +203,10 @@ public class Tutorial : MonoBehaviour
     }
 
 
+    private void End()
+    {
+        GameManager.instance.Win();
+    }
 
 
 }

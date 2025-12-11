@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -95,29 +96,50 @@ public class DialoguesManager : MonoBehaviour
 
     public void StartDialogue(int dialogueId)
     {
+        StartCoroutine(StartDialogueCo(dialogueId));
+    }
+
+    public IEnumerator StartDialogueCo(int dialogueId)
+    {
+        while (onDialogue)
+        {
+            yield return null;
+        }
         GameManager.instance.Pause();
         onDialogue = true;
         currentDialogue = dialogueId;
         dialogues[dialogueId].Init();
     }
 
+
     public void StartDialogue(string dialogueName)
     {
-        GameManager.instance.Pause();
-        onDialogue = true;
-
-        int i = 0;
-
-        foreach(var dialogue in dialogues)
+        StartCoroutine(StartDialogueCo(dialogueName));
+    }
+    public IEnumerator StartDialogueCo(string dialogueName)
+    {
+        while (onDialogue)
         {
-            
-            if (dialogue.dialogueName == dialogueName)
-            {
-                currentDialogue = i;
-                dialogue.Init();
-            }
-            i++;
+            yield return null;
         }
+            onDialogue = true;
+            GameManager.instance.Pause();
+            
+
+            int i = 0;
+
+            foreach(var dialogue in dialogues)
+            {
+                
+                if (dialogue.dialogueName == dialogueName)
+                {
+                    currentDialogue = i;
+                    dialogue.Init();
+                }
+                i++;
+            }
+        
+        
 
 
         // currentDialogue = dialogueId;
@@ -126,8 +148,16 @@ public class DialoguesManager : MonoBehaviour
 
     public void FinishDialogue()
     {
+        
+        UIManager.instance.UndisplayDialogue();
         GameManager.instance.Unpause();
         onDialogue = false;
-        UIManager.instance.UndisplayDialogue();
+        
+    }
+
+
+    public bool IsOnDialogue()
+    {
+        return onDialogue;
     }
 }

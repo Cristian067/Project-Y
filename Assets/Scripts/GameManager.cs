@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
 
     private float timeScaleSaved;
 
+    public bool paused { get; private set; }
+
 
 private string pathUserData = "save/UserData.json";
 
@@ -81,6 +83,11 @@ private string pathUserData = "save/UserData.json";
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetButtonDown("Pause") && !DialoguesManager.instance.IsOnDialogue())
+        {
+            Pause(true);
+        }
 
     }
 
@@ -125,14 +132,23 @@ private string pathUserData = "save/UserData.json";
 
     }
 
-    public void Pause()
+    public void Pause(bool usePanel = false)
     {
+        paused = true;
         timeScaleSaved = Time.timeScale;
         Time.timeScale = 0;
+
+        if (usePanel)
+        {
+            UIManager.instance.DisplayPauseMenu();
+        }
+        
+    
     }
 
     public void Unpause(bool useSaved = false)
     {
+        
         if (useSaved)
         {
             Time.timeScale = timeScaleSaved;
@@ -141,7 +157,7 @@ private string pathUserData = "save/UserData.json";
         {
             Time.timeScale = 1;
         }
-        
+        paused = false;
     }
 
 

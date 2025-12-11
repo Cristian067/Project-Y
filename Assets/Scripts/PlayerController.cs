@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (Input.GetButtonDown("Fire"))
+        if (Input.GetButton("Fire") && !GameManager.instance.paused)
         {
             if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
             {
@@ -69,9 +69,9 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null)
+        if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null && !GameManager.instance.paused)
         {
-
+            
             StartCoroutine(GameManager.instance.GetSpecial().special.Use(gameObject));
             
         }
