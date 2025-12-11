@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3679360deddb9409dd86ca87e726d1, type: 3}
   m_Name: Eternal Bloom
   m_EditorClassIdentifier: Assembly-CSharp::EternalBloom
+  cooldown: 10

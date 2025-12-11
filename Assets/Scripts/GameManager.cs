@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
     private float timeScaleSaved;
 
     public bool paused { get; private set; }
+    public bool specialInCooldown { get; private set; }
+    public float specialCooldown { get; private set; }
 
 
 private string pathUserData = "save/UserData.json";
@@ -335,6 +337,28 @@ private string pathUserData = "save/UserData.json";
     public bool isBarrierActive()
     {
         return !barrierInRecharge;
+    }
+
+    public void SetSpecialCooldown(float time)
+    {
+        specialInCooldown = true;
+        specialCooldown = time;
+        StartCoroutine(SpecialCooldown());
+    }
+
+    public IEnumerator SpecialCooldown()
+    {
+        float time = 0;
+
+        while (time < specialCooldown)
+        {
+            time += Time.deltaTime;
+            Debug.Log(time);
+            yield return null;
+        }
+        specialInCooldown = false;
+        
+
     }
 
 }

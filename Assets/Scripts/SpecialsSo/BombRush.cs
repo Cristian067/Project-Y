@@ -10,6 +10,7 @@ public class BombRush : SpecialSO
     public GameObject allyBullet;
     public override IEnumerator Use(GameObject owner)
     {
+        GameManager.instance.SetSpecialCooldown(cooldown);
         float speedOg = GameManager.instance.GetSpeed();
         
         GameObject bomb1 = Instantiate(bomb,new Vector3(0,0,-9.5f), Quaternion.identity);

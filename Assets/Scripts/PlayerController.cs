@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null && !GameManager.instance.paused)
+        if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown)
         {
             
             StartCoroutine(GameManager.instance.GetSpecial().special.Use(gameObject));

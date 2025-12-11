@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7056184575049501801}
   - component: {fileID: 3050899109626035231}
   - component: {fileID: 820399130320708129}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy4_Bomber
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -74,6 +74,7 @@ MonoBehaviour:
   activationZ: 13
   activated: 0
   haveToDestroyAfterPath: 1
+  timeToFlee: 0
   canShoot: 1
   pointGo: {fileID: 5860028167800293606, guid: 6d2668ed39a049e4ea2ad72f963bfdae, type: 3}
   setPointValue: 40
