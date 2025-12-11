@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4a4eaf24636e740851e29f0dcfa324, type: 3}
   m_Name: Bomb Rush
   m_EditorClassIdentifier: Assembly-CSharp::BombRush
+  cooldown: 8
   bomb: {fileID: 5860028167800293606, guid: bc8d1c3386449764387392cdcfbff771, type: 3}
   allyBullet: {fileID: 5860028167800293606, guid: 9db4d9fb208bbc246ae786973bf1cfd4, type: 3}

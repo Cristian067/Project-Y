@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 4334258403821730942}
   - component: {fileID: 97914795956349067}
   - component: {fileID: 6260882079942173851}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -295,6 +295,7 @@ MonoBehaviour:
   activationZ: 0
   activated: 0
   haveToDestroyAfterPath: 0
+  timeToFlee: 0
   canShoot: 0
   pointGo: {fileID: 5860028167800293606, guid: 6d2668ed39a049e4ea2ad72f963bfdae, type: 3}
   setPointValue: 25
