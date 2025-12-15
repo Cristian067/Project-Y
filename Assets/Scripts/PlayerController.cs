@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float basicCooldown = 0.3f;
     float coolCount = 0f;
 
+    float charge = 0;
+
 
     [SerializeField] private float speed = 10f;
 
@@ -53,9 +55,30 @@ public class PlayerController : MonoBehaviour
 
 
 
+        //shoot
 
+        if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.chargedShoot))
+        {
+            if (Input.GetButton("Fire") && !GameManager.instance.paused)
+            {
+                if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
+                {
+                    
+                    DoubleShoot();
+                }
+                else
+                {
+                    ChargedShoot(true);
+                }
+            
+            }
+            else if(Input.GetButtonUp("Fire") && !GameManager.instance.paused)
+            {
+                ChargedShoot(false);
+            }
+        }
 
-        if (Input.GetButton("Fire") && !GameManager.instance.paused)
+        else if (Input.GetButton("Fire") && !GameManager.instance.paused)
         {
             if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
             {
@@ -132,6 +155,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void UpdateAnimations()
+    {
+        
+    }
+
     private void DoubleShoot()
     {
         coolCount += Time.deltaTime;
@@ -163,6 +191,35 @@ public class PlayerController : MonoBehaviour
                 Destroy(bulletOut, 5f);
                 coolCount = 0f;
             }
+    }
+
+    private void ChargedShoot(bool charging)
+    {
+        if (charging)
+        {
+            charge += Time.deltaTime*3;
+
+            if(charge > 2)
+            {
+                charge = 2;
+            }
+        }
+
+        else
+        {
+            
+            GameObject bulletOut = Instantiate(bulllet, transform.position, Quaternion.identity);
+
+            bulletOut.GetComponentInChildren<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * charge;
+            bulletOut.transform.localScale = new Vector3(charge/2, charge/2,charge/2);
+
+            Destroy(bulletOut, 5f);
+            charge =0;
+            
+        }
+        
+
+
     }
 
     public IEnumerator HitInCooldown()

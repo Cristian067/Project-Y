@@ -10,6 +10,7 @@ public class UpgradeEffects
     public UpgradeSO sideToSideEffect;
     public UpgradeSO magicMirror;
     public UpgradeSO barrier;
+    public UpgradeSO chargedShoot;
 }
 
 
@@ -126,7 +127,7 @@ public class UpgradesManager : MonoBehaviour
                 catch
                 {
                     return null;
-                    Debug.Log("error con mejora");
+                    //Debug.Log("error con mejora");
                 }
                 
                 
@@ -170,9 +171,57 @@ public class UpgradesManager : MonoBehaviour
         }
     }
 
+
+    public UpgradeSO GetRandomUpgradesFixed(int type, int goodOrBad)
+    {
+        //type = 0 = modificacion de estadisticas
+        //type = 1 = efectos
+        //type = 2 = especial
+
+        return null;
+    }
     [ContextMenu("Display upgrades screen")]
     public void DisplayUpgrades()
     {
+        UpgradeSO[] allyUpgrades = new UpgradeSO[3];
+        UpgradeSO[] enemyUpgrades = new UpgradeSO[3];
+
+        //get selection for player
+
+        for (int i = 0; i < 3; i++)
+        {   
+            allyUpgrades[i] = GetRandomUpgradesFixed(Random.Range(0,3),Random.Range(0, 1));
+
+            if(allyUpgrades[i].type == UpgradeSO.UpgradeType.Special)
+            {
+                allyUpgrades[i] = GetRandomUpgradesFixed(Random.Range(0,2),Random.Range(0, 1));
+            }
+            
+        }
+
+
+
+        for (int i = 0; i < allyUpgrades.Length; i++)
+        {
+            
+        }
+
+
+
+        for (int i = 0; i < 3; i++)
+        {   
+            enemyUpgrades[i] = GetRandomUpgradesFixed(0,Random.Range(0, 1));
+            
+        }
+
+
+
+        //Get selection for enemy
+
+
+
+
+
         isCustom = false;
         GameManager.instance.Pause();
         Instantiate(UpgradePrefab, upgradesContainer.transform);

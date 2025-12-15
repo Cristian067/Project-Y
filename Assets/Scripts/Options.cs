@@ -17,7 +17,7 @@ public class Options : MonoBehaviour
     void Start()
     {
 
-        
+        //LoadSettings();
         
     }
 
@@ -32,17 +32,36 @@ public class Options : MonoBehaviour
     public void ApplySettings()
     {
         
-    }
-
-    public void SaveSettings()
-    {
         Settings settings = new Settings();
 
         settings.sfxVolume = sfxSlider.value;
         settings.musicVolume = musicSlider.value;
         settings.fullscreen = fullscreenToogle.isOn;
 
+        string settingsJson = JsonUtility.ToJson(settings,true);
+        File.WriteAllText(pathSettings, settingsJson);
     }
+
+    // private void LoadSettings()
+    // {
+    //     if (File.Exists(pathSettings))
+    //     {
+    //         Settings settings= new Settings();
+    //         string settingsJson = File.ReadAllText(pathSettings);
+    //         settings = JsonUtility.FromJson<Settings>(settingsJson);
+
+    //         sfxSlider.value = settings.sfxVolume;
+    //         musicSlider.value = settings.musicVolume;
+    //         fullscreenToogle.isOn = settings.fullscreen;
+    //     }
+
+    // }
+
+    // public void SaveSettings()
+    // {
+        
+
+    // }
 
 
     void OnEnable()

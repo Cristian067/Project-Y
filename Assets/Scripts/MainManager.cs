@@ -29,6 +29,7 @@ public class MainManager : MonoBehaviour
     [SerializeField] private Image levelImage;
     [SerializeField] private TextMeshProUGUI levelNameText;
     [SerializeField] private TextMeshProUGUI levelDescriptionText;
+    [SerializeField] private TextMeshProUGUI levelHighScoreText;
     [SerializeField] private TextMeshProUGUI levelNumberText;
 
 
@@ -37,11 +38,15 @@ public class MainManager : MonoBehaviour
 
     [SerializeField] private GameObject lockedLevelPanel;
 
+    [SerializeField] private Button selectedMainButton;
+
     private string pathUserData = "save/UserData.json";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        selectedMainButton.Select();
         GoToMenu(0);
 
         //Screen.SetResolution(800, 600,false);
@@ -107,6 +112,7 @@ public class MainManager : MonoBehaviour
         levelImage.sprite = levels[actLevelSelected].levelImg;
         levelNameText.text = levels[actLevelSelected].levelName;
         levelDescriptionText.text = levels[actLevelSelected].levelDescription;
+        levelHighScoreText.text = $"HighScore: {data.levelsHighScore[actLevelSelected]}";
         levelNumberText.text = $"Level {actLevelSelected}";
 
         if (levels[actLevelSelected].isLocked)
@@ -128,6 +134,12 @@ public class MainManager : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene(levels[actLevelSelected].levelSceneId);
+    }
+
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
 

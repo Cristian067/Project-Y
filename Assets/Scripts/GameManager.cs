@@ -129,7 +129,10 @@ private string pathUserData = "save/UserData.json";
         if (upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.active && !barrierInRecharge)
         {
             barrier.SetActive(true);
-            
+        }
+        else if (upgrades.Contains(UpgradesManager.instance.effects.barrier) && barrierInRecharge)
+        {
+            barrierInRecharge = false;
         }
 
     }
@@ -309,12 +312,34 @@ private string pathUserData = "save/UserData.json";
     {
 
         Data data= new Data();
+        data = RegistryUpgrades(data);
         data.levelsCompleted[levelNumber] = true;
+        data.levelsHighScore[levelNumber] = totalPoints;
+    
+        
+
         string json = JsonUtility.ToJson(data,true);
         File.WriteAllText(pathUserData, json);
 
         UIManager.instance.DisplayWinPanel();
         Pause();
+    }
+
+    private Data RegistryUpgrades(Data data)
+    {
+        //Data data = new Data();
+        string json = File.ReadAllText(pathUserData);
+        data = JsonUtility.FromJson<Data>(json);
+
+        foreach (var upgrade in upgrades)
+        {
+            if (!data.discoveredUpgrades.Contains(upgrade))
+            {
+                data.discoveredUpgrades.Add(upgrade);
+            }
+        }
+        return data;
+        
     }
     public void Lose()
     {
@@ -353,7 +378,7 @@ private string pathUserData = "save/UserData.json";
         while (time < specialCooldown)
         {
             time += Time.deltaTime;
-            Debug.Log(time);
+            //Debug.Log(time);
             yield return null;
         }
         specialInCooldown = false;
