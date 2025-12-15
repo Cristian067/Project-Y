@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -172,65 +173,149 @@ public class UpgradesManager : MonoBehaviour
     }
 
 
-    public UpgradeSO GetRandomUpgradesFixed(int type, int goodOrBad)
+    public UpgradeSO GetRandomUpgradesFixed(int type, int goodOrBad, UpgradeSO[] pull)
     {
         //type = 0 = modificacion de estadisticas
         //type = 1 = efectos
         //type = 2 = especial
+        if(goodOrBad == 0)
+        {
+            List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
+            foreach (UpgradeSO upgrade in pull)
+            {
+                if (upgrade.alignment == UpgradeSO.Alignment.Positive)
+                {
+                    goodUpgrade.Add(upgrade);
+                }
+            }
+            return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
 
+        }
+        else if (goodOrBad == 1)
+        {
+            List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
+            foreach (UpgradeSO upgrade in pull)
+            {
+                if (upgrade.alignment == UpgradeSO.Alignment.Negative)
+                {
+                    goodUpgrade.Add(upgrade);
+                }
+            }
+            return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
+
+        }
         return null;
     }
     [ContextMenu("Display upgrades screen")]
     public void DisplayUpgrades()
     {
+        GameManager.instance.Pause();
         UpgradeSO[] allyUpgrades = new UpgradeSO[3];
         UpgradeSO[] enemyUpgrades = new UpgradeSO[3];
+
+        List<UpgradeSO> upgradePull = allTheUpgrades.ToList<UpgradeSO>();
+
+
+        foreach(UpgradeSO upgrade in GameManager.instance.GetUpgrades())
+        {
+            if (upgradePull.Contains(upgrade))
+            {
+                upgradePull.Remove(upgrade);
+            }
+        }
 
         //get selection for player
 
         for (int i = 0; i < 3; i++)
         {   
-            allyUpgrades[i] = GetRandomUpgradesFixed(Random.Range(0,3),Random.Range(0, 1));
+            allyUpgrades[i] = GetRandomUpgradesFixed(Random.Range(0,3),Random.Range(0, 2),upgradePull.ToArray());
+            enemyUpgrades[i] = GetRandomUpgradesFixed(0, Random.Range(0, 2),upgradePull.ToArray());
+            //Debug.Log(allyUpgrades[i]);
+            //Debug.Log(enemyUpgrades[i]);
 
-            if(allyUpgrades[i].type == UpgradeSO.UpgradeType.Special)
-            {
-                allyUpgrades[i] = GetRandomUpgradesFixed(Random.Range(0,2),Random.Range(0, 1));
-            }
+            //GameObject card = Instantiate(UpgradePrefab, upgradesContainer.transform);
+            //card.GetComponent<CardUpgrade>().Set(allyUpgrades[i], enemyUpgrades[i]);
+
+
+            //if (i== 1)
+            //{
+            //    card.GetComponent<Button>().Select();
+            //}
+
             
+            //StartCoroutine(CheckUpgradeDisponobility(enemyUpgrades, true));
+
+
         }
 
+        StartCoroutine(CheckUpgradeDisponobility(allyUpgrades, enemyUpgrades, upgradePull.ToArray()));
 
 
-        for (int i = 0; i < allyUpgrades.Length; i++)
-        {
-            
-        }
+        //isCustom = false;
 
-
-
-        for (int i = 0; i < 3; i++)
-        {   
-            enemyUpgrades[i] = GetRandomUpgradesFixed(0,Random.Range(0, 1));
-            
-        }
-
-
-
-        //Get selection for enemy
-
-
-
-
-
-        isCustom = false;
-        GameManager.instance.Pause();
-        Instantiate(UpgradePrefab, upgradesContainer.transform);
-        Button select = Instantiate(UpgradePrefab, upgradesContainer.transform).GetComponent<Button>();
-        select.Select();
-        Instantiate(UpgradePrefab, upgradesContainer.transform);
+        //Instantiate(UpgradePrefab, upgradesContainer.transform);
+        //Button select = Instantiate(UpgradePrefab, upgradesContainer.transform).GetComponent<Button>();
+        //select.Select();
+        //Instantiate(UpgradePrefab, upgradesContainer.transform);
 
         //Instantiate(UpgradePrefab, canvas.transform);
     }
+
+
+    private void SendUpgrades(UpgradeSO[] ally, UpgradeSO[] enemy)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+
+            //Debug.Log(allyUpgrades[i]);
+            //Debug.Log(enemyUpgrades[i]);
+
+            GameObject card = Instantiate(UpgradePrefab, upgradesContainer.transform);
+            card.GetComponent<CardUpgrade>().Set(ally[i], enemy[i]);
+
+
+            if (i == 1)
+            {
+                card.GetComponent<Button>().Select();
+            }
+            
+        }
+    }
+
+
+    private IEnumerator CheckUpgradeDisponobility(UpgradeSO[] ally,UpgradeSO[] enemy,UpgradeSO[] pull)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            try
+            {
+
+            
+                while (ally[i] == ally[i - 1] || ally[i] == ally[i - 2])
+                {
+                    ally[i] = GetRandomUpgradesFixed(Random.Range(0, 3), Random.Range(0, 1),pull);
+                }
+            }
+
+            catch { }
+
+            while (ally[i].type == UpgradeSO.UpgradeType.Special && ally[i] == GameManager.instance.GetSpecial())
+            {
+                ally[i] = GetRandomUpgradesFixed(Random.Range(0, 3), Random.Range(0, 1), pull);
+            }
+
+
+
+        }
+
+        SendUpgrades(ally, enemy);
+        yield return null;
+
+    }
+
+        
+
+    
 
     public void GiveUpgrade()
     {

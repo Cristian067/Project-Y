@@ -28,7 +28,7 @@ public class CardUpgrade : MonoBehaviour
     void Start()
     {
         
-        Initialize();
+        //Initialize();
         
     }
 
@@ -47,23 +47,23 @@ public class CardUpgrade : MonoBehaviour
     private void Initialize()
     {
 
-        int randomType = Random.Range(0, 3);
-        //type = 0 = modificacion de estadisticas
-        //type = 1 = efectos
-        //type = 2 = especial
+        //int randomType = Random.Range(0, 3);
+        ////type = 0 = modificacion de estadisticas
+        ////type = 1 = efectos
+        ////type = 2 = especial
 
-        int randomSide = Random.Range(0, 2);
+        //int randomSide = Random.Range(0, 2);
 
 
-        allyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomType,randomSide);
-        try
-        {
-            enemyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomType, randomSide);
-        }
-        catch
-        {
-            enemyUpgrade = null;
-        }
+        //allyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomType,randomSide);
+        //try
+        //{
+        //    enemyUpgrade = UpgradesManager.instance.GetRandomUpgrade(randomType, randomSide);
+        //}
+        //catch
+        //{
+        //    enemyUpgrade = null;
+        //}
         
 
         if (allyUpgrade.type == UpgradeSO.UpgradeType.Effect)
@@ -86,6 +86,13 @@ public class CardUpgrade : MonoBehaviour
         
 
 
+    }
+
+    public void Set(UpgradeSO ally, UpgradeSO enemy)
+    {
+        allyUpgrade = ally;
+        enemyUpgrade = enemy;
+        Initialize();
     }
     
     public void Choosed()

@@ -280,9 +280,9 @@ private string pathUserData = "save/UserData.json";
     }
 
 
-    public UpgradeSO[] GetUpgrades()
+    public List<UpgradeSO> GetUpgrades()
     {
-        return upgrades.ToArray();
+        return upgrades;
     }
 
     
