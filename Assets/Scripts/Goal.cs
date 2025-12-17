@@ -22,19 +22,22 @@ public class Goal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        switch(type)
+        if (!GameManager.instance.paused)
         {
-            case GoalType.Reach:
-                transform.Translate(new Vector3(0,0,-1)*Time.deltaTime * 1); 
-                if (transform.position.z <= 12)
-                {
-                    transform.Translate(new Vector3(0,0,-1)*Time.deltaTime * 30);
+            
+        
+            switch(type)
+            {
+                case GoalType.Reach:
+                    transform.Translate(new Vector3(0,0,-1)*Time.deltaTime * 1); 
+                    if (transform.position.z <= 12)
+                    {
+                        transform.Translate(new Vector3(0,0,-1)*Time.deltaTime * 30);
 
-                }
-                break;
+                    }
+                    break;
+            }
         }
-
         
 
     }

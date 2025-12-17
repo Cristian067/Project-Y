@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 10f;
 
     [SerializeField] private float limitX;
+    [SerializeField] private float upperLimitZ;
+    [SerializeField] private float bottomLimitZ;
 
 
     [SerializeField] private float hitCooldown;
@@ -32,6 +35,12 @@ public class PlayerController : MonoBehaviour
     private float verticalInput;
 
 
+    public UnityEvent pauseMovement;
+
+
+    //private bool isInPause;
+
+
     //private GameManager gameManager;
 
     // Start is called before the first frame update
@@ -40,6 +49,15 @@ public class PlayerController : MonoBehaviour
         PlayerMaterialGO.GetComponent<MeshRenderer>().material.color = new Vector4(PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.r, PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.g, PlayerMaterialGO.GetComponent<MeshRenderer>().material.color.b, 1);
         //PlayerMaterial.color ;
         //gameManager = FindObjectOfType<GameManager>();
+
+        //pauseMovement.AddListener
+
+
+    }
+
+    public void PauseMovement()
+    {
+        
     }
 
     // Update is called once per frame
@@ -47,19 +65,43 @@ public class PlayerController : MonoBehaviour
     {
         speed = GameManager.instance.GetSpeed();
 
-        verticalInput = Input.GetAxisRaw("Vertical");
-        horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        transform.Translate(new Vector3(1, 0, 0) * horizontalInput * speed * Time.deltaTime);
-        transform.Translate(new Vector3(0, 0, 1) * verticalInput * speed * Time.deltaTime);
-
-
-
-        //shoot
-
-        if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.chargedShoot))
+        if (!GameManager.instance.paused)
         {
-            if (Input.GetButton("Fire") && !GameManager.instance.paused)
+            
+            
+            verticalInput = Input.GetAxisRaw("Vertical");
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+
+            transform.Translate(new Vector3(1, 0, 0) * horizontalInput * speed * Time.deltaTime);
+            transform.Translate(new Vector3(0, 0, 1) * verticalInput * speed * Time.deltaTime);
+
+
+
+            //shoot
+
+            if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.chargedShoot))
+            {
+                if (Input.GetButton("Fire") && !GameManager.instance.paused)
+                {
+                    if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
+                    {
+                        
+                        DoubleShoot();
+                    }
+                    else
+                    {
+                        ChargedShoot(true);
+                    }
+                
+                }
+                else if(Input.GetButtonUp("Fire") && !GameManager.instance.paused)
+                {
+                    ChargedShoot(false);
+                }
+            }
+
+            else if (Input.GetButton("Fire") && !GameManager.instance.paused)
             {
                 if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
                 {
@@ -68,37 +110,18 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    ChargedShoot(true);
+                    Shoot();
                 }
-            
+                
             }
-            else if(Input.GetButtonUp("Fire") && !GameManager.instance.paused)
-            {
-                ChargedShoot(false);
-            }
-        }
 
-        else if (Input.GetButton("Fire") && !GameManager.instance.paused)
-        {
-            if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
+            if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown)
             {
                 
-                DoubleShoot();
+                StartCoroutine(GameManager.instance.GetSpecial().special.Use(gameObject));
+                
             }
-            else
-            {
-                Shoot();
-            }
-            
         }
-
-        if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown)
-        {
-            
-            StartCoroutine(GameManager.instance.GetSpecial().special.Use(gameObject));
-            
-        }
-
         //if(Input.GetKeyUp(KeyCode.A))
         //{
         //    co
@@ -108,13 +131,13 @@ public class PlayerController : MonoBehaviour
         //limitar limites
         if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.sideToSideEffect))
         {
-            if (transform.position.z < -2.75f)
+            if (transform.position.z < bottomLimitZ)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -2.75f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, bottomLimitZ);
             }
-            if (transform.position.z > 11.5f)
+            if (transform.position.z > upperLimitZ)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 11.5f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, upperLimitZ);
             }
             if (transform.position.x > limitX+1)
             {
@@ -130,13 +153,13 @@ public class PlayerController : MonoBehaviour
         {
 
 
-            if (transform.position.z < -2.75f)
+            if (transform.position.z < bottomLimitZ)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -2.75f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, bottomLimitZ);
             }
-            if (transform.position.z > 11.5f)
+            if (transform.position.z > upperLimitZ)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 11.5f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, upperLimitZ);
             }
 
             if (transform.position.x > limitX)

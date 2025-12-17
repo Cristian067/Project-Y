@@ -1,6 +1,6 @@
 {
     "levelsHighScore": [
-        1630,
+        2180,
         0,
         0,
         0,
@@ -203,16 +203,37 @@
     ],
     "discoveredUpgrades": [
         {
-            "instanceID": 43982
+            "instanceID": 0
         },
         {
-            "instanceID": 43830
+            "instanceID": 0
         },
         {
             "instanceID": 43708
         },
         {
-            "instanceID": 43920
+            "instanceID": 0
+        },
+        {
+            "instanceID": 43832
+        },
+        {
+            "instanceID": 43796
+        },
+        {
+            "instanceID": 43860
+        },
+        {
+            "instanceID": 43984
+        },
+        {
+            "instanceID": 43854
+        },
+        {
+            "instanceID": 43980
+        },
+        {
+            "instanceID": 43794
         }
     ]
 }

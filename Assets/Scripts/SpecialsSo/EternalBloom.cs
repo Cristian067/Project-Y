@@ -13,7 +13,15 @@ public class EternalBloom : SpecialSO
         float speedOg = GameManager.instance.GetSpeed();
         GameManager.instance.SetSpeed(speedOg * 1.5f);
         Time.timeScale = 0.3f;
-        yield return new WaitForSeconds(3);
+        float time = 0f;
+        while (time < 3)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+            continue;
+            time += Time.deltaTime;
+        }
+        //yield return new WaitForSeconds(3);
         Time.timeScale = 1;
         GameManager.instance.SetSpeed(speedOg);
     }
