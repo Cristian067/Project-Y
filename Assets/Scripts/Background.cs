@@ -7,6 +7,8 @@ public class Background : MonoBehaviour
     [SerializeField] private Material backgroundMaterial;
 
     [SerializeField]private float backgroundSpeed;
+
+    [SerializeField] private GameObject[] backgroundsBlocks;
     private float backgroundCount = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,5 +28,22 @@ public class Background : MonoBehaviour
             backgroundCount = 1;
         }
         backgroundMaterial.SetVector("_Offset",new Vector2(1,backgroundCount) );
+
+        foreach(var block in backgroundsBlocks)
+        {
+            block.transform.Translate( new Vector3(0,0,1)* backgroundSpeed*Time.deltaTime);
+            Renderer render = block.GetComponent<Renderer>();
+
+            if(block.transform.position.z < -17.5f)
+            {
+                Debug.Log("si");
+            }
+
+
+
+            
+        }
+
+
     }
 }
