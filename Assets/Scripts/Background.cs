@@ -40,6 +40,7 @@ public class Background : MonoBehaviour
             if (block.transform.position.z < -17.5f)
             {
                 //Debug.Log(block.transform.);
+                //
                 block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, 24);
                 //Debug.Log("si");
             }
