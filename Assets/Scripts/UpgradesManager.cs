@@ -289,8 +289,6 @@ public class UpgradesManager : MonoBehaviour
         {
             try
             {
-
-            
                 while (ally[i] == ally[i - 1] || ally[i] == ally[i - 2])
                 {
                     ally[i] = GetRandomUpgradesFixed(Random.Range(0, 3), Random.Range(0, 1),pull);

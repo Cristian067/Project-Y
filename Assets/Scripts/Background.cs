@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 
 public class Background : MonoBehaviour
 {
@@ -31,12 +33,15 @@ public class Background : MonoBehaviour
 
         foreach(var block in backgroundsBlocks)
         {
-            block.transform.Translate( new Vector3(0,0,1)* backgroundSpeed*Time.deltaTime);
+            //GameObject enviorement = Instantiate(block);
+            block.transform.Translate( new Vector3(0,0,-1) * (backgroundSpeed/backgroundMaterial.GetVector("_Tiling").y *(backgroundGO.GetComponent<Renderer>().bounds.size.z/backgroundGO.transform.localScale.z)) * Time.deltaTime);
             Renderer render = block.GetComponent<Renderer>();
 
-            if(block.transform.position.z < -17.5f)
+            if (block.transform.position.z < -17.5f)
             {
-                Debug.Log("si");
+                //Debug.Log(block.transform.);
+                block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, 24);
+                //Debug.Log("si");
             }
 
 
