@@ -1,6 +1,6 @@
 {
     "levelsHighScore": [
-        2180,
+        0,
         0,
         0,
         0,
@@ -215,25 +215,37 @@
             "instanceID": 0
         },
         {
-            "instanceID": 43832
+            "instanceID": 0
         },
         {
-            "instanceID": 43796
+            "instanceID": 0
         },
         {
-            "instanceID": 43860
+            "instanceID": 0
         },
         {
-            "instanceID": 43984
+            "instanceID": 0
         },
         {
-            "instanceID": 43854
+            "instanceID": 0
         },
         {
-            "instanceID": 43980
+            "instanceID": 0
         },
         {
-            "instanceID": 43794
+            "instanceID": 0
+        },
+        {
+            "instanceID": 0
+        },
+        {
+            "instanceID": 0
+        },
+        {
+            "instanceID": 0
+        },
+        {
+            "instanceID": 0
         }
     ]
 }

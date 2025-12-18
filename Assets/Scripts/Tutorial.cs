@@ -69,11 +69,25 @@ public class Tutorial : MonoBehaviour
     {
         onPhase = true;
         GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(0,0,15.5f),Quaternion.Euler(0,180,0));
-        yield return new WaitForSeconds(4f);
+        float time = 0f;
+        while (time < 4)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+                continue;
+            time += Time.deltaTime;
+        }
         DialoguesManager.instance.StartDialogue("TutorialPhase1");
-        yield return new WaitForSeconds(10);
-        
-        if(enemyForTrain.gameObject == null)
+        time = 0f;
+        while (time < 10)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+                continue;
+            time += Time.deltaTime;
+        }
+
+        if (enemyForTrain.gameObject == null)
         {
             DialoguesManager.instance.StartDialogue("TutorialPhase1To2");
             onPhase = false;
@@ -92,12 +106,26 @@ public class Tutorial : MonoBehaviour
     {
         onPhase = true;
         GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(0,0,15.5f),Quaternion.Euler(0,180,0));
-        yield return new WaitForSeconds(4f);
- 
-        yield return new WaitForSeconds(10);
+        float time = 0f;
+        while (time < 4)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+                continue;
+            time += Time.deltaTime;
+        }
 
-        
-        if(enemyForTrain.gameObject == null)
+        time = 0f;
+        while (time < 10)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+                continue;
+            time += Time.deltaTime;
+        }
+
+
+        if (enemyForTrain.gameObject == null)
         {
             DialoguesManager.instance.StartDialogue("TutorialPhasePacifistExit");
             actualPhase = TutorialPhases.Phase2;
@@ -105,7 +133,14 @@ public class Tutorial : MonoBehaviour
         else
         {
             DialoguesManager.instance.StartDialogue("TutorialPhasePacifistAgain");
-            yield return new WaitForSeconds(5);
+            time = 0f;
+            while (time < 5)
+            {
+                yield return null;
+                if (GameManager.instance.paused)
+                    continue;
+                time += Time.deltaTime;
+            }
             goal.transform.position = new Vector3(0,0,12);
             onPhase = false;
             //actualPhase = TutorialPhases.Phase1Pac;
@@ -118,13 +153,27 @@ public class Tutorial : MonoBehaviour
         GameObject pointForTrain = Instantiate(point,new Vector3(0,0,28f),Quaternion.Euler(0,180,0));
         pointForTrain.GetComponent<Points>().speed = 2;
         pointForTrain.GetComponent<Points>().ChangePointsValue(150);
-        
-        yield return new WaitForSeconds(1f);
+
+        float time = 0f;
+        while (time < 1)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+                continue;
+            time += Time.deltaTime;
+        }
         DialoguesManager.instance.StartDialogue("TutorialPhase2");
         //DialoguesManager.instance.StartDialogue("TutorialPhase2_point");
 
         pointForTrain.transform.localScale = new Vector3(15,1,15);
-        yield return new WaitForSeconds(13);
+        time = 0f;
+        while (time < 13)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+                continue;
+            time += Time.deltaTime;
+        }
         DialoguesManager.instance.StartDialogue("TutorialPhase2_upgrade");
         onPhase = false;
         actualPhase = TutorialPhases.Phase3;
@@ -182,10 +231,24 @@ public class Tutorial : MonoBehaviour
             movement.positions[0] = new Vector3(i,0,-15);
 
         }
-        yield return new WaitForSeconds(15);
-        
+        float time = 0f;
+        while (time < 15)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+                continue;
+            time += Time.deltaTime;
+        }
+
         DialoguesManager.instance.StartDialogue("TutorialPhaseFinal");
-        yield return new WaitForSeconds(0.2f);
+        time = 0f;
+        while (time < 0.2)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+                continue;
+            time += Time.deltaTime;
+        }
         End();
         
         // if(enemyForTrain.gameObject == null)
