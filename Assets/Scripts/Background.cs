@@ -41,6 +41,7 @@ public class Background : MonoBehaviour
             {
                 //Debug.Log(block.transform.);
                 //
+
                 block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, 24);
                 //Debug.Log("si");
             }
