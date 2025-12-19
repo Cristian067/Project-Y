@@ -296,10 +296,13 @@ public class UpgradesManager : MonoBehaviour
             }
 
             catch { }
-
-            while (ally[i].type == UpgradeSO.UpgradeType.Special && ally[i] == GameManager.instance.GetSpecial())
+            if (ally[i].type == UpgradeSO.UpgradeType.Effect)
             {
-                ally[i] = GetRandomUpgradesFixed(Random.Range(0, 3), Random.Range(0, 1), pull);
+                while (ally[i].type == UpgradeSO.UpgradeType.Special && ally[i] == GameManager.instance.GetSpecial())
+                {
+                    ally[i] = GetRandomUpgradesFixed(Random.Range(0, 3), Random.Range(0, 1), pull);
+                }
+
             }
 
 
