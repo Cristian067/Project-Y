@@ -86,7 +86,7 @@ private string pathUserData = "save/UserData.json";
     void Update()
     {
 
-        if (Input.GetButtonDown("Pause") && !DialoguesManager.instance.IsOnDialogue() ||Input.GetButtonDown("Pause") && !paused )
+        if (Input.GetButtonDown("Pause") && !DialoguesManager.instance.IsOnDialogue() ||Input.GetButtonDown("Pause") && !paused)
         {
             Pause(true);
         }
@@ -139,10 +139,11 @@ private string pathUserData = "save/UserData.json";
 
     public void Pause(bool usePanel = false)
     {
+        
         paused = true;
         timeScaleSaved = Time.timeScale;
         //Time.timeScale = 0;
-
+        
         if (usePanel)
         {
             UIManager.instance.DisplayPauseMenu();

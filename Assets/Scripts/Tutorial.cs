@@ -31,6 +31,8 @@ public class Tutorial : MonoBehaviour
 
     [SerializeField]private GameObject goal;
 
+    private float time;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -69,7 +71,7 @@ public class Tutorial : MonoBehaviour
     {
         onPhase = true;
         GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(0,0,15.5f),Quaternion.Euler(0,180,0));
-        float time = 0f;
+        time = 0f;
         while (time < 4)
         {
             yield return null;
@@ -89,12 +91,14 @@ public class Tutorial : MonoBehaviour
 
         if (enemyForTrain.gameObject == null)
         {
+            Debug.Log("To2");
             DialoguesManager.instance.StartDialogue("TutorialPhase1To2");
             onPhase = false;
             actualPhase = TutorialPhases.Phase2;
         }
         else
         {
+            Debug.Log("ToPac");
             DialoguesManager.instance.StartDialogue("TutorialPhasePacifist");
             onPhase = false;
             actualPhase = TutorialPhases.Phase1Pac;
@@ -106,7 +110,7 @@ public class Tutorial : MonoBehaviour
     {
         onPhase = true;
         GameObject enemyForTrain = Instantiate(enemyToTrain,new Vector3(0,0,15.5f),Quaternion.Euler(0,180,0));
-        float time = 0f;
+        time = 0f;
         while (time < 4)
         {
             yield return null;
@@ -129,6 +133,7 @@ public class Tutorial : MonoBehaviour
         {
             DialoguesManager.instance.StartDialogue("TutorialPhasePacifistExit");
             actualPhase = TutorialPhases.Phase2;
+            onPhase = false;
         }
         else
         {
@@ -145,6 +150,7 @@ public class Tutorial : MonoBehaviour
             onPhase = false;
             //actualPhase = TutorialPhases.Phase1Pac;
         }
+        
     }
 
     private IEnumerator Phase2()
@@ -154,7 +160,7 @@ public class Tutorial : MonoBehaviour
         pointForTrain.GetComponent<Points>().speed = 2;
         pointForTrain.GetComponent<Points>().ChangePointsValue(150);
 
-        float time = 0f;
+        time = 0f;
         while (time < 1)
         {
             yield return null;
@@ -231,7 +237,7 @@ public class Tutorial : MonoBehaviour
             movement.positions[0] = new Vector3(i,0,-15);
 
         }
-        float time = 0f;
+        time = 0f;
         while (time < 15)
         {
             yield return null;
