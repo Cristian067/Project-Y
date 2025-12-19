@@ -33,7 +33,14 @@ public class BombRush : SpecialSO
         bomb3.GetComponent<BulletsBehavior>().bulletForExplode = allyBullet;
         bomb3.GetComponent<Collider>().enabled = false;
         bomb3.transform.localScale = new Vector3(2, 2, 2);
-        yield return new WaitForSeconds(3);
+        float time = 0f;
+        while (time < 3)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+            continue;
+            time += Time.deltaTime;
+        }
         bomb1.GetComponent<BulletsBehavior>().ChangeSpeed(0);
         bomb2.GetComponent<BulletsBehavior>().ChangeSpeed(0);
         bomb2.transform.rotation = Quaternion.Euler(0,25,0);
