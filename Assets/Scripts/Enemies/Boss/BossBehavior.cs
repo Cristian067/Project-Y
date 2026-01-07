@@ -14,6 +14,7 @@ public class BossBehavior : MonoBehaviour
 
 
     public MonoBehaviour[] Movesets;
+    public UpgradeSO[] Upgrades;
 
 
     public enum States
@@ -122,6 +123,16 @@ public class BossBehavior : MonoBehaviour
         //destination = transform;
 
         
+    }
+
+
+    public void Hurt(float damage)
+    {
+        life -= damage;
+        if (life < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 

@@ -10,6 +10,7 @@ TagManager:
   - Collect
   - Hitbox
   - Barrier
+  - Boss
   layers:
   - Default
   - TransparentFX

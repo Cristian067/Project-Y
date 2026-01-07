@@ -122,6 +122,13 @@ public class BulletsBehavior : MonoBehaviour
 
 
             }
+            else if (other.gameObject.tag == "Boss")
+            {
+                other.gameObject.GetComponent<BossBehavior>().Hurt(damage);
+                Destroy(gameObject);
+
+
+            }
         }
     }
 
