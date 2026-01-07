@@ -1,6 +1,6 @@
 {
     "levelsHighScore": [
-        510,
+        1310,
         0,
         0,
         0,
@@ -248,10 +248,25 @@
             "instanceID": 0
         },
         {
-            "instanceID": 49702
+            "instanceID": 0
         },
         {
-            "instanceID": 50618
+            "instanceID": 0
+        },
+        {
+            "instanceID": 44380
+        },
+        {
+            "instanceID": 44232
+        },
+        {
+            "instanceID": 44252
+        },
+        {
+            "instanceID": 44376
+        },
+        {
+            "instanceID": 44210
         }
     ]
 }

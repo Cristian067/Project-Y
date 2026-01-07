@@ -17,8 +17,8 @@ public class Moveset2 : Moveset
             }
             yield return new WaitForSeconds(0.1f);
         }
-
         
+        GetComponent<BossBehavior>().ChangeInAttack(false);
 
         
     }

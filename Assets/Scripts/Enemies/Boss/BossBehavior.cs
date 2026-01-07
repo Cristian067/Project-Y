@@ -79,11 +79,14 @@ public class BossBehavior : MonoBehaviour
     public void UseMoveset()
     {
         int r = Random.Range(0, Movesets.Length);
+
+        if (!inAttack)
+        {
+            inAttack = true;
+            Movesets[r].StartCoroutine("Use");
+        }
         
-        
-        inAttack = true;
-        Movesets[r].StartCoroutine("Use");
-        inAttack = false;
+        //inAttack = false;
 
         //Debug.Log("Moveset: " + Movesets[r]);
 
@@ -92,7 +95,7 @@ public class BossBehavior : MonoBehaviour
     public IEnumerator Wait()
     {
 
-        while (busy)
+        while (busy || inAttack)
         {
             yield return null;
         }
@@ -149,6 +152,11 @@ public class BossBehavior : MonoBehaviour
     public void ChangeBusy(bool isBusy)
     {
         busy = isBusy;
+    }
+
+    public void ChangeInAttack(bool isInAttack)
+    {
+        inAttack = isInAttack;
     }
 
 
