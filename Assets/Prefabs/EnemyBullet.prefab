@@ -160,6 +160,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 12
   enemy: 1
+  type: 0
+  damage: 0
+  rotation: {x: 0, y: 0, z: 0}
+  rotationSpeed: 2
+  bulletForExplode: {fileID: 0}
+  timeForExplode: 0
+  bulletsInExplosion: 0
+  dispersionSpeed: 0
 --- !u!135 &8760509503121760190
 SphereCollider:
   m_ObjectHideFlags: 0

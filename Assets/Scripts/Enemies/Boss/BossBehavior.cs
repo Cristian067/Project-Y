@@ -33,7 +33,8 @@ public class BossBehavior : MonoBehaviour
     [SerializeField]private float cooldownBetweenMovesets;
 
     [SerializeField]private bool activated;
-    [SerializeField]private bool idle;
+    [SerializeField]private bool busy;
+    [SerializeField]private bool inAttack;
 
     
 
@@ -52,7 +53,7 @@ public class BossBehavior : MonoBehaviour
     void Update()
     {
 
-        if (activated && !idle)
+        if (activated && !busy)
         {
             switch (actState)
             {
@@ -78,13 +79,23 @@ public class BossBehavior : MonoBehaviour
     public void UseMoveset()
     {
         int r = Random.Range(0, Movesets.Length);
+        
+        
+        inAttack = true;
+        Movesets[r].StartCoroutine("Use");
+        inAttack = false;
 
-        Movesets[r].Invoke("Use",0);
+        //Debug.Log("Moveset: " + Movesets[r]);
 
     }
 
     public IEnumerator Wait()
     {
+
+        while (busy)
+        {
+            yield return null;
+        }
         if (actState == States.Attack)
         {
             nextState = States.Move;
@@ -96,33 +107,48 @@ public class BossBehavior : MonoBehaviour
         }
         actState = States.Wait;
         
-        idle = true;
+        busy = true;
         yield return new WaitForSeconds(cooldownBetweenMovesets);
         actState = nextState;
-        idle = false;
+        busy = false;
 
        
     }
 
-    public IEnumerator Move()
+    public IEnumerator Move(bool cancel = false)
     {
+        
         //idle = true;
         float r = Random.Range(mapAnchor.x, mapAnchor.y);
 
         Vector3 destination = new Vector3(r,transform.position.y,transform.position.z);
         //Debug.Log("destinacion: "+destination);
+        
+        if (cancel)
+        {
 
+            destination = transform.position;
+            
+        }
         while (Vector3.Distance(transform.position,destination) > 0.2)
         {
+            if (inAttack)
+            {
+                break;
+            }
             //Debug.Log("distancia: " +Vector3.Distance(transform.position,destination));
             transform.Translate(-(destination - transform.position).normalized * Time.deltaTime * speed);
-            
             yield return null;
         }
 
         //destination = transform;
 
         
+    }
+
+    public void ChangeBusy(bool isBusy)
+    {
+        busy = isBusy;
     }
 
 

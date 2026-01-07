@@ -21,6 +21,9 @@ public class BulletsBehavior : MonoBehaviour
 
     public float damage;
 
+    public Vector3 rotation = new Vector3(0,0,0);
+    public float rotationSpeed = 0;
+
     [Header("BombBehavior")]
     [SerializeField] public GameObject bulletForExplode;
     [SerializeField] private float timeForExplode;
@@ -44,15 +47,25 @@ public class BulletsBehavior : MonoBehaviour
     {
         if (!GameManager.instance.paused)
         {
-            
+            if(rotation != new Vector3(0, 0, 0))
+            {
+                transform.Rotate(rotation * Time.deltaTime * rotationSpeed);
+            }
         
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            transform.Translate(Vector3.forward  * speed * Time.deltaTime);
 
             if(transform.position.z > 16 || transform.position.z < -10 || transform.position.x >10 || transform.position.x < -10)
             {
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void SetRotation(Vector3 newRotation, float newRotationSpeed)
+    {
+        rotation = newRotation;
+        rotationSpeed = newRotationSpeed;
+        
     }
 
     private void Bomb()
