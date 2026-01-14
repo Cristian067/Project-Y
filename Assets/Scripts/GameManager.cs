@@ -337,9 +337,9 @@ private string pathUserData = "save/UserData.json";
 
         foreach (var upgrade in upgrades)
         {
-            if (!data.discoveredUpgrades.Contains(upgrade))
+            if (!data.discoveredUpgrades.Contains(upgrade.name))
             {
-                data.discoveredUpgrades.Add(upgrade);
+                data.discoveredUpgrades.Add(upgrade.name);
             }
         }
         return data;

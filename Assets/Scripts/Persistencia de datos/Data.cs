@@ -9,7 +9,7 @@ public class Data
     
 
 
-    public List<UpgradeSO> discoveredUpgrades;
+    public List<string> discoveredUpgrades;
 
 
 
