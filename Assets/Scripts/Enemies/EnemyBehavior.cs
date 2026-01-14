@@ -31,9 +31,12 @@ public class EnemyBehavior : MonoBehaviour
 
     public MeshRenderer meshRenderer;
 
+    Color colorOg;
+
     // Start is called before the first frame update
     void Start()
     {
+        colorOg = meshRenderer.material.color;
         movementBehavior = GetComponent<EnemiesMovement>();
         transform.position = new Vector3(movementBehavior.positions[0].x, 0, transform.position.z);
 
@@ -135,7 +138,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         life -= damage;
 
-        //StartCoroutine(HurtVisual());
+        StartCoroutine(HurtVisual());
 
         if (life <= 0)
         {
@@ -147,7 +150,8 @@ public class EnemyBehavior : MonoBehaviour
 
     private IEnumerator HurtVisual()
     {
-        Color colorOg = meshRenderer.material.color;
+        
+        Debug.Log(colorOg.ToString());
 
         meshRenderer.material.color = new Color(1,1,1,1);
         yield return new WaitForSeconds(0.1f);
