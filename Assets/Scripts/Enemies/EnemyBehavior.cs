@@ -29,6 +29,8 @@ public class EnemyBehavior : MonoBehaviour
 
     EnemiesMovement movementBehavior;
 
+    public MeshRenderer meshRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -133,12 +135,23 @@ public class EnemyBehavior : MonoBehaviour
     {
         life -= damage;
 
+        //StartCoroutine(HurtVisual());
+
         if (life <= 0)
         {
             GameObject point = Instantiate(pointGo,transform.position,Quaternion.Euler(0, 180, 0));
             point.GetComponent<Points>().ChangePointsValue(setPointValue);
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator HurtVisual()
+    {
+        Color colorOg = meshRenderer.material.color;
+
+        meshRenderer.material.color = new Color(1,1,1,1);
+        yield return new WaitForSeconds(0.1f);
+        meshRenderer.material.color = colorOg;
     }
 
     public void ChangePointsValue(int value)
