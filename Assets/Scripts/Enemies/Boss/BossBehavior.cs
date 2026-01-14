@@ -65,7 +65,7 @@ public class BossBehavior : MonoBehaviour
                     UseMoveset();
                     break;
                 case States.Wait:
-                    Debug.Log("Esperando");
+                    //Debug.Log("Esperando");
                     break;
             }
             StartCoroutine(Wait());
@@ -95,10 +95,7 @@ public class BossBehavior : MonoBehaviour
     public IEnumerator Wait()
     {
 
-        while (busy || inAttack)
-        {
-            yield return null;
-        }
+        
         if (actState == States.Attack)
         {
             nextState = States.Move;
@@ -109,6 +106,17 @@ public class BossBehavior : MonoBehaviour
             
         }
         actState = States.Wait;
+        while (busy || inAttack)
+        {
+
+            //Debug.Log("esoerabdi");
+            yield return null;
+
+        }
+
+
+        
+        
         
         busy = true;
         yield return new WaitForSeconds(cooldownBetweenMovesets);
