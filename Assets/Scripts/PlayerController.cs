@@ -66,42 +66,26 @@ public class PlayerController : MonoBehaviour
         speed = GameManager.instance.GetSpeed();
 
 
-        if (!GameManager.instance.paused)
+        if (GameManager.instance.paused)
         {
+            return;
+        }
+        
             
             
-            verticalInput = Input.GetAxisRaw("Vertical");
-            horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
 
-            transform.Translate(new Vector3(1, 0, 0) * horizontalInput * speed * Time.deltaTime);
-            transform.Translate(new Vector3(0, 0, 1) * verticalInput * speed * Time.deltaTime);
+        transform.Translate(new Vector3(1, 0, 0) * horizontalInput * speed * Time.deltaTime);
+        transform.Translate(new Vector3(0, 0, 1) * verticalInput * speed * Time.deltaTime);
 
 
 
             //shoot
 
-            if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.chargedShoot))
-            {
-                if (Input.GetButton("Fire") && !GameManager.instance.paused)
-                {
-                    if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
-                    {
-                        
-                        DoubleShoot();
-                    }
-                    else
-                    {
-                        ChargedShoot(true);
-                    }
-                
-                }
-                else if(Input.GetButtonUp("Fire") && !GameManager.instance.paused)
-                {
-                    ChargedShoot(false);
-                }
-            }
-
-            else if (Input.GetButton("Fire") && !GameManager.instance.paused)
+        if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.chargedShoot))
+        {
+            if (Input.GetButton("Fire") && !GameManager.instance.paused)
             {
                 if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
                 {
@@ -110,18 +94,37 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Shoot();
+                    ChargedShoot(true);
                 }
                 
             }
-
-            if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown)
+            else if(Input.GetButtonUp("Fire") && !GameManager.instance.paused)
             {
-                
-                StartCoroutine(GameManager.instance.GetSpecial().special.Use(gameObject));
-                
+                ChargedShoot(false);
             }
         }
+
+        else if (Input.GetButton("Fire") && !GameManager.instance.paused)
+        {
+            if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
+            {
+                
+                DoubleShoot();
+            }
+            else
+            {
+                Shoot();
+            }
+               
+        }
+
+        if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown)
+        {
+              
+            StartCoroutine(GameManager.instance.GetSpecial().special.Use(gameObject));
+               
+        }
+        
         //if(Input.GetKeyUp(KeyCode.A))
         //{
         //    co

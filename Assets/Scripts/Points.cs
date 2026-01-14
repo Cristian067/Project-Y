@@ -15,6 +15,10 @@ public class Points : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.paused)
+        {
+            return;
+        }
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 

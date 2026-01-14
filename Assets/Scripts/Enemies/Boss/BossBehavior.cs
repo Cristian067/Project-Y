@@ -1,10 +1,17 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[Serializable]
+public class Stats 
+{
+    public float life;
+    public float speed;
 
+
+}
 
 
 
@@ -14,7 +21,11 @@ public class BossBehavior : MonoBehaviour
 
 
     public MonoBehaviour[] Movesets;
-    public UpgradeSO[] Upgrades;
+    public UpgradeSO[] upgrades;
+
+    [SerializeField]private Stats basicStats;
+    [SerializeField]private Stats statsToModify;
+
 
 
     public enum States
@@ -52,6 +63,12 @@ public class BossBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.paused)
+        {
+            speed = 0;
+            return;
+        }
+        speed = basicStats.speed;
 
         if (activated && !busy)
         {

@@ -24,6 +24,11 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (GameManager.instance.paused)
+        {
+            return;
+        }
         backgroundCount += 0.1f * backgroundSpeed*Time.deltaTime;
         if(backgroundCount > 2)
         {

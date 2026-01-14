@@ -15,7 +15,14 @@ public class Moveset2 : Moveset
                 GameObject bulletInScene = Instantiate(bullet,transform.position,Quaternion.Euler(0,(j+1)*radual,0));
                 bulletInScene.GetComponent<BulletsBehavior>().SetRotation(new Vector3(0,25,0),2);
             }
-            yield return new WaitForSeconds(0.1f);
+            float time = 0f;
+            while (time < 0.1f)
+            {
+                yield return null;
+                if (GameManager.instance.paused)
+                continue;
+                time += Time.deltaTime;
+            }
         }
         
         GetComponent<BossBehavior>().ChangeInAttack(false);

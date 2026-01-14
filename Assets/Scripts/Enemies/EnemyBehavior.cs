@@ -44,59 +44,63 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
 
-        if (!GameManager.instance.paused)
+        if (GameManager.instance.paused)
         {
+            return;
+        }
+
+        
             
         
-            CheckForActivation();
+        CheckForActivation();
 
-            if (activated)
+        if (activated)
+        {
+            if (isMoving)
             {
-                if (isMoving)
+
+                if (positionCount >= movementBehavior.positions.Count)
                 {
+                    float countTime = Time.deltaTime;
 
-                    if (positionCount >= movementBehavior.positions.Count)
+                        
+                    if (haveToDestroyAfterPath)
                     {
-                        float countTime = Time.deltaTime;
-
-                        
-                        if (haveToDestroyAfterPath)
-                        {
-                            Destroy(gameObject);
-                        }
-                        else if (timeToFlee > countTime)
-                        {
-                            GetComponent<EnemyShoot>().StopShooting();
-                            transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * speed * 4);
-                        }
-                        
-                        
+                        Destroy(gameObject);
                     }
-
-                    else
+                    else if (timeToFlee > countTime)
                     {
-                        transform.Translate(-(movementBehavior.positions[positionCount] - transform.position).normalized * speed * Time.deltaTime);
-                        if (Vector3.Distance(transform.position, movementBehavior.positions[positionCount]) < 0.1f)
-                        {
-                            Debug.Log("cambio");
-                            positionCount++;
-                        }
-                        
-                        
+                        GetComponent<EnemyShoot>().StopShooting();
+                        transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * speed * 4);
                     }
-
+                        
+                        
                 }
-                if (transform.position.z <= -5.5f)
+
+                else
                 {
-                    Destroy(gameObject);
+                    transform.Translate(-(movementBehavior.positions[positionCount] - transform.position).normalized * speed * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, movementBehavior.positions[positionCount]) < 0.1f)
+                    {
+                        Debug.Log("cambio");
+                        positionCount++;
+                    }
+                        
+                        
                 }
+
             }
-
-            else
+            if (transform.position.z <= -5.5f)
             {
-                transform.Translate(new Vector3(0, 0, 1).normalized * 1 * Time.deltaTime);
+                Destroy(gameObject);
             }
         }
+
+        else
+        {
+            transform.Translate(new Vector3(0, 0, 1).normalized * 1 * Time.deltaTime);
+        }
+        
     }
     
     private void CheckForActivation()

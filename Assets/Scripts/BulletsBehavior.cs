@@ -45,20 +45,23 @@ public class BulletsBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.paused)
+        if (GameManager.instance.paused)
         {
-            if(rotation != new Vector3(0, 0, 0))
-            {
-                transform.Rotate(rotation * Time.deltaTime * rotationSpeed);
-            }
-        
-            transform.Translate(Vector3.forward  * speed * Time.deltaTime);
-
-            if(transform.position.z > 16 || transform.position.z < -10 || transform.position.x >10 || transform.position.x < -10)
-            {
-                Destroy(gameObject);
-            }
+            return;
         }
+        
+        if(rotation != new Vector3(0, 0, 0))
+        {
+            transform.Rotate(rotation * Time.deltaTime * rotationSpeed);
+        }
+        
+        transform.Translate(Vector3.forward  * speed * Time.deltaTime);
+
+        if(transform.position.z > 16 || transform.position.z < -10 || transform.position.x >10 || transform.position.x < -10)
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
     public void SetRotation(Vector3 newRotation, float newRotationSpeed)
