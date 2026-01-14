@@ -15,6 +15,7 @@ public class Moveset3 : Moveset
             {
                 float radual = 360/ 20;
                 GameObject bulletInScene = Instantiate(bullet,transform.position,Quaternion.Euler(0,(j+1)*radual,0));
+                bulletInScene.transform.localScale = new Vector3(0.25f, 0.25f,0.25f);
                 bulletInScene.GetComponent<BulletsBehavior>().SetRotation(new Vector3(0,-25,0),2);
             }
             float time = 0f;

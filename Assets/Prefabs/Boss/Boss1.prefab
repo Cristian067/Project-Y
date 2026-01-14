@@ -11,14 +11,13 @@ GameObject:
   - component: {fileID: 8003252843737433228}
   - component: {fileID: 1696881135654051793}
   - component: {fileID: 8826011935505025939}
-  - component: {fileID: 7056184575049501801}
-  - component: {fileID: 3050899109626035231}
-  - component: {fileID: 820399130320708129}
   - component: {fileID: 2055419809285108215}
+  - component: {fileID: 1690812928159568369}
+  - component: {fileID: 4871973186230592189}
   - component: {fileID: 6508587045435103756}
   m_Layer: 6
   m_Name: Boss1
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,64 +74,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossBehavior
   Movesets:
   - {fileID: 2055419809285108215}
+  - {fileID: 1690812928159568369}
+  - {fileID: 4871973186230592189}
+  upgrades: []
+  baseStats:
+    life: 100
+    speed: 3
+  modStats:
+    life: 0
+    speed: 0
   life: 100
   speed: 3
-  mapAnchor: {x: 0, y: 0}
-  cooldownBetweenMovesets: 0
+  mapAnchor: {x: -6.5, y: 7}
+  cooldownBetweenMovesets: 1.2
   activated: 0
---- !u!114 &7056184575049501801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80798737650191077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73af5dc37c4aa584e8d5baebdfae0df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 13
-  speed: 1.5
-  activationZ: 13
-  activated: 0
-  haveToDestroyAfterPath: 1
-  timeToFlee: 0
-  canShoot: 0
-  pointGo: {fileID: 5860028167800293606, guid: 6d2668ed39a049e4ea2ad72f963bfdae, type: 3}
-  setPointValue: 30
-  isMoving: 1
-  positionCount: 0
---- !u!114 &3050899109626035231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80798737650191077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7b20681ab9f24c429d488fce02da42c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletGo: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
-  shootCooldown: 0.9
-  targetShoot: 0
-  countCooldown: 0
---- !u!114 &820399130320708129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80798737650191077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29aeaeaaf037aaa4ebd6eab808de8eeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemiesMovement
-  positions:
-  - {x: 0, y: 0, z: -15}
+  busy: 0
+  inAttack: 0
 --- !u!114 &2055419809285108215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +102,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5caac84f3fa1a3140b532f88919d2879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Moveset1
+  bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
+--- !u!114 &1690812928159568369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80798737650191077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcef7c8e123777b41ab85270b1cf2c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Moveset2
+  bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
+--- !u!114 &4871973186230592189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80798737650191077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e42cb2707700a409fe15077c95e466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Moveset3
+  bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
 --- !u!95 &6508587045435103756
 Animator:
   serializedVersion: 7
