@@ -33,6 +33,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
 
 
+    [Header("Boss Things")]
+
+    [SerializeField] private GameObject bossThings;
+    [SerializeField] private TextMeshProUGUI bossName;
+    [SerializeField] private Slider bossMaxHealth;
+
+
     void Awake()
     {
         if (instance == null)
@@ -57,6 +64,19 @@ public class UIManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void DisplayBossThings(string name,float health)
+    {
+        bossThings.SetActive(true);
+        bossName.text = name;
+        bossMaxHealth.maxValue = health;
+        bossMaxHealth.value = health;
+    }
+
+    public void HurtHealthBar(float health)
+    {
+        bossMaxHealth.value = health;
     }
 
     public void DisplayWinPanel()

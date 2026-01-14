@@ -49,6 +49,10 @@ public class EnemyShoot : MonoBehaviour
 
     private void Shoot()
     {
+        if (GameManager.instance.paused)
+        {
+            return;
+        }
         if (targetShoot)
         {
             Transform playerTransform = GameObject.Find("Player").transform;

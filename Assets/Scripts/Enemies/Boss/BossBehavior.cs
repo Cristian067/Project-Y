@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class Stats 
 {
-    public float life;
+    public float health;
     public float speed;
 
 
@@ -18,7 +18,7 @@ public class Stats
 public class BossBehavior : MonoBehaviour
 {
 
-
+    [SerializeField]private string bossName;
 
     public MonoBehaviour[] Movesets;
     public UpgradeSO[] upgrades;
@@ -38,7 +38,7 @@ public class BossBehavior : MonoBehaviour
     private States actState;
     private States nextState;
 
-    [SerializeField]private float life;
+    [SerializeField]private float health;
     [SerializeField]private float speed;
     [SerializeField]private Vector2 mapAnchor;
     [SerializeField]private float cooldownBetweenMovesets;
@@ -57,7 +57,8 @@ public class BossBehavior : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        GetUpgrades();
+        SendInfoToUI();
     }
 
     // Update is called once per frame
@@ -90,6 +91,11 @@ public class BossBehavior : MonoBehaviour
         
     }
 
+    private void SendInfoToUI()
+    {
+        UIManager.instance.DisplayBossThings(bossName,health);
+    }
+
     [ContextMenu("Get enemy upgrades")]
     public void GetUpgrades()
     {
@@ -108,6 +114,10 @@ public class BossBehavior : MonoBehaviour
                 {
                     modStats.speed += upgrade.valueToAdd;
                 }
+                if(upgrade.modify == UpgradeSO.StatToModify.Health)
+                {
+                    modStats.health += upgrade.valueToAdd;
+                }
             }
         }
 
@@ -118,6 +128,7 @@ public class BossBehavior : MonoBehaviour
     private void UpdateStats()
     {
         speed = baseStats.speed + modStats.speed;
+        health = baseStats.health + modStats.health;
     }
 
     public void UseMoveset()
@@ -220,9 +231,11 @@ public class BossBehavior : MonoBehaviour
 
     public void Hurt(float damage)
     {
-        life -= damage;
-        if (life < 0)
+        health -= damage;
+        UIManager.instance.HurtHealthBar(health);
+        if (health < 0)
         {
+            GameManager.instance.Win();
             Destroy(gameObject);
         }
     }

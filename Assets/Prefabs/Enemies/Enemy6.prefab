@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletGo: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
-  shootCooldown: 0.9
-  targetShoot: 1
+  shootCooldown: 1.5
+  targetShoot: 0
   countCooldown: 0
 --- !u!114 &820399130320708129
 MonoBehaviour:
