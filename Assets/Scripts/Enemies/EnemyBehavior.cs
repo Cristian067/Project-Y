@@ -129,19 +129,6 @@ public class EnemyBehavior : MonoBehaviour
         
     }
 
-
-    public void Go()
-    {
-
-    }
-    public void Stop()
-    {
-
-        isMoving = false;
-
-    }
-
-
     public void Hurt(float damage)
     {
         life -= damage;
@@ -154,6 +141,15 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
+    public void ChangePointsValue(int value)
+    {
+        setPointValue = value;
+    }
+
+    public void ChangeSpeed(float value)
+    {
+        speed = value;
+    }
     // void OnDestroy()
     // {
         
