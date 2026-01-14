@@ -81,7 +81,7 @@ MonoBehaviour:
   - {fileID: 5417665903513071138}
   upgrades: []
   baseStats:
-    health: 300
+    health: 600
     speed: 3
   modStats:
     health: 0
