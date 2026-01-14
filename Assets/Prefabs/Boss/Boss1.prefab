@@ -90,7 +90,7 @@ MonoBehaviour:
   speed: 3
   mapAnchor: {x: -6.5, y: 7}
   cooldownBetweenMovesets: 1.2
-  activated: 0
+  activated: 1
   busy: 0
   inAttack: 0
 --- !u!114 &2055419809285108215
