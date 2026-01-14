@@ -23,8 +23,8 @@ public class BossBehavior : MonoBehaviour
     public MonoBehaviour[] Movesets;
     public UpgradeSO[] upgrades;
 
-    [SerializeField]private Stats basicStats;
-    [SerializeField]private Stats statsToModify;
+    [SerializeField]private Stats baseStats;
+    [SerializeField]private Stats modStats;
 
 
 
@@ -65,10 +65,9 @@ public class BossBehavior : MonoBehaviour
     {
         if (GameManager.instance.paused)
         {
-            speed = 0;
             return;
         }
-        speed = basicStats.speed;
+        //speed = baseStats.speed;
 
         if (activated && !busy)
         {
@@ -91,7 +90,35 @@ public class BossBehavior : MonoBehaviour
         
     }
 
+    [ContextMenu("Get enemy upgrades")]
+    public void GetUpgrades()
+    {
+        upgrades = GameManager.instance.GetEnemyUpgrades().ToArray();
+        UpdateModStats();
+        UpdateStats();
+    }
 
+    private void UpdateModStats()
+    {
+        foreach (UpgradeSO upgrade in upgrades)
+        {
+            if(upgrade.type == UpgradeSO.UpgradeType.StatModification)
+            {
+                if(upgrade.modify == UpgradeSO.StatToModify.Speed)
+                {
+                    modStats.speed += upgrade.valueToAdd;
+                }
+            }
+        }
+
+        
+
+    }
+
+    private void UpdateStats()
+    {
+        speed = baseStats.speed + modStats.speed;
+    }
 
     public void UseMoveset()
     {
@@ -145,6 +172,8 @@ public class BossBehavior : MonoBehaviour
 
     public IEnumerator Move(bool cancel = false)
     {
+
+        
         
         //idle = true;
         float r = Random.Range(mapAnchor.x, mapAnchor.y);
@@ -164,8 +193,12 @@ public class BossBehavior : MonoBehaviour
             {
                 break;
             }
+            if (!GameManager.instance.paused)
+            {
+                transform.Translate(-(destination - transform.position).normalized * Time.deltaTime * speed);
+                yield return null;
+            }
             //Debug.Log("distancia: " +Vector3.Distance(transform.position,destination));
-            transform.Translate(-(destination - transform.position).normalized * Time.deltaTime * speed);
             yield return null;
         }
 

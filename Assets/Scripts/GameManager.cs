@@ -285,7 +285,10 @@ private string pathUserData = "save/UserData.json";
     {
         return upgrades;
     }
-
+    public List<UpgradeSO> GetEnemyUpgrades()
+    {
+        return enemyUpgrades;
+    }
     
 
     public void DestroyBarrier()
