@@ -28,6 +28,7 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private int positionCount;
 
     EnemiesMovement movementBehavior;
+    Animator animator;
 
     public MeshRenderer meshRenderer;
 
@@ -38,6 +39,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         colorOg = meshRenderer.material.color;
         movementBehavior = GetComponent<EnemiesMovement>();
+        animator = GetComponent<Animator>();
         transform.position = new Vector3(movementBehavior.positions[0].x, 0, transform.position.z);
 
         
@@ -137,8 +139,8 @@ public class EnemyBehavior : MonoBehaviour
     public void Hurt(float damage)
     {
         life -= damage;
-
-        StartCoroutine(HurtVisual());
+        animator.SetTrigger("hurt");
+        //StartCoroutine(HurtVisual());
 
         if (life <= 0)
         {
@@ -148,15 +150,17 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    private IEnumerator HurtVisual()
-    {
+    // private IEnumerator HurtVisual()
+    // {
         
-        Debug.Log(colorOg.ToString());
+    //     
 
-        meshRenderer.material.color = new Color(1,1,1,1);
-        yield return new WaitForSeconds(0.1f);
-        meshRenderer.material.color = colorOg;
-    }
+    //     // Debug.Log(colorOg.ToString());
+
+    //     // meshRenderer.material.color = new Color(1,1,1,1);
+    //     // yield return new WaitForSeconds(0.1f);
+    //     // meshRenderer.material.color = colorOg;
+    // }
 
     public void ChangePointsValue(int value)
     {
