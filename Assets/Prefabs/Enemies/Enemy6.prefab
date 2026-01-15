@@ -82,6 +82,7 @@ MonoBehaviour:
   setPointValue: 30
   isMoving: 1
   positionCount: 0
+  meshRenderer: {fileID: 271506493523074860}
 --- !u!114 &3050899109626035231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +435,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a749e08a8b591642b42face9a892221, type: 3}
+--- !u!23 &271506493523074860 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3051864090606281251, guid: 8a749e08a8b591642b42face9a892221, type: 3}
+  m_PrefabInstance: {fileID: 2999102198119152911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6044569870929321405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8826021498989404338, guid: 8a749e08a8b591642b42face9a892221, type: 3}
