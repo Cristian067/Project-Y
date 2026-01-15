@@ -301,3 +301,4 @@ MonoBehaviour:
   setPointValue: 25
   isMoving: 1
   positionCount: 0
+  meshRenderer: {fileID: 611192255218089803}

@@ -80,6 +80,7 @@ MonoBehaviour:
   setPointValue: 40
   isMoving: 1
   positionCount: 0
+  meshRenderer: {fileID: 5392763658516643656}
 --- !u!114 &3050899109626035231
 MonoBehaviour:
   m_ObjectHideFlags: 0
