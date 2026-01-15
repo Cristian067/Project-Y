@@ -1,6 +1,6 @@
 {
     "levelsHighScore": [
-        2230,
+        2740,
         0,
         0,
         0,
@@ -202,6 +202,11 @@
         false
     ],
     "discoveredUpgrades": [
-        
+        "Magic Mirror",
+        "Barrier",
+        "MoreSpeed1",
+        "MoreDamage1",
+        "Portal To Limitless",
+        "LessSpeed"
     ]
 }

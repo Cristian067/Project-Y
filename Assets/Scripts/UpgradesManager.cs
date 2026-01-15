@@ -212,31 +212,34 @@ public class UpgradesManager : MonoBehaviour
             }
         }
 
-        if(goodOrBad == 0)
+        else 
         {
-            List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
-            foreach (UpgradeSO upgrade in pull)
+            if(goodOrBad == 0)
             {
-                if (upgrade.alignment == UpgradeSO.Alignment.Positive)
+                List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
+                foreach (UpgradeSO upgrade in pull)
                 {
-                    goodUpgrade.Add(upgrade);
+                    if (upgrade.alignment == UpgradeSO.Alignment.Positive)
+                    {
+                        goodUpgrade.Add(upgrade);
+                    }
                 }
-            }
-            return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
+                return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
 
-        }
-        else if (goodOrBad == 1)
-        {
-            List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
-            foreach (UpgradeSO upgrade in pull)
+            }
+            else if (goodOrBad == 1)
             {
-                if (upgrade.alignment == UpgradeSO.Alignment.Negative)
+                List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
+                foreach (UpgradeSO upgrade in pull)
                 {
-                    goodUpgrade.Add(upgrade);
+                    if (upgrade.alignment == UpgradeSO.Alignment.Negative)
+                    {
+                        goodUpgrade.Add(upgrade);
+                    }
                 }
-            }
-            return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
+                return goodUpgrade[Random.Range(0, goodUpgrade.Count)];
 
+            }
         }
         return null;
     }
@@ -253,18 +256,28 @@ public class UpgradesManager : MonoBehaviour
 
         foreach(UpgradeSO upgrade in GameManager.instance.GetUpgrades())
         {
+            if(upgrade.type == UpgradeSO.UpgradeType.StatModification)
+            {
+                continue;
+            }
             if (upgradePull.Contains(upgrade))
             {
                 upgradePull.Remove(upgrade);
             }
         }
 
+        if (upgradePull.Contains(GameManager.instance.GetSpecial()))
+        {
+            upgradePull.Remove(GameManager.instance.GetSpecial());
+        }
+
         //get selection for player
 
         for (int i = 0; i < 3; i++)
         {   
-            allyUpgrades[i] = GetRandomUpgradesFixed(Random.Range(0,3),Random.Range(0, 2),upgradePull.ToArray());
-            enemyUpgrades[i] = GetRandomUpgradesFixed(0, Random.Range(0, 2),upgradeEnemyPull.ToArray(),true);
+            int r = Random.Range(0, 2);
+            allyUpgrades[i] = GetRandomUpgradesFixed(Random.Range(0,3),r,upgradePull.ToArray());
+            enemyUpgrades[i] = GetRandomUpgradesFixed(0, r,upgradeEnemyPull.ToArray(),true);
             //Debug.Log(allyUpgrades[i]);
             //Debug.Log(enemyUpgrades[i]);
 

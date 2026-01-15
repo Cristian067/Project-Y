@@ -87,7 +87,7 @@ public class EnemyBehavior : MonoBehaviour
                     transform.Translate(-(movementBehavior.positions[positionCount] - transform.position).normalized * speed * Time.deltaTime);
                     if (Vector3.Distance(transform.position, movementBehavior.positions[positionCount]) < 0.1f)
                     {
-                        Debug.Log("cambio");
+                        //Debug.Log("cambio");
                         positionCount++;
                     }
                         
