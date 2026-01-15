@@ -39,6 +39,8 @@ GDD: https://docs.google.com/document/d/1cfzSuu1ZXQKaxzlb-q2rSXUQ0JWFYzfaRv1jln3
 
 Itch.io: https://kitsune076.itch.io/shared-treasure
 
+Diagrama Scripts: https://drive.google.com/file/d/1LhbuaYUFYMQ2yGTlE5dyvmCIhzWK1tHB/view?usp=sharing
+
 <details>
   <summary>Credits</summary>
     
