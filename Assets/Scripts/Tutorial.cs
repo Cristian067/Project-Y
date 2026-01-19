@@ -210,11 +210,12 @@ public class Tutorial : MonoBehaviour
     
         DialoguesManager.instance.StartDialogue("TutorialPhase3");
 
-        if(GameManager.instance.GetSpecial() == null)
+        if(UpgradesManager.instance.special == null)
         {
             DialoguesManager.instance.StartDialogue("TutorialPhase3_NoSpecial");
 
-            GameManager.instance.AdquireUpgrade(0,upgradeToGive);
+            UpgradesManager.instance.AdquireUpgrade(upgradeToGive, null);
+            //GameManager.instance.AdquireUpgrade(0,upgradeToGive);
 
         }
         else

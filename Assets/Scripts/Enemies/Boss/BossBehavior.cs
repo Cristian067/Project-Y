@@ -99,7 +99,7 @@ public class BossBehavior : MonoBehaviour
     [ContextMenu("Get enemy upgrades")]
     public void GetUpgrades()
     {
-        upgrades = GameManager.instance.GetEnemyUpgrades().ToArray();
+        upgrades = UpgradesManager.instance.enemyUpgrades.ToArray();
         UpdateModStats();
         UpdateStats();
     }

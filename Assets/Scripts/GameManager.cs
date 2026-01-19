@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<UpgradeSO> upgrades;
     [SerializeField] private List<UpgradeSO> enemyUpgrades;
 
-    [SerializeField] private UpgradeSO special;
 
     private float timeScaleSaved;
 
@@ -229,10 +228,10 @@ private string pathUserData = "save/UserData.json";
         speed = newSpeed;
     }
 
-    public UpgradeSO GetSpecial()
-    {
-        return special;
-    }
+    //public UpgradeSO GetSpecial()
+    //{
+    //    return special;
+    //}
 
     public void AddPoints(int pointsToAdd)
     {
@@ -247,39 +246,7 @@ private string pathUserData = "save/UserData.json";
         }
     }
 
-    public void AdquireUpgrade(int side, UpgradeSO upgrade)
-    {
-        if (upgrade == null)
-        {
-            return;
-        }
-
-        if (upgrade.type == UpgradeSO.UpgradeType.Special)
-        {
-            if (upgrade != null)
-            {
-                special = upgrade;
-            }
-            
-        }
-        else
-        {
-            if (side == 0)
-            {
-                upgrades.Add(upgrade);
-
-            }
-
-            else
-            {
-                enemyUpgrades.Add(upgrade);
-
-            }
-        }
-
-        ReloadStats();
-        UIManager.instance.RefreshStatsUi();
-    }
+    
 
     public float GetPlayerDamage()
     {
@@ -307,14 +274,14 @@ private string pathUserData = "save/UserData.json";
     }
 
 
-    public List<UpgradeSO> GetUpgrades()
-    {
-        return upgrades;
-    }
-    public List<UpgradeSO> GetEnemyUpgrades()
-    {
-        return enemyUpgrades;
-    }
+    //public List<UpgradeSO> GetUpgrades()
+    //{
+    //    return upgrades;
+    //}
+    //public List<UpgradeSO> GetEnemyUpgrades()
+    //{
+    //    return enemyUpgrades;
+    //}
     
 
     public void DestroyBarrier()

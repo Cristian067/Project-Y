@@ -32,6 +32,14 @@ public class UpgradesManager : MonoBehaviour
     [SerializeField] private UpgradeSO[] allTheEnemyUpgrades;
 
 
+
+    public List<UpgradeSO> upgrades;
+    public List<UpgradeSO> enemyUpgrades;
+
+    [SerializeField] public UpgradeSO special;
+
+
+
     void Awake()
     {
         if (instance == null)
@@ -254,7 +262,7 @@ public class UpgradesManager : MonoBehaviour
         List<UpgradeSO> upgradeEnemyPull = allTheEnemyUpgrades.ToList<UpgradeSO>();
 
 
-        foreach(UpgradeSO upgrade in GameManager.instance.GetUpgrades())
+        foreach(UpgradeSO upgrade in upgrades)
         {
             if(upgrade.type == UpgradeSO.UpgradeType.StatModification)
             {
@@ -266,9 +274,9 @@ public class UpgradesManager : MonoBehaviour
             }
         }
 
-        if (upgradePull.Contains(GameManager.instance.GetSpecial()))
+        if (upgradePull.Contains(special))
         {
-            upgradePull.Remove(GameManager.instance.GetSpecial());
+            upgradePull.Remove(special);
         }
 
         //get selection for player
@@ -346,7 +354,7 @@ public class UpgradesManager : MonoBehaviour
             catch { }
             if (ally[i].type == UpgradeSO.UpgradeType.Effect)
             {
-                while (ally[i].type == UpgradeSO.UpgradeType.Special && ally[i] == GameManager.instance.GetSpecial())
+                while (ally[i].type == UpgradeSO.UpgradeType.Special && ally[i] == special)
                 {
                     ally[i] = GetRandomUpgradesFixed(Random.Range(0, 3), Random.Range(0, 1), pull);
                 }
@@ -362,9 +370,34 @@ public class UpgradesManager : MonoBehaviour
 
     }
 
-        
+    public void AdquireUpgrade(UpgradeSO playerUpgrade,UpgradeSO enemyUpgrade)
+    {
+        if (playerUpgrade == null)
+        {
+            return;
+        }
 
-    
+        if (playerUpgrade.type == UpgradeSO.UpgradeType.Special)
+        {
+            
+            special = playerUpgrade;
+            
+
+        }
+        else
+        {
+            
+            upgrades.Add(playerUpgrade);
+            enemyUpgrades.Add(enemyUpgrade);
+
+            
+        }
+
+        GameManager.instance.ReloadStats();
+        UIManager.instance.RefreshStatsUi();
+    }
+
+
 
     public void GiveUpgrade()
     {
