@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +9,16 @@ using UnityEngine.SceneManagement;
 
 
 
+[Serializable]
+public class PlayerStats 
+{
+    public float lifes;
+    public float damage;
+    public float speed;
 
+
+
+}
 
 
 public class UpgradeTypes
@@ -41,6 +51,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool barrierInRecharge;
     [SerializeField] private GameObject barrierRechargeParticles;
     [SerializeField] private float barrierCooldown;
+
+
+
+    public PlayerStats baseStats;
+    public PlayerStats modStats;
+    public PlayerStats finalStats;
 
     [Header("Base Stats")]
     [SerializeField] private float damageBase = 1;
@@ -80,6 +96,16 @@ private string pathUserData = "save/UserData.json";
 
 
         UIManager.instance.RefreshStatsUi();
+
+        try
+        {
+            playerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+        }
+        catch
+        {
+            Debug.LogWarning("No existe player");
+        }
+        
     }
 
     // Update is called once per frame
