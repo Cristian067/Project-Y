@@ -6,6 +6,8 @@ public class Points : MonoBehaviour
 {
     public float speed;
     [SerializeField] private int points;
+
+    private bool collected;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +21,24 @@ public class Points : MonoBehaviour
         {
             return;
         }
+        if (collected)
+        {
+            transform.Translate(-(transform.position - GameObject.Find("Player").transform.position) * speed * Time.deltaTime);
+        }
+        else
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+
     }
 
     public void ChangePointsValue(int newValue)
     {
         points = newValue;
+    }
+    
+    public void Collect()
+    {
+        collected = true;
     }
 
 

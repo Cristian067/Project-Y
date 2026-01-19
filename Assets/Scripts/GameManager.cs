@@ -16,6 +16,8 @@ public class PlayerStats
     public float damage;
     public float speed;
 
+    public float pickupRange;
+
 
 
 }
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerStats baseStats;
     public PlayerStats modStats;
-    public PlayerStats finalStats;
+    public PlayerStats finalStats { get; private set; }
 
     [Header("Base Stats")]
     [SerializeField] private float damageBase = 1;
