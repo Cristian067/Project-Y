@@ -100,14 +100,14 @@ public class UIManager : MonoBehaviour
         upgradeProgressSlider.maxValue = GameManager.instance.GetPointsToUpgrade();
 
         upgradesListText.text = "";
-        foreach(var upgrade in GameManager.instance.GetUpgrades())
+        foreach(var upgrade in UpgradesManager.instance.upgrades)
         {
             upgradesListText.text += "- "+upgrade.name + "\n";
         }
 
-        if (GameManager.instance.GetSpecial() != null)
+        if (UpgradesManager.instance.special != null)
         {
-            currentSpecialText.text = $"{GameManager.instance.GetSpecial().name}";
+            currentSpecialText.text = $"{UpgradesManager.instance.special.name}";
         }
         
     }

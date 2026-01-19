@@ -83,11 +83,11 @@ public class PlayerController : MonoBehaviour
 
             //shoot
 
-        if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.chargedShoot))
+        if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.chargedShoot))
         {
             if (Input.GetButton("Fire") && !GameManager.instance.paused)
             {
-                if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
+                if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.magicMirror))
                 {
                     
                     DoubleShoot();
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
         else if (Input.GetButton("Fire") && !GameManager.instance.paused)
         {
-            if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.magicMirror))
+            if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.magicMirror))
             {
                 
                 DoubleShoot();
@@ -118,10 +118,10 @@ public class PlayerController : MonoBehaviour
                
         }
 
-        if(Input.GetButtonDown("Special") && GameManager.instance.GetSpecial() != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown)
+        if(Input.GetButtonDown("Special") && UpgradesManager.instance.special != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown)
         {
               
-            StartCoroutine(GameManager.instance.GetSpecial().special.Use(gameObject));
+            StartCoroutine(UpgradesManager.instance.special.special.Use(gameObject));
                
         }
         
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
 
         //limitar limites
-        if (GameManager.instance.GetUpgrades().Contains(UpgradesManager.instance.effects.sideToSideEffect))
+        if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.sideToSideEffect))
         {
             if (transform.position.z < bottomLimitZ)
             {
