@@ -23,8 +23,8 @@ public class UpgradesManager : MonoBehaviour
 
     public UpgradeEffects effects;
 
-    [SerializeField] private GameObject upgradesContainer;
-    [SerializeField] private GameObject UpgradePrefab;
+
+
 
     private bool isCustom;
 
@@ -286,22 +286,6 @@ public class UpgradesManager : MonoBehaviour
             int r = Random.Range(0, 2);
             allyUpgrades[i] = GetRandomUpgradesFixed(Random.Range(0,3),r,upgradePull.ToArray());
             enemyUpgrades[i] = GetRandomUpgradesFixed(0, r,upgradeEnemyPull.ToArray(),true);
-            //Debug.Log(allyUpgrades[i]);
-            //Debug.Log(enemyUpgrades[i]);
-
-            //GameObject card = Instantiate(UpgradePrefab, upgradesContainer.transform);
-            //card.GetComponent<CardUpgrade>().Set(allyUpgrades[i], enemyUpgrades[i]);
-
-
-            //if (i== 1)
-            //{
-            //    card.GetComponent<Button>().Select();
-            //}
-
-            
-            //StartCoroutine(CheckUpgradeDisponobility(enemyUpgrades, true));
-
-
         }
 
         StartCoroutine(CheckUpgradeDisponobility(allyUpgrades, enemyUpgrades, upgradePull.ToArray()));
@@ -318,25 +302,7 @@ public class UpgradesManager : MonoBehaviour
     }
 
 
-    private void SendUpgrades(UpgradeSO[] ally, UpgradeSO[] enemy)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-
-            //Debug.Log(allyUpgrades[i]);
-            //Debug.Log(enemyUpgrades[i]);
-
-            GameObject card = Instantiate(UpgradePrefab, upgradesContainer.transform);
-            card.GetComponent<CardUpgrade>().Set(ally[i], enemy[i]);
-
-
-            if (i == 1)
-            {
-                card.GetComponent<Button>().Select();
-            }
-            
-        }
-    }
+    
 
 
     private IEnumerator CheckUpgradeDisponobility(UpgradeSO[] ally,UpgradeSO[] enemy,UpgradeSO[] pull)
@@ -365,7 +331,7 @@ public class UpgradesManager : MonoBehaviour
 
         }
 
-        SendUpgrades(ally, enemy);
+        UIManager.instance.SendUpgrades(ally, enemy);
         yield return null;
 
     }
@@ -454,22 +420,7 @@ public class UpgradesManager : MonoBehaviour
     //     //Instantiate(UpgradePrefab, canvas.transform);
     // }
 
-    public void UnDisplayeUpgrades()
-    {
-        Debug.Log(upgradesContainer.transform.childCount);
-        //Debug.Log(gameObject.transform.GetChild(1).gameObject);
-
-        foreach (Transform child in upgradesContainer.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        GameManager.instance.Unpause(true);
-        UIManager.instance.RefreshStatsUi();
-        //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
-        //     {
-        //         Destroy(transform.GetChild(i).gameObject);
-        //     }
-    }
+    
 
 
 

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
     public static UIManager instance { get; private set;}
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI totalPointsText;
@@ -27,17 +27,20 @@ public class UIManager : MonoBehaviour
 
 
     [Header("Dialogue Things")]
-
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueName;
     [SerializeField] private TextMeshProUGUI dialogueText;
 
 
     [Header("Boss Things")]
-
     [SerializeField] private GameObject bossThings;
     [SerializeField] private TextMeshProUGUI bossName;
     [SerializeField] private Slider bossMaxHealth;
+
+
+    [Header("Upgrades things")]
+    [SerializeField] private GameObject upgradesContainer;
+    [SerializeField] private GameObject UpgradePrefab;
 
 
     void Awake()
@@ -138,6 +141,45 @@ public class UIManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         
+    }
+
+
+    public void UnDisplayeUpgrades()
+    {
+        Debug.Log(upgradesContainer.transform.childCount);
+        //Debug.Log(gameObject.transform.GetChild(1).gameObject);
+
+        foreach (Transform child in upgradesContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        GameManager.instance.Unpause(true);
+        UIManager.instance.RefreshStatsUi();
+        //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
+        //     {
+        //         Destroy(transform.GetChild(i).gameObject);
+        //     }
+    }
+
+
+    public void SendUpgrades(UpgradeSO[] ally, UpgradeSO[] enemy)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+
+            //Debug.Log(allyUpgrades[i]);
+            //Debug.Log(enemyUpgrades[i]);
+
+            GameObject card = Instantiate(UpgradePrefab, upgradesContainer.transform);
+            card.GetComponent<CardUpgrade>().Set(ally[i], enemy[i]);
+
+
+            if (i == 1)
+            {
+                card.GetComponent<Button>().Select();
+            }
+            
+        }
     }
 
 }

@@ -99,7 +99,7 @@ public class CardUpgrade : MonoBehaviour
     {
         UpgradesManager.instance.AdquireUpgrade(allyUpgrade, enemyUpgrade);
         //GameManager.instance.AdquireUpgrade(1, enemyUpgrade);
-        UpgradesManager.instance.UnDisplayeUpgrades();
+        UIManager.instance.UnDisplayeUpgrades();
     }
 
 
