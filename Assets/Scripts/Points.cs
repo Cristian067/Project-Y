@@ -23,7 +23,7 @@ public class Points : MonoBehaviour
         }
         if (collected)
         {
-            transform.Translate(-(transform.position - GameObject.Find("Player").transform.position) * speed * Time.deltaTime);
+            transform.Translate(-(GameObject.Find("Player").transform.position - transform.position).normalized * speed * Time.deltaTime);
         }
         else
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
