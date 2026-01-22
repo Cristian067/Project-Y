@@ -74,18 +74,17 @@ public class DialoguesManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        try
+        if (dialogues.Length < 1)
         {
-            if (dialogues[0].dialogueName == "Start")
-            {
-                StartDialogue(0);
-            }
+            Debug.Log("There is no dialogues");
+        }
+        else if (dialogues[0].dialogueName == "Start")
+        {
+            StartDialogue("Start");
+        }
 
-        }
-        catch
-        {
-            Debug.Log("There is no Start dialogue");
-        }
+        
+        
         
     }
 
