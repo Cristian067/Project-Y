@@ -157,8 +157,8 @@ public class Tutorial : MonoBehaviour
     {
         onPhase = true;
         GameObject pointForTrain = Instantiate(point,new Vector3(0,0,28f),Quaternion.Euler(0,180,0));
-        pointForTrain.GetComponent<Points>().speed = 2;
-        pointForTrain.GetComponent<Points>().ChangePointsValue(150);
+        pointForTrain.GetComponent<Item>().speed = 2;
+        pointForTrain.GetComponent<Item>().ChangePointsValue(150);
 
         time = 0f;
         while (time < 1)

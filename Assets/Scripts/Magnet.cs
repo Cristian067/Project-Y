@@ -31,7 +31,7 @@ public class Magnet : MonoBehaviour
     {
         if(other.gameObject.tag == "Item")
         {
-            other.GetComponent<Points>().Collect();
+            other.GetComponent<Item>().Collect();
         }
     }
 

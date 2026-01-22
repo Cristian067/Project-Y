@@ -12,7 +12,8 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class PlayerStats 
 {
-    public float lifes;
+    public int lifes;
+    public int specialC;
     public float damage;
     public float speed;
 
@@ -23,13 +24,13 @@ public class PlayerStats
 }
 
 
-public class UpgradeTypes
-{
-    public enum Types
-    {
-        StatModification,
-    }
-}
+// public class UpgradeTypes
+// {
+//     public enum Types
+//     {
+//         StatModification,
+//     }
+// }
 
 public class GameManager : MonoBehaviour
 {
@@ -248,7 +249,10 @@ private string pathUserData = "save/UserData.json";
         }
     }
 
-    
+    public void RechargeSpecial(float recharge)
+    {
+        baseStats.specialC += recharge.ConvertTo<int>();
+    }
 
     public float GetPlayerDamage()
     {
