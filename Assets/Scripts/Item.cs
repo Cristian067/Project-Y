@@ -28,7 +28,11 @@ public class Item : MonoBehaviour
 
         type = (ItemType)r;
 
+
         gameObject.GetComponent<MeshRenderer>().material = itemMaterials[r];
+
+
+        
         
     }
 
