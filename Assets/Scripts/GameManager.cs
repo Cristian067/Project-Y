@@ -43,7 +43,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerController playerScript;
 
     [SerializeField] private int lives = 3;
-    [SerializeField] private int maxLives = 6;
+    [SerializeField] public int maxLives { get; private set; } = 6;
+    [SerializeField] public float specials = 2;
+    [SerializeField] public int maxSpecials { get; private set; } = 5;
+
     [SerializeField] private float specialCharge;
 
     [SerializeField] private int pointsForUpgrade;
@@ -167,7 +170,8 @@ private string pathUserData = "save/UserData.json";
 
     public void Pause(bool usePanel = false)
     {
-        
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
         paused = true;
         timeScaleSaved = Time.timeScale;
         //Time.timeScale = 0;
@@ -182,7 +186,8 @@ private string pathUserData = "save/UserData.json";
 
     public void Unpause(bool useSaved = false)
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         if (useSaved)
         {
             Time.timeScale = timeScaleSaved;
@@ -251,7 +256,19 @@ private string pathUserData = "save/UserData.json";
 
     public void RechargeSpecial(float recharge)
     {
-        baseStats.specialC += recharge.ConvertTo<int>();
+
+        if (specials >= maxSpecials)
+        {
+            return;
+        }
+        else
+        {
+            specials += recharge;
+            UIManager.instance.RefreshStatsUi();
+
+        }
+
+        //baseStats.specialC += recharge.ConvertTo<int>();
     }
 
     public float GetPlayerDamage()
@@ -364,7 +381,15 @@ private string pathUserData = "save/UserData.json";
 
     public bool isBarrierActive()
     {
-        return !barrierInRecharge;
+        if (barrier.active && !barrierInRecharge)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+            
     }
 
     public void SetSpecialCooldown(float time)

@@ -26,7 +26,22 @@ public class Item : MonoBehaviour
     {
         int r = Random.Range(0, 3);
 
-        type = (ItemType)r;
+        int p = Random.Range(0, 100);
+        
+        if (p < 50)
+        {
+            r = 0;
+        }
+        else if (p < 75)
+        {
+            r = 1;
+        }
+        else
+        {
+            r = 2;
+        }
+
+            type = (ItemType)r;
 
 
         gameObject.GetComponent<MeshRenderer>().material = itemMaterials[r];
@@ -80,7 +95,7 @@ public class Item : MonoBehaviour
             }
             else if (type == ItemType.Special)
             {
-                GameManager.instance.RechargeSpecial(points);
+                GameManager.instance.RechargeSpecial(0.5f);
             }
             //Debug.Log("Yoink");
             

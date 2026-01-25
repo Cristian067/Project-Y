@@ -9,7 +9,10 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance { get; private set;}
     [SerializeField] private TextMeshProUGUI livesText;
+    [SerializeField] private TextMeshProUGUI specialText;
     [SerializeField] private TextMeshProUGUI totalPointsText;
+
+
     [SerializeField] private TextMeshProUGUI upgradesListText;
     [SerializeField] private TextMeshProUGUI currentSpecialText;
 
@@ -96,6 +99,10 @@ public class UIManager : MonoBehaviour
 
     public void RefreshStatsUi()
     {
+        livesText.text = $"{GameManager.instance.GetPlayerLives()}/"+GameManager.instance.maxLives;
+        specialText.text = $"{GameManager.instance.specials}/"+ GameManager.instance.maxSpecials;
+        totalPointsText.text = $"{GameManager.instance.GetTotalPoints()}";
+
         livesText.text = $"{GameManager.instance.GetPlayerLives()}/6";
         totalPointsText.text = $"{GameManager.instance.GetTotalPoints()}";
 

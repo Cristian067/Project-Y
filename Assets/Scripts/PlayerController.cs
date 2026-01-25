@@ -118,9 +118,9 @@ public class PlayerController : MonoBehaviour
                
         }
 
-        if(Input.GetButtonDown("Special") && UpgradesManager.instance.special != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown)
+        if(Input.GetButtonDown("Special") && UpgradesManager.instance.special != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown && GameManager.instance.specials > 0)
         {
-              
+            GameManager.instance.specials -= 1;
             StartCoroutine(UpgradesManager.instance.special.special.Use(gameObject));
                
         }
