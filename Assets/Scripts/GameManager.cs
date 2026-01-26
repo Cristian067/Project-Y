@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+
 using System.IO;
-using Unity.VisualScripting;
+
 using UnityEngine;
+
 using UnityEngine.SceneManagement;
 
 
@@ -12,8 +13,7 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class PlayerStats 
 {
-    public int lifes;
-    public int specialC;
+
     public float damage;
     public float speed;
 
@@ -62,19 +62,19 @@ public class GameManager : MonoBehaviour
 
     public PlayerStats baseStats;
     public PlayerStats modStats;
-    public PlayerStats finalStats { get; private set; }
+    private PlayerStats finalStats = new PlayerStats();
 
-    [Header("Base Stats")]
-    [SerializeField] private float damageBase = 1;
-    [SerializeField] private float speedBase = 8;
+    // [Header("Base Stats")]
+    // [SerializeField] private float damageBase = 1;
+    // [SerializeField] private float speedBase = 8;
 
-    [Header("Stats")] 
-    [SerializeField] private float damage = 1;
-    [SerializeField] private float speed = 8;
+    // [Header("Stats")] 
+    // [SerializeField] private float damage = 1;
+    // [SerializeField] private float speed = 8;
 
 
-    [SerializeField] private List<UpgradeSO> upgrades;
-    [SerializeField] private List<UpgradeSO> enemyUpgrades;
+    // [SerializeField] private List<UpgradeSO> upgrades;
+    // [SerializeField] private List<UpgradeSO> enemyUpgrades;
 
 
     private float timeScaleSaved;
@@ -101,6 +101,7 @@ private string pathUserData = "save/UserData.json";
 
 
         UIManager.instance.RefreshStatsUi();
+        ReloadStats();
 
         try
         {
@@ -128,40 +129,55 @@ private string pathUserData = "save/UserData.json";
     public void ReloadStats()
     {
 
-        damage = damageBase;
-        speed = speedBase;
+        // finalStats.damage = baseStats.damage;
+        // finalStats.speed = baseStats.speed;
 
 
+        if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrierInRecharge)
+        {
+            barrier.SetActive(true);
+        }
 
-
-        foreach (UpgradeSO upgrade in upgrades)
+        foreach (UpgradeSO upgrade in UpgradesManager.instance.upgrades)
         {
             if (upgrade.type == UpgradeSO.UpgradeType.StatModification)
             {
                 if (upgrade.modify == UpgradeSO.StatToModify.Damage)
                 {
-                    damage += upgrade.valueToAdd.ConvertTo<int>();
+                    modStats.damage += upgrade.valueToAdd;
                 }
                 else if (upgrade.modify == UpgradeSO.StatToModify.Speed)
                 {
-                    speed += upgrade.valueToAdd;
+                    modStats.speed += upgrade.valueToAdd;
+                }
+                else if (upgrade.modify == UpgradeSO.StatToModify.PickupRange)
+                {
+                    modStats.pickupRange += upgrade.valueToAdd;
                 }
             }
         }
-        if (damage <= 0)
+
+        finalStats.damage = baseStats.damage + modStats.damage;
+        finalStats.speed = baseStats.speed + modStats.speed;
+        finalStats.pickupRange = baseStats.pickupRange + modStats.pickupRange;
+
+        if (finalStats.damage <= 0)
         {
-            damage = 1;
+            finalStats.damage = 1;
         }
-        if (speed <= 0)
+        if (finalStats.speed <= 0)
         {
-            speed = 0.1f;
+            finalStats.speed = 0.1f;
         }
 
-        if (upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.active && !barrierInRecharge)
+        //GameObject.Find("Magnet").GetComponent<Magnet>().ChangeMagnetRange(finalStats.pickupRange);
+
+
+        if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.active && !barrierInRecharge)
         {
             barrier.SetActive(true);
         }
-        else if (upgrades.Contains(UpgradesManager.instance.effects.barrier) && barrierInRecharge)
+        else if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && barrierInRecharge)
         {
             barrierInRecharge = false;
         }
@@ -215,6 +231,10 @@ private string pathUserData = "save/UserData.json";
 
     public void Heal(int lifes)
     {
+        if (lives >= maxLives)
+        {
+            return;
+        }
         lives += lifes;
         UIManager.instance.RefreshStatsUi();
     }
@@ -228,12 +248,12 @@ private string pathUserData = "save/UserData.json";
 
     public float GetSpeed()
     {
-        return speed;
+        return finalStats.speed;
     }
 
     public void SetSpeed(float newSpeed)
     {
-        speed = newSpeed;
+        finalStats.speed = newSpeed;
     }
 
     //public UpgradeSO GetSpecial()
@@ -273,7 +293,7 @@ private string pathUserData = "save/UserData.json";
 
     public float GetPlayerDamage()
     {
-        return damage;
+        return finalStats.damage;
     }
 
     public int GetPlayerLives()
@@ -351,7 +371,7 @@ private string pathUserData = "save/UserData.json";
         string json = File.ReadAllText(pathUserData);
         data = JsonUtility.FromJson<Data>(json);
 
-        foreach (var upgrade in upgrades)
+        foreach (var upgrade in UpgradesManager.instance.upgrades)
         {
             if (!data.discoveredUpgrades.Contains(upgrade.name))
             {

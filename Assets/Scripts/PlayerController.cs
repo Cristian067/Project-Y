@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButtonDown("Special") && UpgradesManager.instance.special != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown && GameManager.instance.specials > 0)
         {
             GameManager.instance.specials -= 1;
+            UIManager.instance.RefreshStatsUi();
             StartCoroutine(UpgradesManager.instance.special.special.Use(gameObject));
                
         }
@@ -260,6 +261,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(this.gameObject.name);
         if (other.gameObject.tag == "Enemy")
         {
             if (GameManager.instance.isBarrierActive())

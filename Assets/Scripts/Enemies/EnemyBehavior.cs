@@ -99,7 +99,7 @@ public class EnemyBehavior : MonoBehaviour
                 }
 
             }
-            if (transform.position.z <= -5.5f)
+            if (transform.position.z <= -7.5f)
             {
                 Destroy(gameObject);
             }
