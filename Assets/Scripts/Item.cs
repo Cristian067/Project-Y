@@ -28,11 +28,11 @@ public class Item : MonoBehaviour
 
         int p = Random.Range(0, 100);
         
-        if (p < 50)
+        if (p < 75)
         {
             r = 0;
         }
-        else if (p < 75)
+        else if (p < 85)
         {
             r = 1;
         }
