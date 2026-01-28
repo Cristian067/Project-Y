@@ -158,7 +158,9 @@ public class Tutorial : MonoBehaviour
         onPhase = true;
         GameObject pointForTrain = Instantiate(point,new Vector3(0,0,28f),Quaternion.Euler(0,180,0));
         pointForTrain.GetComponent<Item>().speed = 2;
+        pointForTrain.GetComponent<Item>().SetType(Item.ItemType.Point);
         pointForTrain.GetComponent<Item>().ChangePointsValue(150);
+        
 
         time = 0f;
         while (time < 1)
@@ -223,7 +225,7 @@ public class Tutorial : MonoBehaviour
             //yield return new WaitForSeconds(0.01f);
             
             DialoguesManager.instance.StartDialogue("TutorialPhase3_HaveSpecial");
-            Debug.Log("Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            //Debug.Log("Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         }
         //DialoguesManager.instance.StartDialogue("TutorialPhase2_point");
 

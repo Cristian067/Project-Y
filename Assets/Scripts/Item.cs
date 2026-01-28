@@ -9,7 +9,7 @@ public class Item : MonoBehaviour
 
     public enum ItemType
     {
-        Point,
+        Point = 0,
         Health,
         Special
     }
@@ -78,6 +78,14 @@ public class Item : MonoBehaviour
         collected = true;
     }
 
+    public void SetType(ItemType typeToBe)
+    {
+
+        type = typeToBe;
+
+        gameObject.GetComponent<MeshRenderer>().material = itemMaterials[(int) type];
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
