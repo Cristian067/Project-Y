@@ -41,6 +41,8 @@ Itch.io: https://kitsune076.itch.io/shared-treasure
 
 Diagrama Scripts: https://drive.google.com/file/d/1LhbuaYUFYMQ2yGTlE5dyvmCIhzWK1tHB/view?usp=sharing
 
+Encuesta testing: https://docs.google.com/forms/d/e/1FAIpQLSdSLyCKqbtTOt1QgquuhhEk8D6wEa-1FOf3JxxclcKVlyrQxw/viewform?usp=dialog
+
 # Contact
 Discord: kitsune076
 
