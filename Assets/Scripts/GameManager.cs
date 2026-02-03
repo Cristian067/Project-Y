@@ -169,8 +169,15 @@ private string pathUserData = "save/UserData.json";
         {
             finalStats.speed = 0.1f;
         }
-
-        //GameObject.Find("Magnet").GetComponent<Magnet>().ChangeMagnetRange(finalStats.pickupRange);
+        try
+        {
+            GameObject.Find("Magnet").GetComponent<Magnet>().ChangeMagnetRange(finalStats.pickupRange);
+        }
+        catch
+        {
+            Debug.Log("No se encuentra el magnet");
+        }
+        
 
 
         if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.active && !barrierInRecharge)

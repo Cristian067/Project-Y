@@ -15,7 +15,10 @@ public class Background : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        if (backgroundGO == null)
+        {
+            backgroundGO = GameObject.Find("BackgroundPlane");
+        }
         backgroundMaterial = backgroundGO.GetComponent<MeshRenderer>().material;
         
         
@@ -35,26 +38,33 @@ public class Background : MonoBehaviour
             backgroundCount = 1;
         }
         backgroundMaterial.SetVector("_Offset",new Vector2(1,backgroundCount) );
-
-        foreach(var block in backgroundsBlocks)
+        try
         {
-            //GameObject enviorement = Instantiate(block);
-            block.transform.Translate( new Vector3(0,0,-1) * (backgroundSpeed/backgroundMaterial.GetVector("_Tiling").y *(backgroundGO.GetComponent<Renderer>().bounds.size.z/backgroundGO.transform.localScale.z)) * Time.deltaTime);
-            Renderer render = block.GetComponent<Renderer>();
-
-            if (block.transform.position.z < -17.5f)
+            foreach(var block in backgroundsBlocks)
             {
-                //Debug.Log(block.transform.);
-                //
+                //GameObject enviorement = Instantiate(block);
+                block.transform.Translate( new Vector3(0,0,-1) * (backgroundSpeed/backgroundMaterial.GetVector("_Tiling").y *(backgroundGO.GetComponent<Renderer>().bounds.size.z/backgroundGO.transform.localScale.z)) * Time.deltaTime);
+                Renderer render = block.GetComponent<Renderer>();
 
-                block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, 24);
-                //Debug.Log("si");
+                if (block.transform.position.z < -17.5f)
+                {
+                    //Debug.Log(block.transform.);
+                    //
+
+                    block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, 24);
+                    //Debug.Log("si");
+                }
+
+
+
+                
             }
-
-
-
-            
         }
+        catch
+        {
+            Debug.Log("blocks error");
+        }
+        
 
 
     }

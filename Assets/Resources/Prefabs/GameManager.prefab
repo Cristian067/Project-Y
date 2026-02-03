@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4684106143123002192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1582244200240353366}
+  - component: {fileID: 4951783110759749524}
+  - component: {fileID: 6215549035710551892}
+  - component: {fileID: 2564337235708529008}
+  - component: {fileID: 7256786141335147897}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1582244200240353366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684106143123002192}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4951783110759749524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684106143123002192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9362fa703cd698e48961e0a3cb93ca76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  levelNumber: 0
+  playerScript: {fileID: 0}
+  lives: 3
+  specials: 2
+  specialCharge: 0
+  pointsForUpgrade: 150
+  totalPoints: 0
+  points: 0
+  barrier: {fileID: 0}
+  barrierInRecharge: 0
+  barrierRechargeParticles: {fileID: 0}
+  barrierCooldown: 10
+  baseStats:
+    damage: 1
+    speed: 10
+    pickupRange: 1
+  modStats:
+    damage: 0
+    speed: 0
+    pickupRange: 0
+--- !u!114 &6215549035710551892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684106143123002192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919ded3ffea6e2c498ac5e1d0415e8a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects:
+    sideToSideEffect: {fileID: 11400000, guid: b687a1828d021f648af12f298c565d61, type: 2}
+    magicMirror: {fileID: 11400000, guid: 2a46173ca190c28448f43489ef585242, type: 2}
+    barrier: {fileID: 11400000, guid: a628e2fe3e9b273478c41194b6e75cab, type: 2}
+    chargedShoot: {fileID: 11400000, guid: 335f106cb9a41c64580498513f9be5e6, type: 2}
+  allTheAllyUpgrades:
+  - {fileID: 11400000, guid: a628e2fe3e9b273478c41194b6e75cab, type: 2}
+  - {fileID: 11400000, guid: 335f106cb9a41c64580498513f9be5e6, type: 2}
+  - {fileID: 11400000, guid: 2a46173ca190c28448f43489ef585242, type: 2}
+  - {fileID: 11400000, guid: b687a1828d021f648af12f298c565d61, type: 2}
+  - {fileID: 11400000, guid: 78f823d9bc82e6e418655ed04041dc98, type: 2}
+  - {fileID: 11400000, guid: 6292643bbeb5df947814ca78ff0a9e2b, type: 2}
+  - {fileID: 11400000, guid: 94571dce7bbb70f4a9ad4d39f911c84d, type: 2}
+  - {fileID: 11400000, guid: 63ee1f7101c87a148b2db8d798669b72, type: 2}
+  - {fileID: 11400000, guid: 70a07da2dedfff840b24473b05130f5c, type: 2}
+  - {fileID: 11400000, guid: 043f1514f86776445aad805976569062, type: 2}
+  - {fileID: 11400000, guid: ff5f057e7cbac8146ac5a78daaeec38a, type: 2}
+  - {fileID: 11400000, guid: 904e25f8c265d304989a79396d8c1021, type: 2}
+  allTheEnemyUpgrades:
+  - {fileID: 11400000, guid: 6dbe7186f6fa2324a82b86e55e049647, type: 2}
+  - {fileID: 11400000, guid: e9ad8d12d1b511a46bdb16fc138d468e, type: 2}
+  - {fileID: 11400000, guid: efe485ebe9b01d247b48ef3f6fc6515b, type: 2}
+  - {fileID: 11400000, guid: 0628776eab8fc4343991d87bbbaa0bf7, type: 2}
+  upgrades: []
+  enemyUpgrades: []
+  special: {fileID: 0}
+--- !u!114 &2564337235708529008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684106143123002192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107be14f27188e547b1a76f9cc4dd7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Background
+  backgroundGO: {fileID: 0}
+  backgroundMaterial: {fileID: 0}
+  backgroundSpeed: 1.5
+  backgroundsBlocks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &7256786141335147897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684106143123002192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b7a675a0ce8aa4386f21ae1b276b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialoguesManager
+  dialogues:
+  - dialogueName: Start
+    dialogues:
+    - side: 0
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: According to the villagers around here is where there is more attacks
+    - side: 0
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: Well, i also followed the lightings and explosion...
+    - side: 0
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: But enought wating the time, i have to resolve this.
+    currentText: 0
+  - dialogueName: Boss
+    dialogues:
+    - side: 1
+      who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+      text: Ok, who is the one that is killing my servants
+    - side: 0
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: oh, so you are who is leading the attack
+    - side: 1
+      who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+      text: Of course, who you tough would be if isnt me, the new queen of the fairies
+        <color="red">Mih <color="white">.
+    - side: 0
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: Uhm... Who?
+    - side: 1
+      who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+      text: ...
+    - side: 1
+      who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+      text: So you dont know who am i?\nWell, too bad for you then, once i kill you,
+        you will know how powerful i am!
+    currentText: 0

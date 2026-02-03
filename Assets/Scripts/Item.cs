@@ -54,10 +54,18 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.paused)
+        try
         {
-            return;
+            if (GameManager.instance.paused)
+            {
+                return;
+            }
         }
+        catch 
+        {
+            Debug.Log("No hay Gamemanager");
+        }
+        
         if (collected)
         {
             transform.Translate(-(GameObject.Find("Player").transform.position - transform.position).normalized * speed * Time.deltaTime);
