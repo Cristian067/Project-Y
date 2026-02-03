@@ -366,10 +366,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8003252843737433228}
     m_Modifications:
+    - target: {fileID: 905703594317740752, guid: 8a749e08a8b591642b42face9a892221, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051864090606281251, guid: 8a749e08a8b591642b42face9a892221, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3051864090606281251, guid: 8a749e08a8b591642b42face9a892221, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7a17c67e9b392814382e365b1d8c3af6, type: 2}
+    - target: {fileID: 8064406462804649347, guid: 8a749e08a8b591642b42face9a892221, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8158133724543269384, guid: 8a749e08a8b591642b42face9a892221, type: 3}
       propertyPath: m_Name
       value: Fairy

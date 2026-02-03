@@ -118,7 +118,7 @@ private string pathUserData = "save/UserData.json";
     void Update()
     {
 
-        if (Input.GetButtonDown("Pause") && !DialoguesManager.instance.IsOnDialogue() ||Input.GetButtonDown("Pause") && !paused)
+        if (Input.GetButtonDown("Pause") && !paused )//Input.GetButtonDown("Pause") && !DialoguesManager.instance.IsOnDialogue() ||Input.GetButtonDown("Pause") && !paused)
         {
             Pause(true);
         }

@@ -33,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 866221438983158750}
   - {fileID: 9178840431083827466}
@@ -399,10 +399,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8003252843737433228}
     m_Modifications:
+    - target: {fileID: 905703594317740752, guid: 8a749e08a8b591642b42face9a892221, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051864090606281251, guid: 8a749e08a8b591642b42face9a892221, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3051864090606281251, guid: 8a749e08a8b591642b42face9a892221, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: acf9d745f65c63b4b96b1c1bbfc350f7, type: 2}
+    - target: {fileID: 8064406462804649347, guid: 8a749e08a8b591642b42face9a892221, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8158133724543269384, guid: 8a749e08a8b591642b42face9a892221, type: 3}
       propertyPath: m_Name
       value: Fairy
