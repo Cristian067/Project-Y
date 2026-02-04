@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 
 using System.IO;
-
+using System.Net;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -29,9 +30,12 @@ public class PostData
 
     public string api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
     public string name;
-    public int highscore;
+    public int puntuacion;
    
 }
+
+
+
 
 
 // public class UpgradeTypes
@@ -87,6 +91,9 @@ public class GameManager : MonoBehaviour
     // [SerializeField] private List<UpgradeSO> enemyUpgrades;
 
 
+        public string bearerToken;
+
+
     private float timeScaleSaved;
 
     public bool paused { get; private set; }
@@ -108,7 +115,7 @@ private string pathUserData = "save/UserData.json";
     void Start()
     {
 
-        GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/game/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef");
+        StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef"));
         Time.timeScale = 1;
         //Win();
 
@@ -382,25 +389,62 @@ private string pathUserData = "save/UserData.json";
         }
     }
 
+
+    
+
     private IEnumerator PostAPi()
     {
         PostData postData= new PostData();
         postData.name = "a";
-        postData.highscore = totalPoints;
-        string jsonHS = JsonUtility.ToJson(postData,true);
-    
-        UnityWebRequest request = UnityWebRequest.Post("https://phpstack-1076337-5399863.cloudwaysapps.com/game/classification",jsonHS); //new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/game/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef", "POST");
+        postData.puntuacion = totalPoints;
+        string jsonHS = JsonUtility.ToJson(postData);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonHS);
 
+
+        // using(var webRequest = new UnityWebRequest("g", "POST"))
+        // {
+        //     webRequest.uploadHandler = new UploadHandlerRaw(bytes);
+        //     webRequest.downloadHandler = new DownloadHandlerBuffer();
+        //     webRequest.certificateHandler = new ForceAcceptAllCertificates();
+        //     webRequest.SetRequestHeader("accept", "application/json");
+        //     webRequest.SetRequestHeader("Content-Type", "application/json");
+
+        //     // Btw afaik you can simply
+        //     await  webRequest.SendWebRequest();
+
+        //     responseCode = (HttpStatus)webRequest.responseCode;
+        //}
+
+        var request = new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification");
+        request.method = UnityWebRequest.kHttpVerbPOST;
+        
+        request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+        request.SetRequestHeader("Accept", "application/json");
+        request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
+        //Debug.Log(request.uploadHandler.ToString());
+        Debug.Log("Status Code: " + request.responseCode);
 
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log("Respuesta: " + request.downloadHandler.text);
-        }
-        else
-        {
-            Debug.LogError("Error: " + request.error);
-        }
+
+
+
+
+
+
+    
+        //UnityWebRequest request = UnityWebRequest.Post("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification",jsonHS); //new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/game/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef", "POST");
+
+        // yield return request.SendWebRequest();
+
+        // if (request.result == UnityWebRequest.Result.Success)
+        // {
+        //     Debug.Log("Respuesta: " + request.downloadHandler.text);
+        // }
+        // else
+        // {
+        //     Debug.LogError("Error: " + request.error);
+        // }
 
     }
 
