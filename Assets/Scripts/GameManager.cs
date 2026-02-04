@@ -4,7 +4,7 @@ using System.Collections;
 using System.IO;
 
 using UnityEngine;
-
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 
@@ -21,6 +21,16 @@ public class PlayerStats
 
 
 
+}
+
+
+public class PostData
+{
+
+    public string api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
+    public string name;
+    public int highscore;
+   
 }
 
 
@@ -97,8 +107,10 @@ private string pathUserData = "save/UserData.json";
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 1;
 
+        GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/game/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef");
+        Time.timeScale = 1;
+        //Win();
 
         UIManager.instance.RefreshStatsUi();
         ReloadStats();
@@ -354,16 +366,54 @@ private string pathUserData = "save/UserData.json";
         
     }
 
+    private IEnumerator GetFromApi(string url)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(url);
 
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Respuesta: " + request.downloadHandler.text);
+        }
+        else
+        {
+            Debug.LogError("Error: " + request.error);
+        }
+    }
+
+    private IEnumerator PostAPi()
+    {
+        PostData postData= new PostData();
+        postData.name = "a";
+        postData.highscore = totalPoints;
+        string jsonHS = JsonUtility.ToJson(postData,true);
+    
+        UnityWebRequest request = UnityWebRequest.Post("https://phpstack-1076337-5399863.cloudwaysapps.com/game/classification",jsonHS); //new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/game/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef", "POST");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Respuesta: " + request.downloadHandler.text);
+        }
+        else
+        {
+            Debug.LogError("Error: " + request.error);
+        }
+
+    }
+
+    [ContextMenu("Win Game")]
     public void Win()
     {
-
+        File.WriteAllText(pathUserData, JsonUtility.ToJson(new Data(),true));
         Data data= new Data();
         data = RegistryUpgrades(data);
         data.levelsCompleted[levelNumber] = true;
         data.levelsHighScore[levelNumber] = totalPoints;
-    
-        
+
+        StartCoroutine(PostAPi());
 
         string json = JsonUtility.ToJson(data,true);
         File.WriteAllText(pathUserData, json);
@@ -375,8 +425,13 @@ private string pathUserData = "save/UserData.json";
     private Data RegistryUpgrades(Data data)
     {
         //Data data = new Data();
+    
+
         string json = File.ReadAllText(pathUserData);
         data = JsonUtility.FromJson<Data>(json);
+        
+        
+        
 
         foreach (var upgrade in UpgradesManager.instance.upgrades)
         {

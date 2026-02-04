@@ -32,7 +32,13 @@ public class Background : MonoBehaviour
         {
             return;
         }
-        backgroundCount += 0.1f * backgroundSpeed*Time.deltaTime;
+
+            float textureLength =
+            backgroundGO.GetComponent<Renderer>().bounds.size.z /
+            backgroundMaterial.GetVector("_Tiling").y;
+
+
+        backgroundCount += (backgroundSpeed/(backgroundGO.GetComponent<Renderer>().bounds.size.z/backgroundMaterial.GetVector("_Tiling").y ))  * Time.deltaTime;
         if(backgroundCount > 2)
         {
             backgroundCount = 1;
@@ -43,7 +49,10 @@ public class Background : MonoBehaviour
             foreach(var block in backgroundsBlocks)
             {
                 //GameObject enviorement = Instantiate(block);
-                block.transform.Translate( new Vector3(0,0,-1) * (backgroundSpeed/backgroundMaterial.GetVector("_Tiling").y *(backgroundGO.GetComponent<Renderer>().bounds.size.z/backgroundGO.transform.localScale.z)) * Time.deltaTime);
+                block.transform.Translate( new Vector3(0,0,-1f) * backgroundSpeed * Time.deltaTime);
+
+                //  1.5 / 1 * 40 = 60
+
                 Renderer render = block.GetComponent<Renderer>();
 
                 if (block.transform.position.z < -17.5f)
