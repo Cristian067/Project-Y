@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int r = Random.Range(0, 3);
+        int r  =0;
 
         int p = Random.Range(0, 100);
         
@@ -32,7 +32,7 @@ public class Item : MonoBehaviour
         {
             r = 0;
         }
-        else if (p < 85)
+        else if (p < 90)
         {
             r = 1;
         }

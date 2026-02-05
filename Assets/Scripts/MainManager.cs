@@ -1,7 +1,11 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -40,6 +44,9 @@ public class MainManager : MonoBehaviour
 
     [SerializeField] private Button selectedMainButton;
 
+
+    public List<string> leaderboard;
+
     private string pathUserData = "save/UserData.json";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,7 +57,7 @@ public class MainManager : MonoBehaviour
 
         selectedMainButton.Select();
         GoToMenu(0);
-        
+        RefreshLeaderBoard(1);
 
         //Screen.SetResolution(800, 600,false);
     }
@@ -73,7 +80,41 @@ public class MainManager : MonoBehaviour
         menusPanel[panel].SetActive(true);
 
     }
+    [Serializable]
+    public class DataFromApi
+    {
+        List<ApiData> apiDatas;
+    }
 
+    public void RefreshLeaderBoard(int level)
+    {
+
+        string leaderboardRaw = StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef")).ToString();
+
+        var apiData = JsonUtility.FromJson<string>(leaderboardRaw);
+
+        
+        leaderboard.Add(apiData);
+        
+        
+    }
+
+    private IEnumerator GetFromApi(string url)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(url);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Respuesta: " + request.downloadHandler.text);
+            yield return request.downloadHandler.text;
+        }
+        else
+        {
+            Debug.LogError("Error: " + request.error);
+        }
+    }
     public void SelectButton(Button button)
     {
         button.Select();

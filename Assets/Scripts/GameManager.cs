@@ -24,8 +24,8 @@ public class PlayerStats
 
 }
 
-
-public class PostData
+[Serializable]
+public class ApiData
 {
 
     public string api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
@@ -394,7 +394,7 @@ private string pathUserData = "save/UserData.json";
 
     private IEnumerator PostAPi()
     {
-        PostData postData= new PostData();
+        ApiData postData= new ApiData();
         postData.name = "a";
         postData.puntuacion = totalPoints;
         string jsonHS = JsonUtility.ToJson(postData);
