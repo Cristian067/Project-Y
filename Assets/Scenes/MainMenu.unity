@@ -266,6 +266,8 @@ MonoBehaviour:
   - {fileID: 1955136673}
   lockedLevelPanel: {fileID: 1868218822}
   selectedMainButton: {fileID: 1395739143}
+  leaderboard:
+    data: []
 --- !u!114 &19050101
 MonoBehaviour:
   m_ObjectHideFlags: 0

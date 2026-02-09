@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -45,7 +43,7 @@ public class MainManager : MonoBehaviour
     [SerializeField] private Button selectedMainButton;
 
 
-    public List<string> leaderboard;
+    public DataFromApi leaderboard;
 
     private string pathUserData = "save/UserData.json";
 
@@ -83,18 +81,33 @@ public class MainManager : MonoBehaviour
     [Serializable]
     public class DataFromApi
     {
-        List<ApiData> apiDatas;
+        public DataApi[] data;
+    }
+    [Serializable]
+    public class DataApi
+    {
+        public string name;
+        public int puntuacion;
     }
 
-    public void RefreshLeaderBoard(int level)
+
+    
+    public void RefreshLeaderBoard(int level = 0)
     {
 
-        string leaderboardRaw = StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef")).ToString();
-
-        var apiData = JsonUtility.FromJson<string>(leaderboardRaw);
+        StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef"));
 
         
-        leaderboard.Add(apiData);
+        // foreach (DataApi api in leaderboard.data)
+        // {
+        //     //Debug.Log(api.name);
+        //     string[] splitArray =  api.name.Split(api.name,char.Parse("_"));
+        //     Debug.Log(splitArray[0]);
+        // }
+        //DataFromApi apiData = JsonUtility.FromJson<DataFromApi>(leaderboardRaw);
+
+        
+        //leaderboard.Add(apiData.data[1].name);
         
         
     }
@@ -102,12 +115,19 @@ public class MainManager : MonoBehaviour
     private IEnumerator GetFromApi(string url)
     {
         UnityWebRequest request = UnityWebRequest.Get(url);
+        request.SetRequestHeader("Accept","application/json");
+        // request.SetRequestHeader("Accept-Encoding","gzip,deflate,br");
+        // //request.SetRequestHeader("Connection","keep-alive");
+
+        request.SetRequestHeader("Content-Type","application/json");
 
         yield return request.SendWebRequest();
 
+        Debug.Log(request.result);
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("Respuesta: " + request.downloadHandler.text);
+            //callback(request.downloadHandler.text);
             yield return request.downloadHandler.text;
         }
         else
