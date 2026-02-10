@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -44,18 +46,19 @@ public class MainManager : MonoBehaviour
 
 
     public DataFromApi leaderboard;
+    public GameObject leaderboardContentGo;
 
     private string pathUserData = "save/UserData.json";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
 
-        selectedMainButton.Select();
+        //selectedMainButton.Select();
         GoToMenu(0);
-        RefreshLeaderBoard(1);
+        //RefreshLeaderBoard(1);
 
         //Screen.SetResolution(800, 600,false);
     }
@@ -63,7 +66,7 @@ public class MainManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (EventSystem.current.IsPointerOverGameObject()) return;
     }
 
 
@@ -81,7 +84,7 @@ public class MainManager : MonoBehaviour
     [Serializable]
     public class DataFromApi
     {
-        public DataApi[] data;
+        public List<DataApi> data;
     }
     [Serializable]
     public class DataApi
@@ -90,20 +93,78 @@ public class MainManager : MonoBehaviour
         public int puntuacion;
     }
 
-
     
-    public void RefreshLeaderBoard(int level = 0)
+    
+    public void RefreshLeaderBoard()
     {
 
-        StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef"));
+        DataFromApi newLeaderboard = new DataFromApi();
+        newLeaderboard.data = new List<DataApi>();
+
+        // if( newLeaderboard.data != null)
+        // {
+        //     newLeaderboard.data.Clear();
+        // }
+        
+
+        foreach (Transform child in leaderboardContentGo.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef", (reply) =>{ 
+        
+        leaderboard = JsonUtility.FromJson<DataFromApi>(reply);
+
+        // for(int i = 0; i < leaderboard.data.Count; i++)
+        // {
+        //     string[] splitArray =  leaderboard.data[i].name.Split(char.Parse("_"));
+        //     //int userLevel = 
+
+        //     Debug.Log(int.Parse(splitArray[0]));
+
+        //     if(int.Parse(splitArray[0]) != actLevelSelected)
+        //     {
+        //         leaderboard.data.Remove(leaderboard.data[i]);
+        //     }
+        // }
+
+        foreach (DataApi api in leaderboard.data)
+        {
+            string[] splitArray =  api.name.Split(char.Parse("_"));
+            //int userLevel = 
+
+            Debug.Log(int.Parse(splitArray[0]));
+
+            if(int.Parse(splitArray[0]) == actLevelSelected)
+            {
+                newLeaderboard.data.Add(api);
+            }
+        }
+        Debug.Log("gfkjhgdfklg");
+        Debug.Log(newLeaderboard.data.Count);
+        leaderboard = newLeaderboard;
+
+        for(int i = 0; i < leaderboard.data.Count; i++)
+        {
+            string[] splitArray =  leaderboard.data[i].name.Split(char.Parse("_"));
+            //int userLevel = 
+
+            //Debug.Log(splitArray[0]);
+
+
+
+
+            var slot = Instantiate(Resources.Load<GameObject>("Prefabs/InfoLeaderboard"),leaderboardContentGo.transform);
+
+            slot.GetComponent<InfoLeaderboard>().SendInfo(i+1,splitArray[1],leaderboard.data[i].puntuacion);
+
+        }
+        
+        }));
 
         
-        // foreach (DataApi api in leaderboard.data)
-        // {
-        //     //Debug.Log(api.name);
-        //     string[] splitArray =  api.name.Split(api.name,char.Parse("_"));
-        //     Debug.Log(splitArray[0]);
-        // }
+        
         //DataFromApi apiData = JsonUtility.FromJson<DataFromApi>(leaderboardRaw);
 
         
@@ -112,7 +173,7 @@ public class MainManager : MonoBehaviour
         
     }
 
-    private IEnumerator GetFromApi(string url)
+    private IEnumerator GetFromApi(string url, Action<string> callback)
     {
         UnityWebRequest request = UnityWebRequest.Get(url);
         request.SetRequestHeader("Accept","application/json");
@@ -127,7 +188,7 @@ public class MainManager : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("Respuesta: " + request.downloadHandler.text);
-            //callback(request.downloadHandler.text);
+            callback(request.downloadHandler.text);
             yield return request.downloadHandler.text;
         }
         else

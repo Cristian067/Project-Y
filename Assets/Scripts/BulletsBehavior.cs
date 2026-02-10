@@ -64,6 +64,11 @@ public class BulletsBehavior : MonoBehaviour
         
     }
 
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
     public void SetRotation(Vector3 newRotation, float newRotationSpeed)
     {
         rotation = newRotation;
