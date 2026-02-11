@@ -227,9 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b1445a2dc28b443a8d2de4a646804b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameAssembly::InfoLeaderboard
-  userPostiion: 0
-  username: 
-  userScore: 0
   positionText: {fileID: 5170478081001738088}
   usernameText: {fileID: 4834307428945895745}
   scoreText: {fileID: 3070003043996894785}
@@ -332,7 +329,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -341,7 +338,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

@@ -4,6 +4,8 @@ using UnityEngine;
 public class Data
 {
 
+    public string username;
+    public string email;
     public int[] levelsHighScore = new int[99];
     public bool[] levelsCompleted = new bool[99];
     

@@ -32,15 +32,18 @@ public class MainManager : MonoBehaviour
 
     [SerializeField] private Image levelImage;
     [SerializeField] private TextMeshProUGUI levelNameText;
+    [SerializeField] private TextMeshProUGUI levelNameLeaderboardText;
     [SerializeField] private TextMeshProUGUI levelDescriptionText;
     [SerializeField] private TextMeshProUGUI levelHighScoreText;
     [SerializeField] private TextMeshProUGUI levelNumberText;
+    [SerializeField] private TextMeshProUGUI levelNumberLeaderboardText;
 
 
 
     [SerializeField] private GameObject[] menusPanel;
 
     [SerializeField] private GameObject lockedLevelPanel;
+   
 
     [SerializeField] private Button selectedMainButton;
 
@@ -48,17 +51,58 @@ public class MainManager : MonoBehaviour
     public DataFromApi leaderboard;
     public GameObject leaderboardContentGo;
 
+    [SerializeField] private GameObject enterUsernamePanel;
+    [SerializeField] private TMP_InputField enterUsernameField;
+    [SerializeField] private TMP_InputField enterEmailField;
+
+    
+
     private string pathUserData = "save/UserData.json";
+    private string apiUrl;
+    private string token;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        apiUrl = Resources.Load<NetworkDataSO>("ScriptableObjects/NetworkData").apiUrl;
+        token = Resources.Load<NetworkDataSO>("ScriptableObjects/NetworkData").token;
+
         // Cursor.lockState = CursorLockMode.Locked;
         // Cursor.visible = false;
 
         //selectedMainButton.Select();
         GoToMenu(0);
         //RefreshLeaderBoard(1);
+
+
+        Data data = new Data();
+
+        if (!File.Exists(pathUserData))
+        {
+            Directory.CreateDirectory("save");
+            data.levelsCompleted[0] = true;
+            string json = JsonUtility.ToJson(data,true);
+            File.WriteAllText(pathUserData,json); 
+            
+        }
+        else
+        {
+            string json = File.ReadAllText(pathUserData);
+            data = JsonUtility.FromJson<Data>(json);
+        }
+        
+        if(data.username == null || data.username == "" || data.email == null || data.email == "")
+        {
+            GameObject.Find("EventSystem").GetComponent<DisableMouse>().enabled = false;
+            //GetComponent<GraphicRaycaster>().enabled = true;
+            enterUsernamePanel.SetActive(true);
+            enterUsernameField.Select();
+
+        }
+        
 
         //Screen.SetResolution(800, 600,false);
     }
@@ -67,6 +111,38 @@ public class MainManager : MonoBehaviour
     void Update()
     {
         if (EventSystem.current.IsPointerOverGameObject()) return;
+    }
+
+
+    public void SaveInfo()
+    {
+        Data data = new Data();
+
+        if (!File.Exists(pathUserData))
+        {
+            Directory.CreateDirectory("save");
+            data.levelsCompleted[0] = true;
+            string json = JsonUtility.ToJson(data,true);
+            File.WriteAllText(pathUserData,json); 
+            
+        }
+        else
+        {
+            string json = File.ReadAllText(pathUserData);
+            data = JsonUtility.FromJson<Data>(json);
+        }
+
+
+        data.username = enterUsernameField.text;
+        data.email = enterEmailField.text;
+
+        string json2 = JsonUtility.ToJson(data,true);
+        File.WriteAllText(pathUserData,json2); 
+
+        GameObject.Find("EventSystem").GetComponent<DisableMouse>().enabled = true;
+        enterUsernamePanel.SetActive(false);
+        //GetComponent<GraphicRaycaster>().enabled = false;
+
     }
 
 
@@ -95,8 +171,14 @@ public class MainManager : MonoBehaviour
 
     
     
-    public void RefreshLeaderBoard()
+    public void RefreshLeaderBoard(int level = 0)
     {
+
+        ChangeLevel(level);
+
+        levelNameLeaderboardText.text = levels[actLevelSelected].levelName;
+        levelNumberLeaderboardText.text = $"Level {actLevelSelected}";
+
 
         DataFromApi newLeaderboard = new DataFromApi();
         newLeaderboard.data = new List<DataApi>();
@@ -203,6 +285,19 @@ public class MainManager : MonoBehaviour
     }
 
 
+    private void ChangeLevel(int upOrDown)
+    {
+        actLevelSelected += upOrDown;
+        if (actLevelSelected > levels.Length - 1)
+        {
+            actLevelSelected = 0;
+        }
+        else if (actLevelSelected < 0)
+        {
+            actLevelSelected = levels.Length - 1;
+        }
+    }
+
     public void RefreshLevel(int upOrDown)
     {
 
@@ -223,16 +318,8 @@ public class MainManager : MonoBehaviour
         }
         
 
-
-        actLevelSelected += upOrDown;
-        if (actLevelSelected > levels.Length - 1)
-        {
-            actLevelSelected = 0;
-        }
-        else if (actLevelSelected < 0)
-        {
-            actLevelSelected = levels.Length - 1;
-        }
+        ChangeLevel(upOrDown);
+        
 
         levelImage.sprite = levels[actLevelSelected].levelImg;
         levelNameText.text = levels[actLevelSelected].levelName;
