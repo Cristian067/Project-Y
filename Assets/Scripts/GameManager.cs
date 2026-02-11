@@ -30,6 +30,7 @@ public class ApiData
 
     public string api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
     public string name;
+    public string email;
     public int puntuacion;
    
 }
@@ -101,7 +102,9 @@ public class GameManager : MonoBehaviour
     public float specialCooldown { get; private set; }
 
 
-private string pathUserData = "save/UserData.json";
+    //private Data data = new Data();
+
+    private string pathUserData = "save/UserData.json";
 
     void Awake()
     {
@@ -115,7 +118,7 @@ private string pathUserData = "save/UserData.json";
     void Start()
     {
 
-        StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef"));
+        //StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef"));
         Time.timeScale = 1;
         //Win();
 
@@ -394,8 +397,15 @@ private string pathUserData = "save/UserData.json";
 
     private IEnumerator PostAPi()
     {
+
+        Data data = new Data();
+        string json = File.ReadAllText(pathUserData);
+        data = JsonUtility.FromJson<Data>(json);
+
+
         ApiData postData= new ApiData();
-        postData.name = "a";
+        postData.name = levelNumber+"_"+data.username;
+        //postData.email = data.email;
         postData.puntuacion = totalPoints;
         string jsonHS = JsonUtility.ToJson(postData);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonHS);
@@ -451,19 +461,24 @@ private string pathUserData = "save/UserData.json";
     [ContextMenu("Win Game")]
     public void Win()
     {
-        File.WriteAllText(pathUserData, JsonUtility.ToJson(new Data(),true));
+        //File.WriteAllText(pathUserData, JsonUtility.ToJson(new Data(),true));
         Data data= new Data();
+        string json = File.ReadAllText(pathUserData);
+        data = JsonUtility.FromJson<Data>(json);
+
+
         data = RegistryUpgrades(data);
         data.levelsCompleted[levelNumber] = true;
         data.levelsHighScore[levelNumber] = totalPoints;
 
         StartCoroutine(PostAPi());
 
-        string json = JsonUtility.ToJson(data,true);
+        json = JsonUtility.ToJson(data,true);
         File.WriteAllText(pathUserData, json);
 
         UIManager.instance.DisplayWinPanel();
         Pause();
+
     }
 
     private Data RegistryUpgrades(Data data)

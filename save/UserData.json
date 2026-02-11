@@ -1,9 +1,9 @@
 {
-    "username": "N076",
-    "email": "asfdsf",
+    "username": "",
+    "email": "",
     "levelsHighScore": [
         0,
-        0,
+        1560,
         0,
         0,
         0,
@@ -203,5 +203,12 @@
         false,
         false
     ],
-    "discoveredUpgrades": []
+    "discoveredUpgrades": [
+        "MoreDamage1",
+        "Powerful magnet",
+        "Barrier",
+        "Portal To Limitless",
+        "Slippery fingers",
+        "LessSpeed"
+    ]
 }
