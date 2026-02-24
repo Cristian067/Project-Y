@@ -397,6 +397,7 @@ MonoBehaviour:
   enterUsernamePanel: {fileID: 1287628684}
   enterUsernameField: {fileID: 1760511468}
   enterEmailField: {fileID: 313065061}
+  playButton: {fileID: 2088020143}
   usernameDisplay: {fileID: 1364961046}
 --- !u!114 &19050101
 MonoBehaviour:
@@ -8854,7 +8855,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 2088020143}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 749816803}
+    m_SelectOnRight: {fileID: 1510027422}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -11980,7 +11981,7 @@ GameObject:
   - component: {fileID: 2088020144}
   - component: {fileID: 2088020143}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

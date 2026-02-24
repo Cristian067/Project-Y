@@ -48,6 +48,8 @@ public class MainManager : MonoBehaviour
     [SerializeField] private TMP_InputField enterUsernameField;
     [SerializeField] private TMP_InputField enterEmailField;
 
+    [SerializeField] private Button playButton;
+
 
     [SerializeField] private TextMeshProUGUI usernameDisplay;
 
@@ -274,10 +276,15 @@ public class MainManager : MonoBehaviour
             if (!data.levelsCompleted[actLevelSelected-1])
             {
                 lockedLevelPanel.SetActive(true);
+                playButton.interactable = false;
             }
         }
-        
-        else lockedLevelPanel.SetActive(false);
+
+        else
+        {
+            lockedLevelPanel.SetActive(false); 
+            playButton.interactable = true;
+        } 
     }
 
     
