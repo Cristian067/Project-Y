@@ -164,7 +164,7 @@ public class UIManager : MonoBehaviour
             Destroy(child.gameObject);
         }
         GameManager.instance.Unpause(true);
-        UIManager.instance.RefreshStatsUi();
+        RefreshStatsUi();
         //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
         //     {
         //         Destroy(transform.GetChild(i).gameObject);
