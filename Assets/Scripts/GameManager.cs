@@ -108,6 +108,11 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Reload Stats")]
     public void ReloadStats()
     {
+
+        modStats.speed = 0;
+        modStats.damage = 0;
+        modStats.pickupRange = 0;
+
         if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrierInRecharge)
         {
             barrier.SetActive(true);

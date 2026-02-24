@@ -14,7 +14,8 @@ public class AudioManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        ApplyVolume();
+        ChangeMusic(null);
     }
 
     // Update is called once per frame
@@ -52,16 +53,17 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeMusic(AudioClip music)
     {
-        if (music == null)
+        if (music != null)
         {
-            return;
+            if (music != musicClip)
+            {
+                musicClip = music;
+            }
         }
-        if (music != musicClip)
-        {
-            musicClip = music;
-        }
+        
 
         musicSource.clip = musicClip;
+        musicSource.Play();
         
     }
 
