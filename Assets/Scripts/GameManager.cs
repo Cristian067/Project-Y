@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-
 using System.IO;
 using System.Net;
 using System.Text;
@@ -8,26 +7,17 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-
-
-
 [Serializable]
 public class PlayerStats 
 {
-
     public float damage;
     public float speed;
-
     public float pickupRange;
-
-
-
 }
 
 [Serializable]
 public class ApiData
 {
-
     public string api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
     public string name;
     public string email;
@@ -36,24 +26,12 @@ public class ApiData
 }
 
 
-
-
-
-// public class UpgradeTypes
-// {
-//     public enum Types
-//     {
-//         StatModification,
-//     }
-// }
-
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance { get; private set; }
 
     [SerializeField]private int levelNumber;
-
 
     [SerializeField] private PlayerController playerScript;
 
@@ -77,23 +55,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerStats baseStats;
     public PlayerStats modStats;
-    private PlayerStats finalStats = new PlayerStats();
-
-    // [Header("Base Stats")]
-    // [SerializeField] private float damageBase = 1;
-    // [SerializeField] private float speedBase = 8;
-
-    // [Header("Stats")] 
-    // [SerializeField] private float damage = 1;
-    // [SerializeField] private float speed = 8;
-
-
-    // [SerializeField] private List<UpgradeSO> upgrades;
-    // [SerializeField] private List<UpgradeSO> enemyUpgrades;
-
-
-        public string bearerToken;
-
+    public PlayerStats finalStats { get; private set;} = new PlayerStats();
 
     private float timeScaleSaved;
 
@@ -117,10 +79,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         //StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef"));
         Time.timeScale = 1;
-        //Win();
 
         UIManager.instance.RefreshStatsUi();
         ReloadStats();
@@ -139,22 +99,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetButtonDown("Pause") && !paused )//Input.GetButtonDown("Pause") && !DialoguesManager.instance.IsOnDialogue() ||Input.GetButtonDown("Pause") && !paused)
         {
             Pause(true);
         }
-
     }
 
     [ContextMenu("Reload Stats")]
     public void ReloadStats()
     {
-
-        // finalStats.damage = baseStats.damage;
-        // finalStats.speed = baseStats.speed;
-
-
         if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrierInRecharge)
         {
             barrier.SetActive(true);
@@ -199,8 +152,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("No se encuentra el magnet");
         }
-        
-
 
         if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.active && !barrierInRecharge)
         {
@@ -210,7 +161,6 @@ public class GameManager : MonoBehaviour
         {
             barrierInRecharge = false;
         }
-
     }
 
     public void Pause(bool usePanel = false)
@@ -220,13 +170,10 @@ public class GameManager : MonoBehaviour
         paused = true;
         timeScaleSaved = Time.timeScale;
         //Time.timeScale = 0;
-        
         if (usePanel)
         {
             UIManager.instance.DisplayPauseMenu();
         }
-        
-    
     }
 
     public void Unpause(bool useSaved = false)
@@ -243,7 +190,6 @@ public class GameManager : MonoBehaviour
         }
         paused = false;
     }
-
 
     public void LoseLife()
     {
@@ -274,7 +220,6 @@ public class GameManager : MonoBehaviour
         UIManager.instance.RefreshStatsUi();
     }
 
-
     public float GetSpeed()
     {
         return finalStats.speed;
@@ -284,12 +229,6 @@ public class GameManager : MonoBehaviour
     {
         finalStats.speed = newSpeed;
     }
-
-    //public UpgradeSO GetSpecial()
-    //{
-    //    return special;
-    //}
-
     public void AddPoints(int pointsToAdd)
     {
         points += pointsToAdd;
@@ -314,10 +253,7 @@ public class GameManager : MonoBehaviour
         {
             specials += recharge;
             UIManager.instance.RefreshStatsUi();
-
         }
-
-        //baseStats.specialC += recharge.ConvertTo<int>();
     }
 
     public float GetPlayerDamage()
@@ -345,23 +281,10 @@ public class GameManager : MonoBehaviour
         return pointsForUpgrade;
     }
 
-
-    //public List<UpgradeSO> GetUpgrades()
-    //{
-    //    return upgrades;
-    //}
-    //public List<UpgradeSO> GetEnemyUpgrades()
-    //{
-    //    return enemyUpgrades;
-    //}
-    
-
     public void DestroyBarrier()
     {
-
         barrier.SetActive(false);
         StartCoroutine(RechargeBarrier());
-        
     }
 
     private IEnumerator RechargeBarrier()
@@ -372,8 +295,6 @@ public class GameManager : MonoBehaviour
         barrierRechargeParticles.SetActive(false);
         barrier.SetActive(true);
         barrierInRecharge = false;
-
-        
     }
 
     private IEnumerator GetFromApi(string url)
@@ -392,9 +313,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    
-
     private IEnumerator PostAPi()
     {
 
@@ -410,21 +328,6 @@ public class GameManager : MonoBehaviour
         string jsonHS = JsonUtility.ToJson(postData);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonHS);
 
-
-        // using(var webRequest = new UnityWebRequest("g", "POST"))
-        // {
-        //     webRequest.uploadHandler = new UploadHandlerRaw(bytes);
-        //     webRequest.downloadHandler = new DownloadHandlerBuffer();
-        //     webRequest.certificateHandler = new ForceAcceptAllCertificates();
-        //     webRequest.SetRequestHeader("accept", "application/json");
-        //     webRequest.SetRequestHeader("Content-Type", "application/json");
-
-        //     // Btw afaik you can simply
-        //     await  webRequest.SendWebRequest();
-
-        //     responseCode = (HttpStatus)webRequest.responseCode;
-        //}
-
         var request = new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification");
         request.method = UnityWebRequest.kHttpVerbPOST;
         
@@ -436,34 +339,12 @@ public class GameManager : MonoBehaviour
         //Debug.Log(request.uploadHandler.ToString());
         Debug.Log("Status Code: " + request.responseCode);
 
-
-
-
-
-
-
-    
-        //UnityWebRequest request = UnityWebRequest.Post("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification",jsonHS); //new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/game/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef", "POST");
-
-        // yield return request.SendWebRequest();
-
-        // if (request.result == UnityWebRequest.Result.Success)
-        // {
-        //     Debug.Log("Respuesta: " + request.downloadHandler.text);
-        // }
-        // else
-        // {
-        //     Debug.LogError("Error: " + request.error);
-        // }
-
     }
 
     [ContextMenu("Win Game")]
     public void Win()
     {
         //File.WriteAllText(pathUserData, JsonUtility.ToJson(new Data(),true));
-
-        
         Data data= new Data();
         string json = File.ReadAllText(pathUserData);
         data = JsonUtility.FromJson<Data>(json);
@@ -486,13 +367,8 @@ public class GameManager : MonoBehaviour
     private Data RegistryUpgrades(Data data)
     {
         //Data data = new Data();
-    
-
         string json = File.ReadAllText(pathUserData);
         data = JsonUtility.FromJson<Data>(json);
-        
-        
-        
 
         foreach (var upgrade in UpgradesManager.instance.upgrades)
         {
@@ -509,8 +385,6 @@ public class GameManager : MonoBehaviour
         UIManager.instance.DisplayLosePanel();
         Pause();
     }
-
-
 
     public void Retry()
     {
@@ -553,8 +427,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         specialInCooldown = false;
-        
-
     }
 
 }
