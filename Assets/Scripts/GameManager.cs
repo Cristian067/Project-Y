@@ -462,6 +462,8 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         //File.WriteAllText(pathUserData, JsonUtility.ToJson(new Data(),true));
+
+        
         Data data= new Data();
         string json = File.ReadAllText(pathUserData);
         data = JsonUtility.FromJson<Data>(json);

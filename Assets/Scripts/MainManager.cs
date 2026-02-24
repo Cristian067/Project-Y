@@ -24,11 +24,8 @@ public class Levels
 
 public class MainManager : MonoBehaviour
 {
-
-
     public Levels[] levels;
     [SerializeField] private int actLevelSelected;
-
 
     [SerializeField] private Image levelImage;
     [SerializeField] private TextMeshProUGUI levelNameText;
@@ -38,15 +35,11 @@ public class MainManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelNumberText;
     [SerializeField] private TextMeshProUGUI levelNumberLeaderboardText;
 
-
-
     [SerializeField] private GameObject[] menusPanel;
-
     [SerializeField] private GameObject lockedLevelPanel;
    
 
     [SerializeField] private Button selectedMainButton;
-
 
     public DataFromApi leaderboard;
     public GameObject leaderboardContentGo;
@@ -55,35 +48,28 @@ public class MainManager : MonoBehaviour
     [SerializeField] private TMP_InputField enterUsernameField;
     [SerializeField] private TMP_InputField enterEmailField;
 
-    
+
+    [SerializeField] private TextMeshProUGUI usernameDisplay;
 
     private string pathUserData = "save/UserData.json";
     private string apiUrl;
     private string token;
 
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
         apiUrl = Resources.Load<NetworkDataSO>("ScriptableObjects/NetworkData").apiUrl;
         token = Resources.Load<NetworkDataSO>("ScriptableObjects/NetworkData").token;
 
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
-
-        //selectedMainButton.Select();
         GoToMenu(0);
-        //RefreshLeaderBoard(1);
-
 
         Data data = new Data();
 
         if (!File.Exists(pathUserData))
         {
             Directory.CreateDirectory("save");
-            data.levelsCompleted[0] = true;
+            data.levelsCompleted[0] = false;
             string json = JsonUtility.ToJson(data,true);
             File.WriteAllText(pathUserData,json); 
             
@@ -92,6 +78,7 @@ public class MainManager : MonoBehaviour
         {
             string json = File.ReadAllText(pathUserData);
             data = JsonUtility.FromJson<Data>(json);
+            
         }
         
         if(data.username == null || data.username == "" || data.email == null || data.email == "")
@@ -100,39 +87,43 @@ public class MainManager : MonoBehaviour
             //GetComponent<GraphicRaycaster>().enabled = true;
             enterUsernamePanel.SetActive(true);
             enterUsernameField.Select();
-
+            
+        }
+        else
+        {
+            usernameDisplay.text = data.username;
         }
         
-
-        //Screen.SetResolution(800, 600,false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (EventSystem.current.IsPointerOverGameObject()) return;
     }
 
 
+    public void LogOut()
+    {
+        Data data = new Data();
+        
+        data.levelsCompleted[0] = false;
+        string json = JsonUtility.ToJson(data,true);
+        File.WriteAllText(pathUserData,json); 
+
+        GameObject.Find("EventSystem").GetComponent<DisableMouse>().enabled = false;
+        //GetComponent<GraphicRaycaster>().enabled = true;
+        enterUsernamePanel.SetActive(true);
+        enterUsernameField.Select();
+    }
+
     public void SaveInfo()
     {
         Data data = new Data();
 
-        if (!File.Exists(pathUserData))
-        {
-            Directory.CreateDirectory("save");
-            data.levelsCompleted[0] = true;
-            string json = JsonUtility.ToJson(data,true);
-            File.WriteAllText(pathUserData,json); 
-            
-        }
-        else
-        {
-            string json = File.ReadAllText(pathUserData);
-            data = JsonUtility.FromJson<Data>(json);
-        }
-
-
+        
+        string json = File.ReadAllText(pathUserData);
+        data = JsonUtility.FromJson<Data>(json);
+        
         data.username = enterUsernameField.text;
         data.email = enterEmailField.text;
 
@@ -141,10 +132,11 @@ public class MainManager : MonoBehaviour
 
         GameObject.Find("EventSystem").GetComponent<DisableMouse>().enabled = true;
         enterUsernamePanel.SetActive(false);
+
+        usernameDisplay.text = data.username;
         //GetComponent<GraphicRaycaster>().enabled = false;
 
     }
-
 
     public void GoToMenu(int panel)
     {
@@ -183,12 +175,6 @@ public class MainManager : MonoBehaviour
         DataFromApi newLeaderboard = new DataFromApi();
         newLeaderboard.data = new List<DataApi>();
 
-        // if( newLeaderboard.data != null)
-        // {
-        //     newLeaderboard.data.Clear();
-        // }
-        
-
         foreach (Transform child in leaderboardContentGo.transform)
         {
             Destroy(child.gameObject);
@@ -197,19 +183,6 @@ public class MainManager : MonoBehaviour
         StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef", (reply) =>{ 
         
         leaderboard = JsonUtility.FromJson<DataFromApi>(reply);
-
-        // for(int i = 0; i < leaderboard.data.Count; i++)
-        // {
-        //     string[] splitArray =  leaderboard.data[i].name.Split(char.Parse("_"));
-        //     //int userLevel = 
-
-        //     Debug.Log(int.Parse(splitArray[0]));
-
-        //     if(int.Parse(splitArray[0]) != actLevelSelected)
-        //     {
-        //         leaderboard.data.Remove(leaderboard.data[i]);
-        //     }
-        // }
 
         foreach (DataApi api in leaderboard.data)
         {
@@ -223,19 +196,12 @@ public class MainManager : MonoBehaviour
                 newLeaderboard.data.Add(api);
             }
         }
-        Debug.Log("gfkjhgdfklg");
-        Debug.Log(newLeaderboard.data.Count);
+
         leaderboard = newLeaderboard;
 
         for(int i = 0; i < leaderboard.data.Count; i++)
         {
             string[] splitArray =  leaderboard.data[i].name.Split(char.Parse("_"));
-            //int userLevel = 
-
-            //Debug.Log(splitArray[0]);
-
-
-
 
             var slot = Instantiate(Resources.Load<GameObject>("Prefabs/InfoLeaderboard"),leaderboardContentGo.transform);
 
@@ -244,14 +210,6 @@ public class MainManager : MonoBehaviour
         }
         
         }));
-
-        
-        
-        //DataFromApi apiData = JsonUtility.FromJson<DataFromApi>(leaderboardRaw);
-
-        
-        //leaderboard.Add(apiData.data[1].name);
-        
         
     }
 
@@ -259,9 +217,6 @@ public class MainManager : MonoBehaviour
     {
         UnityWebRequest request = UnityWebRequest.Get(url);
         request.SetRequestHeader("Accept","application/json");
-        // request.SetRequestHeader("Accept-Encoding","gzip,deflate,br");
-        // //request.SetRequestHeader("Connection","keep-alive");
-
         request.SetRequestHeader("Content-Type","application/json");
 
         yield return request.SendWebRequest();
@@ -302,24 +257,11 @@ public class MainManager : MonoBehaviour
     {
 
         Data data = new Data();
-
-        if (!File.Exists(pathUserData))
-        {
-            Directory.CreateDirectory("save");
-            data.levelsCompleted[0] = true;
-            string json = JsonUtility.ToJson(data,true);
-            File.WriteAllText(pathUserData,json); 
-            
-        }
-        else
-        {
-            string json = File.ReadAllText(pathUserData);
-            data = JsonUtility.FromJson<Data>(json);
-        }
         
+        string json = File.ReadAllText(pathUserData);
+        data = JsonUtility.FromJson<Data>(json);
 
         ChangeLevel(upOrDown);
-        
 
         levelImage.sprite = levels[actLevelSelected].levelImg;
         levelNameText.text = levels[actLevelSelected].levelName;
@@ -336,8 +278,6 @@ public class MainManager : MonoBehaviour
         }
         
         else lockedLevelPanel.SetActive(false);
-
-
     }
 
     

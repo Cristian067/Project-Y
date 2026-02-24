@@ -6,8 +6,8 @@ public class Data
 
     public string username;
     public string email;
-    public int[] levelsHighScore = new int[99];
-    public bool[] levelsCompleted = new bool[99];
+    public int[] levelsHighScore = new int[10];
+    public bool[] levelsCompleted = new bool[10];
     
 
 
