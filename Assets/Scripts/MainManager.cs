@@ -106,9 +106,9 @@ public class MainManager : MonoBehaviour
     {
         Data data = new Data();
         
-        data.levelsCompleted[0] = false;
-        string json = JsonUtility.ToJson(data,true);
-        File.WriteAllText(pathUserData,json); 
+        //data.levelsCompleted[0] = false;
+        //string json = JsonUtility.ToJson(data,true);
+        //File.WriteAllText(pathUserData,json); 
 
         GameObject.Find("EventSystem").GetComponent<DisableMouse>().enabled = false;
         //GetComponent<GraphicRaycaster>().enabled = true;

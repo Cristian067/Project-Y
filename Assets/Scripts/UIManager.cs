@@ -19,14 +19,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider upgradeProgressSlider;
 
 
+    [Header("Ui Panels")]
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject optionsPanel;
 
     [SerializeField] private Button buttonWinPanel;
     [SerializeField] private Button buttonLosePanel;
 
     [SerializeField] private Button buttonPausePanel;
+    [SerializeField] private Button buttonOptionsPanel;
 
 
     [Header("Dialogue Things")]
@@ -168,6 +171,16 @@ public class UIManager : MonoBehaviour
         //     }
     }
 
+    public void GoToOptions()
+    {
+        optionsPanel.SetActive(true);
+        buttonOptionsPanel.Select();
+    }
+    public void CloseOptions()
+    {
+        optionsPanel.SetActive(false);
+        buttonPausePanel.Select();
+    }
 
     public void SendUpgrades(UpgradeSO[] ally, UpgradeSO[] enemy)
     {

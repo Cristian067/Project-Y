@@ -397,6 +397,7 @@ MonoBehaviour:
   enterUsernamePanel: {fileID: 1287628684}
   enterUsernameField: {fileID: 1760511468}
   enterEmailField: {fileID: 313065061}
+  usernameDisplay: {fileID: 1364961046}
 --- !u!114 &19050101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10239,7 +10240,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1791051821}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 19050100}
+        m_TargetAssemblyTypeName: MainManager, GameAssembly
+        m_MethodName: LogOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1791250404
 GameObject:
   m_ObjectHideFlags: 0
