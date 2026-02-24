@@ -27,7 +27,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Button buttonWinPanel;
     [SerializeField] private Button buttonLosePanel;
-
     [SerializeField] private Button buttonPausePanel;
     [SerializeField] private Button buttonOptionsPanel;
 
@@ -48,7 +47,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject upgradesContainer;
     [SerializeField] private GameObject UpgradePrefab;
 
-
     void Awake()
     {
         if (instance == null)
@@ -64,15 +62,7 @@ public class UIManager : MonoBehaviour
         losePanel.SetActive(false); 
 
         currentSpecialText.text = "";
-
-
         //RefreshStatsUi();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void DisplayBossThings(string name,float health)
@@ -106,9 +96,6 @@ public class UIManager : MonoBehaviour
         specialText.text = $"{GameManager.instance.specials}/"+ GameManager.instance.maxSpecials;
         totalPointsText.text = $"{GameManager.instance.GetTotalPoints()}";
 
-        livesText.text = $"{GameManager.instance.GetPlayerLives()}/6";
-        totalPointsText.text = $"{GameManager.instance.GetTotalPoints()}";
-
         upgradeProgressSlider.value = GameManager.instance.GetPoints();
         upgradeProgressSlider.maxValue = GameManager.instance.GetPointsToUpgrade();
 
@@ -125,14 +112,11 @@ public class UIManager : MonoBehaviour
         
     }
 
-
     public void DisplayDialogue(string dialogue, string who)
     {
         dialoguePanel.SetActive(true);
         dialogueText.text = dialogue;
         dialogueName.text = who;
-
-        
     }
 
     public void UndisplayDialogue()
@@ -140,7 +124,6 @@ public class UIManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
     
-
     public void DisplayPauseMenu()
     {
         pausePanel.SetActive(true);
@@ -153,22 +136,16 @@ public class UIManager : MonoBehaviour
         
     }
 
-
     public void UnDisplayeUpgrades()
     {
-        Debug.Log(upgradesContainer.transform.childCount);
-        //Debug.Log(gameObject.transform.GetChild(1).gameObject);
-
+        //Debug.Log(upgradesContainer.transform.childCount);
         foreach (Transform child in upgradesContainer.transform)
         {
             Destroy(child.gameObject);
         }
         GameManager.instance.Unpause(true);
         RefreshStatsUi();
-        //     for(int i = 0; i < upgradesContainer.transform.childCount-1; i++)
-        //     {
-        //         Destroy(transform.GetChild(i).gameObject);
-        //     }
+
     }
 
     public void GoToOptions()
@@ -186,13 +163,8 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-
-            //Debug.Log(allyUpgrades[i]);
-            //Debug.Log(enemyUpgrades[i]);
-
             GameObject card = Instantiate(UpgradePrefab, upgradesContainer.transform);
             card.GetComponent<CardUpgrade>().Set(ally[i], enemy[i]);
-
 
             if (i == 1)
             {
