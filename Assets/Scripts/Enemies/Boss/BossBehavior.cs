@@ -35,8 +35,18 @@ public class BossBehavior : MonoBehaviour
         Wait
     }
 
+    public enum Event
+    {
+        Enter,
+        Update,
+        Exit
+    }
+
     private States actState;
     private States nextState;
+
+
+
 
     [SerializeField]private float health;
     [SerializeField]private float speed;
@@ -85,6 +95,7 @@ public class BossBehavior : MonoBehaviour
                     //Debug.Log("Esperando");
                     break;
             }
+
             StartCoroutine(Wait());
         }
 
