@@ -43,6 +43,8 @@ public class UpgradeSO : ScriptableObject
     //[Header("Modificaion de stat")]
 
 
+
+    
     public enum StatToModify
     {
         Damage,
@@ -52,9 +54,15 @@ public class UpgradeSO : ScriptableObject
 
     }
 
+    [Space(2)]
+    [Header("If is type Stat Modification:")]
+
     [SerializeField] public StatToModify modify;
 
     [SerializeField] public float valueToAdd;
+
+    [Space(2)]
+    [Header("If is type Special:")]
 
 
     [SerializeField] public SpecialSO special;

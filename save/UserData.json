@@ -3,7 +3,7 @@
     "email": "dfdsgdgf",
     "levelsHighScore": [
         0,
-        0,
+        1750,
         0,
         0,
         0,
@@ -15,7 +15,7 @@
     ],
     "levelsCompleted": [
         false,
-        false,
+        true,
         false,
         false,
         false,
@@ -25,5 +25,11 @@
         false,
         false
     ],
-    "discoveredUpgrades": []
+    "discoveredUpgrades": [
+        "MoreDamage1",
+        "Magic Mirror",
+        "Powerful magnet",
+        "LessSpeed",
+        "MoreSpeed1"
+    ]
 }
