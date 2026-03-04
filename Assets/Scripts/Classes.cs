@@ -3,24 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class VerifyData
-{
-    public string api_token;
-    public string name;
-    public string email;
-}
-
-
-public class VerifiedData
-{
-    public bool rated;
-     
-
-}
-
-
 public class RateData
 {
+    public bool rated;
     public string api_token;
     public string email;
     public string name;
@@ -51,5 +36,14 @@ public class PostData
     public string name;
     public string email;
     public int puntuacion;
+    [Header("RateThings")]
+    //Rate Things
+
+    public bool rated;
+    public int general;
+    public int jugabilitat;
+    public int dificultat;
+    public int grafics;
+    public int concordnacia;
    
 }

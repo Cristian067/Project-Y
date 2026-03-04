@@ -289,9 +289,8 @@ public class MainManager : MonoBehaviour
         Data data = new Data();
         string json = File.ReadAllText(pathUserData);
         data = JsonUtility.FromJson<Data>(json);
-        RateData dataToRate = new RateData();
+        PostData dataToRate = new PostData();
 
-        dataToRate.api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
         dataToRate.email = data.email;
         dataToRate.name = data.username;
         dataToRate.general = (int)generalSlider.value;
@@ -324,9 +323,8 @@ public class MainManager : MonoBehaviour
         data = JsonUtility.FromJson<Data>(json);
 
 
-        VerifyData postData= new VerifyData();
+        PostData postData= new PostData();
 
-        postData.api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
         postData.name = data.username;
         postData.email = data.email;
 
@@ -343,12 +341,12 @@ public class MainManager : MonoBehaviour
         request.SetRequestHeader("Accept", "application/json");
         request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
-        //Debug.Log(request.uploadHandler.ToString());
-        //Debug.Log("Status Code: " + request.responseCode);
-        //Debug.Log("Has Rated:" + request.downloadHandler.text);
+        Debug.Log(request.uploadHandler.ToString());
+        Debug.Log("Status Code: " + request.responseCode);
+        Debug.Log("Has Rated:" + request.downloadHandler.text);
 
         
-        var replyjson = JsonUtility.FromJson<VerifiedData>(request.downloadHandler.text);
+        var replyjson = JsonUtility.FromJson<PostData>(request.downloadHandler.text);
        
         callback(replyjson.rated);
 
