@@ -65,6 +65,9 @@ public class MainManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI usernameDisplay;
 
+    [SerializeField] private UpgradesDBSo upgradesDatabase;
+    [SerializeField] private GameObject slotsPanel;
+
     private string pathUserData = "save/UserData.json";
     private string apiUrl;
     private string token;
@@ -399,6 +402,17 @@ public class MainManager : MonoBehaviour
     }
 
     
+    public void RefreshEncyclopedia()
+    {
+
+        foreach (var upgrade in upgradesDatabase.upgradeSOs)
+        {
+            GameObject slot = Instantiate(Resources.Load<GameObject>("UpgradeEncyclopedia"),slotsPanel.transform);
+            slot.GetComponent<EncyclopediaButtonHandler>().upgrade = upgrade;
+        }
+
+        slotsPanel.transform.GetChild(0).GetComponent<Button>().Select();
+    }
         
 
     public void Play()
