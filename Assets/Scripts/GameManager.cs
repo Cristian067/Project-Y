@@ -15,15 +15,7 @@ public class PlayerStats
     public float pickupRange;
 }
 
-[Serializable]
-public class ApiData
-{
-    public string api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
-    public string name;
-    public string email;
-    public int puntuacion;
-   
-}
+
 
 
 public class GameManager : MonoBehaviour
@@ -326,7 +318,7 @@ public class GameManager : MonoBehaviour
         data = JsonUtility.FromJson<Data>(json);
 
 
-        ApiData postData= new ApiData();
+        PostData postData= new PostData();
         postData.name = levelNumber+"_"+data.username;
         //postData.email = data.email;
         postData.puntuacion = totalPoints;

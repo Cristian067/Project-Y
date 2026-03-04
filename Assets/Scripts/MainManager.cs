@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -44,9 +46,19 @@ public class MainManager : MonoBehaviour
     public DataFromApi leaderboard;
     public GameObject leaderboardContentGo;
 
+    [Header("LogIn")]
     [SerializeField] private GameObject enterUsernamePanel;
     [SerializeField] private TMP_InputField enterUsernameField;
     [SerializeField] private TMP_InputField enterEmailField;
+
+    [Header("Rate")]
+    public GameObject ratePanel;
+    public GameObject ratedText;
+    public Slider generalSlider;
+    public Slider jugabilitatSlider;
+    public Slider dificultatSlider;
+    public Slider graficsSlider;
+    public Slider concordanciaSlider;
 
     [SerializeField] private Button playButton;
 
@@ -142,7 +154,7 @@ public class MainManager : MonoBehaviour
 
     public void GoToMenu(int panel)
     {
-
+        ratedText.SetActive(false);
         foreach (GameObject go in menusPanel)
         {
             go.SetActive(false);
@@ -151,17 +163,7 @@ public class MainManager : MonoBehaviour
         menusPanel[panel].SetActive(true);
 
     }
-    [Serializable]
-    public class DataFromApi
-    {
-        public List<DataApi> data;
-    }
-    [Serializable]
-    public class DataApi
-    {
-        public string name;
-        public int puntuacion;
-    }
+    
 
     
     
@@ -175,7 +177,7 @@ public class MainManager : MonoBehaviour
 
 
         DataFromApi newLeaderboard = new DataFromApi();
-        newLeaderboard.data = new List<DataApi>();
+        newLeaderboard.data = new List<Scores>();
 
         foreach (Transform child in leaderboardContentGo.transform)
         {
@@ -186,7 +188,7 @@ public class MainManager : MonoBehaviour
         
         leaderboard = JsonUtility.FromJson<DataFromApi>(reply);
 
-        foreach (DataApi api in leaderboard.data)
+        foreach (Scores api in leaderboard.data)
         {
             string[] splitArray =  api.name.Split(char.Parse("_"));
             //int userLevel = 
@@ -241,6 +243,117 @@ public class MainManager : MonoBehaviour
         
     }
 
+    
+
+    public void GoToValorate()
+    {
+        StartCoroutine(VerifyValoration((reply) =>{
+            //Debug.Log(reply);
+            if (!reply)
+            {   
+                ratedText.SetActive(false);
+                ratePanel.SetActive(true);
+                Debug.Log("No ha valorado");
+
+            }
+            else
+            {
+                ratedText.SetActive(true);
+            }
+        
+        }));
+    }
+
+    public void Later()
+    {
+        ratePanel.SetActive(false);
+    }
+    public void Rate()
+    {
+        if(generalSlider.value == 0|| jugabilitatSlider.value == 0 ||dificultatSlider.value == 0 || graficsSlider.value == 0|| concordanciaSlider.value == 0)
+        {
+            Debug.Log("Tienes que valorar todos los valores");
+            
+        }
+        else
+        {
+            StartCoroutine(PostValoration());
+            ratePanel.SetActive(false);
+
+        }
+        
+    }
+
+    public IEnumerator PostValoration()
+    {
+        Data data = new Data();
+        string json = File.ReadAllText(pathUserData);
+        data = JsonUtility.FromJson<Data>(json);
+        RateData dataToRate = new RateData();
+
+        dataToRate.api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
+        dataToRate.email = data.email;
+        dataToRate.name = data.username;
+        dataToRate.general = (int)generalSlider.value;
+        dataToRate.jugabilitat = (int)jugabilitatSlider.value;
+        dataToRate.dificultat = (int)dificultatSlider.value;
+        dataToRate.grafics = (int)graficsSlider.value;
+        dataToRate.concordnacia = (int)concordanciaSlider.value;
+
+        string jsonHS = JsonUtility.ToJson(dataToRate);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonHS);
+
+        //Debug.Log(jsonHS);
+
+        var request = new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/api/rateGame");
+        request.method = UnityWebRequest.kHttpVerbPOST;
+            
+        request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+        request.SetRequestHeader("Accept", "application/json");
+        request.SetRequestHeader("Content-Type", "application/json");
+        yield return request.SendWebRequest();
+        Debug.Log(request.responseCode);
+    }
+    public IEnumerator VerifyValoration(Action<bool> callback)
+    {
+
+
+        Data data = new Data();
+        string json = File.ReadAllText(pathUserData);
+        data = JsonUtility.FromJson<Data>(json);
+
+
+        VerifyData postData= new VerifyData();
+
+        postData.api_token = "ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef";
+        postData.name = data.username;
+        postData.email = data.email;
+
+        string jsonHS = JsonUtility.ToJson(postData);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonHS);
+
+        //Debug.Log(jsonHS);
+
+        var request = new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/api/verify");
+        request.method = UnityWebRequest.kHttpVerbPOST;
+        
+        request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+        request.SetRequestHeader("Accept", "application/json");
+        request.SetRequestHeader("Content-Type", "application/json");
+        yield return request.SendWebRequest();
+        //Debug.Log(request.uploadHandler.ToString());
+        //Debug.Log("Status Code: " + request.responseCode);
+        //Debug.Log("Has Rated:" + request.downloadHandler.text);
+
+        
+        var replyjson = JsonUtility.FromJson<VerifiedData>(request.downloadHandler.text);
+       
+        callback(replyjson.rated);
+
+    
+    }
 
     private void ChangeLevel(int upOrDown)
     {
