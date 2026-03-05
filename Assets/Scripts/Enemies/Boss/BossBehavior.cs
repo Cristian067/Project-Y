@@ -57,6 +57,9 @@ public class BossBehavior : MonoBehaviour
     [SerializeField]private bool busy;
     [SerializeField]private bool inAttack;
 
+
+    private bool dead;
+
     
 
 
@@ -244,8 +247,9 @@ public class BossBehavior : MonoBehaviour
     {
         health -= damage;
         UIManager.instance.HurtHealthBar(health);
-        if (health < 0)
+        if (health < 0 && !dead)
         {
+            dead = true;
             GameManager.instance.Win();
             Destroy(gameObject);
         }

@@ -13,7 +13,7 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
     [Tooltip("ScriptableObject of the upgrade")]
     public UpgradeSO upgrade;
 
-    public bool unlocked;
+    public bool unlocked = false;
 
     public TextMeshProUGUI name_text;
     public TextMeshProUGUI description_text;
@@ -25,6 +25,7 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        CheckIfDiscovered();
         if (upgrade.type == UpgradeSO.UpgradeType.Special)
         {
             ColorBlock colorVar = GetComponent<Button>().colors;
@@ -81,6 +82,7 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
+        CheckIfDiscovered();
         if (unlocked)
         {
             name_text.text = upgrade.name;

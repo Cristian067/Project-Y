@@ -71,12 +71,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef"));
         Time.timeScale = 1;
 
-        UIManager.instance.RefreshStatsUi();
         ReloadStats();
-
+    
         try
         {
             playerScript = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -91,7 +89,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Pause") && !paused )//Input.GetButtonDown("Pause") && !DialoguesManager.instance.IsOnDialogue() ||Input.GetButtonDown("Pause") && !paused)
+        if (Input.GetButtonDown("Pause") && !paused )
         {
             Pause(true);
         }
@@ -158,6 +156,9 @@ public class GameManager : MonoBehaviour
         {
             barrierInRecharge = false;
         }
+
+        UIManager.instance.RefreshStatsUi();
+
     }
 
     public void Pause(bool usePanel = false)
@@ -195,7 +196,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(playerScript.HitInCooldown());
         if (lives == 0)
         {
-
             Debug.Log("GameOver");
             Lose();
         }
@@ -241,7 +241,6 @@ public class GameManager : MonoBehaviour
 
     public void RechargeSpecial(float recharge)
     {
-
         if (specials >= maxSpecials)
         {
             return;
@@ -294,64 +293,31 @@ public class GameManager : MonoBehaviour
         barrierInRecharge = false;
     }
 
-    private IEnumerator GetFromApi(string url)
-    {
-        UnityWebRequest request = UnityWebRequest.Get(url);
 
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log("Respuesta: " + request.downloadHandler.text);
-        }
-        else
-        {
-            Debug.LogError("Error: " + request.error);
-        }
-    }
-
-    private IEnumerator PostAPi()
-    {
-
-        Data data = new Data();
-        string json = File.ReadAllText(pathUserData);
-        data = JsonUtility.FromJson<Data>(json);
-
-
-        PostData postData= new PostData();
-        postData.name = levelNumber+"_"+data.username;
-        //postData.email = data.email;
-        postData.puntuacion = totalPoints;
-        string jsonHS = JsonUtility.ToJson(postData);
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonHS);
-
-        var request = new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification");
-        request.method = UnityWebRequest.kHttpVerbPOST;
-        
-        request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
-        request.SetRequestHeader("Accept", "application/json");
-        request.SetRequestHeader("Content-Type", "application/json");
-        yield return request.SendWebRequest();
-        //Debug.Log(request.uploadHandler.ToString());
-        Debug.Log("Status Code: " + request.responseCode);
-
-    }
+    
 
     [ContextMenu("Win Game")]
     public void Win()
     {
-        //File.WriteAllText(pathUserData, JsonUtility.ToJson(new Data(),true));
+
         Data data= new Data();
         string json = File.ReadAllText(pathUserData);
         data = JsonUtility.FromJson<Data>(json);
 
-
         data = RegistryUpgrades(data);
-        data.levelsCompleted[levelNumber] = true;
-        data.levelsHighScore[levelNumber] = totalPoints;
 
-        StartCoroutine(PostAPi());
+        if (!data.levelsCompleted[levelNumber])
+        {
+            data.levelsCompleted[levelNumber] = true;
+        }
+        
+        if(data.levelsHighScore[levelNumber] < totalPoints)
+        {
+            data.levelsHighScore[levelNumber] = totalPoints;
+        }
+
+
+        StartCoroutine(ApiCalls.PostScore(pathUserData,levelNumber,totalPoints));
 
         json = JsonUtility.ToJson(data,true);
         File.WriteAllText(pathUserData, json);
@@ -364,8 +330,8 @@ public class GameManager : MonoBehaviour
     private Data RegistryUpgrades(Data data)
     {
         //Data data = new Data();
-        string json = File.ReadAllText(pathUserData);
-        data = JsonUtility.FromJson<Data>(json);
+        // string json = File.ReadAllText(pathUserData);
+        // data = JsonUtility.FromJson<Data>(json);
 
         foreach (var upgrade in UpgradesManager.instance.upgrades)
         {

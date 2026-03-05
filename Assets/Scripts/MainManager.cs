@@ -75,7 +75,6 @@ public class MainManager : MonoBehaviour
 
     void Start()
     {
-
         apiUrl = Resources.Load<NetworkDataSO>("ScriptableObjects/NetworkData").apiUrl;
         token = Resources.Load<NetworkDataSO>("ScriptableObjects/NetworkData").token;
 
@@ -104,7 +103,6 @@ public class MainManager : MonoBehaviour
             //GetComponent<GraphicRaycaster>().enabled = true;
             enterUsernamePanel.SetActive(true);
             enterUsernameField.Select();
-            
         }
         else
         {
@@ -118,28 +116,39 @@ public class MainManager : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject()) return;
     }
 
-
     public void LogOut()
     {
         Data data = new Data();
-        
-        //data.levelsCompleted[0] = false;
-        //string json = JsonUtility.ToJson(data,true);
-        //File.WriteAllText(pathUserData,json); 
-
         GameObject.Find("EventSystem").GetComponent<DisableMouse>().enabled = false;
-        //GetComponent<GraphicRaycaster>().enabled = true;
         enterUsernamePanel.SetActive(true);
         enterUsernameField.Select();
     }
 
+    public void DontLogIn()
+    {
+        enterUsernamePanel.SetActive(false);
+
+        string json = File.ReadAllText(pathUserData);
+        Data data = JsonUtility.FromJson<Data>(json);
+        
+        if((data.username == null || data.username == "") && (data.email == null || data.email == ""))
+        {
+            data.username = "User";
+            data.email = "anonimous@gmail.com";
+        }
+        
+
+        string json2 = JsonUtility.ToJson(data,true);
+        File.WriteAllText(pathUserData,json2); 
+
+        usernameDisplay.text = data.username;
+
+    }
+
     public void SaveInfo()
     {
-        Data data = new Data();
-
-        
         string json = File.ReadAllText(pathUserData);
-        data = JsonUtility.FromJson<Data>(json);
+        Data data = JsonUtility.FromJson<Data>(json);
         
         data.username = enterUsernameField.text;
         data.email = enterEmailField.text;
@@ -187,7 +196,7 @@ public class MainManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        StartCoroutine(GetFromApi("https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/ZHVxZUtGF4E0wzz0400BRy8imjHDgZPmL5m5UD5VYBUCstloOUH2sSbbS9ef", (reply) =>{ 
+        StartCoroutine(ApiCalls.GetLeaderBoard($"https://phpstack-1076337-5399863.cloudwaysapps.com/api/classification/{token}", (reply) =>{ 
         
         leaderboard = JsonUtility.FromJson<DataFromApi>(reply);
 
@@ -220,26 +229,7 @@ public class MainManager : MonoBehaviour
         
     }
 
-    private IEnumerator GetFromApi(string url, Action<string> callback)
-    {
-        UnityWebRequest request = UnityWebRequest.Get(url);
-        request.SetRequestHeader("Accept","application/json");
-        request.SetRequestHeader("Content-Type","application/json");
-
-        yield return request.SendWebRequest();
-
-        Debug.Log(request.result);
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log("Respuesta: " + request.downloadHandler.text);
-            callback(request.downloadHandler.text);
-            yield return request.downloadHandler.text;
-        }
-        else
-        {
-            Debug.LogError("Error: " + request.error);
-        }
-    }
+    
     public void SelectButton(Button button)
     {
         button.Select();
@@ -250,7 +240,7 @@ public class MainManager : MonoBehaviour
 
     public void GoToValorate()
     {
-        StartCoroutine(VerifyValoration((reply) =>{
+        StartCoroutine(ApiCalls.VerifyValoration(pathUserData,(reply) =>{
             //Debug.Log(reply);
             if (!reply)
             {   
@@ -280,81 +270,15 @@ public class MainManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(PostValoration());
+            StartCoroutine(ApiCalls.PostValoration(pathUserData,generalSlider.value,jugabilitatSlider.value,dificultatSlider.value,graficsSlider.value,concordanciaSlider.value));
             ratePanel.SetActive(false);
 
         }
         
     }
 
-    public IEnumerator PostValoration()
-    {
-        Data data = new Data();
-        string json = File.ReadAllText(pathUserData);
-        data = JsonUtility.FromJson<Data>(json);
-        PostData dataToRate = new PostData();
-
-        dataToRate.email = data.email;
-        dataToRate.name = data.username;
-        dataToRate.general = (int)generalSlider.value;
-        dataToRate.jugabilitat = (int)jugabilitatSlider.value;
-        dataToRate.dificultat = (int)dificultatSlider.value;
-        dataToRate.grafics = (int)graficsSlider.value;
-        dataToRate.concordnacia = (int)concordanciaSlider.value;
-
-        string jsonHS = JsonUtility.ToJson(dataToRate);
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonHS);
-
-        //Debug.Log(jsonHS);
-
-        var request = new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/api/rateGame");
-        request.method = UnityWebRequest.kHttpVerbPOST;
-            
-        request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
-        request.SetRequestHeader("Accept", "application/json");
-        request.SetRequestHeader("Content-Type", "application/json");
-        yield return request.SendWebRequest();
-        Debug.Log(request.responseCode);
-    }
-    public IEnumerator VerifyValoration(Action<bool> callback)
-    {
-
-
-        Data data = new Data();
-        string json = File.ReadAllText(pathUserData);
-        data = JsonUtility.FromJson<Data>(json);
-
-
-        PostData postData= new PostData();
-
-        postData.name = data.username;
-        postData.email = data.email;
-
-        string jsonHS = JsonUtility.ToJson(postData);
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonHS);
-
-        //Debug.Log(jsonHS);
-
-        var request = new UnityWebRequest("https://phpstack-1076337-5399863.cloudwaysapps.com/api/verify");
-        request.method = UnityWebRequest.kHttpVerbPOST;
-        
-        request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
-        request.SetRequestHeader("Accept", "application/json");
-        request.SetRequestHeader("Content-Type", "application/json");
-        yield return request.SendWebRequest();
-        Debug.Log(request.uploadHandler.ToString());
-        Debug.Log("Status Code: " + request.responseCode);
-        Debug.Log("Has Rated:" + request.downloadHandler.text);
-
-        
-        var replyjson = JsonUtility.FromJson<PostData>(request.downloadHandler.text);
-       
-        callback(replyjson.rated);
-
     
-    }
+    
 
     private void ChangeLevel(int upOrDown)
     {
@@ -401,17 +325,27 @@ public class MainManager : MonoBehaviour
         } 
     }
 
+    public void CleanEncyclopedia()
+    {
+        foreach (Transform child in slotsPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
     
     public void RefreshEncyclopedia()
     {
-
+        CleanEncyclopedia();
         foreach (var upgrade in upgradesDatabase.upgradeSOs)
         {
             GameObject slot = Instantiate(Resources.Load<GameObject>("UpgradeEncyclopedia"),slotsPanel.transform);
             slot.GetComponent<EncyclopediaButtonHandler>().upgrade = upgrade;
+            slot.GetComponent<EncyclopediaButtonHandler>().description_text = GameObject.Find("UpgradeDescription").GetComponent<TextMeshProUGUI>();
+            slot.GetComponent<EncyclopediaButtonHandler>().name_text = GameObject.Find("UpgradeName").GetComponent<TextMeshProUGUI>();
+            
         }
-
         slotsPanel.transform.GetChild(0).GetComponent<Button>().Select();
+        
     }
         
 
