@@ -246,6 +246,7 @@ public class MainManager : MonoBehaviour
             {   
                 ratedText.SetActive(false);
                 ratePanel.SetActive(true);
+                generalSlider.Select();
                 Debug.Log("No ha valorado");
 
             }
