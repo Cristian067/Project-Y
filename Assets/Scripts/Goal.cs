@@ -14,6 +14,8 @@ public class Goal : MonoBehaviour
 
     [SerializeField]private GameObject boss;
 
+    [SerializeField] private AudioClip bossMusic;
+
     [SerializeField]private bool haveTextBeforeBoss;
 
     //[SerializeField]private int levelNumber;
@@ -64,6 +66,7 @@ public class Goal : MonoBehaviour
             if (haveTextBeforeBoss)
             {
                 DialoguesManager.instance.StartDialogue("Boss");
+                AudioManager.Instance.ChangeMusic(bossMusic);
             }
             Instantiate(boss);
         }
