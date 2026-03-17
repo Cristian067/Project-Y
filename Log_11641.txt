@@ -1,5 +1,0 @@
-[11:6:06]Stats reloaded.
-[11:6:06]Level 1 started.
-[11:6:17]Game saved in: C:/Users/EVRV/Documents/Unity/Project-Y/Assets/save/UserData.json.
-[11:6:17]The player won the level 1.
-[11:6:39]The player quit the level.

@@ -1,5 +1,0 @@
-[12:03:23]Stats reloaded.
-[12:03:23]Level 1 started.
-[12:03:37]Item Created with type Point with value30 at (-6.49, 0.00, 9.15).
-[12:03:38]Item Created with type Point with value30 at (-4.48, 0.00, 6.94).
-[12:03:40]Item Created with type Point with value30 at (0.33, 0.00, 7.17).
