@@ -12,15 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59dff987279dba549aab7f278c189da3, type: 3}
   m_Name: Log
   m_EditorClassIdentifier: GameAssembly::LogSO
-  logDate:
-  - 11:6:06
-  - 11:6:06
-  - 11:6:17
-  - 11:6:17
-  - 11:6:39
-  log:
-  - Stats reloaded
-  - Level 1 started
-  - 'Game saved in: C:/Users/EVRV/Documents/Unity/Project-Y/Assets/save/UserData.json'
-  - The player won the level 1
-  - The player quit the level
+  logDate: []
+  log: []
