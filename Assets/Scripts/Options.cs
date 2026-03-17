@@ -3,12 +3,17 @@ using System;
 using UnityEngine;
 using System.Text;
 using UnityEngine.UI;
+using TMPro;
 
 public class Options : MonoBehaviour
 {
 
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private Slider musicSlider;
+
+    [SerializeField] private TextMeshProUGUI musicValue;
+    [SerializeField] private TextMeshProUGUI sfxValue;
+
 
     [SerializeField] private Toggle fullscreenToogle;
     private string pathSettings = "save/settings.json";
@@ -27,6 +32,13 @@ public class Options : MonoBehaviour
         
     }
 
+    public void ChangeVisualValue(float value)
+    {
+
+        musicValue.text = musicSlider.value.ToString();
+        sfxValue.text = sfxSlider.value.ToString();
+        
+    }
 
 
     public void ApplySettings()
@@ -34,14 +46,14 @@ public class Options : MonoBehaviour
         
         Settings settings = new Settings();
 
-        settings.sfxVolume = sfxSlider.value;
-        settings.musicVolume = musicSlider.value;
+        settings.sfxVolume = sfxSlider.value/100;
+        settings.musicVolume = musicSlider.value/100;
         settings.fullscreen = fullscreenToogle.isOn;
 
         string settingsJson = JsonUtility.ToJson(settings,true);
         File.WriteAllText(pathSettings, settingsJson);
 
-        Log.AddToLog($"Applied options: -Music: {settings.musicVolume *100}% -Sfx: {settings.sfxVolume *100}% -FullScreen: {settings.fullscreen}");
+        Log.AddToLog($"Applied options: -Music: {settings.musicVolume*100}% -Sfx: {settings.sfxVolume*100}% -FullScreen: {settings.fullscreen}");
     }
 
     // private void LoadSettings()
@@ -88,8 +100,8 @@ public class Options : MonoBehaviour
             settings = JsonUtility.FromJson<Settings>(json);
         }
 
-        sfxSlider.value = settings.sfxVolume;
-        musicSlider.value = settings.musicVolume;
+        sfxSlider.value = settings.sfxVolume *100;
+        musicSlider.value = settings.musicVolume*100;
         fullscreenToogle.isOn = settings.fullscreen;
     }
 }

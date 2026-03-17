@@ -1,0 +1,4 @@
+[11:37:03]Stats reloaded.
+[11:37:03]Level 1 started.
+[11:37:11]Applied options: -Music: 0% -Sfx: 0.86% -FullScreen: False.
+[11:37:12]Applied options: -Music: 0% -Sfx: 0.86% -FullScreen: False.

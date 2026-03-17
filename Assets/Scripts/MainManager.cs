@@ -364,5 +364,11 @@ public class MainManager : MonoBehaviour
         Application.Quit();
     }
 
+    void OnApplicationQuit()
+    {
+        //Log.AddToLog("User");
+        Log.ExportLog();
+    }
+
 
 }

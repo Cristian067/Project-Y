@@ -328,6 +328,7 @@ public class GameManager : MonoBehaviour
         File.WriteAllText(pathUserData, json);
         Log.AddToLog($"Game saved in: {Application.dataPath}/{pathUserData}");
         Log.AddToLog("The player won the level " + levelNumber);
+        //Log.AddToLog("The player k " + levelNumber);
         UIManager.instance.DisplayWinPanel();
         Pause();
 
