@@ -40,6 +40,8 @@ public class Options : MonoBehaviour
 
         string settingsJson = JsonUtility.ToJson(settings,true);
         File.WriteAllText(pathSettings, settingsJson);
+
+        Log.AddToLog($"Applied options: -Music: {settings.musicVolume *100}% -Sfx: {settings.sfxVolume *100}% -FullScreen: {settings.fullscreen}");
     }
 
     // private void LoadSettings()

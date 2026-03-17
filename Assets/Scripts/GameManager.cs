@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
     public float specialCooldown { get; private set; }
 
 
+    public int enemies = 0;
+
     //private Data data = new Data();
 
     private string pathUserData = "save/UserData.json";
@@ -83,6 +85,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning("No existe player");
         }
+
+        Log.AddToLog($"Level {levelNumber} started");
         
     }
 
@@ -158,6 +162,7 @@ public class GameManager : MonoBehaviour
         }
 
         UIManager.instance.RefreshStatsUi();
+        Log.AddToLog("Stats reloaded");
 
     }
 
@@ -321,7 +326,8 @@ public class GameManager : MonoBehaviour
 
         json = JsonUtility.ToJson(data,true);
         File.WriteAllText(pathUserData, json);
-
+        Log.AddToLog($"Game saved in: {Application.dataPath}/{pathUserData}");
+        Log.AddToLog("The player won the level " + levelNumber);
         UIManager.instance.DisplayWinPanel();
         Pause();
 
@@ -337,6 +343,7 @@ public class GameManager : MonoBehaviour
         {
             if (!data.discoveredUpgrades.Contains(upgrade.name))
             {
+                Log.AddToLog($"New upgrade registred: {upgrade.name}");
                 data.discoveredUpgrades.Add(upgrade.name);
             }
         }
@@ -345,6 +352,7 @@ public class GameManager : MonoBehaviour
     }
     public void Lose()
     {
+        Log.AddToLog("The player lost the level " + levelNumber);
         UIManager.instance.DisplayLosePanel();
         Pause();
     }
@@ -355,7 +363,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void GoToMainMenu()
-    {
+    {   
+        //Log.AddToLog($"The player quit the level");
         SceneManager.LoadScene(0);
     }
 
@@ -391,5 +400,13 @@ public class GameManager : MonoBehaviour
         }
         specialInCooldown = false;
     }
+
+
+    void OnApplicationQuit()
+    {
+        //Log.AddToLog("User");
+        Log.ExportLog();
+    }
+    
 
 }

@@ -279,7 +279,10 @@ public class MainManager : MonoBehaviour
     }
 
     
-    
+    public void ExportLog()
+    {
+        Log.ExportLog();
+    }
 
     private void ChangeLevel(int upOrDown)
     {

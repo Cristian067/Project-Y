@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59dff987279dba549aab7f278c189da3, type: 3}
+  m_Name: Log
+  m_EditorClassIdentifier: GameAssembly::LogSO
+  logDate:
+  - 11:6:06
+  - 11:6:06
+  - 11:6:17
+  - 11:6:17
+  - 11:6:39
+  log:
+  - Stats reloaded
+  - Level 1 started
+  - 'Game saved in: C:/Users/EVRV/Documents/Unity/Project-Y/Assets/save/UserData.json'
+  - The player won the level 1
+  - The player quit the level

@@ -44,8 +44,7 @@ public class EnemyBehavior : MonoBehaviour
         animator = GetComponent<Animator>();
         transform.position = new Vector3(movementBehavior.positions[0].x, 0, transform.position.z);
 
-        
-            
+        GameManager.instance.enemies += 1;
         
     }
 

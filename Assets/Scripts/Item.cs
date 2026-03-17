@@ -46,6 +46,8 @@ public class Item : MonoBehaviour
 
         gameObject.GetComponent<MeshRenderer>().material = itemMaterials[r];
 
+        Log.AddToLog("Item Created with type " + type.ToString() + " with value" + points + " at " + transform.position);
+
 
         
         

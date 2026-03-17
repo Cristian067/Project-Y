@@ -1,0 +1,17 @@
+[11:6:06]Stats reloaded.
+[11:6:06]Level 1 started.
+[11:6:17]Game saved in: C:/Users/EVRV/Documents/Unity/Project-Y/Assets/save/UserData.json.
+[11:6:17]The player won the level 1.
+[11:6:39]The player quit the level.
+[11:15:22]Applied options: -Music: 0.2 -Sfx: 1 -FullScreen: False.
+[11:16:55]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:11]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:11]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:12]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:12]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:13]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:13]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:13]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:14]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:14]Applied options: -Music: 59.06279% -Sfx: 85.80383% -FullScreen: False.
+[11:17:16]Applied options: -Music: 29.58687% -Sfx: 85.80383% -FullScreen: False.

@@ -63,6 +63,8 @@ public class Goal : MonoBehaviour
 
         if(type == GoalType.KillBoss)
         {
+
+            Log.AddToLog($"Boss phase started");
             if (haveTextBeforeBoss)
             {
                 DialoguesManager.instance.StartDialogue("Boss");
