@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Mono.Cecil.Cil;
 using UnityEngine;
 
 
@@ -19,11 +20,21 @@ public class LogSO : ScriptableObject
 public static class Log
 {
     
+    private static LogSO log;
 
+    private static LogSO LoadLog()
+    {
+        if(log == null)
+        {
+            log = Resources.Load<LogSO>("ScriptableObjects/Log");
+        }
+        return log;
+        
+    }
 
     public static void AddToLog(string _log)
     {
-
+        log = LoadLog();
         DateTime time = DateTime.Now;
         string logTime = "";
 
@@ -38,9 +49,10 @@ public static class Log
 
         logTime = $"{time.Hour}:{fixedMinute}:{fixedSecond}";
 
-        var log = Resources.Load<LogSO>("ScriptableObjects/Log");
+        //var log = Resources.Load<LogSO>("ScriptableObjects/Log");
         log.logDate.Add(logTime);
         log.log.Add(_log);
+        //log.
     }
 
     public static void CleanLog()
@@ -53,6 +65,8 @@ public static class Log
 
     public static void ExportLog()
     {
+
+        log = LoadLog();
         DateTime time = DateTime.Now;
 
         string fixedSecond;
@@ -68,7 +82,7 @@ public static class Log
         string logTime = $"Log_{time.Hour}{fixedMinute}{fixedSecond}";
 
 
-        var log = Resources.Load<LogSO>("ScriptableObjects/Log");
+        //log = Resources.Load<LogSO>("ScriptableObjects/Log");
 
         string finalLog = "";
 

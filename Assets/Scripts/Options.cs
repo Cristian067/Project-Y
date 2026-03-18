@@ -16,6 +16,7 @@ public class Options : MonoBehaviour
 
 
     [SerializeField] private Toggle fullscreenToogle;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
     private string pathSettings = "save/settings.json";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,11 +52,22 @@ public class Options : MonoBehaviour
         settings.fullscreen = fullscreenToogle.isOn;
 
         string settingsJson = JsonUtility.ToJson(settings,true);
+        ApplyResolution();
         File.WriteAllText(pathSettings, settingsJson);
 
         Log.AddToLog($"Applied options: -Music: {settings.musicVolume*100}% -Sfx: {settings.sfxVolume*100}% -FullScreen: {settings.fullscreen}");
     }
 
+
+    private void ApplyResolution()
+    {
+        string[] resolution = resolutionDropdown.options[resolutionDropdown.value].text.Split('x');
+
+
+        Vector2 resolutionInt = new Vector2(int.Parse(resolution[0]),int.Parse(resolution[1]));
+
+        Screen.SetResolution(Mathf.RoundToInt(resolutionInt.x),Mathf.RoundToInt(resolutionInt.y),fullscreenToogle.isOn);
+    }
     // private void LoadSettings()
     // {
     //     if (File.Exists(pathSettings))

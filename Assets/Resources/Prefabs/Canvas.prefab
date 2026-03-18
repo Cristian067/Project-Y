@@ -2272,6 +2272,7 @@ MonoBehaviour:
   musicValue: {fileID: 8474190714930841065}
   sfxValue: {fileID: 565004299415694389}
   fullscreenToogle: {fileID: 8582115604429658356}
+  resolutionDropdown: {fileID: 1565179977414926386}
 --- !u!1 &2402305250106284442
 GameObject:
   m_ObjectHideFlags: 0
