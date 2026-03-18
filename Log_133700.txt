@@ -1,0 +1,62 @@
+[13:31:22]Stats reloaded.
+[13:31:22]Level 1 started.
+[13:31:36]Item Created with type Point with value 30 at (-3.45, 0.00, 6.59).
+[13:31:38]Item Created with type Health with value 30 at (-3.80, 0.00, 6.69).
+[13:31:38]Item Created with type Point with value 30 at (-1.21, 0.00, 6.11).
+[13:31:40]Item Created with type Point with value 30 at (-2.75, 0.00, 6.40).
+[13:31:43]Item Created with type Health with value 30 at (-1.87, 0.00, 6.16).
+[13:31:44]Item Created with type Special with value 30 at (1.02, 0.00, 8.48).
+[13:31:51]Item Created with type Point with value 30 at (-2.26, 0.00, 10.50).
+[13:31:53]Item Created with type Point with value 30 at (-4.11, 0.00, 9.63).
+[13:31:56]Stats reloaded.
+[13:31:56]Item Created with type Point with value 30 at (-3.34, 0.00, 9.41).
+[13:31:57]Item Created with type Special with value 30 at (-3.60, 0.00, 9.49).
+[13:32:07]Item Created with type Point with value 30 at (6.66, 0.00, 7.05).
+[13:32:08]Item Created with type Health with value 30 at (2.59, 0.00, 7.45).
+[13:32:11]Item Created with type Point with value 30 at (2.29, 0.00, 7.73).
+[13:32:14]Item Created with type Point with value 30 at (-0.94, 0.00, 8.51).
+[13:32:15]Item Created with type Point with value 30 at (-3.21, 0.00, 7.00).
+[13:32:17]Item Created with type Point with value 30 at (-3.38, 0.00, 7.05).
+[13:32:21]Stats reloaded.
+[13:32:22]Item Created with type Point with value 30 at (-2.65, 0.00, 7.40).
+[13:32:22]Item Created with type Point with value 30 at (0.24, 0.00, 8.66).
+[13:32:25]Item Created with type Point with value 30 at (0.05, 0.00, 8.70).
+[13:32:26]Item Created with type Point with value 30 at (-0.35, 0.00, 8.65).
+[13:32:32]Item Created with type Point with value 30 at (-7.00, 0.00, 6.72).
+[13:32:33]Item Created with type Special with value 30 at (-6.00, 0.00, 7.55).
+[13:32:33]Item Created with type Point with value 30 at (-5.00, 0.00, 8.43).
+[13:32:45]Stats reloaded.
+[13:32:47]Item Created with type Point with value 30 at (-4.00, 0.00, 6.11).
+[13:32:50]Item Created with type Point with value 30 at (-2.00, 0.00, 1.17).
+[13:32:51]Item Created with type Point with value 30 at (-3.00, 0.00, -1.24).
+[13:32:52]Item Created with type Point with value 30 at (-1.00, 0.00, -1.17).
+[13:32:56]Stats reloaded.
+[13:32:57]Item Created with type Health with value 30 at (0.00, 0.00, -1.68).
+[13:32:58]Item Created with type Point with value 30 at (1.00, 0.00, -1.91).
+[13:32:59]Item Created with type Special with value 30 at (2.00, 0.00, -3.81).
+[13:33:03]Item Created with type Point with value 30 at (-3.00, 0.00, 5.19).
+[13:33:07]Item Created with type Point with value 30 at (-4.00, 0.00, -3.72).
+[13:33:13]Item Created with type Special with value 30 at (5.00, 0.00, -2.25).
+[13:33:14]Item Created with type Special with value 30 at (7.00, 0.00, -1.23).
+[13:33:21]Item Created with type Point with value 30 at (2.11, 0.00, 10.00).
+[13:33:21]Item Created with type Point with value 30 at (1.04, 0.00, 8.53).
+[13:33:26]Stats reloaded.
+[13:33:27]Item Created with type Special with value 30 at (1.30, 0.00, 9.05).
+[13:33:32]Item Created with type Point with value 40 at (-2.65, 0.00, 9.68).
+[13:33:56]Item Created with type Special with value 30 at (0.21, 0.00, 8.69).
+[13:33:59]Item Created with type Health with value 30 at (-2.97, 0.00, 7.06).
+[13:34:00]Item Created with type Point with value 30 at (-2.51, 0.00, 7.48).
+[13:34:02]Item Created with type Point with value 30 at (-2.29, 0.00, 7.73).
+[13:34:05]Item Created with type Point with value 30 at (0.40, 0.00, 8.63).
+[13:34:08]Item Created with type Point with value 30 at (2.17, 0.00, 7.79).
+[13:34:15]Boss phase started.
+[13:34:48]Item Created with type Health with value 0 at (0.00, 0.00, 6.52).
+[13:35:37]Item Created with type Point with value 0 at (0.00, 0.00, 6.74).
+[13:35:56]Item Created with type Special with value 0 at (-6.00, 0.00, 6.31).
+[13:36:37]Item Created with type Point with value 0 at (3.00, 0.00, 10.67).
+[13:36:38]Item Created with type Health with value 0 at (6.00, 0.00, 7.77).
+[13:36:41]Item Created with type Point with value 0 at (-3.00, 0.00, 1.86).
+[13:36:42]Item Created with type Special with value 0 at (0.00, 0.00, -1.71).
+[13:36:56]New upgrade registred: LessDamage.
+[13:36:56]Game saved in: C:/Users/EVRV/Documents/Unity/Project-Y/Assets/save/UserData.json.
+[13:36:56]The player won the level 1.
