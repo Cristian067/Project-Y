@@ -28,12 +28,14 @@ public class UpgradesManager : MonoBehaviour
 
     private bool isCustom;
 
-    [SerializeField] private UpgradeSO[] allTheAllyUpgrades;
-    [SerializeField] private UpgradeSO[] allTheEnemyUpgrades;
+    [SerializeField] private List<UpgradeSO> allThePlayerUpgrades;
+    [SerializeField] private List<UpgradeSO> allTheEnemyUpgrades;
 
 
 
-    public List<UpgradeSO> upgrades;
+    public UpgradesDBSo upgradeDB;
+
+    public List<UpgradeSO> playerUpgrades;
     public List<UpgradeSO> enemyUpgrades;
 
     [SerializeField] public UpgradeSO special;
@@ -51,7 +53,7 @@ public class UpgradesManager : MonoBehaviour
     void Start()
     {
         
-
+        LoadUpdates();
 
 
 
@@ -61,6 +63,30 @@ public class UpgradesManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void LoadUpdates()
+    {
+
+        allThePlayerUpgrades.Clear();
+        allTheEnemyUpgrades.Clear();
+        
+        foreach ( UpgradeSO _upgrade in upgradeDB.upgradeSOs)
+        {
+            if(_upgrade.whoToAdd == UpgradeSO.Who.Player)
+            {
+                allThePlayerUpgrades.Add(_upgrade);
+            }
+            if(_upgrade.whoToAdd == UpgradeSO.Who.Enemy)
+            {
+                allTheEnemyUpgrades.Add(_upgrade);
+            }
+            if(_upgrade.whoToAdd == UpgradeSO.Who.Both)
+            {
+                allThePlayerUpgrades.Add(_upgrade);
+                allTheEnemyUpgrades.Add(_upgrade);
+            }
+        }
     }
 
 
@@ -79,7 +105,7 @@ public class UpgradesManager : MonoBehaviour
             if (goodOrBad == 0)
             {
                 List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
-                foreach (UpgradeSO upgrade in allTheAllyUpgrades)
+                foreach (UpgradeSO upgrade in allThePlayerUpgrades)
                 {
                     if (upgrade.alignment == UpgradeSO.Alignment.Positive && upgrade.type == UpgradeSO.UpgradeType.StatModification)
                     {
@@ -92,7 +118,7 @@ public class UpgradesManager : MonoBehaviour
             {
                 List<UpgradeSO> badUpgrade = new List<UpgradeSO>();
 
-                foreach (UpgradeSO upgrade in allTheAllyUpgrades)
+                foreach (UpgradeSO upgrade in allThePlayerUpgrades)
                 {
                     if (upgrade.alignment == UpgradeSO.Alignment.Negative && upgrade.type == UpgradeSO.UpgradeType.StatModification)
                     {
@@ -108,7 +134,7 @@ public class UpgradesManager : MonoBehaviour
             if (goodOrBad == 0)
             {
                 List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
-                foreach (UpgradeSO upgrade in allTheAllyUpgrades)
+                foreach (UpgradeSO upgrade in allThePlayerUpgrades)
                 {
                     if (upgrade.alignment == UpgradeSO.Alignment.Positive && upgrade.type == UpgradeSO.UpgradeType.Effect)
                     {
@@ -121,7 +147,7 @@ public class UpgradesManager : MonoBehaviour
             {
                 List<UpgradeSO> badUpgrade = new List<UpgradeSO>();
 
-                foreach (UpgradeSO upgrade in allTheAllyUpgrades)
+                foreach (UpgradeSO upgrade in allThePlayerUpgrades)
                 {
                     if (upgrade.alignment == UpgradeSO.Alignment.Negative && upgrade.type == UpgradeSO.UpgradeType.Effect)
                     {
@@ -149,7 +175,7 @@ public class UpgradesManager : MonoBehaviour
             //if (goodOrBad == 0)
             //{
                 List<UpgradeSO> goodUpgrade = new List<UpgradeSO>();
-                foreach (UpgradeSO upgrade in allTheAllyUpgrades)
+                foreach (UpgradeSO upgrade in allThePlayerUpgrades)
                 {
                     if (upgrade.alignment == UpgradeSO.Alignment.Positive && upgrade.type == UpgradeSO.UpgradeType.Special)
                     {
@@ -258,11 +284,11 @@ public class UpgradesManager : MonoBehaviour
         UpgradeSO[] allyUpgrades = new UpgradeSO[3];
         UpgradeSO[] enemyUpgrades = new UpgradeSO[3];
 
-        List<UpgradeSO> upgradePull = allTheAllyUpgrades.ToList<UpgradeSO>();
+        List<UpgradeSO> upgradePull = allThePlayerUpgrades.ToList<UpgradeSO>();
         List<UpgradeSO> upgradeEnemyPull = allTheEnemyUpgrades.ToList<UpgradeSO>();
 
 
-        foreach(UpgradeSO upgrade in upgrades)
+        foreach(UpgradeSO upgrade in playerUpgrades)
         {
             if(upgrade.type == UpgradeSO.UpgradeType.StatModification)
             {
@@ -352,11 +378,8 @@ public class UpgradesManager : MonoBehaviour
         }
         else
         {
-            
-            upgrades.Add(playerUpgrade);
+            playerUpgrades.Add(playerUpgrade);
             enemyUpgrades.Add(enemyUpgrade);
-
-            
         }
 
         GameManager.instance.ReloadStats();

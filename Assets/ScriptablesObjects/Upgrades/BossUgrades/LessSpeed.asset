@@ -15,7 +15,8 @@ MonoBehaviour:
   whoToAdd: 1
   type: 0
   alignment: 1
-  description: loses speed
-  modify: 1
-  valueToAdd: -1
+  description: The final enemy loses speed
+  modify: 01000000
+  valuesToAdd:
+  - -1
   special: {fileID: 0}

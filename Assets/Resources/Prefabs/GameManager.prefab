@@ -67,7 +67,7 @@ MonoBehaviour:
     damage: 0
     speed: 0
     pickupRange: 0
-  bearerToken: 
+  enemies: 0
 --- !u!114 &6215549035710551892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,25 +85,14 @@ MonoBehaviour:
     magicMirror: {fileID: 11400000, guid: 2a46173ca190c28448f43489ef585242, type: 2}
     barrier: {fileID: 11400000, guid: a628e2fe3e9b273478c41194b6e75cab, type: 2}
     chargedShoot: {fileID: 11400000, guid: 335f106cb9a41c64580498513f9be5e6, type: 2}
-  allTheAllyUpgrades:
-  - {fileID: 11400000, guid: a628e2fe3e9b273478c41194b6e75cab, type: 2}
-  - {fileID: 11400000, guid: 335f106cb9a41c64580498513f9be5e6, type: 2}
-  - {fileID: 11400000, guid: 2a46173ca190c28448f43489ef585242, type: 2}
-  - {fileID: 11400000, guid: b687a1828d021f648af12f298c565d61, type: 2}
-  - {fileID: 11400000, guid: 78f823d9bc82e6e418655ed04041dc98, type: 2}
-  - {fileID: 11400000, guid: 6292643bbeb5df947814ca78ff0a9e2b, type: 2}
-  - {fileID: 11400000, guid: 94571dce7bbb70f4a9ad4d39f911c84d, type: 2}
-  - {fileID: 11400000, guid: 63ee1f7101c87a148b2db8d798669b72, type: 2}
-  - {fileID: 11400000, guid: 70a07da2dedfff840b24473b05130f5c, type: 2}
-  - {fileID: 11400000, guid: 043f1514f86776445aad805976569062, type: 2}
-  - {fileID: 11400000, guid: ff5f057e7cbac8146ac5a78daaeec38a, type: 2}
-  - {fileID: 11400000, guid: 904e25f8c265d304989a79396d8c1021, type: 2}
+  allThePlayerUpgrades: []
   allTheEnemyUpgrades:
   - {fileID: 11400000, guid: 6dbe7186f6fa2324a82b86e55e049647, type: 2}
   - {fileID: 11400000, guid: e9ad8d12d1b511a46bdb16fc138d468e, type: 2}
   - {fileID: 11400000, guid: efe485ebe9b01d247b48ef3f6fc6515b, type: 2}
   - {fileID: 11400000, guid: 0628776eab8fc4343991d87bbbaa0bf7, type: 2}
-  upgrades: []
+  upgradeDB: {fileID: 11400000, guid: 5404a9fcef2d8b145b94301d764e2607, type: 2}
+  playerUpgrades: []
   enemyUpgrades: []
   special: {fileID: 0}
 --- !u!114 &2564337235708529008
@@ -176,4 +165,41 @@ MonoBehaviour:
       who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
       text: So you dont know who am i?\nWell, too bad for you then, once i kill you,
         you will know how powerful i am!
+    currentText: 0
+  - dialogueName: AfterBoss
+    dialogues:
+    - side: 1
+      who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+      text: Ugh... how?...\nI have to be the strongest, how can a child defeat me
+    - side: 1
+      who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+      text: He gave me all this power for nothing...
+    - side: 0
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: Hey, why did you attack the village? \nMaybe i can spare you if you cooperate
+    - side: 1
+      who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+      text: Power, what else would it be? \nI have to show everyone who is the most
+        powerfull queen here.
+    - side: 0
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: Then i heard you said someone gave you that power, who is he?
+    - side: 1
+      who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+      text: Seems the child dont stop asking question. \nBut even if i wanted i cant
+        said that, you know how powerful can be a contract and the punishments of
+        break it.
+    - side: 1
+      who: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+      text: The only thing i can tell you is to be careful with the river. I heard
+        isnt that calm that before.
+    - side: 0
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: The river? Whats wrong with the river?
+    - side: 1
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: ...?
+    - side: 1
+      who: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+      text: ...?
     currentText: 0

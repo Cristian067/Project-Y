@@ -83,11 +83,11 @@ public class PlayerController : MonoBehaviour
 
             //shoot
 
-        if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.chargedShoot))
+        if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.chargedShoot))
         {
             if (Input.GetButton("Fire") && !GameManager.instance.paused)
             {
-                if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.magicMirror))
+                if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.magicMirror))
                 {
                     
                     DoubleShoot();
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
         else if (Input.GetButton("Fire") && !GameManager.instance.paused)
         {
-            if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.magicMirror))
+            if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.magicMirror))
             {
                 
                 DoubleShoot();
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
 
         //limitar limites
-        if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.sideToSideEffect))
+        if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.sideToSideEffect))
         {
             if (transform.position.z < bottomLimitZ)
             {

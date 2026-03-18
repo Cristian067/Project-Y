@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,6 +26,8 @@ public class BossBehavior : MonoBehaviour
 
     [SerializeField]private Stats baseStats;
     [SerializeField]private Stats modStats;
+
+    [SerializeField]private string finalDialogueName = "";
 
 
 
@@ -124,18 +127,19 @@ public class BossBehavior : MonoBehaviour
         {
             if(upgrade.type == UpgradeSO.UpgradeType.StatModification)
             {
-                if(upgrade.modify == UpgradeSO.StatToModify.Speed)
+                for(int i = 0; i < upgrade.modify.Length; i++)
                 {
-                    modStats.speed += upgrade.valueToAdd;
-                }
-                if(upgrade.modify == UpgradeSO.StatToModify.Health)
-                {
-                    modStats.health += upgrade.valueToAdd;
+                    if(upgrade.modify[i] == UpgradeSO.StatToModify.Speed)
+                    {
+                        modStats.speed += upgrade.valuesToAdd[i];
+                    }
+                    if(upgrade.modify[i] ==UpgradeSO.StatToModify.Health)
+                    {
+                        modStats.health += upgrade.valuesToAdd[i];
+                    }
                 }
             }
         }
-
-        
 
     }
 
@@ -248,10 +252,20 @@ public class BossBehavior : MonoBehaviour
         health -= damage;
         UIManager.instance.HurtHealthBar(health);
         if (health < 0 && !dead)
-        {
+        {   
+            
             dead = true;
+            if(finalDialogueName != null)
+            {
+                DialoguesManager.instance.StartDialogue("AfterBoss");
+            }
+            while (DialoguesManager.onDialogue)
+            {
+                return;
+            }
             GameManager.instance.Win();
             Destroy(gameObject);
+            
         }
     }
 

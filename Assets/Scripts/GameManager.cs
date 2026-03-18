@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using UnityEngine;
@@ -107,27 +108,32 @@ public class GameManager : MonoBehaviour
         modStats.damage = 0;
         modStats.pickupRange = 0;
 
-        if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrierInRecharge)
+        if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrierInRecharge)
         {
             barrier.SetActive(true);
         }
 
-        foreach (UpgradeSO upgrade in UpgradesManager.instance.upgrades)
+        foreach (UpgradeSO upgrade in UpgradesManager.instance.playerUpgrades)
         {
+            
             if (upgrade.type == UpgradeSO.UpgradeType.StatModification)
             {
-                if (upgrade.modify == UpgradeSO.StatToModify.Damage)
+                for (int i = 0; i < upgrade.modify.Length;i++)
                 {
-                    modStats.damage += upgrade.valueToAdd;
+                    if (upgrade.modify[i] == UpgradeSO.StatToModify.Damage)
+                    {
+                        modStats.damage += upgrade.valuesToAdd[i];
+                    }
+                    else if (upgrade.modify[i] == UpgradeSO.StatToModify.Speed)
+                    {
+                        modStats.speed += upgrade.valuesToAdd[i];
+                    }
+                    else if (upgrade.modify[i] == UpgradeSO.StatToModify.PickupRange)
+                    {
+                        modStats.pickupRange += upgrade.valuesToAdd[i];
+                    }
                 }
-                else if (upgrade.modify == UpgradeSO.StatToModify.Speed)
-                {
-                    modStats.speed += upgrade.valueToAdd;
-                }
-                else if (upgrade.modify == UpgradeSO.StatToModify.PickupRange)
-                {
-                    modStats.pickupRange += upgrade.valueToAdd;
-                }
+                
             }
         }
 
@@ -152,11 +158,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("No se encuentra el magnet");
         }
 
-        if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.active && !barrierInRecharge)
+        if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.active && !barrierInRecharge)
         {
             barrier.SetActive(true);
         }
-        else if (UpgradesManager.instance.upgrades.Contains(UpgradesManager.instance.effects.barrier) && barrierInRecharge)
+        else if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.barrier) && barrierInRecharge)
         {
             barrierInRecharge = false;
         }
@@ -202,6 +208,7 @@ public class GameManager : MonoBehaviour
         if (lives == 0)
         {
             Debug.Log("GameOver");
+            Log.AddToLog("The player died");
             Lose();
         }
     }
@@ -219,6 +226,7 @@ public class GameManager : MonoBehaviour
     public void SetHealth(int health)
     {
         lives = health;
+        Log.AddToLog("Set player health to " + health);
         UIManager.instance.RefreshStatsUi();
     }
 
@@ -340,7 +348,7 @@ public class GameManager : MonoBehaviour
         // string json = File.ReadAllText(pathUserData);
         // data = JsonUtility.FromJson<Data>(json);
 
-        foreach (var upgrade in UpgradesManager.instance.upgrades)
+        foreach (var upgrade in UpgradesManager.instance.playerUpgrades)
         {
             if (!data.discoveredUpgrades.Contains(upgrade.name))
             {

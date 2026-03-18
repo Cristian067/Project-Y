@@ -11,6 +11,7 @@ public class UpgradeSO : ScriptableObject
     {
         Player,
         Enemy,
+        Both,
 
     }
 
@@ -57,9 +58,9 @@ public class UpgradeSO : ScriptableObject
     [Space(2)]
     [Header("If is type Stat Modification:")]
 
-    [SerializeField] public StatToModify modify;
+    [SerializeField] public StatToModify[] modify;
 
-    [SerializeField] public float valueToAdd;
+    [SerializeField] public float[] valuesToAdd;
 
     [Space(2)]
     [Header("If is type Special:")]

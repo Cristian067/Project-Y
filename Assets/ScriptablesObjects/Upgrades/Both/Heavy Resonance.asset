@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 803bb176333f2fa448652c2443a9a3df, type: 3}
-  m_Name: Slippery fingers
-  m_EditorClassIdentifier: 
+  m_Name: Heavy Resonance
+  m_EditorClassIdentifier: GameAssembly::UpgradeSO
   whoToAdd: 0
   type: 0
-  alignment: 1
-  description: grab what the enemies leaves closer
-  modify: 02000000
+  alignment: 0
+  description: Magic artifact that weight but makes you stronger
+  modify: 0000000001000000
   valuesToAdd:
-  - -1
+  - 2
+  - -3
   special: {fileID: 0}

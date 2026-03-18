@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803bb176333f2fa448652c2443a9a3df, type: 3}
   m_Name: MoreSpeed1
   m_EditorClassIdentifier: 
+  whoToAdd: 0
   type: 0
   alignment: 0
   description: gets +1 of speed
-  modify: 1
-  valueToAdd: 1
+  modify: 01000000
+  valuesToAdd:
+  - 1
+  special: {fileID: 0}

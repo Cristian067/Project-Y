@@ -342,10 +342,14 @@ public class MainManager : MonoBehaviour
         CleanEncyclopedia();
         foreach (var upgrade in upgradesDatabase.upgradeSOs)
         {
-            GameObject slot = Instantiate(Resources.Load<GameObject>("UpgradeEncyclopedia"),slotsPanel.transform);
-            slot.GetComponent<EncyclopediaButtonHandler>().upgrade = upgrade;
-            slot.GetComponent<EncyclopediaButtonHandler>().description_text = GameObject.Find("UpgradeDescription").GetComponent<TextMeshProUGUI>();
-            slot.GetComponent<EncyclopediaButtonHandler>().name_text = GameObject.Find("UpgradeName").GetComponent<TextMeshProUGUI>();
+            if(upgrade.whoToAdd == UpgradeSO.Who.Player || upgrade.whoToAdd == UpgradeSO.Who.Both)
+            {
+                GameObject slot = Instantiate(Resources.Load<GameObject>("UpgradeEncyclopedia"),slotsPanel.transform);
+                slot.GetComponent<EncyclopediaButtonHandler>().upgrade = upgrade;
+                slot.GetComponent<EncyclopediaButtonHandler>().description_text = GameObject.Find("UpgradeDescription").GetComponent<TextMeshProUGUI>();
+                slot.GetComponent<EncyclopediaButtonHandler>().name_text = GameObject.Find("UpgradeName").GetComponent<TextMeshProUGUI>();
+            }
+            //else return;
             
         }
         slotsPanel.transform.GetChild(0).GetComponent<Button>().Select();

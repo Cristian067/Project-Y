@@ -28,7 +28,10 @@ public static class ApiCalls
         request.SetRequestHeader("Content-Type", "application/json");
 
         yield return request.SendWebRequest();
-
+        if(request.responseCode == 200)
+        {
+            Log.AddToLog("Post the score for level "+levelNumber+" with score: " +totalPoints);
+        }
         Debug.Log("Status Code: " + request.responseCode);
     }
 
@@ -91,6 +94,10 @@ public static class ApiCalls
         request.SetRequestHeader("Accept", "application/json");
         request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
+        if(request.responseCode == 200)
+        {
+            Log.AddToLog("User Valorated the game succesfully");
+        }
         Debug.Log(request.responseCode);
     }
 

@@ -16,6 +16,7 @@ MonoBehaviour:
   type: 0
   alignment: 0
   description: grab what the enemies leaves further
-  modify: 2
-  valueToAdd: 0.3
+  modify: 02000000
+  valuesToAdd:
+  - 1
   special: {fileID: 0}

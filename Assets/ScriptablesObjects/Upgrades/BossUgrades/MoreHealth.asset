@@ -15,7 +15,8 @@ MonoBehaviour:
   whoToAdd: 1
   type: 0
   alignment: 0
-  description: gains health
-  modify: 2
-  valueToAdd: 75
+  description: The final enemy gains health
+  modify: 03000000
+  valuesToAdd:
+  - 250
   special: {fileID: 0}

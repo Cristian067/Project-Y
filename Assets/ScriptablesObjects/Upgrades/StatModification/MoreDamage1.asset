@@ -16,6 +16,7 @@ MonoBehaviour:
   type: 0
   alignment: 0
   description: gets +1 of damage
-  modify: 0
-  valueToAdd: 1
+  modify: 00000000
+  valuesToAdd:
+  - 1
   special: {fileID: 0}
