@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -253,21 +254,29 @@ public class BossBehavior : MonoBehaviour
         UIManager.instance.HurtHealthBar(health);
         if (health < 0 && !dead)
         {   
-            
-            dead = true;
-            if(finalDialogueName != null)
-            {
-                DialoguesManager.instance.StartDialogue("AfterBoss");
-            }
-            while (DialoguesManager.onDialogue)
-            {
-                return;
-            }
-            GameManager.instance.Win();
-            Destroy(gameObject);
+            StartCoroutine(Kill());
             
         }
     }
+
+    private IEnumerator Kill()
+    {
+
+        dead = true;
+        if(finalDialogueName != null)
+        {
+            DialoguesManager.instance.StartDialogue("AfterBoss");
+        }
+        while (DialoguesManager.onDialogue)
+        {
+            yield return null;
+        }
+        GameManager.instance.Win();
+        Destroy(gameObject);
+            
+        
+    }
+    
 
 
 }
