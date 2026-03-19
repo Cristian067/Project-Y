@@ -16,13 +16,22 @@ public class Stats
 }
 
 
+[Serializable]
+public class Movesets
+{
+    public MonoBehaviour moveset;
+    [Range(0,100)]
+    public float probability;
+}
+
 
 public class BossBehavior : MonoBehaviour
 {
 
     [SerializeField]private string bossName;
 
-    public MonoBehaviour[] Movesets;
+    [SerializeField]private Movesets[] movesets;
+    
     public UpgradeSO[] upgrades;
 
     [SerializeField]private Stats baseStats;
@@ -152,12 +161,12 @@ public class BossBehavior : MonoBehaviour
 
     public void UseMoveset()
     {
-        int r = Random.Range(0, Movesets.Length);
+        int r = Random.Range(0, movesets.Length);
 
         if (!inAttack)
         {
             inAttack = true;
-            Movesets[r].StartCoroutine("Use");
+            movesets[r].moveset.StartCoroutine("Use");
         }
         
         //inAttack = false;

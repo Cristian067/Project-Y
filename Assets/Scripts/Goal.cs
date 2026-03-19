@@ -17,6 +17,7 @@ public class Goal : MonoBehaviour
     [SerializeField] private AudioClip bossMusic;
 
     [SerializeField]private bool haveTextBeforeBoss;
+    
 
     //[SerializeField]private int levelNumber;
 
@@ -60,7 +61,10 @@ public class Goal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-
+        if(other.gameObject.tag != "Hitbox")
+        {
+            return;
+        }
         if(type == GoalType.KillBoss)
         {
 

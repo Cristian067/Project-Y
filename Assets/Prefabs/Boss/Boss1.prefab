@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4871973186230592189}
   - component: {fileID: 6508587045435103756}
   - component: {fileID: 5417665903513071138}
+  - component: {fileID: 1134246402784807036}
   m_Layer: 6
   m_Name: Boss1
   m_TagString: Boss
@@ -74,11 +75,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossBehavior
   bossName: Mih
-  Movesets:
-  - {fileID: 2055419809285108215}
-  - {fileID: 1690812928159568369}
-  - {fileID: 4871973186230592189}
-  - {fileID: 5417665903513071138}
+  movesets:
+  - moveset: {fileID: 2055419809285108215}
+    probability: 8
+  - moveset: {fileID: 1690812928159568369}
+    probability: 8
+  - moveset: {fileID: 4871973186230592189}
+    probability: 8
+  - moveset: {fileID: 5417665903513071138}
+    probability: 8
+  - moveset: {fileID: 1134246402784807036}
+    probability: 8
+  - moveset: {fileID: 2055419809285108215}
+    probability: 8
   upgrades: []
   baseStats:
     health: 1000
@@ -86,6 +95,7 @@ MonoBehaviour:
   modStats:
     health: 0
     speed: 0
+  finalDialogueName: 
   health: 0
   speed: 3
   mapAnchor: {x: -6.5, y: 7}
@@ -168,6 +178,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Moveset4
   bullet: {fileID: 0}
   enemy: {fileID: 80798737650191077, guid: 356fabea34cbb144e977225a068bceb4, type: 3}
+--- !u!114 &1134246402784807036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80798737650191077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27b7c1dc0e3e2343b873a1fd5b6c0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameAssembly::Moveset5
+  bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
+  dangerZone: {fileID: 5708882922941607740, guid: fec03b76344445f41b38813c36d46a7e, type: 3}
 --- !u!1 &3367964230786772095
 GameObject:
   m_ObjectHideFlags: 0
