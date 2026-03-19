@@ -75,19 +75,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossBehavior
   bossName: Mih
-  movesets:
-  - moveset: {fileID: 2055419809285108215}
-    probability: 8
-  - moveset: {fileID: 1690812928159568369}
-    probability: 8
-  - moveset: {fileID: 4871973186230592189}
-    probability: 8
-  - moveset: {fileID: 5417665903513071138}
-    probability: 8
-  - moveset: {fileID: 1134246402784807036}
-    probability: 8
-  - moveset: {fileID: 2055419809285108215}
-    probability: 8
+  moveset:
+  - {fileID: 2055419809285108215}
+  - {fileID: 1690812928159568369}
+  - {fileID: 4871973186230592189}
+  - {fileID: 5417665903513071138}
+  - {fileID: 1134246402784807036}
+  acutalValues: 100
   upgrades: []
   baseStats:
     health: 1000

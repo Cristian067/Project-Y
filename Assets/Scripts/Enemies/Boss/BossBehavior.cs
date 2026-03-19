@@ -16,13 +16,6 @@ public class Stats
 }
 
 
-[Serializable]
-public class Movesets
-{
-    public MonoBehaviour moveset;
-    [Range(0,100)]
-    public float probability;
-}
 
 
 public class BossBehavior : MonoBehaviour
@@ -30,7 +23,9 @@ public class BossBehavior : MonoBehaviour
 
     [SerializeField]private string bossName;
 
-    [SerializeField]private Movesets[] movesets;
+    [SerializeField]private MonoBehaviour[] moveset;
+    [SerializeField]private MonoBehaviour previousMove;
+    [SerializeField] float acutalValues = 0;
     
     public UpgradeSO[] upgrades;
 
@@ -161,12 +156,18 @@ public class BossBehavior : MonoBehaviour
 
     public void UseMoveset()
     {
-        int r = Random.Range(0, movesets.Length);
+        int r = Random.Range(0, moveset.Length);
+
+        while (previousMove == moveset[r])
+        {
+            r = Random.Range(0, moveset.Length);
+        }
 
         if (!inAttack)
         {
             inAttack = true;
-            movesets[r].moveset.StartCoroutine("Use");
+            moveset[r].StartCoroutine("Use");
+            previousMove = moveset[r];
         }
         
         //inAttack = false;
@@ -211,9 +212,6 @@ public class BossBehavior : MonoBehaviour
 
     public IEnumerator Move(bool cancel = false)
     {
-
-        
-        
         //idle = true;
         float r = Random.Range(mapAnchor.x, mapAnchor.y);
 
@@ -242,8 +240,6 @@ public class BossBehavior : MonoBehaviour
         }
 
         //destination = transform;
-
-        
     }
 
     public void ChangeBusy(bool isBusy)
@@ -285,7 +281,5 @@ public class BossBehavior : MonoBehaviour
             
         
     }
-    
-
 
 }
