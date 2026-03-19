@@ -122,6 +122,11 @@ public class DialoguesManager : MonoBehaviour
 
     public void StartDialogue(string dialogueName)
     {
+        if (!ExistsDialogue(dialogueName))
+        {
+            Debug.Log("Dialogue doesnt exists");    
+        }
+        
         StartCoroutine(StartDialogueCo(dialogueName));
     }
     public IEnumerator StartDialogueCo(string dialogueName)
@@ -163,6 +168,18 @@ public class DialoguesManager : MonoBehaviour
         
     }
 
+    public bool ExistsDialogue(string _dialogueName)
+    {
+        foreach (var dialogue in dialogues)
+        {
+            if (dialogue.dialogueName == _dialogueName)
+            {
+                return true;
+            }
+            else return false;
+        }
+        return false;
+    }
 
     public bool IsOnDialogue()
     {

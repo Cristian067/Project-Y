@@ -268,10 +268,8 @@ public class BossBehavior : MonoBehaviour
     {
 
         dead = true;
-        if(finalDialogueName != null)
-        {
-            DialoguesManager.instance.StartDialogue("AfterBoss");
-        }
+        DialoguesManager.instance.StartDialogue("AfterBoss");
+        
         while (DialoguesManager.onDialogue)
         {
             yield return null;
