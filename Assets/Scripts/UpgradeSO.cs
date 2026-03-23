@@ -7,7 +7,7 @@ using UnityEngine;
 public class UpgradeSO : ScriptableObject
 {
 
-        public enum Who
+    public enum Who
     {
         Player,
         Enemy,
@@ -15,7 +15,7 @@ public class UpgradeSO : ScriptableObject
 
     }
 
-    [SerializeField] public Who whoToAdd;
+    public Who whoToAdd;
 
 
     public enum UpgradeType
@@ -26,7 +26,9 @@ public class UpgradeSO : ScriptableObject
 
     }
 
-    [SerializeField] public UpgradeType type;
+    public UpgradeType type;
+
+    public bool unique;
 
 
     public enum Alignment
@@ -36,15 +38,8 @@ public class UpgradeSO : ScriptableObject
 
     }
 
-    [SerializeField] public Alignment alignment;
-
-    [SerializeField] public string description;
-    
-    
-    //[Header("Modificaion de stat")]
-
-
-
+    public Alignment alignment;
+    public string description;
     
     public enum StatToModify
     {
@@ -58,15 +53,13 @@ public class UpgradeSO : ScriptableObject
     [Space(2)]
     [Header("If is type Stat Modification:")]
 
-    [SerializeField] public StatToModify[] modify;
+    public StatToModify[] modify;
 
-    [SerializeField] public float[] valuesToAdd;
+    public float[] valuesToAdd;
 
     [Space(2)]
     [Header("If is type Special:")]
-
-
-    [SerializeField] public SpecialSO special;
+    public SpecialSO special;
 
 
 

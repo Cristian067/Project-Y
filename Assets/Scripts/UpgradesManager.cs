@@ -292,8 +292,13 @@ public class UpgradesManager : MonoBehaviour
         {
             if(upgrade.type == UpgradeSO.UpgradeType.StatModification)
             {
+                if (upgrade.unique && upgradePull.Contains(upgrade))
+                {
+                    upgradePull.Remove(upgrade);
+                }
                 continue;
             }
+            
             if (upgradePull.Contains(upgrade))
             {
                 upgradePull.Remove(upgrade);
@@ -341,9 +346,14 @@ public class UpgradesManager : MonoBehaviour
                 {
                     ally[i] = GetRandomUpgradesFixed(Random.Range(0, 3), Random.Range(0, 1),pull);
                 }
+                
             }
 
-            catch { }
+            catch 
+            { 
+
+            }
+
             if (ally[i].type == UpgradeSO.UpgradeType.Effect)
             {
                 while (ally[i].type == UpgradeSO.UpgradeType.Special && ally[i] == special)

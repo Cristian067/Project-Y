@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour
 
 
     public UnityEvent pauseMovement;
-
-
     //private bool isInPause;
 
 
@@ -52,7 +50,19 @@ public class PlayerController : MonoBehaviour
 
         //pauseMovement.AddListener
 
+        
 
+    }
+
+    void LateUpdate()
+    {
+        if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.sideToSideEffect))
+        {
+            foreach (var limit in GameManager.instance.limitsMaps)
+            {
+                limit.GetComponent<MeshRenderer>().material.SetVector("_PlayerPosition", transform.position);
+            }
+        }
     }
 
     public void PauseMovement()

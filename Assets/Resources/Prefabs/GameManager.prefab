@@ -86,11 +86,7 @@ MonoBehaviour:
     barrier: {fileID: 11400000, guid: a628e2fe3e9b273478c41194b6e75cab, type: 2}
     chargedShoot: {fileID: 11400000, guid: 335f106cb9a41c64580498513f9be5e6, type: 2}
   allThePlayerUpgrades: []
-  allTheEnemyUpgrades:
-  - {fileID: 11400000, guid: 6dbe7186f6fa2324a82b86e55e049647, type: 2}
-  - {fileID: 11400000, guid: e9ad8d12d1b511a46bdb16fc138d468e, type: 2}
-  - {fileID: 11400000, guid: efe485ebe9b01d247b48ef3f6fc6515b, type: 2}
-  - {fileID: 11400000, guid: 0628776eab8fc4343991d87bbbaa0bf7, type: 2}
+  allTheEnemyUpgrades: []
   upgradeDB: {fileID: 11400000, guid: 5404a9fcef2d8b145b94301d764e2607, type: 2}
   playerUpgrades: []
   enemyUpgrades: []

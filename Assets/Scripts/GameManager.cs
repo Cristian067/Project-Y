@@ -58,7 +58,9 @@ public class GameManager : MonoBehaviour
 
 
     public int enemies = 0;
+    
 
+    public GameObject[] limitsMaps;
     //private Data data = new Data();
 
     private string pathUserData = "save/UserData.json";
@@ -165,6 +167,21 @@ public class GameManager : MonoBehaviour
         else if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.barrier) && barrierInRecharge)
         {
             barrierInRecharge = false;
+        }
+
+        if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.sideToSideEffect))
+        {
+            foreach (var limit in limitsMaps)
+            {
+                limit.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (var limit in limitsMaps)
+            {
+                limit.SetActive(false);
+            }
         }
 
         UIManager.instance.RefreshStatsUi();
@@ -317,6 +334,10 @@ public class GameManager : MonoBehaviour
         string json = File.ReadAllText(pathUserData);
         data = JsonUtility.FromJson<Data>(json);
 
+        if (levelNumber != 0)
+        {
+            
+        
         data = RegistryUpgrades(data);
 
         if (!data.levelsCompleted[levelNumber])
@@ -331,6 +352,7 @@ public class GameManager : MonoBehaviour
 
 
         StartCoroutine(ApiCalls.PostScore(pathUserData,levelNumber,totalPoints));
+        }
 
         json = JsonUtility.ToJson(data,true);
         File.WriteAllText(pathUserData, json);
