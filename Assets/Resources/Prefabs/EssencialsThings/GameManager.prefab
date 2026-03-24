@@ -68,6 +68,7 @@ MonoBehaviour:
     speed: 0
     pickupRange: 0
   enemies: 0
+  limitsMaps: []
 --- !u!114 &6215549035710551892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Background
   backgroundGO: {fileID: 0}
   backgroundMaterial: {fileID: 0}
-  backgroundSpeed: 1.5
+  backgroundSpeed: 10
   backgroundsBlocks:
   - {fileID: 0}
   - {fileID: 0}
