@@ -1,0 +1,8 @@
+[9:58:50]Stats reloaded.
+[9:58:50]Level 1 started.
+[9:59:03]The player losed a life.
+[9:59:03]Current lives: 2.
+[9:59:07]The player losed a life.
+[9:59:07]Current lives: 1.
+[9:59:07]Item Created with type Point with value 30 at (1.97, 0.00, 9.97).
+[9:59:09]Item Created with type Point with value 30 at (1.76, 0.00, 9.71).

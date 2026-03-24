@@ -60,6 +60,9 @@ public class UIManager : MonoBehaviour
     {
         winPanel.SetActive(false);
         losePanel.SetActive(false); 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
 
         currentSpecialText.text = "";
         //RefreshStatsUi();
@@ -80,12 +83,17 @@ public class UIManager : MonoBehaviour
 
     public void DisplayWinPanel()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         winPanel.SetActive(true);
         buttonWinPanel.Select();
     }
 
     public void DisplayLosePanel()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         losePanel.SetActive(true);
         buttonLosePanel.Select();
     }
@@ -126,12 +134,18 @@ public class UIManager : MonoBehaviour
     
     public void DisplayPauseMenu()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         pausePanel.SetActive(true);
         buttonPausePanel.Select();
     }
 
     public void UndisplayPauseMenu()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         pausePanel.SetActive(false);
         
     }

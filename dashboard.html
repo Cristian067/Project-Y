@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Log Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #e8e8e8;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #000000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            font-size: 2.8em;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+        }
+
+        .upload-section {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(30, 30, 30, 0.9) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .loading {
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff, #808080);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 1.1em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .log-list {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .log-list h3 {
+            background: linear-gradient(135deg, #ffffff, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            letter-spacing: 1px;
+        }
+
+        .log-files {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .log-file-btn {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #e8e8e8;
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.95em;
+        }
+
+        .log-file-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .log-file-btn:hover {
+            border-color: #ffffff;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .log-file-btn:hover::before {
+            left: 0;
+        }
+
+        .log-file-btn.active {
+            background: linear-gradient(135deg, #ffffff 0%, #525151 100%);
+            border-color: #ffffff;
+            color: #000000;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3),
+                        0 0 15px rgba(0, 0, 0, 0.3);
+            font-weight: 800;
+        }
+
+        .file-name {
+            color: #4ade80;
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.6) 0%, rgba(20, 20, 20, 0.8) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffffff, #000000, transparent);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card h2 {
+            color: #ffffff;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid #808080;
+            transition: all 0.2s ease;
+        }
+
+        .stat:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: #ffffff;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #b0b0b0;
+            font-size: 0.95em;
+        }
+
+        .stat-value {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.05em;
+        }
+
+        .success { 
+            border-top-color: #4ade80;
+        }
+
+        .success h2 {
+            color: #4ade80;
+        }
+
+        .danger { 
+            border-top-color: #ff6b6b;
+        }
+
+        .danger h2 {
+            color: #ff6b6b;
+        }
+
+        .warning { 
+            border-top-color: #fbbf24;
+        }
+
+        .warning h2 {
+            color: #fbbf24;
+        }
+
+        .info { 
+            border-top-color: #06b6d4;
+        }
+
+        .info h2 {
+            color: #06b6d4;
+        }
+
+        .log-container {
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.6) 0%, rgba(20, 20, 20, 0.8) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .log-container h2 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            font-weight: 700;
+            font-size: 1.3em;
+        }
+
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            max-height: 600px;
+            overflow-y: auto;
+            display: block;
+        }
+
+        .log-table::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .log-table::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .log-table::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ffffff, #000000);
+            border-radius: 10px;
+        }
+
+        .log-table::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #f0f0f0, #333333);
+        }
+
+        .log-table thead {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.3) 100%);
+            color: #ffffff;
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .log-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .log-table tbody {
+            display: block;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .log-table tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .log-table tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-bottom-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .log-table td {
+            padding: 12px 15px;
+            word-wrap: break-word;
+            color: #d0d0d0;
+        }
+
+        .time-cell {
+            color: #ffffff;
+            font-weight: 700;
+            width: 80px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .message-item {
+            padding: 10px 12px;
+            margin: 8px 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+            border-left: 3px solid #808080;
+            border-radius: 8px;
+            font-size: 0.95em;
+            color: #e0e0e0;
+            transition: all 0.2s ease;
+        }
+
+        .message-item:hover {
+            border-left-color: #ffffff;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%);
+        }
+
+        .no-data {
+            text-align: center;
+            color: #707070;
+            padding: 60px 40px;
+            font-size: 1.2em;
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.6) 0%, rgba(20, 20, 20, 0.8) 100%);
+            border-radius: 15px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+        }
+
+        .pagination-controls {
+            margin-top: 20px !important;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pagination-controls button {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.2) 100%);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .pagination-controls button:hover:not(:disabled) {
+            background: linear-gradient(135deg, #ffffff, #000000);
+            color: #000000;
+            border-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .pagination-controls button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .pagination-controls span {
+            color: #ffffff;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 GAME LOG DASHBOARD</h1>
+
+        <div class="upload-section">
+            <div class="loading" id="loadingMessage">⏳ Loading log files from folder...</div>
+            <div class="log-list" id="logListContainer" style="display: none;">
+                <h3>📋 Available Logs</h3>
+                <div class="log-files" id="logFiles"></div>
+            </div>
+            <div class="file-name" id="fileName"></div>
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+
+        <div id="statsContainer" style="display: none;">
+            <div class="dashboard">
+                <div class="card success" id="overallStats">
+                    <h2>📊 Overall Stats</h2>
+                    <div class="stat">
+                        <span class="stat-label">Level:</span>
+                        <span class="stat-value" id="level">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Status:</span>
+                        <span class="stat-value" id="status">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Final Score:</span>
+                        <span class="stat-value" id="score">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Duration:</span>
+                        <span class="stat-value" id="duration">-</span>
+                    </div>
+                </div>
+
+                <div class="card warning" id="playerStats">
+                    <h2>❤️ Player Health</h2>
+                    <div class="stat">
+                        <span class="stat-label">Final Lives:</span>
+                        <span class="stat-value" id="finalLives">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Times Lost Life:</span>
+                        <span class="stat-value" id="lostLives">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Times Healed:</span>
+                        <span class="stat-value" id="healed">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Peak Lives:</span>
+                        <span class="stat-value" id="peakLives">-</span>
+                    </div>
+                </div>
+
+                <div class="card info" id="itemStats">
+                    <h2>🎁 Items Collected</h2>
+                    <div class="stat">
+                        <span class="stat-label">Point Items:</span>
+                        <span class="stat-value" id="pointItems">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Health Items:</span>
+                        <span class="stat-value" id="healthItems">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Special Items:</span>
+                        <span class="stat-value" id="specialItems">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Total Items:</span>
+                        <span class="stat-value" id="totalItems">-</span>
+                    </div>
+                </div>
+
+                <div class="card danger" id="bossStats">
+                    <h2>⚔️ Boss Phase</h2>
+                    <div class="stat">
+                        <span class="stat-label">Boss Started:</span>
+                        <span class="stat-value" id="bossStartTime">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Lives Lost in Boss:</span>
+                        <span class="stat-value" id="bossLivesLost">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Items Spawned:</span>
+                        <span class="stat-value" id="bossItemsSpawned">-</span>
+                    </div>
+                </div>
+
+                <div class="card" id="upgradesStats">
+                    <h2>🚀 Upgrades</h2>
+                    <div id="upgradesList"></div>
+                </div>
+
+                <div class="card" id="saveStats">
+                    <h2>💾 Save Status</h2>
+                    <div class="stat">
+                        <span class="stat-label">Last Saved:</span>
+                        <span class="stat-value" id="saveTime">-</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Save Location:</span>
+                        <span class="stat-value" id="savePath">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="log-container">
+                <h2>📝 Full Event Log</h2>
+                <table class="log-table">
+                    <thead>
+                        <tr>
+                            <th class="time-cell">Time</th>
+                            <th>Event</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="noDataMessage" class="no-data">
+            Select a log file to see the dashboard
+        </div>
+    </div>
+
+    <script>
+        let logFiles = {};
+
+        window.addEventListener('DOMContentLoaded', function() {
+            loadLogsFromServer();
+        });
+
+        async function loadLogsFromServer() {
+            console.log('Starting to load logs...');
+            
+            try {
+                const response = await fetch('./Log/');
+                const html = await response.text();
+                
+                const regex = /href=["']([^"']*\.txt)["']/gi;
+                let match;
+                const files = new Set();
+                
+                while ((match = regex.exec(html)) !== null) {
+                    const fileName = match[1];
+                    if (!fileName.includes('..') && fileName.trim()) {
+                        files.add(fileName);
+                    }
+                }
+                
+                const fileArray = Array.from(files);
+                console.log('Found files:', fileArray);
+                
+                if (fileArray.length > 0) {
+                    loadFilesFromList(fileArray);
+                } else {
+                    throw new Error('No .txt files found');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showErrorMessage('❌ Could not read Log folder');
+                document.getElementById('loadingMessage').style.display = 'none';
+            }
+        }
+
+        async function loadFilesFromList(files) {
+            let loadedCount = 0;
+            const total = files.length;
+
+            for (const fileName of files) {
+                try {
+                    const response = await fetch(`.${fileName}`);
+                    const content = await response.text();
+                    if (content.trim().length > 0) {
+                        logFiles[fileName] = content;
+                        console.log(`✅ Loaded: ${fileName}`);
+                    }
+                } catch (error) {
+                    console.error(`Error loading ${fileName}:`, error);
+                }
+                loadedCount++;
+            }
+
+            if (Object.keys(logFiles).length > 0) {
+                displayLogFiles();
+            } else {
+                showErrorMessage('❌ No log files found in ./Log folder');
+                document.getElementById('loadingMessage').style.display = 'none';
+            }
+        }
+
+        function displayLogFiles() {
+            const logFileNames = Object.keys(logFiles).sort().reverse();
+            
+            if (logFileNames.length === 0) {
+                showErrorMessage('No log files found');
+                document.getElementById('loadingMessage').style.display = 'none';
+                return;
+            }
+
+            console.log('Displaying files:', logFileNames);
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('fileName').textContent = `✅ Loaded: ${logFileNames.length} log file(s)`;
+            document.getElementById('logListContainer').style.display = 'block';
+
+            const itemsPerPage = 10;
+            const totalPages = Math.ceil(logFileNames.length / itemsPerPage);
+            let currentPage = 1;
+
+            function renderPage(page) {
+                const startIdx = (page - 1) * itemsPerPage;
+                const endIdx = startIdx + itemsPerPage;
+                const pageFiles = logFileNames.slice(startIdx, endIdx);
+
+                const logFilesContainer = document.getElementById('logFiles');
+                logFilesContainer.innerHTML = pageFiles
+                    .map(fileName => `
+                        <button class="log-file-btn" onclick="loadLog('${fileName}', this)">
+                            ${fileName}
+                        </button>
+                    `)
+                    .join('');
+
+                const oldPagination = document.querySelector('.pagination-controls');
+                if (oldPagination) {
+                    oldPagination.remove();
+                }
+
+                const paginationHTML = `
+                    <div class="pagination-controls" style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="changePage(1)" ${page === 1 ? 'disabled' : ''}>⏮ First</button>
+                        <button onclick="changePage(${page - 1})" ${page === 1 ? 'disabled' : ''}>◀ Previous</button>
+                        <span style="min-width: 80px; text-align: center;">Page ${page}/${totalPages}</span>
+                        <button onclick="changePage(${page + 1})" ${page === totalPages ? 'disabled' : ''}>Next ▶</button>
+                        <button onclick="changePage(${totalPages})" ${page === totalPages ? 'disabled' : ''}>Last ⏭</button>
+                    </div>
+                `;
+
+                logFilesContainer.insertAdjacentHTML('afterend', paginationHTML);
+            }
+
+            window.paginationState = {
+                logFileNames: logFileNames,
+                currentPage: currentPage,
+                totalPages: totalPages,
+                itemsPerPage: itemsPerPage,
+                renderPage: renderPage
+            };
+
+            renderPage(currentPage);
+
+            if (logFileNames.length > 0) {
+                loadLog(logFileNames[0], document.querySelector('.log-file-btn'));
+            }
+        }
+
+        function changePage(newPage) {
+            const state = window.paginationState;
+            if (newPage >= 1 && newPage <= state.totalPages) {
+                state.currentPage = newPage;
+                state.renderPage(newPage);
+            }
+        }
+
+        function loadLog(fileName, buttonElement) {
+            const content = logFiles[fileName];
+            if (!content) {
+                console.error(`No content for ${fileName}`);
+                return;
+            }
+            parseLogFile(content);
+            
+            document.querySelectorAll('.log-file-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+            }
+        }
+
+        function showErrorMessage(message) {
+            document.getElementById('errorMessage').textContent = `⚠️ ${message}`;
+        }
+
+        function parseLogFile(content) {
+            const lines = content.split('\n').filter(line => line.trim());
+            
+            let stats = {
+                level: null,
+                status: 'Unknown',
+                score: 0,
+                startTime: null,
+                endTime: null,
+                currentLives: 0,
+                finalLives: 0,
+                peakLives: 0,
+                lostLivesCount: 0,
+                healedCount: 0,
+                pointItems: 0,
+                healthItems: 0,
+                specialItems: 0,
+                bossPhaseStarted: false,
+                bossStartTime: null,
+                bossLivesLost: 0,
+                bossItemsSpawned: 0,
+                upgrades: [],
+                saveTime: null,
+                savePath: null,
+                playerDied: false,
+                deathTime: null,
+                events: []
+            };
+
+            lines.forEach(line => {
+                const timeMatch = line.match(/\[(\d{2}:\d{2}:\d{2})\](.*)/);
+                if (!timeMatch) return;
+
+                const time = timeMatch[1];
+                const message = timeMatch[2].trim();
+
+                stats.events.push({ time, message });
+
+                if (message.includes('Level') && message.includes('started')) {
+                    const levelMatch = message.match(/Level (\d+)/);
+                    stats.level = levelMatch ? levelMatch[1] : 'Unknown';
+                    stats.startTime = time;
+                }
+
+                if (message.includes('Item Created')) {
+                    const typeMatch = message.match(/type (\w+)/);
+                    if (typeMatch) {
+                        const type = typeMatch[1];
+                        if (type === 'Point') stats.pointItems++;
+                        else if (type === 'Health') stats.healthItems++;
+                        else if (type === 'Special') stats.specialItems++;
+                    }
+                }
+
+                if (message.includes('losed a life')) {
+                    stats.lostLivesCount++;
+                    if (stats.bossPhaseStarted) stats.bossLivesLost++;
+                }
+
+                if (message.includes('Current lives')) {
+                    const livesMatch = message.match(/Current lives: (\d+)/);
+                    if (livesMatch) {
+                        stats.currentLives = parseInt(livesMatch[1]);
+                        stats.finalLives = stats.currentLives;
+                        if (stats.currentLives > stats.peakLives) {
+                            stats.peakLives = stats.currentLives;
+                        }
+                    }
+                }
+
+                if (message.includes('healed')) {
+                    stats.healedCount++;
+                }
+
+                if (message.includes('Boss phase started')) {
+                    stats.bossPhaseStarted = true;
+                    stats.bossStartTime = time;
+                }
+
+                if (stats.bossPhaseStarted && message.includes('Item Created')) {
+                    stats.bossItemsSpawned++;
+                }
+
+                if (message.includes('The player died')) {
+                    stats.playerDied = true;
+                    stats.deathTime = time;
+                    stats.status = '💀 Died';
+                    stats.endTime = time;
+                }
+
+                if (message.includes('won the level')) {
+                    stats.status = '✅ Won';
+                    stats.endTime = time;
+                }
+
+                if (message.includes('lost the level')) {
+                    stats.status = '❌ Lost';
+                    stats.endTime = time;
+                }
+
+                if (message.includes('score')) {
+                    const scoreMatch = message.match(/score: (\d+)/);
+                    if (scoreMatch) stats.score = scoreMatch[1];
+                }
+
+                if (message.includes('New upgrade')) {
+                    const upgradeMatch = message.match(/New upgrade registred: (.+)\./);
+                    if (upgradeMatch) stats.upgrades.push(upgradeMatch[1]);
+                }
+
+                if (message.includes('Game saved')) {
+                    stats.saveTime = time;
+                    const pathMatch = message.match(/Game saved in: (.+)\./);
+                    if (pathMatch) stats.savePath = pathMatch[1];
+                }
+            });
+
+            updateDashboard(stats);
+        }
+
+        function updateDashboard(stats) {
+            const overallStatsCard = document.getElementById('overallStats');
+            overallStatsCard.className = 'card';
+            if (stats.playerDied) {
+                overallStatsCard.classList.add('danger');
+            } else if (stats.status === '✅ Won') {
+                overallStatsCard.classList.add('success');
+            } else if (stats.status === '❌ Lost') {
+                overallStatsCard.classList.add('danger');
+            } else {
+                overallStatsCard.classList.add('success');
+            }
+
+            document.getElementById('level').textContent = stats.level || '-';
+            document.getElementById('status').textContent = stats.status;
+            document.getElementById('score').textContent = stats.score;
+            document.getElementById('duration').textContent = stats.startTime && stats.endTime 
+                ? calculateDuration(stats.startTime, stats.endTime) 
+                : '-';
+
+            document.getElementById('finalLives').textContent = stats.finalLives;
+            document.getElementById('lostLives').textContent = stats.lostLivesCount;
+            document.getElementById('healed').textContent = stats.healedCount;
+            document.getElementById('peakLives').textContent = stats.peakLives;
+
+            document.getElementById('pointItems').textContent = stats.pointItems;
+            document.getElementById('healthItems').textContent = stats.healthItems;
+            document.getElementById('specialItems').textContent = stats.specialItems;
+            document.getElementById('totalItems').textContent = stats.pointItems + stats.healthItems + stats.specialItems;
+
+            document.getElementById('bossStartTime').textContent = stats.bossStartTime || '-';
+            document.getElementById('bossLivesLost').textContent = stats.bossLivesLost;
+            document.getElementById('bossItemsSpawned').textContent = stats.bossItemsSpawned;
+
+            const upgradesList = document.getElementById('upgradesList');
+            upgradesList.innerHTML = stats.upgrades.length > 0
+                ? stats.upgrades.map(u => `<div class="message-item">🚀 ${u}</div>`).join('')
+                : '<div class="message-item">No upgrades registered</div>';
+
+            document.getElementById('saveTime').textContent = stats.saveTime || '-';
+            document.getElementById('savePath').textContent = stats.savePath ? stats.savePath.split('/').pop() : '-';
+
+            const tbody = document.getElementById('logTableBody');
+            tbody.innerHTML = stats.events
+                .map(e => `
+                    <tr>
+                        <td class="time-cell">${e.time}</td>
+                        <td>${escapeHtml(e.message)}</td>
+                    </tr>
+                `)
+                .join('');
+
+            document.getElementById('statsContainer').style.display = 'block';
+            document.getElementById('noDataMessage').style.display = 'none';
+        }
+
+        function calculateDuration(start, end) {
+            const startParts = start.split(':').map(Number);
+            const endParts = end.split(':').map(Number);
+            
+            const startSeconds = startParts[0] * 3600 + startParts[1] * 60 + startParts[2];
+            const endSeconds = endParts[0] * 3600 + endParts[1] * 60 + endParts[2];
+            
+            const diff = endSeconds - startSeconds;
+            return `${Math.floor(diff / 60)}m ${diff % 60}s`;
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+    </script>
+</body>
+</html>

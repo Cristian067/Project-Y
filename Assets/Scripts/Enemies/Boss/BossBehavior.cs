@@ -216,6 +216,12 @@ public class BossBehavior : MonoBehaviour
         float r = Random.Range(mapAnchor.x, mapAnchor.y);
 
         Vector3 destination = new Vector3(r,transform.position.y,transform.position.z);
+
+        while (r >7 || r < -7)
+        {
+            r = Random.Range(mapAnchor.x, mapAnchor.y);
+            destination = new Vector3(r,transform.position.y,transform.position.z);
+        }
         //Debug.Log("destinacion: "+destination);
         
         if (cancel)

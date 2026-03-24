@@ -133,6 +133,7 @@ public class PlayerController : MonoBehaviour
             GameManager.instance.specials -= 1;
             UIManager.instance.RefreshStatsUi();
             StartCoroutine(UpgradesManager.instance.special.special.Use(gameObject));
+            Log.AddToLog("Used special attack");
                
         }
         
@@ -278,6 +279,7 @@ public class PlayerController : MonoBehaviour
             {
                 Destroy(other.GetComponentInParent<Transform>().GetComponentInParent<Transform>().gameObject);
                 GameManager.instance.DestroyBarrier();
+                StartCoroutine(HitInCooldown());
             }
             else
             {

@@ -5340,7 +5340,7 @@ GameObject:
   - component: {fileID: 6197583277423251202}
   - component: {fileID: 8465386113611094118}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Barrier
   m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

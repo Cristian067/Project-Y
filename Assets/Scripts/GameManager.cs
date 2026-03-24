@@ -83,10 +83,14 @@ public class GameManager : MonoBehaviour
         try
         {
             playerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+            barrier = GameObject.Find("Barrier").GetComponent<GameObject>();
+            barrierRechargeParticles = GameObject.Find("barrierParticles").GetComponent<GameObject>();
+
+            
         }
         catch
         {
-            Debug.LogWarning("No existe player");
+            Debug.LogWarning("No existe player o barrera en la escena, asegurate de que el prefab del player tenga el tag 'Player' y que la barrera se llame 'Barrier'");
         }
 
         Log.AddToLog($"Level {levelNumber} started");
@@ -222,6 +226,9 @@ public class GameManager : MonoBehaviour
         lives--;
         UIManager.instance.RefreshStatsUi();
         StartCoroutine(playerScript.HitInCooldown());
+        Log.AddToLog("The player losed a life");
+        Log.AddToLog($"Current lives: {lives}");
+
         if (lives == 0)
         {
             Debug.Log("GameOver");
@@ -238,6 +245,8 @@ public class GameManager : MonoBehaviour
         }
         lives += lifes;
         UIManager.instance.RefreshStatsUi();
+        Log.AddToLog("The player healed");
+        Log.AddToLog($"Current lives: {lives}");
     }
 
     public void SetHealth(int health)
@@ -377,6 +386,12 @@ public class GameManager : MonoBehaviour
                 Log.AddToLog($"New upgrade registred: {upgrade.name}");
                 data.discoveredUpgrades.Add(upgrade.name);
             }
+        }
+
+        if(UpgradesManager.instance.special != null && !data.discoveredUpgrades.Contains(UpgradesManager.instance.special.name))
+        {
+            Log.AddToLog($"New upgrade registred: {UpgradesManager.instance.special.name}");
+            data.discoveredUpgrades.Add(UpgradesManager.instance.special.name);
         }
         return data;
         

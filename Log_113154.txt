@@ -1,0 +1,7 @@
+[11:30:50]Stats reloaded.
+[11:30:50]Level 0 started.
+[11:30:52]Set player health to 3.
+[11:31:12]Set player health to 3.
+[11:31:40]Set player health to 3.
+[11:31:41]Game saved in: C:/Users/EVRV/Documents/Unity/Project-Y/Assets/save/UserData.json.
+[11:31:41]The player won the level 0.

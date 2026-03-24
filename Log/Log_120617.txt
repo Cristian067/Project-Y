@@ -1,0 +1,9 @@
+[12:05:37]Stats reloaded.
+[12:05:37]Level 1 started.
+[12:05:54]Item Created with type Point with value 30 at (-3.20, 0.00, 6.52).
+[12:05:55]Item Created with type Health with value 30 at (-4.77, 0.00, 7.23).
+[12:05:55]Item Created with type Point with value 30 at (-2.59, 0.00, 6.35).
+[12:05:59]Item Created with type Point with value 30 at (-1.63, 0.00, 6.12).
+[12:06:00]Item Created with type Point with value 30 at (0.76, 0.00, 7.84).
+[12:06:01]Item Created with type Point with value 30 at (-1.42, 0.00, 6.11).
+[12:06:03]Stats reloaded.
