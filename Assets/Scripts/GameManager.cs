@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         try
         {
             playerScript = GameObject.Find("Player").GetComponent<PlayerController>();
-            barrier = GameObject.Find("Barrier").GetComponent<GameObject>();
+            barrier = GameObject.Find("Barrier");
             barrierRechargeParticles = GameObject.Find("barrierParticles").GetComponent<GameObject>();
 
             

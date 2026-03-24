@@ -277,9 +277,10 @@ public class PlayerController : MonoBehaviour
         {
             if (GameManager.instance.isBarrierActive())
             {
+                StartCoroutine(HitInCooldown());
                 Destroy(other.GetComponentInParent<Transform>().GetComponentInParent<Transform>().gameObject);
                 GameManager.instance.DestroyBarrier();
-                StartCoroutine(HitInCooldown());
+                
             }
             else
             {

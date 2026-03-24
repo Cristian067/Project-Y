@@ -1,0 +1,12 @@
+[11:52:41]Stats reloaded.
+[11:52:41]Level 1 started.
+[11:53:33]Item Created with type Special with value 30 at (-5.31, 0.00, 7.79).
+[11:53:34]The player losed a life.
+[11:53:34]Current lives: 2.
+[11:53:34]Item Created with type Point with value 30 at (-6.59, 0.00, 9.26).
+[11:53:38]The player losed a life.
+[11:53:38]Current lives: 1.
+[11:53:40]The player losed a life.
+[11:53:40]Current lives: 0.
+[11:53:40]The player died.
+[11:53:40]The player lost the level 1.
