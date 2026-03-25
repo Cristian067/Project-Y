@@ -69,6 +69,11 @@ public static class Log
         log = LoadLog();
         DateTime time = DateTime.Now;
 
+        if (!File.Exists("Log/"))
+        {
+            Directory.CreateDirectory("Log");
+        }
+
         string fixedSecond;
         string fixedMinute;
 
@@ -95,7 +100,7 @@ public static class Log
         
         //string json = JsonUtility.ToJson(finalLog);
 
-        File.WriteAllText(logTime+".txt", finalLog);
+        File.WriteAllText("Log/" + logTime+".txt", finalLog);
 
 
     }
