@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentSpecialText;
 
     [SerializeField] private Slider upgradeProgressSlider;
+    [SerializeField] private Slider specialCooldownSlider;
 
 
     [Header("Ui Panels")]
@@ -160,6 +161,13 @@ public class UIManager : MonoBehaviour
         GameManager.instance.Unpause(true);
         RefreshStatsUi();
 
+    }
+
+    public void UpdateCooldownVisual(float time, float specialCooldown)
+    {
+        specialCooldownSlider.value = time;
+        specialCooldownSlider.maxValue = specialCooldown;
+        
     }
 
     public void GoToOptions()

@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         try
         {
             playerScript = GameObject.Find("Player").GetComponent<PlayerController>();
-            barrier = GameObject.Find("Barrier");
+            barrier = GameObject.Find("Barrier").gameObject;
             barrierRechargeParticles = GameObject.Find("barrierParticles").GetComponent<GameObject>();
 
             
@@ -441,6 +441,8 @@ public class GameManager : MonoBehaviour
         while (time < specialCooldown)
         {
             time += Time.deltaTime;
+
+            UIManager.instance.UpdateCooldownVisual(time,specialCooldown);
             //Debug.Log(time);
             yield return null;
         }

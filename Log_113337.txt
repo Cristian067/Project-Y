@@ -1,0 +1,97 @@
+[11:22:55]Stats reloaded.
+[11:22:55]Level 1 started.
+[11:23:08]Item Created with type Point with value 30 at (-6.16, 0.00, 8.76).
+[11:23:09]Item Created with type Point with value 30 at (-3.50, 0.00, 6.60).
+[11:23:12]Item Created with type Point with value 30 at (-3.61, 0.00, 6.63).
+[11:23:14]Item Created with type Special with value 30 at (-4.83, 0.00, 7.29).
+[11:23:15]Item Created with type Point with value 30 at (1.59, 0.00, 9.47).
+[11:23:16]Item Created with type Special with value 30 at (-0.04, 0.00, 6.77).
+[11:23:20]The player losed a life.
+[11:23:20]Current lives: 2.
+[11:23:26]Item Created with type Point with value 30 at (-4.11, 0.00, 9.64).
+[11:23:28]Item Created with type Point with value 30 at (-3.12, 0.00, 9.34).
+[11:23:30]Stats reloaded.
+[11:23:30]Item Created with type Point with value 30 at (-3.60, 0.00, 9.48).
+[11:23:35]Item Created with type Health with value 30 at (1.22, 0.00, 10.59).
+[11:23:36]The player healed.
+[11:23:36]Current lives: 3.
+[11:23:43]Item Created with type Health with value 30 at (0.76, 0.00, 8.55).
+[11:23:44]The player healed.
+[11:23:44]Current lives: 4.
+[11:23:46]Item Created with type Special with value 30 at (-1.91, 0.00, 8.04).
+[11:23:49]Item Created with type Point with value 30 at (-4.34, 0.00, 7.04).
+[11:23:49]The player losed a life.
+[11:23:49]Current lives: 3.
+[11:23:55]Item Created with type Point with value 30 at (2.26, 0.00, 7.71).
+[11:24:00]Item Created with type Point with value 30 at (5.22, 0.00, 7.04).
+[11:24:05]Item Created with type Health with value 30 at (-5.00, 0.00, 5.18).
+[11:24:08]Item Created with type Special with value 30 at (-6.00, 0.00, -2.68).
+[11:24:09]Item Created with type Point with value 30 at (-3.00, 0.00, -1.20).
+[11:24:12]Stats reloaded.
+[11:24:13]Item Created with type Health with value 30 at (-2.00, 0.00, -4.67).
+[11:24:14]The player healed.
+[11:24:14]Current lives: 4.
+[11:24:16]Used special attack.
+[11:24:16]Item Created with type Point with value 30 at (-5.00, 0.00, 10.77).
+[11:24:17]Item Created with type Point with value 30 at (-4.00, 0.00, 9.58).
+[11:24:20]Item Created with type Point with value 30 at (-2.00, 0.00, 5.89).
+[11:24:24]Used special attack.
+[11:24:27]Item Created with type Point with value 30 at (-1.00, 0.00, -5.21).
+[11:24:31]The player losed a life.
+[11:24:31]Current lives: 3.
+[11:24:34]Item Created with type Point with value 30 at (-3.95, 0.00, 6.72).
+[11:24:36]Stats reloaded.
+[11:24:39]The player losed a life.
+[11:24:39]Current lives: 2.
+[11:24:39]Item Created with type Point with value 30 at (-0.90, 0.00, 6.21).
+[11:24:40]Item Created with type Point with value 30 at (-0.93, 0.00, 6.18).
+[11:24:43]Item Created with type Health with value 30 at (0.52, 0.00, 7.37).
+[11:24:44]The player healed.
+[11:24:44]Current lives: 3.
+[11:24:47]Item Created with type Point with value 40 at (-2.66, 0.00, 9.19).
+[11:24:49]The player losed a life.
+[11:24:49]Current lives: 2.
+[11:24:52]Item Created with type Point with value 40 at (-3.14, 0.00, 9.36).
+[11:24:56]Item Created with type Point with value 40 at (2.57, 0.00, 9.35).
+[11:24:57]The player losed a life.
+[11:24:57]Current lives: 1.
+[11:25:08]Item Created with type Special with value 30 at (5.07, 0.00, 7.03).
+[11:25:11]Item Created with type Health with value 30 at (2.81, 0.00, 7.26).
+[11:25:12]The player healed.
+[11:25:12]Current lives: 2.
+[11:25:13]Item Created with type Point with value 30 at (1.22, 0.00, 8.38).
+[11:25:16]Stats reloaded.
+[11:25:17]Item Created with type Point with value 30 at (-0.81, 0.00, 8.54).
+[11:25:19]Item Created with type Point with value 30 at (-2.05, 0.00, 7.91).
+[11:25:21]Item Created with type Point with value 30 at (0.49, 0.00, 8.61).
+[11:25:24]Item Created with type Point with value 30 at (0.08, 0.00, 8.70).
+[11:25:27]Item Created with type Point with value 30 at (3.14, 0.00, 7.05).
+[11:25:28]Item Created with type Point with value 30 at (3.33, 0.00, 7.06).
+[11:25:31]Stats reloaded.
+[11:25:39]Boss phase started.
+[11:25:49]Item Created with type Point with value 0 at (0.00, 0.00, 0.99).
+[11:26:01]Item Created with type Special with value 0 at (-3.00, 0.00, 9.80).
+[11:26:04]Item Created with type Point with value 0 at (-3.00, 0.00, 11.97).
+[11:26:06]Item Created with type Health with value 0 at (0.00, 0.00, -1.10).
+[11:26:07]Item Created with type Point with value 0 at (0.00, 0.00, 5.04).
+[11:26:18]The player losed a life.
+[11:26:18]Current lives: 1.
+[11:27:39]The player losed a life.
+[11:27:39]Current lives: 0.
+[11:27:39]The player died.
+[11:27:39]The player lost the level 1.
+[11:29:46]Stats reloaded.
+[11:29:46]Level 1 started.
+[11:29:57]Boss phase started.
+[11:30:42]Item Created with type Special with value 0 at (0.00, 0.00, -2.55).
+[11:30:47]Item Created with type Point with value 0 at (0.00, 0.00, 12.04).
+[11:31:00]The player losed a life.
+[11:31:00]Current lives: 2.
+[11:31:13]The player losed a life.
+[11:31:13]Current lives: 1.
+[11:31:13]Item Created with type Point with value 0 at (0.00, 0.00, 4.82).
+[11:31:42]Item Created with type Point with value 0 at (0.00, 0.00, 8.67).
+[11:32:02]The player losed a life.
+[11:32:02]Current lives: 0.
+[11:32:02]The player died.
+[11:32:02]The player lost the level 1.

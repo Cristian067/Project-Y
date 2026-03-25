@@ -124,7 +124,7 @@ public class DialoguesManager : MonoBehaviour
     {
         if (!ExistsDialogue(dialogueName))
         {
-            Debug.Log("Dialogue doesnt exists");    
+            Debug.Log("Dialogue " + dialogueName + " doesnt exists");    
         }
         
         StartCoroutine(StartDialogueCo(dialogueName));
