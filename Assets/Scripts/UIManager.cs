@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI upgradesListText;
     [SerializeField] private TextMeshProUGUI currentSpecialText;
+    [SerializeField] private Image currentSpecialImage;
 
     [SerializeField] private Slider upgradeProgressSlider;
     [SerializeField] private Slider specialCooldownSlider;
@@ -66,6 +67,9 @@ public class UIManager : MonoBehaviour
 
 
         currentSpecialText.text = "";
+        currentSpecialImage.sprite = null;
+
+        currentSpecialImage.color = new Color(0, 0, 0, 0);
         //RefreshStatsUi();
     }
 
@@ -117,6 +121,8 @@ public class UIManager : MonoBehaviour
         if (UpgradesManager.instance.special != null)
         {
             currentSpecialText.text = $"{UpgradesManager.instance.special.name}";
+            currentSpecialImage.sprite = UpgradesManager.instance.special.UpgradeImage;
+            currentSpecialImage.color = new Color(1, 1, 1, 1);
         }
         
     }

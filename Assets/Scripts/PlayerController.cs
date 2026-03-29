@@ -91,16 +91,20 @@ public class PlayerController : MonoBehaviour
 
 
 
-            //shoot
+        //shoot
 
+        if (Input.GetButtonUp("Fire") && !GameManager.instance.paused)
+        {
+            coolCount = basicCooldown;
+        }
         if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.chargedShoot))
         {
             if (Input.GetButton("Fire") && !GameManager.instance.paused)
             {
                 if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.magicMirror))
                 {
-                    
-                    DoubleShoot();
+
+                    DoubleChargedShoot(true);
                 }
                 else
                 {
@@ -110,7 +114,15 @@ public class PlayerController : MonoBehaviour
             }
             else if(Input.GetButtonUp("Fire") && !GameManager.instance.paused)
             {
-                ChargedShoot(false);
+                if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.magicMirror))
+                {
+
+                    DoubleChargedShoot(false);
+                }
+                else
+                {
+                    ChargedShoot(false);
+                }
             }
         }
 
@@ -127,6 +139,7 @@ public class PlayerController : MonoBehaviour
             }
                
         }
+        
 
         if(Input.GetButtonDown("Special") && UpgradesManager.instance.special != null && !GameManager.instance.paused && !GameManager.instance.specialInCooldown && GameManager.instance.specials > 0)
         {
@@ -200,35 +213,38 @@ public class PlayerController : MonoBehaviour
 
     private void DoubleShoot()
     {
+
         coolCount += Time.deltaTime;
-            //Debug.Log(coolCount);
-            if (coolCount > basicCooldown)
-            {
-                GameObject bulletOut = Instantiate(bulllet, transform.position + new Vector3(0.4f,0,0), Quaternion.identity);
-                GameObject bulletOut2 = Instantiate(bulllet, transform.position + new Vector3(-0.4f,0,0), Quaternion.identity);
+        //Debug.Log(coolCount);
+        if (coolCount >= basicCooldown)
+        {
+            GameObject bulletOut = Instantiate(bulllet, transform.position + new Vector3(0.4f,0,0), Quaternion.identity);
+            GameObject bulletOut2 = Instantiate(bulllet, transform.position + new Vector3(-0.4f,0,0), Quaternion.identity);
 
-                bulletOut.GetComponent<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * 0.75f;
-                bulletOut2.GetComponent<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * 0.75f;
+            bulletOut.GetComponent<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * 0.75f;
+            bulletOut2.GetComponent<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * 0.75f;
 
-                Destroy(bulletOut, 5f);
-                Destroy(bulletOut2, 5f);
-                coolCount = 0f;
-            }
+            Destroy(bulletOut, 5f);
+            Destroy(bulletOut2, 5f);
+            coolCount = 0f;
+        }
+
     }
 
     private void Shoot()
     {
+        //coolCount = 0;
         coolCount += Time.deltaTime;
-            //Debug.Log(coolCount);
-            if (basicCooldown < coolCount)
-            {
-                GameObject bulletOut = Instantiate(bulllet, transform.position, Quaternion.identity);
+        //Debug.Log(coolCount);
+        if (coolCount >= basicCooldown)
+        {
+            GameObject bulletOut = Instantiate(bulllet, transform.position, Quaternion.identity);
+            bulletOut.GetComponentInChildren<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage();
 
-                bulletOut.GetComponentInChildren<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage();
-
-                Destroy(bulletOut, 5f);
-                coolCount = 0f;
-            }
+            Destroy(bulletOut, 5f);
+            coolCount = 0f;
+         }
+        
     }
 
     private void ChargedShoot(bool charging)
@@ -248,7 +264,7 @@ public class PlayerController : MonoBehaviour
             
             GameObject bulletOut = Instantiate(bulllet, transform.position, Quaternion.identity);
 
-            bulletOut.GetComponentInChildren<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * charge;
+            bulletOut.GetComponentInChildren<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * (charge*2.5f);
             bulletOut.transform.localScale = new Vector3(charge/2, charge/2,charge/2);
 
             Destroy(bulletOut, 5f);
@@ -256,6 +272,39 @@ public class PlayerController : MonoBehaviour
             
         }
         
+
+
+    }
+
+    private void DoubleChargedShoot(bool charging)
+    {
+        if (charging)
+        {
+            charge += Time.deltaTime * 3;
+
+            if (charge > 2)
+            {
+                charge = 2;
+            }
+        }
+
+        else
+        {
+            GameObject bulletOut = Instantiate(bulllet, transform.position + new Vector3(0.4f, 0, 0), Quaternion.identity);
+            GameObject bulletOut2 = Instantiate(bulllet, transform.position + new Vector3(-0.4f, 0, 0), Quaternion.identity);
+            //GameObject bulletOut = Instantiate(bulllet, transform.position, Quaternion.identity);
+
+            bulletOut.GetComponentInChildren<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * (charge * 2.5f);
+            bulletOut.transform.localScale = new Vector3(charge / 2, charge / 2, charge / 2);
+            bulletOut2.GetComponentInChildren<BulletsBehavior>().damage = GameManager.instance.GetPlayerDamage() * (charge * 2.5f);
+            bulletOut2.transform.localScale = new Vector3(charge / 2, charge / 2, charge / 2);
+
+            Destroy(bulletOut, 5f);
+            Destroy(bulletOut2, 5f);
+            charge = 0;
+
+        }
+
 
 
     }

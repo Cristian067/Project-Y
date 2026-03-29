@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Magic Mirror
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   whoToAdd: 0
+  UpgradeImage: {fileID: 0}
   type: 1
+  unique: 0
   alignment: 0
-  description: A mirror that is almost posible to see to see two fisical forms. Makes
-    you able to shoot double, but you do 0.75x of damage
-  modify: 0
-  valueToAdd: 0
+  description: A mirror that splits your bullets into two forms. Makes you able to
+    shoot double, but you do 0.75x of damage.
+  modify: 
+  valuesToAdd: []
   special: {fileID: 0}

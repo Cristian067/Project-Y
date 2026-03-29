@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803bb176333f2fa448652c2443a9a3df, type: 3}
   m_Name: Bloom of the eternal field
   m_EditorClassIdentifier: 
+  whoToAdd: 0
+  UpgradeImage: {fileID: 21300000, guid: d5f3edb29298140499ed092beaadb877, type: 3}
   type: 2
+  unique: 0
   alignment: 0
-  description: The ability to stop the flow of time. Everyone who used this said
-    that feels like being in a field with inmortals flowers.
-  modify: 0
-  valueToAdd: 0
+  description: Grants the ability to stop time. Those who have used it say it feels
+    like standing in a field of immortal flowers.
+  modify: 
+  valuesToAdd: []
   special: {fileID: 11400000, guid: 79e48c8d7a35bf34382dbfb69c0c088d, type: 2}

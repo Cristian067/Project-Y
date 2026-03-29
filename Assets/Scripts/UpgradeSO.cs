@@ -17,6 +17,8 @@ public class UpgradeSO : ScriptableObject
 
     public Who whoToAdd;
 
+    public Sprite UpgradeImage;
+
 
     public enum UpgradeType
     {

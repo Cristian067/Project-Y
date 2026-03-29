@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803bb176333f2fa448652c2443a9a3df, type: 3}
   m_Name: Portal To Limitless
   m_EditorClassIdentifier: 
+  whoToAdd: 0
+  UpgradeImage: {fileID: 0}
   type: 1
+  unique: 0
   alignment: 0
-  description: Now when you pass the right or left limit you go to the another side
-  modify: 0
-  valueToAdd: 0
+  description: Crossing the left or right boundary teleports you to the opposite
+    side.
+  modify: 
+  valuesToAdd: []
+  special: {fileID: 0}

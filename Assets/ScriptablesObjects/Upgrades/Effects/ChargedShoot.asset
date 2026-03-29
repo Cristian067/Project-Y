@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: ChargedShoot
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   whoToAdd: 0
+  UpgradeImage: {fileID: 0}
   type: 1
+  unique: 0
   alignment: 0
-  description: The capacity to charge energy into one shoot, now if you hold the
-    attack button you will charge your shoot dealing more damage
-  modify: 0
-  valueToAdd: 0
+  description: Allows you to charge energy into a shot. Hold the attack button to
+    charge and deal more damage.
+  modify: 
+  valuesToAdd: []
   special: {fileID: 0}

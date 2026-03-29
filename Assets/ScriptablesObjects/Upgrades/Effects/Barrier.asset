@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Barrier
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   whoToAdd: 0
+  UpgradeImage: {fileID: 0}
   type: 1
+  unique: 0
   alignment: 0
-  description: A magic barrier that protects you from a hit. It recharges after 3
-    seconds
-  modify: 0
-  valueToAdd: 0
+  description: A magical barrier that protects you from one hit. Recharges after
+    5 seconds.
+  modify: 
+  valuesToAdd: []
   special: {fileID: 0}

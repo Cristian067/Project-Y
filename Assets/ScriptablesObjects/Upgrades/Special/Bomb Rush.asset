@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Bomb Rush
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   whoToAdd: 0
+  UpgradeImage: {fileID: 21300000, guid: 6f1dda7d5cb20874ba32827a7333888b, type: 3}
   type: 2
+  unique: 0
   alignment: 0
-  description: Summons 3 powerful bombs that explodes after a few seconds
-  modify: 0
-  valueToAdd: 0
+  description: Summons 3 powerful bombs that explode after a few seconds
+  modify: 
+  valuesToAdd: []
   special: {fileID: 11400000, guid: 7dd023aad3449254985e134db546674d, type: 2}
