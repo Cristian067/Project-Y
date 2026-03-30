@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Heavy Resonance
   m_EditorClassIdentifier: GameAssembly::UpgradeSO
   whoToAdd: 2
+  UpgradeImage: {fileID: 0}
   type: 0
   unique: 1
   alignment: 0
-  description: Magic artifact that weight but makes you stronger
+  description: A heavy magical artifact that increases your strength.
   modify: 0000000001000000
   valuesToAdd:
   - 2
