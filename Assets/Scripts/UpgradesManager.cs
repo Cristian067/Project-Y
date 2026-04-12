@@ -12,6 +12,7 @@ public class UpgradeEffects
     public UpgradeSO magicMirror;
     public UpgradeSO barrier;
     public UpgradeSO chargedShoot;
+    public UpgradeSO lighting;
 }
 
 
@@ -288,9 +289,25 @@ public class UpgradesManager : MonoBehaviour
         List<UpgradeSO> upgradeEnemyPull = allTheEnemyUpgrades.ToList<UpgradeSO>();
 
 
-        foreach(UpgradeSO upgrade in playerUpgrades)
+        for (int i = upgradePull.Count - 1; i >= 0; i--)
         {
-            if(upgrade.type == UpgradeSO.UpgradeType.StatModification)
+            var upgrade = upgradePull[i];
+
+            if (!upgrade.requires.All(r => playerUpgrades.Contains(r)))
+            {
+                upgradePull.RemoveAt(i);
+            }
+
+            if (playerUpgrades.Any(p => p.exclude.Contains(upgrade)))
+            {
+                upgradePull.RemoveAt(i);
+            }
+        }
+
+        foreach (UpgradeSO upgrade in playerUpgrades)
+        {
+
+            if (upgrade.type == UpgradeSO.UpgradeType.StatModification)
             {
                 if (upgrade.unique && upgradePull.Contains(upgrade))
                 {
@@ -303,11 +320,13 @@ public class UpgradesManager : MonoBehaviour
             {
                 upgradePull.Remove(upgrade);
             }
+
         }
 
         if (upgradePull.Contains(special))
         {
             upgradePull.Remove(special);
+            
         }
 
         //get selection for player

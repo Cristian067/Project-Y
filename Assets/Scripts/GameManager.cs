@@ -14,6 +14,7 @@ public class PlayerStats
     public float damage;
     public float speed;
     public float pickupRange;
+    public float lightingRange;
 }
 
 
@@ -104,6 +105,12 @@ public class GameManager : MonoBehaviour
         {
             Pause(true);
         }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            UpgradesManager.instance.DisplayUpgrades();
+        }
+
     }
 
     [ContextMenu("Reload Stats")]
@@ -319,6 +326,7 @@ public class GameManager : MonoBehaviour
     public void DestroyBarrier()
     {
         barrier.SetActive(false);
+        StartCoroutine(playerScript.HitInCooldown());
         StartCoroutine(RechargeBarrier());
     }
 

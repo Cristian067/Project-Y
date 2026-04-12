@@ -63,10 +63,12 @@ MonoBehaviour:
     damage: 1
     speed: 10
     pickupRange: 1
+    lightingRange: 0
   modStats:
     damage: 0
     speed: 0
     pickupRange: 0
+    lightingRange: 0
   enemies: 0
   limitsMaps: []
 --- !u!114 &6215549035710551892
@@ -86,6 +88,7 @@ MonoBehaviour:
     magicMirror: {fileID: 11400000, guid: 2a46173ca190c28448f43489ef585242, type: 2}
     barrier: {fileID: 11400000, guid: a628e2fe3e9b273478c41194b6e75cab, type: 2}
     chargedShoot: {fileID: 11400000, guid: 335f106cb9a41c64580498513f9be5e6, type: 2}
+    lighting: {fileID: 11400000, guid: 40098c5e6fe8b464880d52b90eb56cc1, type: 2}
   allThePlayerUpgrades: []
   allTheEnemyUpgrades: []
   upgradeDB: {fileID: 11400000, guid: 5404a9fcef2d8b145b94301d764e2607, type: 2}

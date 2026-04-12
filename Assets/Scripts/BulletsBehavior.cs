@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BulletsBehavior : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class BulletsBehavior : MonoBehaviour
 
     public float damage;
 
-    public Vector3 rotation = new Vector3(0,0,0);
+    public Vector3 rotation = new Vector3(0, 0, 0);
     public float rotationSpeed = 0;
 
     [Header("BombBehavior")]
@@ -37,7 +39,7 @@ public class BulletsBehavior : MonoBehaviour
         switch (type)
         {
             case BulletsType.Bomb:
-                Invoke("Bomb",timeForExplode);
+                Invoke("Bomb", timeForExplode);
                 break;
         }
     }
@@ -49,19 +51,19 @@ public class BulletsBehavior : MonoBehaviour
         {
             return;
         }
-        
-        if(rotation != new Vector3(0, 0, 0))
+
+        if (rotation != new Vector3(0, 0, 0))
         {
             transform.Rotate(rotation * Time.deltaTime * rotationSpeed);
         }
-        
-        transform.Translate(Vector3.forward  * speed * Time.deltaTime);
 
-        if(transform.position.z > 40 || transform.position.z < -10 || transform.position.x >10 || transform.position.x < -10)
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        if (transform.position.z > 40 || transform.position.z < -10 || transform.position.x > 10 || transform.position.x < -10)
         {
             Destroy(gameObject);
         }
-        
+
     }
 
     public void SetSpeed(float newSpeed)
@@ -73,15 +75,15 @@ public class BulletsBehavior : MonoBehaviour
     {
         rotation = newRotation;
         rotationSpeed = newRotationSpeed;
-        
+
     }
 
     private void Bomb()
     {
-        for(int i = 0; i < bulletsInExplosion; i++)
+        for (int i = 0; i < bulletsInExplosion; i++)
         {
-            float radual = 360/ bulletsInExplosion;
-            Instantiate(bulletForExplode,transform.position,Quaternion.Euler(0,(i+1)*radual,0));
+            float radual = 360 / bulletsInExplosion;
+            Instantiate(bulletForExplode, transform.position, Quaternion.Euler(0, (i + 1) * radual, 0));
         }
         Destroy(gameObject);
     }
@@ -95,9 +97,9 @@ public class BulletsBehavior : MonoBehaviour
     {
         timeForExplode = time;
         bulletsInExplosion = bullets;
-        
+
     }
-    public void SetBomb(float time,int bullets,float speed)
+    public void SetBomb(float time, int bullets, float speed)
     {
         timeForExplode = time;
         bulletsInExplosion = bullets;
@@ -113,24 +115,38 @@ public class BulletsBehavior : MonoBehaviour
     {
         speed = newSpeed;
     }
+    private GameObject GetNearEnemy()
+    {
+        if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.lighting))
+        {
+
+            GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject closest = null;
+
+            targets = targets.OrderBy(x => (transform.position - x.transform.position).sqrMagnitude).ToArray<GameObject>();
+
+            Debug.Log(targets[0].name);
+            return targets[0];
+
+        }
+        return null;
+    }
 
     void OnTriggerEnter(Collider other)
     {
 
         if (enemy)
         {
-            if(other.gameObject.tag == "Barrier")
+            if (other.gameObject.tag == "Barrier")
             {
                 GameManager.instance.DestroyBarrier();
                 Destroy(gameObject);
             }
-            if (other.gameObject.tag == "Hitbox")
+            else if (other.gameObject.tag == "Hitbox")
             {
                 GameManager.instance.LoseLife();
                 //other.gameObject.GetComponent<EnemyBehavior>().Hurt(GameManager.instance.GetPlayerDamage());
                 Destroy(gameObject);
-
-
             }
 
         }
@@ -139,20 +155,24 @@ public class BulletsBehavior : MonoBehaviour
             if (other.gameObject.tag == "Enemy")
             {
                 other.gameObject.GetComponent<EnemyBehavior>().Hurt(damage);
-                Destroy(gameObject);
+                //if (GetNearEnemy()  != null)
+                //{
+                //    var newBullet = Instantiate(this.gameObject);
 
+                //    newBullet.transform.forward = GetNearEnemy().transform.position - newBullet.transform.position;
+                //    newBullet.GetComponent<BulletsBehavior>().ChangeSpeed(15);
+                //}
+                Destroy(gameObject);
 
             }
             else if (other.gameObject.tag == "Boss")
             {
                 other.gameObject.GetComponent<BossBehavior>().Hurt(damage);
                 Destroy(gameObject);
-
-
             }
         }
     }
-
-
-
 }
+
+
+

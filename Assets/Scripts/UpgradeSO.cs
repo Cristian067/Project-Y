@@ -42,7 +42,8 @@ public class UpgradeSO : ScriptableObject
 
     public Alignment alignment;
     public string description;
-    
+    public string extraDescription;
+
     public enum StatToModify
     {
         Damage,
@@ -51,6 +52,9 @@ public class UpgradeSO : ScriptableObject
         Health,
 
     }
+
+    public UpgradeSO[] requires;
+    public UpgradeSO[] exclude;
 
     [Space(2)]
     [Header("If is type Stat Modification:")]
