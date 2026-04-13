@@ -85,13 +85,15 @@ public class GameManager : MonoBehaviour
         {
             playerScript = GameObject.Find("Player").GetComponent<PlayerController>();
             barrier = GameObject.Find("Barrier").gameObject;
-            barrierRechargeParticles = GameObject.Find("barrierParticles").GetComponent<GameObject>();
+            barrier.SetActive(false);
+            barrierRechargeParticles = GameObject.Find("barrierParticles").gameObject;
+            barrierRechargeParticles.SetActive(false);
 
             
         }
         catch
         {
-            Debug.LogWarning("No existe player o barrera en la escena, asegurate de que el prefab del player tenga el tag 'Player' y que la barrera se llame 'Barrier'");
+            Debug.LogWarning("No se encuentra el player o la barrera en la escena, asegurate de que el prefab del player tenga el tag 'Player' y que la barrera se llame 'Barrier'");
         }
 
         Log.AddToLog($"Level {levelNumber} started");
@@ -120,6 +122,7 @@ public class GameManager : MonoBehaviour
         modStats.speed = 0;
         modStats.damage = 0;
         modStats.pickupRange = 0;
+        modStats.lightingRange = 0;
 
         if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrierInRecharge)
         {
@@ -145,6 +148,10 @@ public class GameManager : MonoBehaviour
                     {
                         modStats.pickupRange += upgrade.valuesToAdd[i];
                     }
+                    else if (upgrade.modify[i] == UpgradeSO.StatToModify.LightingRange)
+                    {
+                        modStats.lightingRange += upgrade.valuesToAdd[i];
+                    }
                 }
                 
             }
@@ -153,7 +160,9 @@ public class GameManager : MonoBehaviour
         finalStats.damage = baseStats.damage + modStats.damage;
         finalStats.speed = baseStats.speed + modStats.speed;
         finalStats.pickupRange = baseStats.pickupRange + modStats.pickupRange;
+        finalStats.lightingRange = baseStats.lightingRange + modStats.lightingRange;
 
+        
         if (finalStats.damage <= 0)
         {
             finalStats.damage = 1;
@@ -171,7 +180,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("No se encuentra el magnet");
         }
 
-        if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.active && !barrierInRecharge)
+        if (UpgradesManager.instance.playerUpgrades.Contains(UpgradesManager.instance.effects.barrier) && !barrier.activeInHierarchy && !barrierInRecharge)
         {
             barrier.SetActive(true);
         }
@@ -424,7 +433,7 @@ public class GameManager : MonoBehaviour
 
     public bool isBarrierActive()
     {
-        if (barrier.active && !barrierInRecharge)
+        if (barrier.activeInHierarchy && !barrierInRecharge)
         {
             return true;
         }

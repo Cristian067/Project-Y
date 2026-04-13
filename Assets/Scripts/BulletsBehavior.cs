@@ -121,15 +121,21 @@ public class BulletsBehavior : MonoBehaviour
         {
 
             GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
-            GameObject closest = null;
 
             targets = targets.OrderBy(x => (transform.position - x.transform.position).sqrMagnitude).ToArray<GameObject>();
 
-            Debug.Log(targets[0].name);
-            return targets[0];
+            Debug.Log(targets[1].name);
+            Debug.Log(Vector3.Distance(transform.position, targets[1].transform.position));
+            if(Vector3.Distance(transform.position, targets[1].transform.position) < GameManager.instance.finalStats.lightingRange)
+            {
+                return targets[1];
+            }
+
+            else return null;
+            
 
         }
-        return null;
+        else return null;
     }
 
     void OnTriggerEnter(Collider other)
@@ -155,13 +161,10 @@ public class BulletsBehavior : MonoBehaviour
             if (other.gameObject.tag == "Enemy")
             {
                 other.gameObject.GetComponent<EnemyBehavior>().Hurt(damage);
-                //if (GetNearEnemy()  != null)
-                //{
-                //    var newBullet = Instantiate(this.gameObject);
-
-                //    newBullet.transform.forward = GetNearEnemy().transform.position - newBullet.transform.position;
-                //    newBullet.GetComponent<BulletsBehavior>().ChangeSpeed(15);
-                //}
+                if (GetNearEnemy()  != null)
+                {
+                   GetNearEnemy().GetComponent<EnemyBehavior>().Hurt(damage/3);
+                }
                 Destroy(gameObject);
 
             }

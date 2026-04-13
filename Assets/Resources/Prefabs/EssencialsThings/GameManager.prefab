@@ -63,7 +63,7 @@ MonoBehaviour:
     damage: 1
     speed: 10
     pickupRange: 1
-    lightingRange: 0
+    lightingRange: 3
   modStats:
     damage: 0
     speed: 0

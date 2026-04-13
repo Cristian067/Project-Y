@@ -1,6 +1,0 @@
-[11:18:46]Stats reloaded.
-[11:18:46]Level 1 started.
-[11:18:59]Item Created with type Point with value 30 at (-6.24, 0.00, 8.86).
-[11:18:59]Item Created with type Point with value 30 at (-4.00, 0.00, 6.73).
-[11:19:03]The player died.
-[11:19:03]The player lost the level 1.

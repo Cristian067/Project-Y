@@ -1,7 +1,0 @@
-[12:14:02]Stats reloaded.
-[12:14:02]Level 1 started.
-[12:14:21]Stats reloaded.
-[12:14:21]Level 1 started.
-[12:14:40]The player died.
-[12:14:40]The player lost the level 1.
-[12:14:44]Stats reloaded.

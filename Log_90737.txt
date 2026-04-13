@@ -1,1 +1,0 @@
-[9:07:32]Applied options: -Music: 50% -Sfx: 86% -FullScreen: False.
