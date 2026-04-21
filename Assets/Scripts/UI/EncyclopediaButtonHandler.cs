@@ -86,7 +86,7 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
         if (unlocked)
         {
             name_text.text = upgrade.name;
-            description_text.text = upgrade.description;
+            description_text.text = upgrade.description+"\n"+upgrade.extraDescription;
         }
         else
         {

@@ -7,7 +7,6 @@ using UnityEngine;
 [Serializable]
 public class Dialogue
 {
-
     public enum Side
     {
         Left,
@@ -32,7 +31,6 @@ public class Dialogues
     {
         DisplayTheDialogue();
     }
-
     public void NextText()
     {
         currentText++;
@@ -42,20 +40,14 @@ public class Dialogues
         }
         else DisplayTheDialogue();
     }
-
     public void DisplayTheDialogue()
     {
         UIManager.instance.DisplayDialogue(dialogues[currentText].text,dialogues[currentText].who.name);
     }
-
-
-    
 }
 
 public class DialoguesManager : MonoBehaviour
 {
-
-
     public static DialoguesManager instance {get ; private set;}
 
     public Dialogues[] dialogues;
@@ -82,16 +74,12 @@ public class DialoguesManager : MonoBehaviour
         {
             StartDialogue("Start");
         }
-
-        
-        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (onDialogue)
         {
             if (Input.GetButtonDown("Submit"))
@@ -99,7 +87,7 @@ public class DialoguesManager : MonoBehaviour
                 dialogues[currentDialogue].NextText();
             }
         }
-        
+
     }
 
     public void StartDialogue(int dialogueId)
@@ -137,13 +125,12 @@ public class DialoguesManager : MonoBehaviour
         }
             onDialogue = true;
             GameManager.instance.Pause();
-            
+    
 
             int i = 0;
 
             foreach(var dialogue in dialogues)
             {
-                
                 if (dialogue.dialogueName == dialogueName)
                 {
                     currentDialogue = i;
@@ -151,10 +138,6 @@ public class DialoguesManager : MonoBehaviour
                 }
                 i++;
             }
-        
-        
-
-
         // currentDialogue = dialogueId;
         // dialogues[dialogueId].Init();
     }
