@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: LessDamage
   m_EditorClassIdentifier: 
   whoToAdd: 0
+  UpgradeImage: {fileID: 21300000, guid: ffae47778815dab4e9eaf7b959948bd3, type: 3}
   type: 0
+  unique: 0
   alignment: 1
   description: gets -1 of damage
+  extraDescription: 
+  requires: []
+  exclude: []
   modify: 00000000
   valuesToAdd:
   - -1

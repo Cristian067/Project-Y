@@ -16,6 +16,7 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
     public bool unlocked = false;
 
     public TextMeshProUGUI name_text;
+    public Image upgradeImage;
     public TextMeshProUGUI description_text;
 
 
@@ -86,11 +87,15 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
         if (unlocked)
         {
             name_text.text = upgrade.name;
+            upgradeImage.gameObject.SetActive(true);
+            upgradeImage.sprite = upgrade.UpgradeImage;
             description_text.text = upgrade.description+"\n"+upgrade.extraDescription;
         }
         else
         {
             name_text.text = "???";
+            upgradeImage.gameObject.SetActive(false);
+            //upgradeImage.sprite = null;
             description_text.text = "???";
         }
         

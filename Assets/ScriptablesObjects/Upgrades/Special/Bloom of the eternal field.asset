@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: Bloom of the eternal field
   m_EditorClassIdentifier: 
   whoToAdd: 0
-  UpgradeImage: {fileID: 21300000, guid: d5f3edb29298140499ed092beaadb877, type: 3}
+  UpgradeImage: {fileID: 21300000, guid: efb17b7995b9e5f449eee03d8c06a3af, type: 3}
   type: 2
   unique: 0
   alignment: 0
   description: Grants the ability to stop time. Those who have used it say it feels
     like standing in a field of immortal flowers.
+  extraDescription: 
+  requires: []
+  exclude: []
   modify: 
   valuesToAdd: []
   special: {fileID: 11400000, guid: 79e48c8d7a35bf34382dbfb69c0c088d, type: 2}
