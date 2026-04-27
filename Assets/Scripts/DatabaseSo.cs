@@ -5,4 +5,5 @@ using UnityEngine;
 public class UpgradesDBSo : ScriptableObject
 {
     public List<UpgradeSO> upgradeSOs;
+    public List<CharacterSO> characterSOs;
 }

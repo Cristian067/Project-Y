@@ -9,6 +9,7 @@ public class Data
     public bool[] levelsCompleted = new bool[10];
     
     public List<string> discoveredUpgrades;
+    public List<string> charactersMet;
 }
 
 public class Settings

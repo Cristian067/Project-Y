@@ -1,9 +1,9 @@
 {
-    "username": "N076",
-    "email": "hstgd@gmail.com",
+    "username": "User",
+    "email": "anonimous@gmail.com",
     "levelsHighScore": [
         0,
-        1400,
+        0,
         0,
         0,
         0,
@@ -15,7 +15,7 @@
     ],
     "levelsCompleted": [
         false,
-        true,
+        false,
         false,
         false,
         false,
@@ -25,20 +25,8 @@
         false,
         false
     ],
-    "discoveredUpgrades": [
-        "MoreDamage1",
-        "Magic Mirror",
-        "Powerful magnet",
-        "LessSpeed",
-        "MoreSpeed1",
-        "Barrier",
-        "Portal To Limitless",
-        "Slippery fingers",
-        "Heavy Resonance",
-        "LessDamage",
-        "Bomb Rush",
-        "Bloom of the eternal field",
-        "Lighting",
-        "LightingRangeUp"
+    "discoveredUpgrades": [],
+    "charactersMet": [
+        "Yang"
     ]
 }

@@ -32,3 +32,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0628776eab8fc4343991d87bbbaa0bf7, type: 2}
   - {fileID: 11400000, guid: 40098c5e6fe8b464880d52b90eb56cc1, type: 2}
   - {fileID: 11400000, guid: dd05ba1d8525379438a9eb36c8f2f626, type: 2}
+  characterSOs:
+  - {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+  - {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}

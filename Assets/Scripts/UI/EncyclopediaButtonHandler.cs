@@ -12,12 +12,24 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
 
     [Tooltip("ScriptableObject of the upgrade")]
     public UpgradeSO upgrade;
+    public CharacterSO character;
+    //public StorySO story;
 
     public bool unlocked = false;
 
     public TextMeshProUGUI name_text;
     public Image upgradeImage;
     public TextMeshProUGUI description_text;
+
+
+    public enum Type
+    {
+        Upgrade,
+        Character,
+        Story
+    }
+
+    public Type slotType;
 
 
     private string pathUserData = "save/UserData.json";
@@ -27,20 +39,31 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
     void Start()
     {
         CheckIfDiscovered();
-        if (upgrade.type == UpgradeSO.UpgradeType.Special)
+
+        switch (slotType)
         {
-            ColorBlock colorVar = GetComponent<Button>().colors;
-		    colorVar.normalColor = new Color(0.8f,0.8f ,0.1f);
-		    colorVar.selectedColor = new Color(0.5f,0.5f ,0.3f);
-            GetComponent<Button>().colors = colorVar; //Color.yellow;// = new Color(0.1f,0.5f ,0.5f);
+            case Type.Upgrade:
+                if (upgrade.type == UpgradeSO.UpgradeType.Special)
+                {
+                    ColorBlock colorVar = GetComponent<Button>().colors;
+                    colorVar.normalColor = new Color(0.8f,0.8f ,0.1f);
+                    colorVar.selectedColor = new Color(0.5f,0.5f ,0.3f);
+                    GetComponent<Button>().colors = colorVar; //Color.yellow;// = new Color(0.1f,0.5f ,0.5f);
+                }
+                if (upgrade.type == UpgradeSO.UpgradeType.Effect)
+                {
+                    ColorBlock colorVar = GetComponent<Button>().colors;
+                    colorVar.normalColor = new Color(0.2f,0.8f ,0.1f);
+                    colorVar.selectedColor = new Color(0.2f,0.5f ,0.4f);
+                    GetComponent<Button>().colors = colorVar; //Color.yellow;// = new Color(0.1f,0.5f ,0.5f);
+                }
+                break;
+                case Type.Character:
+                break;
+                case Type.Story:
+                break;
         }
-        if (upgrade.type == UpgradeSO.UpgradeType.Effect)
-        {
-            ColorBlock colorVar = GetComponent<Button>().colors;
-		    colorVar.normalColor = new Color(0.2f,0.8f ,0.1f);
-		    colorVar.selectedColor = new Color(0.2f,0.5f ,0.4f);
-            GetComponent<Button>().colors = colorVar; //Color.yellow;// = new Color(0.1f,0.5f ,0.5f);
-        }
+        
     }
 
     // Update is called once per frame
@@ -74,30 +97,73 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
         }
 
 
-        if (data.discoveredUpgrades.Contains(upgrade.name))
+        switch (slotType)
         {
-            unlocked = true;
+            case Type.Upgrade:
+                if (data.discoveredUpgrades.Contains(upgrade.name))
+                {
+                    unlocked = true;
+                }
+                else unlocked = false;
+                
+                break;
+                case Type.Character:
+                if (data.charactersMet.Contains(character.name))
+                {
+                    unlocked = true;
+                }
+                else unlocked = false;
+
+                break;
+                case Type.Story:
+
+                break;
         }
-        else unlocked = false;
+        
     }
 
     public void OnSelect(BaseEventData eventData)
     {
         CheckIfDiscovered();
-        if (unlocked)
+
+        switch (slotType)
         {
-            name_text.text = upgrade.name;
-            upgradeImage.gameObject.SetActive(true);
-            upgradeImage.sprite = upgrade.UpgradeImage;
-            description_text.text = upgrade.description+"\n"+upgrade.extraDescription;
+            case Type.Upgrade:
+                if (unlocked)
+                {
+                    name_text.text = upgrade.name;
+                    upgradeImage.gameObject.SetActive(true);
+                    upgradeImage.sprite = upgrade.UpgradeImage;
+                    description_text.text = upgrade.description+"\n"+upgrade.extraDescription;
+                }
+                else
+                {
+                    name_text.text = "???";
+                    upgradeImage.gameObject.SetActive(false);
+                    //upgradeImage.sprite = null;
+                    description_text.text = "???";
+                }
+                
+                break;
+                case Type.Character:
+                if (unlocked)
+                {
+                    name_text.text = character.name;
+                    upgradeImage.gameObject.SetActive(true);
+                    upgradeImage.sprite = character.encyclopediaSprite;
+                    description_text.text = character.description;
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                }
+
+                break;
+                case Type.Story:
+                
+                break;
         }
-        else
-        {
-            name_text.text = "???";
-            upgradeImage.gameObject.SetActive(false);
-            //upgradeImage.sprite = null;
-            description_text.text = "???";
-        }
+        
         
     }
 

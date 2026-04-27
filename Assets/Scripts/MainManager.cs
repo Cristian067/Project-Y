@@ -66,6 +66,13 @@ public class MainManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI usernameDisplay;
 
     [SerializeField] private UpgradesDBSo upgradesDatabase;
+
+    [Header("Encyclopedia")]
+
+    private TextMeshProUGUI nameText;
+    private Image encyclopediaImage;
+    private TextMeshProUGUI descriptionText;
+
     [SerializeField] private GameObject upgradesSlotsPanel;
     [SerializeField] private GameObject charactersSlotsPanel;
     [SerializeField] private GameObject storySlotsPanel;
@@ -86,8 +93,12 @@ public class MainManager : MonoBehaviour
 
         if (!File.Exists(pathUserData))
         {
+            Debug.Log("No existe el archivo, se va a crear uno nuevo");
             Directory.CreateDirectory("save");
             data.levelsCompleted[0] = false;
+            data.charactersMet = new List<string>();
+            data.charactersMet.Add("Yang");
+            //data.charactersMet.Add("Yang");
             string json = JsonUtility.ToJson(data,true);
             File.WriteAllText(pathUserData,json); 
             
@@ -353,22 +364,47 @@ public class MainManager : MonoBehaviour
 
         if(type == 0)
         {
+            upgradesSlotsPanel.SetActive(true);
+            charactersSlotsPanel.SetActive(false);
+            storySlotsPanel.SetActive(false);
             foreach (var upgrade in upgradesDatabase.upgradeSOs)
             {
                 if (upgrade.whoToAdd == UpgradeSO.Who.Player || upgrade.whoToAdd == UpgradeSO.Who.Both)
                 {
                     GameObject slot = Instantiate(Resources.Load<GameObject>("UpgradeEncyclopedia"), upgradesSlotsPanel.transform);
                     slot.GetComponent<EncyclopediaButtonHandler>().upgrade = upgrade;
-                    slot.GetComponent<EncyclopediaButtonHandler>().description_text = GameObject.Find("UpgradeDescription").GetComponent<TextMeshProUGUI>();
-                    slot.GetComponent<EncyclopediaButtonHandler>().upgradeImage = GameObject.Find("UpgradeImage").GetComponent<Image>();
-                    slot.GetComponent<EncyclopediaButtonHandler>().name_text = GameObject.Find("UpgradeName").GetComponent<TextMeshProUGUI>();
+                    slot.GetComponent<EncyclopediaButtonHandler>().description_text = descriptionText;
+                    slot.GetComponent<EncyclopediaButtonHandler>().upgradeImage = encyclopediaImage;
+                    slot.GetComponent<EncyclopediaButtonHandler>().name_text = nameText;
                 }
                 //else return;
 
             }
+            upgradesSlotsPanel.transform.GetChild(0).GetComponent<Button>().Select();
+        }
+        else  if(type == 1)
+        {
+            upgradesSlotsPanel.SetActive(false);
+            charactersSlotsPanel.SetActive(true);
+            storySlotsPanel.SetActive(false);
+            foreach (var character in upgradesDatabase.characterSOs)
+            {
+               
+                    GameObject slot = Instantiate(Resources.Load<GameObject>("UpgradeEncyclopedia"), charactersSlotsPanel.transform);
+                    slot.GetComponent<EncyclopediaButtonHandler>().character = character;
+                    slot.GetComponent<EncyclopediaButtonHandler>().slotType = EncyclopediaButtonHandler.Type.Character;
+                    slot.GetComponent<EncyclopediaButtonHandler>().name_text = nameText;
+                    slot.GetComponent<EncyclopediaButtonHandler>().description_text = descriptionText;
+                    slot.GetComponent<EncyclopediaButtonHandler>().upgradeImage = encyclopediaImage;
+                    
+                
+                //else return;
+
+            }
+            charactersSlotsPanel.transform.GetChild(0).GetComponent<Button>().Select();
         }
         
-        upgradesSlotsPanel.transform.GetChild(0).GetComponent<Button>().Select();
+        
         
     }
         
