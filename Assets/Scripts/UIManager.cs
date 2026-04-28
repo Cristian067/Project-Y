@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance { get; private set;}
     [SerializeField] private TextMeshProUGUI livesText;
+    [SerializeField] private Slider livesSlider;
+    [SerializeField] private Slider specialSlider;
     [SerializeField] private TextMeshProUGUI specialText;
     [SerializeField] private TextMeshProUGUI totalPointsText;
 
@@ -37,6 +39,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueName;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private float textTime = 0.02f;
 
 
     [Header("Boss Things")]
@@ -105,7 +108,9 @@ public class UIManager : MonoBehaviour
 
     public void RefreshStatsUi()
     {
-        livesText.text = $"{GameManager.instance.GetPlayerLives()}/"+GameManager.instance.maxLives;
+        livesSlider.value = GameManager.instance.GetPlayerLives();
+        //livesText.text = $"{GameManager.instance.GetPlayerLives()}/"+GameManager.instance.maxLives;
+        specialSlider.value = GameManager.instance.specials;
         specialText.text = $"{GameManager.instance.specials}/"+ GameManager.instance.maxSpecials;
         totalPointsText.text = $"{GameManager.instance.GetTotalPoints()}";
 
@@ -127,12 +132,20 @@ public class UIManager : MonoBehaviour
         
     }
 
+    private Coroutine TextAnimationCoroutine;
+
     public void DisplayDialogue(string dialogue, string who)
     {
         dialoguePanel.SetActive(true);
         
-        dialogueText.text = dialogue;
+        //dialogueText.text = dialogue;
         dialogueName.text = who;
+        if (TextAnimationCoroutine != null)
+        {
+            StopCoroutine(TextAnimationCoroutine);
+        }
+        TextAnimationCoroutine = StartCoroutine(DialogueAnimation(dialogue));
+
     }
 
     private IEnumerator DialogueAnimation(string dialogue)
@@ -141,7 +154,7 @@ public class UIManager : MonoBehaviour
         foreach(char c in dialogue.ToCharArray())
         {
             dialogueText.text += c;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(textTime);
         }
     }
 
