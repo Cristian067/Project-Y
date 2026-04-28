@@ -129,6 +129,12 @@ public class UIManager : MonoBehaviour
             currentSpecialImage.sprite = UpgradesManager.instance.special.UpgradeImage;
             currentSpecialImage.color = new Color(1, 1, 1, 1);
         }
+        else
+        {
+            currentSpecialText.text = $"";
+            currentSpecialImage.sprite = null;
+            currentSpecialImage.color = new Color(1, 1, 1, 0);
+        }
         
     }
 
