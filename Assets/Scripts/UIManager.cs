@@ -130,8 +130,19 @@ public class UIManager : MonoBehaviour
     public void DisplayDialogue(string dialogue, string who)
     {
         dialoguePanel.SetActive(true);
+        
         dialogueText.text = dialogue;
         dialogueName.text = who;
+    }
+
+    private IEnumerator DialogueAnimation(string dialogue)
+    {
+        dialogueText.text = "";
+        foreach(char c in dialogue.ToCharArray())
+        {
+            dialogueText.text += c;
+            yield return new WaitForSeconds(0.02f);
+        }
     }
 
     public void UndisplayDialogue()
