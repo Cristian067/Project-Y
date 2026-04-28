@@ -17,9 +17,9 @@ MonoBehaviour:
   type: 1
   unique: 0
   alignment: 0
-  description: A mirror that splits your bullets into two forms. Makes you able to
-    shoot double, but you do 0.75x of damage.
-  extraDescription: 
+  description: Makes you able to shoot double, but you do 0.75x of damage.
+  extraDescription: This is a mirror that splits your bullets into two forms. It
+    feels quite weird everytime i hold it, i dont know how to explain it, is like
   requires: []
   exclude: []
   modify: 
