@@ -15418,32 +15418,59 @@ MonoBehaviour:
     newMusic: {fileID: 0}
     newSpeed: 0
   - active: 1
-    distanceToSpawn: 15
-    timeThatWillSpawn: 1
-    eventType: 2
-    spawnType: 0
-    prefab: {fileID: 862700185102885790, guid: 03a406f37c1fff5498415c321849e957, type: 3}
-    dialogueName: 
-    newMusic: {fileID: 8300000, guid: 37bcab0a647de4f4682c4c3a85c480eb, type: 3}
-    newSpeed: 0
-  - active: 1
     distanceToSpawn: 20
-    timeThatWillSpawn: 1
-    eventType: 1
+    timeThatWillSpawn: 2
+    eventType: 0
     spawnType: 0
-    prefab: {fileID: 862700185102885790, guid: 03a406f37c1fff5498415c321849e957, type: 3}
-    dialogueName: Test
-    newMusic: {fileID: 8300000, guid: 37bcab0a647de4f4682c4c3a85c480eb, type: 3}
+    prefab: {fileID: 3957606083555100597, guid: c7e3d52dec7dfce48bb280c9a7ca4499, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
     newSpeed: 0
   - active: 1
-    distanceToSpawn: 720.8
-    timeThatWillSpawn: 140.16
-    eventType: 3
+    distanceToSpawn: 25
+    timeThatWillSpawn: 1
+    eventType: 0
     spawnType: 0
-    prefab: {fileID: 862700185102885790, guid: 03a406f37c1fff5498415c321849e957, type: 3}
+    prefab: {fileID: 3957606083555100597, guid: 0096a1f8feb735a48a4296ffdc92cbf8, type: 3}
     dialogueName: 
-    newMusic: {fileID: 8300000, guid: 37bcab0a647de4f4682c4c3a85c480eb, type: 3}
-    newSpeed: 78.09
+    newMusic: {fileID: 0}
+    newSpeed: 0
+  - active: 1
+    distanceToSpawn: 30
+    timeThatWillSpawn: 1
+    eventType: 0
+    spawnType: 0
+    prefab: {fileID: 3957606083555100597, guid: c7e3d52dec7dfce48bb280c9a7ca4499, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+  - active: 1
+    distanceToSpawn: 35
+    timeThatWillSpawn: 1
+    eventType: 0
+    spawnType: 0
+    prefab: {fileID: 3957606083555100597, guid: 0096a1f8feb735a48a4296ffdc92cbf8, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+  - active: 1
+    distanceToSpawn: 40
+    timeThatWillSpawn: 1
+    eventType: 0
+    spawnType: 0
+    prefab: {fileID: 3957606083555100597, guid: c7e3d52dec7dfce48bb280c9a7ca4499, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+  - active: 1
+    distanceToSpawn: 40
+    timeThatWillSpawn: 0
+    eventType: 0
+    spawnType: 0
+    prefab: {fileID: 3957606083555100597, guid: c7e3d52dec7dfce48bb280c9a7ca4499, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

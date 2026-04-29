@@ -9,6 +9,7 @@ public enum SpawnEventType
 {
     Spawn,
     Dialogue,
+    Goal,
     MusicChange,
     SpeedChange,
 }
@@ -81,10 +82,29 @@ public class SpawnManager : MonoBehaviour
                 switch (eventSpawn.eventType)
                 {
                     case SpawnEventType.Spawn:
-                        Instantiate(eventSpawn.prefab, transform.position + new Vector3(0,0,15), Quaternion.identity);
+                        switch (eventSpawn.spawnType)
+                        {
+                            case SpawnType.Enemy:
+                                Instantiate(eventSpawn.prefab, transform.position + new Vector3(0,0,15), Quaternion.identity);
+                                break;
+                            case SpawnType.PowerUp:
+                                Instantiate(eventSpawn.prefab, transform.position + new Vector3(0,0,15), Quaternion.identity);
+                                break;
+                            case SpawnType.Obstacle:
+                                Instantiate(eventSpawn.prefab, transform.position + new Vector3(0,0,15), Quaternion.identity);
+                                break;
+                            case SpawnType.Boss:
+                                DialoguesManager.instance.StartDialogue("Boss");
+                                Instantiate(eventSpawn.prefab, transform.position + new Vector3(0,0,15), Quaternion.identity);
+                                break;
+                        }
+                        
                         break;
                     case SpawnEventType.Dialogue:
                         DialoguesManager.instance.StartDialogue(eventSpawn.dialogueName);
+                        break;
+                    case SpawnEventType.Goal:
+                        GameManager.instance.Win();
                         break;
                     case SpawnEventType.MusicChange:
                         AudioManager.Instance.ChangeMusic(eventSpawn.newMusic);
@@ -99,6 +119,43 @@ public class SpawnManager : MonoBehaviour
         }
         
         
+    }
+
+    public void SpawnRemoteEvent(EventSpawn eventSpawn)
+    {
+        switch (eventSpawn.eventType)
+        {
+            case SpawnEventType.Spawn:
+                switch (eventSpawn.spawnType)
+                {
+                    case SpawnType.Enemy:
+                        Instantiate(eventSpawn.prefab, transform.position + new Vector3(0,0,15), Quaternion.identity);
+                        break;
+                    case SpawnType.PowerUp:
+                        Instantiate(eventSpawn.prefab, transform.position + new Vector3(0,0,15), Quaternion.identity);
+                        break;
+                    case SpawnType.Obstacle:
+                        Instantiate(eventSpawn.prefab, transform.position + new Vector3(0,0,15), Quaternion.identity);
+                        break;
+                    case SpawnType.Boss:
+                        DialoguesManager.instance.StartDialogue("Boss");
+                        Instantiate(eventSpawn.prefab, transform.position + new Vector3(0,0,15), Quaternion.identity);
+                        break;
+                }
+                break;
+            case SpawnEventType.Dialogue:
+                DialoguesManager.instance.StartDialogue(eventSpawn.dialogueName);
+                break;
+            case SpawnEventType.Goal:
+                GameManager.instance.Win();
+                break;
+            case SpawnEventType.MusicChange:
+                AudioManager.Instance.ChangeMusic(eventSpawn.newMusic);
+                break;
+            case SpawnEventType.SpeedChange:
+                speed = eventSpawn.newSpeed;
+                break;
+        }
     }
 
     [ContextMenu("Order Spawn Events")]

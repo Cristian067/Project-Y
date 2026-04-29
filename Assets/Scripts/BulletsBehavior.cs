@@ -31,6 +31,7 @@ public class BulletsBehavior : MonoBehaviour
     [SerializeField] private float timeForExplode;
     [SerializeField] private int bulletsInExplosion;
     [SerializeField] private float dispersionSpeed;
+    [SerializeField] private bool bombRotated = false;
 
 
     // Start is called before the first frame update
@@ -80,10 +81,16 @@ public class BulletsBehavior : MonoBehaviour
 
     private void Bomb()
     {
+        int bombR = 0;
+        if (bombRotated)
+        {
+            bombR = 90;
+        }
+        
         for (int i = 0; i < bulletsInExplosion; i++)
         {
             float radual = 360 / bulletsInExplosion;
-            Instantiate(bulletForExplode, transform.position, Quaternion.Euler(0, (i + 1) * radual, 0));
+            Instantiate(bulletForExplode, transform.position, Quaternion.Euler(0, (i + 1) * radual + bombR, 0));
         }
         Destroy(gameObject);
     }
