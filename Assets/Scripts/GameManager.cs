@@ -8,6 +8,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
+using UnityEngine.Rendering;
+
 [Serializable]
 public class PlayerStats 
 {
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance { get; private set; }
+
+  
 
     [SerializeField]private int levelNumber;
 
@@ -52,6 +56,8 @@ public class GameManager : MonoBehaviour
     public PlayerStats finalStats { get; private set;} = new PlayerStats();
 
     private float timeScaleSaved;
+
+
 
     public bool paused { get; private set; }
     public bool specialInCooldown { get; private set; }
@@ -244,7 +250,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(playerScript.HitInCooldown());
         Log.AddToLog("The player losed a life");
         Log.AddToLog($"Current lives: {lives}");
-
+        if (lives <= 1)
+        {
+            //Camera.main.GetComponent<Volume>().weight = 1;
+        }
         if (lives == 0)
         {
             Debug.Log("GameOver");
