@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: life
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
@@ -470,7 +470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: life
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
@@ -716,11 +716,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: life
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
       value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
+      propertyPath: canShoot
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -962,11 +966,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: life
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
       value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
+      propertyPath: canShoot
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -1208,11 +1216,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: life
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
       value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
+      propertyPath: canShoot
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -1454,11 +1466,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: life
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
       value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
+      propertyPath: canShoot
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -1700,11 +1716,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: life
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
       value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
+      propertyPath: canShoot
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath

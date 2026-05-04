@@ -46,6 +46,7 @@ public class EventSpawn
     public AudioClip newMusic;
     [Header("If SpeedChange"), Space(3)]
     public float newSpeed;
+    
 
 }
 
@@ -57,6 +58,7 @@ public class SpawnManager : MonoBehaviour
     public float distance = 0;
     public float speed = 5;
     public EventSpawn[] eventsToSpawn;
+    public GameObject backgroundPanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -73,7 +75,7 @@ public class SpawnManager : MonoBehaviour
         }
         distance += Time.deltaTime * speed;
 
-
+        backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", 0.5f);
 
         foreach (EventSpawn eventSpawn in eventsToSpawn)
         {
@@ -111,6 +113,7 @@ public class SpawnManager : MonoBehaviour
                         break;
                     case SpawnEventType.SpeedChange:
                         speed = eventSpawn.newSpeed;
+                        backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", speed);
                         break;
                 }
                 //eventSpawn.distanceToSpawn = float.MaxValue; // Para que no se vuelva a spawnear

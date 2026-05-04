@@ -52,7 +52,7 @@ MonoBehaviour:
   lives: 3
   specials: 2
   specialCharge: 0
-  pointsForUpgrade: 150
+  pointsForUpgrade: 200
   totalPoints: 0
   points: 0
   barrier: {fileID: 0}
