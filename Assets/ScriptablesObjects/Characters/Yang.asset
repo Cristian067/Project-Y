@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Yang
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSO
   sprite: {fileID: 0}
+  encyclopediaSprite: {fileID: 0}
   name: Yang
-  age: 
+  gender: Male
+  height: 1.71m
+  age: 16
   description: 

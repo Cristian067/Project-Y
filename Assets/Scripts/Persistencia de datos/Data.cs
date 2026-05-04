@@ -10,6 +10,7 @@ public class Data
     
     public List<string> discoveredUpgrades;
     public List<string> charactersMet;
+    public List<string> storiesUnlocked;
 }
 
 public class Settings

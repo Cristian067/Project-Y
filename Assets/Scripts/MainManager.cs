@@ -69,9 +69,9 @@ public class MainManager : MonoBehaviour
 
     [Header("Encyclopedia")]
 
-    private TextMeshProUGUI nameText;
-    private Image encyclopediaImage;
-    private TextMeshProUGUI descriptionText;
+     [SerializeField]private TextMeshProUGUI nameText;
+     [SerializeField]private Image encyclopediaImage;
+     [SerializeField]private TextMeshProUGUI descriptionText;
 
     [SerializeField] private GameObject upgradesSlotsPanel;
     [SerializeField] private GameObject charactersSlotsPanel;
