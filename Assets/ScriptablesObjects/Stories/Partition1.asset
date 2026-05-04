@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec86df912be143d479343f0b8b9f82a1, type: 3}
   m_Name: Partition1
   m_EditorClassIdentifier: GameAssembly::StoriesSO
-  storyName: Partition1
+  storyName: Partition_part1
   description: 

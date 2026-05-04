@@ -136,9 +136,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameAssembly::EncyclopediaButtonHandler
   upgradeName: 
   upgrade: {fileID: 11400000, guid: 70a07da2dedfff840b24473b05130f5c, type: 2}
+  character: {fileID: 0}
   unlocked: 0
   name_text: {fileID: 0}
+  upgradeImage: {fileID: 0}
   description_text: {fileID: 0}
+  slotType: 0
 --- !u!1 &3471595966379928089
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +169,7 @@ RectTransform:
   m_GameObject: {fileID: 3471595966379928089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2983236302630429734}
