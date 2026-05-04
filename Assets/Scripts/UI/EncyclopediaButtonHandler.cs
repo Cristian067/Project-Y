@@ -112,7 +112,11 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
                 {
                     unlocked = true;
                 }
-                else unlocked = false;
+                else 
+                {
+                unlocked = false;
+                Destroy(this.gameObject);
+                }
 
                 break;
                 case Type.Story:
@@ -129,11 +133,13 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
         switch (slotType)
         {
             case Type.Upgrade:
+            description_text.GetComponent<RectTransform>().offsetMax = new Vector2(0,0);
                 if (unlocked)
                 {
                     name_text.text = upgrade.name;
                     upgradeImage.gameObject.SetActive(true);
                     upgradeImage.sprite = upgrade.UpgradeImage;
+                    
                     description_text.text = upgrade.description+"\n"+upgrade.extraDescription;
                 }
                 else
@@ -146,12 +152,16 @@ public class EncyclopediaButtonHandler : MonoBehaviour, ISelectHandler
                 
                 break;
                 case Type.Character:
+                description_text.GetComponent<RectTransform>().offsetMax = new Vector2(0,260);
                 if (unlocked)
                 {
                     name_text.text = character.name;
-                    upgradeImage.gameObject.SetActive(true);
+                    // new Vector2(name_text.preferredWidth+10f,name_text.GetComponent<RectTransform>().sizeDelta.y+260);
+                    upgradeImage.gameObject.SetActive(false);
                     upgradeImage.sprite = character.encyclopediaSprite;
-                    description_text.text = character.description;
+
+                    string baseDescrpt = $"Age: {character.age}\nGender: {character.gender}\nHeight: {character.height}\n\n{character.description}";
+                    description_text.text = baseDescrpt;
                 }
                 else
                 {

@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Mih
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSO
   sprite: {fileID: 0}
+  encyclopediaSprite: {fileID: 0}
   name: Mih
+  gender: Female
+  height: 1.60m
   age: ??
-  description: 
+  description: A weird fairy that i found, she says she was the strongthest, but
+    it wasnt a big deal.\nThe problem is she said she got that power from someone,
+    if someone is giving more power to evil people i have to stop it

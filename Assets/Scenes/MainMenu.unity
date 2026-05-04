@@ -578,6 +578,9 @@ MonoBehaviour:
   playButton: {fileID: 2088020143}
   usernameDisplay: {fileID: 1364961046}
   upgradesDatabase: {fileID: 11400000, guid: 5404a9fcef2d8b145b94301d764e2607, type: 2}
+  nameText: {fileID: 1280773654}
+  encyclopediaImage: {fileID: 1987998860}
+  descriptionText: {fileID: 74196804}
   upgradesSlotsPanel: {fileID: 1034873876}
   charactersSlotsPanel: {fileID: 863246148}
   storySlotsPanel: {fileID: 336665036}
