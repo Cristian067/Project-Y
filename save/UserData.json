@@ -3,7 +3,7 @@
     "email": "anonimous@gmail.com",
     "levelsHighScore": [
         0,
-        660,
+        920,
         0,
         0,
         0,
@@ -28,10 +28,13 @@
     "discoveredUpgrades": [
         "Portal To Limitless",
         "Heavy Resonance",
-        "Barrier"
+        "Barrier",
+        "MoreDamage1",
+        "Bomb Rush"
     ],
     "charactersMet": [
         "Yang",
         "Mih"
-    ]
+    ],
+    "storiesUnlocked": []
 }

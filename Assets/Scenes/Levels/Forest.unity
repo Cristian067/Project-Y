@@ -14954,7 +14954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
       propertyPath: dialogues.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
       propertyPath: dialogues.Array.data[0].dialogueName
@@ -14969,6 +14969,10 @@ PrefabInstance:
       value: AfterBoss
       objectReference: {fileID: 0}
     - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogueName
+      value: EndForest
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
       propertyPath: dialogues.Array.data[0].dialogues.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -14979,6 +14983,10 @@ PrefabInstance:
     - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
       propertyPath: dialogues.Array.data[2].dialogues.Array.size
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
       propertyPath: dialogues.Array.data[0].dialogues.Array.data[0].who
@@ -15040,6 +15048,46 @@ PrefabInstance:
       propertyPath: dialogues.Array.data[2].dialogues.Array.data[1].who
       value: 
       objectReference: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[0].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[1].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[2].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[3].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[4].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[5].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[6].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[7].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[8].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[9].who
+      value: 
+      objectReference: {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
     - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
       propertyPath: dialogues.Array.data[0].dialogues.Array.data[0].side
       value: 1
@@ -15173,6 +15221,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
       propertyPath: dialogues.Array.data[2].dialogues.Array.data[9].text
+      value: Crap, she already dissapeared... I guess i have to find it by myself
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[0].side
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[0].text
+      value: I think i can see the end now
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[1].side
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[1].text
+      value: He gave me all this power for nothing...
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[2].text
+      value: Hey, why did you attack the village? \nMaybe i can spare you if you
+        cooperate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[3].side
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[3].text
+      value: Power, what else would it be? \nI have to show everyone who is the most
+        powerfull queen here.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[4].text
+      value: Then i heard you said someone gave you that power, who is he?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[5].side
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[5].text
+      value: Seems the child dont stop asking question. \nBut even if i wanted i
+        cant said that, you know how powerful can be a contract and the punishments
+        of break it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[6].side
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[6].text
+      value: All I can tell you is to be careful around the river. I heard it's not
+        as calm as it used to be.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[7].text
+      value: The river? Whats wrong with the river?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[8].text
+      value: ...?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
+      propertyPath: dialogues.Array.data[3].dialogues.Array.data[9].text
       value: Crap, she already dissapeared... I guess i have to find it by myself
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15435,6 +15548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameAssembly::SpawnManager
   distance: 0
   speed: 5
+  backgroundSpeed: 0.5
   eventsToSpawn:
   - active: 1
     distanceToSpawn: 0
@@ -15509,8 +15623,44 @@ MonoBehaviour:
     newMusic: {fileID: 0}
     newSpeed: 0
   - active: 1
-    distanceToSpawn: 400
-    timeThatWillSpawn: 20
+    distanceToSpawn: 500
+    timeThatWillSpawn: 40
+    eventType: 0
+    spawnType: 0
+    prefab: {fileID: 7739710674817122524, guid: 3566bc2a588db404aa6f8e65acccb18e, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+  - active: 1
+    distanceToSpawn: 550
+    timeThatWillSpawn: 10
+    eventType: 0
+    spawnType: 0
+    prefab: {fileID: 3957606083555100597, guid: 0096a1f8feb735a48a4296ffdc92cbf8, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+  - active: 1
+    distanceToSpawn: 600
+    timeThatWillSpawn: 10
+    eventType: 1
+    spawnType: 0
+    prefab: {fileID: 7895084873750355456, guid: 5631e7d5e0da20741a6bf9bdb59d90e2, type: 3}
+    dialogueName: EndForest
+    newMusic: {fileID: 0}
+    newSpeed: 0
+  - active: 1
+    distanceToSpawn: 601
+    timeThatWillSpawn: 0.2
+    eventType: 4
+    spawnType: 0
+    prefab: {fileID: 7895084873750355456, guid: 5631e7d5e0da20741a6bf9bdb59d90e2, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 1.5
+  - active: 1
+    distanceToSpawn: 650
+    timeThatWillSpawn: 7.5384617
     eventType: 2
     spawnType: 0
     prefab: {fileID: 7895084873750355456, guid: 5631e7d5e0da20741a6bf9bdb59d90e2, type: 3}

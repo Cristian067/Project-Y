@@ -57,6 +57,7 @@ public class SpawnManager : MonoBehaviour
 
     public float distance = 0;
     public float speed = 5;
+    public float backgroundSpeed = 5;
     public EventSpawn[] eventsToSpawn;
     public GameObject backgroundPanel;
 
@@ -75,7 +76,7 @@ public class SpawnManager : MonoBehaviour
         }
         distance += Time.deltaTime * speed;
 
-        backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", 0.5f);
+        backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
 
         foreach (EventSpawn eventSpawn in eventsToSpawn)
         {
@@ -112,8 +113,9 @@ public class SpawnManager : MonoBehaviour
                         AudioManager.Instance.ChangeMusic(eventSpawn.newMusic);
                         break;
                     case SpawnEventType.SpeedChange:
-                        speed = eventSpawn.newSpeed;
-                        backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", speed);
+                        //speed = eventSpawn.newSpeed;
+                        backgroundSpeed = eventSpawn.newSpeed;
+                        backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
                         break;
                 }
                 //eventSpawn.distanceToSpawn = float.MaxValue; // Para que no se vuelva a spawnear
@@ -156,7 +158,9 @@ public class SpawnManager : MonoBehaviour
                 AudioManager.Instance.ChangeMusic(eventSpawn.newMusic);
                 break;
             case SpawnEventType.SpeedChange:
-                speed = eventSpawn.newSpeed;
+                //speed = eventSpawn.newSpeed;
+                backgroundSpeed = eventSpawn.newSpeed;
+                backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
                 break;
         }
     }

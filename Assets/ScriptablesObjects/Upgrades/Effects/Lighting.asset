@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 1
   unique: 0
   alignment: 0
-  description: When you hit an emeny shocks another enemy if is close enough.
+  description: When you hit an enemy shocks another enemy if is close enough.
   extraDescription: 
   requires: []
   exclude: []
