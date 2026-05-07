@@ -12,6 +12,9 @@ public enum SpawnEventType
     Goal,
     MusicChange,
     SpeedChange,
+    DangerZone,
+    BossFight,
+    
 }
 [Serializable]
 public enum SpawnType
@@ -46,6 +49,15 @@ public class EventSpawn
     public AudioClip newMusic;
     [Header("If SpeedChange"), Space(3)]
     public float newSpeed;
+
+    [Header("If Danger")]
+
+    public GameObject dangerPrefab;
+    public DangerZone.Type type;
+    public Vector3 position;
+    public Vector3 scale;
+    public float duration;
+
     
 
 }
@@ -117,6 +129,11 @@ public class SpawnManager : MonoBehaviour
                         backgroundSpeed = eventSpawn.newSpeed;
                         backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
                         break;
+                    case SpawnEventType.DangerZone:
+                        GameObject dangerZone = Instantiate(Resources.Load<GameObject>("Prefabs/DangerZone"), new Vector3(0,0,0),Quaternion.identity);
+                        dangerZone.GetComponent<DangerZone>().SetUp(eventSpawn.position, eventSpawn.scale, eventSpawn.type, eventSpawn.duration);
+                        //dangerZone.transform.localScale = eventSpawn.scale;
+                        break;
                 }
                 //eventSpawn.distanceToSpawn = float.MaxValue; // Para que no se vuelva a spawnear
                 eventSpawn.active = false;
@@ -161,6 +178,11 @@ public class SpawnManager : MonoBehaviour
                 //speed = eventSpawn.newSpeed;
                 backgroundSpeed = eventSpawn.newSpeed;
                 backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
+                break;
+            case SpawnEventType.DangerZone:
+                GameObject dangerZone = Instantiate(eventSpawn.dangerPrefab, eventSpawn.position, Quaternion.identity);
+                //dangerZone.transform.localScale = eventSpawn.scale;
+                dangerZone.GetComponent<DangerZone>().SetUp(eventSpawn.position, eventSpawn.scale, eventSpawn.type, eventSpawn.duration);
                 break;
         }
     }

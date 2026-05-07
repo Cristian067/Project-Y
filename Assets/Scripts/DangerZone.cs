@@ -15,7 +15,7 @@ public class DangerZone : MonoBehaviour
     public GameObject cylinder;
 
 
-    public void SetUp(Vector3 pos, Vector3 scale, Type _type)
+    public void SetUp(Vector3 pos, Vector3 scale, Type _type,float duration = 10)
     {
 
         type = _type;

@@ -13720,7 +13720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 1853180302}
-  musicClip: {fileID: 8300000, guid: 0c3930aefa8775b4dbf2d8c56dbba9ab, type: 3}
+  musicClip: {fileID: 8300000, guid: 590c247d8be98bb42a85d166b9c49195, type: 3}
 --- !u!1 &389259746
 GameObject:
   m_ObjectHideFlags: 0
@@ -14707,7 +14707,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 590c247d8be98bb42a85d166b9c49195, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -15229,7 +15229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
       propertyPath: dialogues.Array.data[3].dialogues.Array.data[0].text
-      value: I think i can see the end now
+      value: I think i can see the end now.\nI should go a bit faster
       objectReference: {fileID: 0}
     - target: {fileID: 7256786141335147897, guid: 991a29cd6c4c7474990fee12a8d29320, type: 3}
       propertyPath: dialogues.Array.data[3].dialogues.Array.data[1].side
@@ -15559,6 +15559,11 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 40
     timeThatWillSpawn: 8
@@ -15568,6 +15573,11 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 40
     timeThatWillSpawn: 0
@@ -15577,6 +15587,11 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 100
     timeThatWillSpawn: 12
@@ -15586,6 +15601,11 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 230
     timeThatWillSpawn: 26
@@ -15595,6 +15615,11 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 250
     timeThatWillSpawn: 4
@@ -15604,6 +15629,11 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 300
     timeThatWillSpawn: 10
@@ -15613,6 +15643,11 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 300
     timeThatWillSpawn: 0
@@ -15622,15 +15657,67 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
+  - active: 1
+    distanceToSpawn: 320
+    timeThatWillSpawn: 4
+    eventType: 0
+    spawnType: 0
+    prefab: {fileID: 862700185102885790, guid: 03a406f37c1fff5498415c321849e957, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
+  - active: 1
+    distanceToSpawn: 380
+    timeThatWillSpawn: 12
+    eventType: 0
+    spawnType: 0
+    prefab: {fileID: 8497794009283747335, guid: 3f3fc08b734dcfe4da7068d31990e635, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
+  - active: 1
+    distanceToSpawn: 420
+    timeThatWillSpawn: 8
+    eventType: 0
+    spawnType: 0
+    prefab: {fileID: 7895084873750355456, guid: 5631e7d5e0da20741a6bf9bdb59d90e2, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 500
-    timeThatWillSpawn: 40
+    timeThatWillSpawn: 16
     eventType: 0
     spawnType: 0
     prefab: {fileID: 7739710674817122524, guid: 3566bc2a588db404aa6f8e65acccb18e, type: 3}
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 550
     timeThatWillSpawn: 10
@@ -15640,6 +15727,11 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 600
     timeThatWillSpawn: 10
@@ -15649,6 +15741,11 @@ MonoBehaviour:
     dialogueName: EndForest
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
     distanceToSpawn: 601
     timeThatWillSpawn: 0.2
@@ -15658,15 +15755,53 @@ MonoBehaviour:
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 1.5
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    duration: 0
   - active: 1
-    distanceToSpawn: 650
-    timeThatWillSpawn: 7.5384617
-    eventType: 2
+    distanceToSpawn: 620
+    timeThatWillSpawn: 2.9230769
+    eventType: 5
     spawnType: 0
     prefab: {fileID: 7895084873750355456, guid: 5631e7d5e0da20741a6bf9bdb59d90e2, type: 3}
     dialogueName: 
     newMusic: {fileID: 0}
     newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 2, y: 1, z: 15}
+    duration: 3
+  - active: 1
+    distanceToSpawn: 635
+    timeThatWillSpawn: 3
+    eventType: 5
+    spawnType: 0
+    prefab: {fileID: 7895084873750355456, guid: 5631e7d5e0da20741a6bf9bdb59d90e2, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: 4, y: 0, z: 0}
+    scale: {x: 2, y: 1, z: 15}
+    duration: 3
+  - active: 1
+    distanceToSpawn: 640
+    timeThatWillSpawn: 1
+    eventType: 5
+    spawnType: 0
+    prefab: {fileID: 7895084873750355456, guid: 5631e7d5e0da20741a6bf9bdb59d90e2, type: 3}
+    dialogueName: 
+    newMusic: {fileID: 0}
+    newSpeed: 0
+    dangerPrefab: {fileID: 0}
+    type: 0
+    position: {x: -4, y: 0, z: 0}
+    scale: {x: 2, y: 1, z: 15}
+    duration: 3
   backgroundPanel: {fileID: 54676283}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

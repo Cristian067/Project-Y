@@ -1,0 +1,12 @@
+using System.Collections;
+using UnityEngine;
+
+public class Moveset2_1 : Moveset
+{
+    public override IEnumerator Use()
+    {
+        Instantiate(bullet, transform.position, Quaternion.Euler(0, 180, 0));
+        GetComponent<BossBehavior>().ChangeInAttack(false);
+        yield return null;
+    }
+}

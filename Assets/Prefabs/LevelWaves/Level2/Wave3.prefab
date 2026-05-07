@@ -233,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
-      value: 5.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -483,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
-      value: 5.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -733,7 +733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
-      value: 5.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -983,7 +983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
-      value: 5.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -1233,7 +1233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
-      value: 5.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -1483,7 +1483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
-      value: 5.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -1733,7 +1733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
-      value: 5.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
@@ -1983,7 +1983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: speed
-      value: 5.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7056184575049501801, guid: aa8afa2a07a71d949bbddd2ee34ab252, type: 3}
       propertyPath: haveToDestroyAfterPath
