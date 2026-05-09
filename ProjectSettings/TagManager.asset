@@ -12,6 +12,7 @@ TagManager:
   - Barrier
   - Boss
   - Item
+  - Environment
   layers:
   - Default
   - TransparentFX

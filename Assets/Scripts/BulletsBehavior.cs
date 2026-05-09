@@ -72,7 +72,7 @@ public class BulletsBehavior : MonoBehaviour
         speed = newSpeed;
     }
 
-    public void SetRotation(Vector3 newRotation, float newRotationSpeed)
+    public void SetRotation(Vector3 newRotation, float newRotationSpeed = 0)
     {
         rotation = newRotation;
         rotationSpeed = newRotationSpeed;
@@ -131,8 +131,8 @@ public class BulletsBehavior : MonoBehaviour
 
             targets = targets.OrderBy(x => (transform.position - x.transform.position).sqrMagnitude).ToArray<GameObject>();
 
-            Debug.Log(targets[1].name);
-            Debug.Log(Vector3.Distance(transform.position, targets[1].transform.position));
+            //Debug.Log(targets[1].name);
+            //Debug.Log(Vector3.Distance(transform.position, targets[1].transform.position));
             if(Vector3.Distance(transform.position, targets[1].transform.position) < GameManager.instance.finalStats.lightingRange)
             {
                 return targets[1];

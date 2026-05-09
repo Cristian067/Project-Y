@@ -10,7 +10,7 @@ public class Background : MonoBehaviour
 
     [SerializeField]private float backgroundSpeed;
 
-    [SerializeField] private GameObject[] backgroundsBlocks;
+    [SerializeField] private GameObject[] backgroundsEnvironmentObjects;
     private float backgroundCount = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,8 +20,10 @@ public class Background : MonoBehaviour
             backgroundGO = GameObject.Find("BackgroundPlane");
         }
         backgroundMaterial = backgroundGO.GetComponent<MeshRenderer>().material;
-        
-        
+        backgroundGO.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
+        backgroundsEnvironmentObjects = GameObject.FindGameObjectsWithTag("Environment");
+
+
     }
 
     // Update is called once per frame
@@ -30,37 +32,32 @@ public class Background : MonoBehaviour
 
         if (GameManager.instance.paused)
         {
+            backgroundGO.GetComponent<Renderer>().material.SetFloat("_Speed", 0);
+
             return;
         }
+        backgroundGO.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
+        //backgroundCount += (backgroundSpeed/(backgroundGO.GetComponent<Renderer>().bounds.size.z/backgroundMaterial.GetVector("_Tiling").y ))  * Time.deltaTime;
+        //if(backgroundCount > 2)
+        //{
+        //    backgroundCount = 1;
+        //}
+        //backgroundMaterial.SetVector("_Offset",new Vector2(1,backgroundCount) );
 
-            float textureLength =
-            backgroundGO.GetComponent<Renderer>().bounds.size.z /
-            backgroundMaterial.GetVector("_Tiling").y;
-
-
-        backgroundCount += (backgroundSpeed/(backgroundGO.GetComponent<Renderer>().bounds.size.z/backgroundMaterial.GetVector("_Tiling").y ))  * Time.deltaTime;
-        if(backgroundCount > 2)
-        {
-            backgroundCount = 1;
-        }
-        backgroundMaterial.SetVector("_Offset",new Vector2(1,backgroundCount) );
         try
         {
-            foreach(var block in backgroundsBlocks)
+            foreach(var block in backgroundsEnvironmentObjects)
             {
                 //GameObject enviorement = Instantiate(block);
-                block.transform.Translate( new Vector3(0,0,-1f) * backgroundSpeed * Time.deltaTime);
+                block.transform.Translate( new Vector3(0,0,-1f) * ((backgroundSpeed *30)* Time.deltaTime));
 
                 //  1.5 / 1 * 40 = 60
-
-                Renderer render = block.GetComponent<Renderer>();
-
-                if (block.transform.position.z < -17.5f)
+                if (block.transform.position.z < -12.5f)
                 {
                     //Debug.Log(block.transform.);
                     //
 
-                    block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, 24);
+                    block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, 25);
                     //Debug.Log("si");
                 }
 
@@ -76,5 +73,10 @@ public class Background : MonoBehaviour
         
 
 
+    }
+    public void ChangeSpeed(float newSpeed)
+    {
+        backgroundSpeed = newSpeed;
+        backgroundGO.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
     }
 }

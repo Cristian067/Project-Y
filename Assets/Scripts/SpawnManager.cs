@@ -13,6 +13,7 @@ public enum SpawnEventType
     MusicChange,
     SpeedChange,
     DangerZone,
+    Bullet,
     BossFight,
     
 }
@@ -58,7 +59,15 @@ public class EventSpawn
     public Vector3 scale;
     public float duration;
 
+    [Header("If Bullet")]
+
+    public GameObject bullet;
+    public Vector3 bulletPosition;
+    public Vector3 bulletRotation;
+    public Vector3 bulletScale;
     
+
+
 
 }
 
@@ -76,6 +85,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //GetComponent<Background>().ChangeSpeed(backgroundSpeed);
 
     }
 
@@ -88,7 +98,7 @@ public class SpawnManager : MonoBehaviour
         }
         distance += Time.deltaTime * speed;
 
-        backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
+        //backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
 
         foreach (EventSpawn eventSpawn in eventsToSpawn)
         {
@@ -126,12 +136,20 @@ public class SpawnManager : MonoBehaviour
                         break;
                     case SpawnEventType.SpeedChange:
                         //speed = eventSpawn.newSpeed;
-                        backgroundSpeed = eventSpawn.newSpeed;
-                        backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
+                        //backgroundSpeed = eventSpawn.newSpeed;
+                        GetComponent<Background>().ChangeSpeed(backgroundSpeed);
+                        //backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
                         break;
                     case SpawnEventType.DangerZone:
                         GameObject dangerZone = Instantiate(Resources.Load<GameObject>("Prefabs/DangerZone"), new Vector3(0,0,0),Quaternion.identity);
                         dangerZone.GetComponent<DangerZone>().SetUp(eventSpawn.position, eventSpawn.scale, eventSpawn.type, eventSpawn.duration);
+                        //dangerZone.transform.localScale = eventSpawn.scale;
+                        break;
+                    case SpawnEventType.Bullet:
+                        GameObject bullet = Instantiate(eventSpawn.bullet, eventSpawn.bulletPosition, Quaternion.identity);
+                        bullet.transform.localScale = eventSpawn.bulletScale;
+                        bullet.GetComponent<BulletsBehavior>().SetRotation(eventSpawn.bulletRotation);
+                        //dangerZone.GetComponent<DangerZone>().SetUp(eventSpawn.position, eventSpawn.scale, eventSpawn.type, eventSpawn.duration);
                         //dangerZone.transform.localScale = eventSpawn.scale;
                         break;
                 }
@@ -176,8 +194,10 @@ public class SpawnManager : MonoBehaviour
                 break;
             case SpawnEventType.SpeedChange:
                 //speed = eventSpawn.newSpeed;
-                backgroundSpeed = eventSpawn.newSpeed;
-                backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
+                GetComponent<Background>().ChangeSpeed(backgroundSpeed);
+
+                //backgroundSpeed = eventSpawn.newSpeed;
+                //backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
                 break;
             case SpawnEventType.DangerZone:
                 GameObject dangerZone = Instantiate(eventSpawn.dangerPrefab, eventSpawn.position, Quaternion.identity);
