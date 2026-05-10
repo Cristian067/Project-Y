@@ -146,9 +146,9 @@ public class SpawnManager : MonoBehaviour
                         //dangerZone.transform.localScale = eventSpawn.scale;
                         break;
                     case SpawnEventType.Bullet:
-                        GameObject bullet = Instantiate(eventSpawn.bullet, eventSpawn.bulletPosition, Quaternion.identity);
+                        GameObject bullet = Instantiate(eventSpawn.bullet, eventSpawn.bulletPosition, Quaternion.Euler(eventSpawn.bulletRotation));
                         bullet.transform.localScale = eventSpawn.bulletScale;
-                        bullet.GetComponent<BulletsBehavior>().SetRotation(eventSpawn.bulletRotation);
+                        //bullet.GetComponent<BulletsBehavior>().SetRotation(eventSpawn.bulletRotation);
                         //dangerZone.GetComponent<DangerZone>().SetUp(eventSpawn.position, eventSpawn.scale, eventSpawn.type, eventSpawn.duration);
                         //dangerZone.transform.localScale = eventSpawn.scale;
                         break;

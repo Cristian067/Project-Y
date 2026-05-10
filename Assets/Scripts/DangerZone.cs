@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DangerZone : MonoBehaviour
@@ -13,6 +14,8 @@ public class DangerZone : MonoBehaviour
 
     public GameObject square;
     public GameObject cylinder;
+
+    private float timer;
 
 
     public void SetUp(Vector3 pos, Vector3 scale, Type _type,float duration = 10)
@@ -37,6 +40,22 @@ public class DangerZone : MonoBehaviour
             cylinder.transform.localScale = scale;
 
         }
+        timer = 0;
+        StartCoroutine(StartTimer(duration));
         
+    }
+
+    private IEnumerator StartTimer(float time)
+    {
+        float _time = 0f;
+        while (_time < time)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+                continue;
+            _time += Time.deltaTime;
+        }
+        Destroy(this.gameObject);
+        //yield return null;
     }
 }
