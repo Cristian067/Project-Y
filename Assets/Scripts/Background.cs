@@ -9,6 +9,7 @@ public class Background : MonoBehaviour
     [SerializeField] private Material backgroundMaterial;
 
     [SerializeField]private float backgroundSpeed;
+    [SerializeField] float visualSpeedMultiplier = 1.08f;
 
     [SerializeField] private GameObject[] backgroundsEnvironmentObjects;
     private float backgroundCount = 1;
@@ -22,6 +23,8 @@ public class Background : MonoBehaviour
         backgroundMaterial = backgroundGO.GetComponent<MeshRenderer>().material;
         backgroundGO.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
         backgroundsEnvironmentObjects = GameObject.FindGameObjectsWithTag("Environment");
+
+        //Debug.Log(backgroundGO.GetComponent<Renderer>().bounds.size);
 
 
     }
@@ -49,7 +52,7 @@ public class Background : MonoBehaviour
             foreach(var block in backgroundsEnvironmentObjects)
             {
                 //GameObject enviorement = Instantiate(block);
-                block.transform.Translate( new Vector3(0,0,-1f) * ((backgroundSpeed *30)* Time.deltaTime));
+                block.transform.Translate( new Vector3(0,0,-1f) * ((backgroundSpeed * Time.deltaTime) *37f));
 
                 //  1.5 / 1 * 40 = 60
                 if (block.transform.position.z < -12.5f)
@@ -77,6 +80,6 @@ public class Background : MonoBehaviour
     public void ChangeSpeed(float newSpeed)
     {
         backgroundSpeed = newSpeed;
-        backgroundGO.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
+        //backgroundGO.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
     }
 }

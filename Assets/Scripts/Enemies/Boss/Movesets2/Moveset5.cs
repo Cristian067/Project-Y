@@ -6,7 +6,7 @@ public class Moveset2_5 : Moveset
 {
 
     //public GameObject enemy;
-    public GameObject dangerZone;
+    //public GameObject dangerZone;
     public override IEnumerator Use()
     {
 

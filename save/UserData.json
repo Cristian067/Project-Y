@@ -3,7 +3,7 @@
     "email": "anonimous@gmail.com",
     "levelsHighScore": [
         0,
-        920,
+        1080,
         0,
         0,
         0,
@@ -31,7 +31,9 @@
         "Barrier",
         "MoreDamage1",
         "Bomb Rush",
-        "Bloom of the eternal field"
+        "Bloom of the eternal field",
+        "MoreSpeed1",
+        "Lighting"
     ],
     "charactersMet": [
         "Yang",

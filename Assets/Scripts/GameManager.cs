@@ -20,6 +20,19 @@ public class PlayerStats
 }
 
 
+[Serializable]
+public class NewDiscoverments 
+{
+    public enum Type
+    {
+        Character,
+        Story
+        
+    }
+    public string name;
+    public Type type;
+}
+
 
 
 public class GameManager : MonoBehaviour
@@ -68,6 +81,8 @@ public class GameManager : MonoBehaviour
     
 
     public GameObject[] limitsMaps;
+
+    public NewDiscoverments[] newDiscovermentsAtFinish;
     //private Data data = new Data();
 
     private string pathUserData = "save/UserData.json";
@@ -371,22 +386,47 @@ public class GameManager : MonoBehaviour
 
         if (levelNumber != 0)
         {
+
+            foreach(var discoverment in newDiscovermentsAtFinish)
+            {
+                if(discoverment.name == "")
+                {
+                    Debug.LogWarning("Discoverment with no name found, skipping");
+                    continue;
+                }
+                if(discoverment.type == NewDiscoverments.Type.Character)
+                {
+                    if (!data.charactersMet.Contains(discoverment.name))
+                    {
+                        Log.AddToLog($"New character registred: {discoverment.name}");
+                        data.charactersMet.Add(discoverment.name);
+                    }
+                }
+                else if(discoverment.type == NewDiscoverments.Type.Story)
+                {
+                    if (!data.storiesUnlocked.Contains(discoverment.name))
+                    {
+                        Log.AddToLog($"New story registred: {discoverment.name}");
+                        data.storiesUnlocked.Add(discoverment.name);
+                    }
+                }
+
+            }
             
-        
-        data = RegistryUpgrades(data);
+            data = RegistryUpgrades(data);
 
-        if (!data.levelsCompleted[levelNumber])
-        {
-            data.levelsCompleted[levelNumber] = true;
-        }
-        
-        if(data.levelsHighScore[levelNumber] < totalPoints)
-        {
-            data.levelsHighScore[levelNumber] = totalPoints;
-        }
+            if (!data.levelsCompleted[levelNumber])
+            {
+                data.levelsCompleted[levelNumber] = true;
+            }
+            
+            if(data.levelsHighScore[levelNumber] < totalPoints)
+            {
+                data.levelsHighScore[levelNumber] = totalPoints;
+            }
 
 
-        StartCoroutine(ApiCalls.PostScore(pathUserData,levelNumber,totalPoints));
+            StartCoroutine(ApiCalls.PostScore(pathUserData,levelNumber,totalPoints));
         }
 
         json = JsonUtility.ToJson(data,true);

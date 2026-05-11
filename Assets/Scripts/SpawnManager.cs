@@ -53,7 +53,7 @@ public class EventSpawn
 
     [Header("If Danger")]
 
-    public GameObject dangerPrefab;
+    //public GameObject dangerPrefab;
     public DangerZone.Type type;
     public Vector3 position;
     public Vector3 scale;
@@ -137,7 +137,7 @@ public class SpawnManager : MonoBehaviour
                     case SpawnEventType.SpeedChange:
                         //speed = eventSpawn.newSpeed;
                         //backgroundSpeed = eventSpawn.newSpeed;
-                        GetComponent<Background>().ChangeSpeed(backgroundSpeed);
+                        GetComponent<Background>().ChangeSpeed(eventSpawn.newSpeed);
                         //backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
                         break;
                     case SpawnEventType.DangerZone:
@@ -194,15 +194,22 @@ public class SpawnManager : MonoBehaviour
                 break;
             case SpawnEventType.SpeedChange:
                 //speed = eventSpawn.newSpeed;
-                GetComponent<Background>().ChangeSpeed(backgroundSpeed);
+                GetComponent<Background>().ChangeSpeed(eventSpawn.newSpeed);
 
                 //backgroundSpeed = eventSpawn.newSpeed;
                 //backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
                 break;
             case SpawnEventType.DangerZone:
-                GameObject dangerZone = Instantiate(eventSpawn.dangerPrefab, eventSpawn.position, Quaternion.identity);
+                GameObject dangerZone = Instantiate(Resources.Load<GameObject>("Prefabs/DangerZone"), new Vector3(0,0,0),Quaternion.identity);
                 //dangerZone.transform.localScale = eventSpawn.scale;
                 dangerZone.GetComponent<DangerZone>().SetUp(eventSpawn.position, eventSpawn.scale, eventSpawn.type, eventSpawn.duration);
+                break;
+            case SpawnEventType.Bullet:
+                GameObject bullet = Instantiate(eventSpawn.bullet, eventSpawn.bulletPosition, Quaternion.Euler(eventSpawn.bulletRotation));
+                bullet.transform.localScale = eventSpawn.bulletScale;
+                //bullet.GetComponent<BulletsBehavior>().SetRotation(eventSpawn.bulletRotation);
+                //dangerZone.GetComponent<DangerZone>().SetUp(eventSpawn.position, eventSpawn.scale, eventSpawn.type, eventSpawn.duration);
+                //dangerZone.transform.localScale = eventSpawn.scale;
                 break;
         }
     }

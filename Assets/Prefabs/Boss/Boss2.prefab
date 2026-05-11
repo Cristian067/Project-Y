@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 8003252843737433228}
   - component: {fileID: 1696881135654051793}
   - component: {fileID: 8826011935505025939}
-  - component: {fileID: 2055419809285108215}
-  - component: {fileID: 1690812928159568369}
-  - component: {fileID: 4871973186230592189}
+  - component: {fileID: 4947179949341043513}
+  - component: {fileID: 7635225479999744948}
+  - component: {fileID: 609934673730371534}
+  - component: {fileID: 7853858396844227705}
+  - component: {fileID: 843653745184560683}
   - component: {fileID: 6508587045435103756}
-  - component: {fileID: 5417665903513071138}
-  - component: {fileID: 1134246402784807036}
   m_Layer: 6
   m_Name: Boss2
   m_TagString: Boss
@@ -75,11 +75,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossBehavior
   bossName: Midan
   moveset:
-  - {fileID: 2055419809285108215}
-  - {fileID: 1690812928159568369}
-  - {fileID: 4871973186230592189}
-  - {fileID: 5417665903513071138}
-  - {fileID: 1134246402784807036}
+  - {fileID: 4947179949341043513}
+  - {fileID: 7635225479999744948}
+  - {fileID: 609934673730371534}
   previousMove: {fileID: 0}
   acutalValues: 100
   upgrades: []
@@ -97,7 +95,7 @@ MonoBehaviour:
   activated: 1
   busy: 0
   inAttack: 0
---- !u!114 &2055419809285108215
+--- !u!114 &4947179949341043513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,11 +104,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 80798737650191077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5caac84f3fa1a3140b532f88919d2879, type: 3}
+  m_Script: {fileID: 11500000, guid: 10b859018eb54a44a879b49f236dd10d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Moveset1
+  m_EditorClassIdentifier: GameAssembly::Moveset2_1
   bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
---- !u!114 &1690812928159568369
+--- !u!114 &7635225479999744948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,11 +117,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 80798737650191077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcef7c8e123777b41ab85270b1cf2c56, type: 3}
+  m_Script: {fileID: 11500000, guid: 8de9535222fd2a74d9d3ce074df67ec2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Moveset2
+  m_EditorClassIdentifier: GameAssembly::Moveset2_2
   bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
---- !u!114 &4871973186230592189
+--- !u!114 &609934673730371534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,10 +130,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 80798737650191077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e42cb2707700a409fe15077c95e466, type: 3}
+  m_Script: {fileID: 11500000, guid: dd092cd5cca3ea74d9c875a9fc365132, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Moveset3
+  m_EditorClassIdentifier: GameAssembly::Moveset2_3
   bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
+--- !u!114 &7853858396844227705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80798737650191077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7403a364d971634d8b87b5cb2314705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameAssembly::Moveset2_4
+  bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
+  enemy: {fileID: 0}
+--- !u!114 &843653745184560683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80798737650191077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00421797094731b41ad9667d97ebd082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameAssembly::Moveset2_5
+  bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
+  dangerZone: {fileID: 5708882922941607740, guid: fec03b76344445f41b38813c36d46a7e, type: 3}
 --- !u!95 &6508587045435103756
 Animator:
   serializedVersion: 7
@@ -158,34 +184,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5417665903513071138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80798737650191077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f95f17cc5d1f8b4cb1bae6c31827aca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Moveset4
-  bullet: {fileID: 0}
-  enemy: {fileID: 80798737650191077, guid: 356fabea34cbb144e977225a068bceb4, type: 3}
---- !u!114 &1134246402784807036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80798737650191077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d27b7c1dc0e3e2343b873a1fd5b6c0f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: GameAssembly::Moveset5
-  bullet: {fileID: 5860028167800293606, guid: 7d44256b2c16a8e4f94c2b8becfd5561, type: 3}
-  dangerZone: {fileID: 5708882922941607740, guid: fec03b76344445f41b38813c36d46a7e, type: 3}
 --- !u!1001 &8536920563721067372
 PrefabInstance:
   m_ObjectHideFlags: 0

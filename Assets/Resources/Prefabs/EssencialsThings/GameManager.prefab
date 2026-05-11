@@ -58,11 +58,11 @@ MonoBehaviour:
   barrier: {fileID: 0}
   barrierInRecharge: 0
   barrierRechargeParticles: {fileID: 0}
-  barrierCooldown: 10
+  barrierCooldown: 5
   baseStats:
     damage: 1
     speed: 10
-    pickupRange: 1
+    pickupRange: 2.5
     lightingRange: 3
   modStats:
     damage: 0
@@ -110,14 +110,7 @@ MonoBehaviour:
   backgroundGO: {fileID: 0}
   backgroundMaterial: {fileID: 0}
   backgroundSpeed: 10
-  backgroundsBlocks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  backgroundsEnvironmentObjects: []
 --- !u!114 &7256786141335147897
 MonoBehaviour:
   m_ObjectHideFlags: 0
