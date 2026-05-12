@@ -12,23 +12,38 @@ public class Moveset2_5 : Moveset
 
         var dangerZone = Instantiate(Resources.Load<GameObject>("Prefabs/DangerZone"), new Vector3(0,0,0),Quaternion.identity).GetComponent<DangerZone>();
         var dangerZone2 = Instantiate(Resources.Load<GameObject>("Prefabs/DangerZone"), new Vector3(0,0,0),Quaternion.identity).GetComponent<DangerZone>();
+        var dangerZone3 = Instantiate(Resources.Load<GameObject>("Prefabs/DangerZone"), new Vector3(0,0,0),Quaternion.identity).GetComponent<DangerZone>();
 
-        dangerZone.SetUp(new Vector3(-4.3f,0,2.4f),new Vector3(5,2,21),DangerZone.Type.Square);
-        dangerZone2.SetUp(new Vector3(4.3f,0,2.4f),new Vector3(5,2,21),DangerZone.Type.Square);
-
-        yield return new WaitForSeconds(1);
-
-        GameObject bulletOut = Instantiate(bullet, new Vector3(-4.3f,0,30), Quaternion.Euler(0,180,0));
-        bulletOut.transform.localScale = new Vector3(5,5,5);
-        bulletOut.GetComponent<BulletsBehavior>().SetSpeed(24);
-        GameObject bulletOut2 = Instantiate(bullet, new Vector3(4.3f,0,30), Quaternion.Euler(0,180,0));
-        bulletOut2.transform.localScale = new Vector3(5,5,5);
-        bulletOut2.GetComponent<BulletsBehavior>().SetSpeed(24);
+        dangerZone.SetUp(new Vector3(0f,0,0f),new Vector3(40,0.5f,2.5f),DangerZone.Type.Square,3);
+        dangerZone2.SetUp(new Vector3(0f,0f,6f),new Vector3(40,0.5f,2.5f),DangerZone.Type.Square,3);
+        dangerZone3.SetUp(new Vector3(0f,0,-6f),new Vector3(40,0.5f,2.5f),DangerZone.Type.Square,3);
 
 
-        yield return new WaitForSeconds(1.7f);
-        Destroy(dangerZone.gameObject);
-        Destroy(dangerZone2.gameObject);
+        float time = 0f;
+        while (time < 0.5f)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+            continue;
+            time += Time.deltaTime;
+        }
+
+        GameObject bulletMid = Instantiate(bullet,new Vector3(-20f,0,0f),Quaternion.Euler(0,90,0));
+        GameObject bulletTop = Instantiate(bullet,new Vector3(20f,0,6f),Quaternion.Euler(0,-90,0));
+        GameObject bulletBot = Instantiate(bullet,new Vector3(20f,0,-6f),Quaternion.Euler(0,-90,0));
+        bulletMid.transform.localScale = new Vector3(2,2,2);
+        bulletTop.transform.localScale = new Vector3(2,2,2);
+        bulletBot.transform.localScale = new Vector3(2f, 2f, 2f);
+
+
+        time = 0f;
+        while (time < 0.5f)
+        {
+            yield return null;
+            if (GameManager.instance.paused)
+            continue;
+            time += Time.deltaTime;
+        }
 
         
         GetComponent<BossBehavior>().ChangeInAttack(false);
