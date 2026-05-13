@@ -52,7 +52,7 @@ public class Background : MonoBehaviour
             foreach(var block in backgroundsEnvironmentObjects)
             {
                 //GameObject enviorement = Instantiate(block);
-                block.transform.Translate( new Vector3(0,0,-1f) * ((backgroundSpeed * Time.deltaTime) *37f));
+                block.transform.Translate( new Vector3(0,0,-1f) * ((backgroundSpeed * Time.deltaTime) *visualSpeedMultiplier));
 
                 //  1.5 / 1 * 40 = 60
                 if (block.transform.position.z < -12.5f)

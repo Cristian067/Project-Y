@@ -101,17 +101,17 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.tag == "Collect")
         {
+            GameManager.instance.AddPoints(points);
+            // if (type == ItemType.Point)
+            // {
+                
+            // }
 
-            if (type == ItemType.Point)
-            {
-                GameManager.instance.AddPoints(points);
-            }
-
-            else if (type == ItemType.Health)
+            if (type == ItemType.Health)
             {
                 GameManager.instance.Heal(1);
             }
-            else if (type == ItemType.Special)
+            if (type == ItemType.Special)
             {
                 GameManager.instance.RechargeSpecial(0.5f);
             }

@@ -65,7 +65,10 @@ public class EventSpawn
     public Vector3 bulletPosition;
     public Vector3 bulletRotation;
     public Vector3 bulletScale;
-    
+
+    [Header("If Boss")]
+
+    public GameObject bossPrefab;
 
 
 
@@ -151,6 +154,12 @@ public class SpawnManager : MonoBehaviour
                         //bullet.GetComponent<BulletsBehavior>().SetRotation(eventSpawn.bulletRotation);
                         //dangerZone.GetComponent<DangerZone>().SetUp(eventSpawn.position, eventSpawn.scale, eventSpawn.type, eventSpawn.duration);
                         //dangerZone.transform.localScale = eventSpawn.scale;
+                        break;
+                    case SpawnEventType.BossFight:
+                        //speed = eventSpawn.newSpeed;
+                        //backgroundSpeed = eventSpawn.newSpeed;
+                        Instantiate(eventSpawn.bossPrefab);
+                        //backgroundPanel.GetComponent<Renderer>().material.SetFloat("_Speed", backgroundSpeed);
                         break;
                 }
                 //eventSpawn.distanceToSpawn = float.MaxValue; // Para que no se vuelva a spawnear

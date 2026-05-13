@@ -541,8 +541,7 @@ MonoBehaviour:
     isLocked: 0
   - levelName: Forest
     levelDescription: To get to the river i need to go through this forest, never
-      got this far from the village but i dont have more options. \n<color="red">Level
-      still in pogress.
+      got this far from the village but i dont have more options.
     levelImg: {fileID: 21300000, guid: 982aad08e5994774a8f797230954a5c6, type: 3}
     levelSceneId: 3
     isLocked: 1

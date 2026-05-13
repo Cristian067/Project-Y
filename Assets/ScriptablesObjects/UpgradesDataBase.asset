@@ -35,3 +35,4 @@ MonoBehaviour:
   characterSOs:
   - {fileID: 11400000, guid: 11946e27dd0e85f45a743944aa4b6485, type: 2}
   - {fileID: 11400000, guid: 6ab7f228d4a12fa4ebbdd32bcc919082, type: 2}
+  - {fileID: 11400000, guid: 8da4c084905c2c24d9d63e8009089ad3, type: 2}

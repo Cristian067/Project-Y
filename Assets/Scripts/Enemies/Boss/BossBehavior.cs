@@ -214,15 +214,19 @@ public class BossBehavior : MonoBehaviour
     {
         //idle = true;
         float r = Random.Range(mapAnchor.x, mapAnchor.y);
+        
+        //Debug.Log(r +" ");
 
         Vector3 destination = new Vector3(r,transform.position.y,transform.position.z);
 
-        while (r > 7 || r < -7)
+        while (r > mapAnchor.y || r < mapAnchor.x)
         {
             r = Random.Range(mapAnchor.x, mapAnchor.y);
-            destination = new Vector3(r,transform.position.y,transform.position.z);
-            Debug.Log(r +" " + destination);
+            
+            
         }
+        destination = new Vector3(r,transform.position.y,transform.position.z);
+        Debug.Log(r +" " + destination);
         //Debug.Log("destinacion: "+destination);
         
         if (cancel)

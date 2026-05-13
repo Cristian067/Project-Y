@@ -159,7 +159,7 @@ public class Tutorial : MonoBehaviour
         GameObject pointForTrain = Instantiate(point,new Vector3(0,0,28f),Quaternion.Euler(0,180,0));
         pointForTrain.GetComponent<Item>().speed = 2;
         pointForTrain.GetComponent<Item>().SetType(Item.ItemType.Point);
-        pointForTrain.GetComponent<Item>().ChangePointsValue(150);
+        pointForTrain.GetComponent<Item>().ChangePointsValue(200);
         
 
         time = 0f;

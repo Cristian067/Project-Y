@@ -52,7 +52,7 @@ MonoBehaviour:
   lives: 3
   specials: 2
   specialCharge: 0
-  pointsForUpgrade: 200
+  pointsForUpgrade: 350
   totalPoints: 0
   points: 0
   barrier: {fileID: 0}
@@ -71,6 +71,7 @@ MonoBehaviour:
     lightingRange: 0
   enemies: 0
   limitsMaps: []
+  newDiscovermentsAtFinish: []
 --- !u!114 &6215549035710551892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +111,7 @@ MonoBehaviour:
   backgroundGO: {fileID: 0}
   backgroundMaterial: {fileID: 0}
   backgroundSpeed: 10
+  visualSpeedMultiplier: 1.08
   backgroundsEnvironmentObjects: []
 --- !u!114 &7256786141335147897
 MonoBehaviour:

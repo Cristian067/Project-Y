@@ -226,10 +226,18 @@ public class UIManager : MonoBehaviour
 
             if (i == 1)
             {
-                card.GetComponent<Button>().Select();
+                StartCoroutine(SelectUpgrade(card));
+                //card.GetComponent<Button>().Select();
             }
             
         }
+    }
+
+    public IEnumerator SelectUpgrade(GameObject upgrade)
+    {
+        yield return new WaitForSeconds(0.75f);
+        upgrade.GetComponent<Button>().Select();
+        //yield return null;
     }
 
 }
