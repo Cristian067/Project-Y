@@ -96,9 +96,9 @@ public class MainManager : MonoBehaviour
             Debug.Log("No existe el archivo, se va a crear uno nuevo");
             Directory.CreateDirectory("save");
             data.levelsCompleted[0] = false;
-            data.charactersMet.Add("Yang");
-            //data.charactersMet = new List<string>();
             //data.charactersMet.Add("Yang");
+            data.charactersMet = new List<string>();
+            data.charactersMet.Add("Yang");
             string json = JsonUtility.ToJson(data,true);
             File.WriteAllText(pathUserData,json); 
             
